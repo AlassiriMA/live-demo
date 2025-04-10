@@ -365,7 +365,7 @@ export class DatabaseStorage implements IStorage {
       const result = await db.execute(
         `SELECT id, slug, name, description, style, primary_color, secondary_color, 
         accent_color, image_url, tags, route, published, 
-        detailed_content, features, screenshots, status, 
+        detailed_content, status, 
         created_at, updated_at
         FROM projects WHERE slug = '${slug}' LIMIT 1`
       );
@@ -387,10 +387,10 @@ export class DatabaseStorage implements IStorage {
           route: row.route,
           published: row.published,
           featured: false, // Default value since this column doesn't exist in the database
-          sortOrder: row.sort_order,
-          detailedContent: row.detailed_content,
-          features: row.features,
-          screenshots: row.screenshots,
+          sortOrder: 0, // Default value since this column doesn't exist in the database
+          detailedContent: row.detailed_content || '',
+          features: [], // Default value since this column doesn't exist in the database
+          screenshots: [], // Default value since this column doesn't exist in the database
           status: row.status,
           createdAt: row.created_at,
           updatedAt: row.updated_at
