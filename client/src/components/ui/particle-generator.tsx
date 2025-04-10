@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ParticleBackground, { ParticleBackgroundProps } from './particle-background';
 import { Card } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 import {
   Select,
   SelectContent,
@@ -16,6 +17,7 @@ import { ArrowDown, ArrowUp, Save, Sparkles, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ParticleGenerator() {
+  const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [config, setConfig] = useState<ParticleBackgroundProps>({
     count: 120, // Increased count for more particles
@@ -32,6 +34,19 @@ export default function ParticleGenerator() {
   const handleChange = (key: keyof ParticleBackgroundProps, value: any) => {
     setConfig((prev) => ({ ...prev, [key]: value }));
   };
+
+  // Load saved config on mount
+  useEffect(() => {
+    try {
+      const savedConfig = localStorage.getItem('particleConfig');
+      if (savedConfig) {
+        const parsedConfig = JSON.parse(savedConfig);
+        setConfig(parsedConfig);
+      }
+    } catch (error) {
+      console.error('Failed to load saved particle config:', error);
+    }
+  }, []);
 
   const getRandomConfig = () => {
     const colorSchemes = ['blue', 'purple', 'orange', 'green', 'rainbow'] as const;
@@ -231,6 +246,16 @@ export default function ParticleGenerator() {
                   </Button>
                   <Button 
                     className="flex-1"
+                    onClick={() => {
+                      // Save current config to localStorage
+                      localStorage.setItem('particleConfig', JSON.stringify(config));
+                      // Show success toast
+                      toast.toast({
+                        title: 'Configuration saved',
+                        description: 'Your particle settings have been saved',
+                        duration: 3000,
+                      });
+                    }}
                   >
                     <Save className="h-4 w-4 mr-2" />
                     Save
