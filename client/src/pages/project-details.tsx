@@ -312,91 +312,91 @@ export default function ProjectDetailsPage() {
             >
               <h2 className="text-2xl font-bold mb-4">App Screenshots</h2>
               
-              {/* Main Project Screenshot - using app screenshots instead of card image */}
+              {/* Main Project Screenshot - featured screenshot from each project */}
               <div className="mb-6 rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
                 {project.slug === 'pos-bookstore' && (
                   <img 
-                    src="/assets/images/screenshots/pos/overview.svg" 
-                    alt={`${project.name} overview`}
+                    src="/assets/images/screenshots/pos/inventory.svg" 
+                    alt={`${project.name} inventory management`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {project.slug === 'fruit-store' && (
                   <img 
-                    src="/assets/images/screenshots/fruits/storefront.svg" 
-                    alt={`${project.name} storefront`}
+                    src="/assets/images/screenshots/fruit/product-catalog.svg" 
+                    alt={`${project.name} product catalog`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {project.slug === 'marketing-agency' && (
                   <img 
-                    src="/assets/images/screenshots/marketing/homepage.svg" 
-                    alt={`${project.name} homepage`}
+                    src="/assets/images/screenshots/marketing/services.svg" 
+                    alt={`${project.name} services page`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {project.slug === 'bi-dashboard' && (
                   <img 
-                    src="/assets/images/screenshots/bi/overview.svg" 
-                    alt={`${project.name} overview`}
+                    src="/assets/images/screenshots/bi/dashboard.svg" 
+                    alt={`${project.name} dashboard`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {project.slug === 'statistical-arbitrage' && (
                   <img 
-                    src="/assets/images/screenshots/statarb/overview.svg" 
-                    alt={`${project.name} overview`}
+                    src="/assets/images/screenshots/statarb/dashboard.svg" 
+                    alt={`${project.name} dashboard`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {project.slug === 'triangular-arbitrage' && (
                   <img 
-                    src="/assets/images/screenshots/triarb/overview.svg" 
-                    alt={`${project.name} overview`}
+                    src="/assets/images/screenshots/triarb/scanner.svg" 
+                    alt={`${project.name} opportunity scanner`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
-                {project.slug === 'dydx-trading' && (
+                {(project.slug === 'dydx-trading' || project.slug === 'dydx-interface') && (
                   <img 
-                    src="/assets/images/screenshots/dydx/overview.svg" 
-                    alt={`${project.name} overview`}
+                    src="/assets/images/screenshots/dydx/trading.svg" 
+                    alt={`${project.name} trading interface`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {project.slug === 'english-ai-tutor' && (
                   <img 
-                    src="/assets/images/screenshots/english-ai/overview.svg" 
-                    alt={`${project.name} overview`}
+                    src="/assets/images/screenshots/english-ai/conversation.svg" 
+                    alt={`${project.name} conversation interface`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {project.slug === 'beauty-salon' && (
                   <img 
-                    src="/assets/images/screenshots/beauty/overview.svg" 
-                    alt={`${project.name} overview`}
+                    src="/assets/images/screenshots/beauty/services.svg" 
+                    alt={`${project.name} services page`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {project.slug === 'reddit-clone' && (
                   <img 
-                    src="/assets/images/screenshots/reddit/overview.svg" 
-                    alt={`${project.name} overview`}
+                    src="/assets/images/screenshots/reddit/home.svg" 
+                    alt={`${project.name} home page`}
                     className="w-full h-auto object-cover rounded-lg"
                   />
                 )}
                 
                 {/* Fallback to project.imageUrl if no specific screenshot is available */}
                 {!['pos-bookstore', 'fruit-store', 'marketing-agency', 'bi-dashboard', 
-                   'statistical-arbitrage', 'triangular-arbitrage', 'dydx-trading', 
+                   'statistical-arbitrage', 'triangular-arbitrage', 'dydx-trading', 'dydx-interface',
                    'english-ai-tutor', 'beauty-salon', 'reddit-clone'].includes(project.slug || '') && project.imageUrl && (
                   <img 
                     src={project.imageUrl} 
