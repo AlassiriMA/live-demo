@@ -26,7 +26,43 @@ export const apps: AppInfo[] = [
     accentColor: "#0D9488",
     imageUrl: "https://images.unsplash.com/photo-1605711285791-0219e80e43a3",
     tags: ["AI", "Education", "Interactive"],
-    route: "/english-ai"
+    route: "/english-ai",
+    detailedContent: "English AI Teacher is an innovative language learning platform that harnesses the power of artificial intelligence to create personalized, adaptive learning experiences for English language learners at all proficiency levels. The application combines cutting-edge natural language processing with proven language acquisition methodologies to deliver an engaging and effective learning environment.\n\nUnlike traditional language learning apps that follow rigid, predefined paths, English AI Teacher dynamically adjusts to each learner's strengths, weaknesses, and learning style. The AI analyzes the user's responses, pronunciation, grammar usage, and vocabulary knowledge to create a customized curriculum that evolves as the user progresses.\n\nThe platform offers a variety of interactive learning activities, including conversational practice with AI tutors, pronunciation assessment, grammar exercises, vocabulary building, and reading comprehension. Each activity is designed to simulate real-world language use scenarios, helping learners develop practical communication skills they can immediately apply in their daily lives.",
+    features: [
+      {
+        title: "AI Conversation Partner",
+        description: "Practice speaking English with a sophisticated AI that responds naturally, corrects errors, and adjusts language complexity based on your proficiency level."
+      },
+      {
+        title: "Personalized Learning Path",
+        description: "Experience a curriculum that automatically adapts to your strengths, weaknesses, and learning pace, focusing on areas that need improvement."
+      },
+      {
+        title: "Pronunciation Feedback",
+        description: "Receive detailed feedback on your pronunciation with visual waveform comparisons and specific guidance on improving problematic sounds and intonation."
+      },
+      {
+        title: "Grammar Analysis",
+        description: "Get instant grammar corrections with clear explanations of rules and patterns, helping you understand not just what was wrong but why."
+      },
+      {
+        title: "Vocabulary Builder",
+        description: "Expand your vocabulary through contextual learning, spaced repetition, and personalized word lists based on your interests and career goals."
+      },
+      {
+        title: "Progress Analytics",
+        description: "Track your improvement over time with comprehensive analytics on speaking fluency, grammar accuracy, vocabulary range, and overall proficiency."
+      }
+    ],
+    technologies: [
+      "React", "TypeScript", "TailwindCSS", "OpenAI API", 
+      "Express.js", "PostgreSQL", "Drizzle ORM", "Web Speech API", 
+      "JWT Authentication", "WebSockets", "Framer Motion"
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
+      "https://images.unsplash.com/photo-1546410531-bb4caa6b424d"
+    ]
   },
   {
     id: "beauty",
@@ -38,7 +74,43 @@ export const apps: AppInfo[] = [
     accentColor: "#E11D48",
     imageUrl: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937",
     tags: ["Booking", "Services", "Gallery"],
-    route: "/beauty"
+    route: "/beauty",
+    detailedContent: "Glow & Style is a sophisticated digital platform designed for premium hair salons and beauty centers that want to elevate their online presence and streamline client management. The application combines stunning aesthetic design with powerful functionality to create an engaging experience that reflects the luxury and attention to detail that clients expect from high-end beauty establishments.\n\nThe platform features an elegant, visually rich interface that showcases the salon's services, styling portfolio, and professional team through immersive galleries and thoughtfully designed presentation sections. The responsive design ensures a seamless experience across all devices, allowing clients to browse and book appointments whether they're at home or on the go.\n\nAt the heart of the application is an advanced booking system that allows clients to schedule appointments based on service type, preferred stylist, and availability. The intuitive calendar interface makes it easy for clients to find convenient time slots, while the backend system manages staff scheduling, room allocation, and equipment needs to maximize operational efficiency.",
+    features: [
+      {
+        title: "Smart Appointment Booking",
+        description: "Allow clients to book appointments 24/7 with an intuitive calendar interface that shows real-time availability based on service duration and staff schedules."
+      },
+      {
+        title: "Service Portfolio Showcase",
+        description: "Display your range of beauty services with stunning visuals, detailed descriptions, pricing information, and recommended complementary treatments."
+      },
+      {
+        title: "Stylist Profiles & Availability",
+        description: "Highlight your professional team with detailed profiles showcasing their specialties, experience, certifications, and portfolio of previous work."
+      },
+      {
+        title: "Client Management System",
+        description: "Track client history, preferences, and personal notes to deliver personalized service recommendations and maintain long-term client relationships."
+      },
+      {
+        title: "Before & After Gallery",
+        description: "Showcase transformational results with an interactive before-and-after gallery that helps potential clients visualize the quality of your services."
+      },
+      {
+        title: "Automated Reminders",
+        description: "Reduce no-shows with automated SMS and email appointment reminders that include preparation instructions and salon policies."
+      }
+    ],
+    technologies: [
+      "React", "TypeScript", "TailwindCSS", "Framer Motion", 
+      "Express.js", "PostgreSQL", "Drizzle ORM", "JWT Authentication", 
+      "Cloudinary Integration", "Twilio API", "Google Calendar API"
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1560066984-138dadb4c035",
+      "https://images.unsplash.com/photo-1470259078422-826894b933aa"
+    ]
   },
   {
     id: "pos",
@@ -98,7 +170,43 @@ export const apps: AppInfo[] = [
     accentColor: "#EA580C",
     imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7",
     tags: ["Community", "Posts", "Threads"],
-    route: "/reddit"
+    route: "/reddit",
+    detailedContent: "ThreadVerse is a robust community-driven content sharing platform designed for meaningful discussions and content discovery. Drawing inspiration from popular social news aggregation services, this application provides a modern, user-friendly interface where users can share content, participate in discussions, and build communities around shared interests.\n\nThe platform is structured around thematic communities called 'forums' where users can post content relevant to that forum's topic. The intuitive content ranking system allows the most valuable contributions to rise to the top through user voting, ensuring quality content receives the visibility it deserves while less relevant content naturally falls lower in the feed.\n\nThreadVerse supports rich media content including text posts, images, videos, and links, with automatic preview generation for shared URLs. The sophisticated comment system enables nested conversations with collapsible threads, making it easy to follow complex discussions and reply to specific points within larger conversations.",
+    features: [
+      {
+        title: "Community Forums",
+        description: "Create and join topic-based communities with customizable rules, appearance settings, and moderation tools for community organizers."
+      },
+      {
+        title: "Content Voting System",
+        description: "Democratize content curation with user-powered upvoting and downvoting that determines post visibility and trending status."
+      },
+      {
+        title: "Rich Media Support",
+        description: "Share diverse content types including text posts, images, videos, links, and polls with automatic link previews and embedded content."
+      },
+      {
+        title: "Nested Comment Threads",
+        description: "Engage in organized discussions with multi-level nested comments, threading, and collapsible conversation branches for improved readability."
+      },
+      {
+        title: "User Profiles & Reputation",
+        description: "Build personal profiles with contribution history, karma points reflecting community standing, and customizable avatars and banners."
+      },
+      {
+        title: "Content Discovery Tools",
+        description: "Discover relevant content through personalized feeds, trending sections, and smart recommendations based on interests and activity."
+      }
+    ],
+    technologies: [
+      "React", "TypeScript", "TailwindCSS", "Express.js", 
+      "PostgreSQL", "Drizzle ORM", "JWT Authentication", 
+      "WebSockets", "Redis Cache", "Cloudinary", "Markdown Parser"
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1542744094-3a31f272c490",
+      "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6"
+    ]
   },
   {
     id: "fruits",
@@ -204,9 +312,45 @@ export const apps: AppInfo[] = [
     primaryColor: "#8B5CF6",
     secondaryColor: "#A78BFA",
     accentColor: "#7C3AED",
-    imageUrl: "",
+    imageUrl: "https://images.unsplash.com/photo-1639322537228-f710d846310a",
     tags: ["Arbitrage", "DeFi", "HFT"],
-    route: "/triarb"
+    route: "/triarb",
+    detailedContent: "TriArb Bot is a sophisticated triangular arbitrage simulator designed for cryptocurrency markets that identifies and tracks profit opportunities across three-currency trading cycles. Built with high-frequency trading principles in mind, this platform monitors price discrepancies across multiple exchanges in real-time and detects profitable trading paths that begin and end with the same currency.\n\nThe application uses advanced algorithms to continuously scan thousands of potential triangular combinations, calculating transaction costs, slippage, and exchange fees to determine the true profitability of each potential arbitrage opportunity. The intuitive dashboard displays profitable triangular paths with clear visualizations of the exact sequence of trades needed to capture the arbitrage opportunity.\n\nWhile operating as a simulation for educational purposes, the platform incorporates realistic trading mechanics including order book depth analysis, execution timing, and risk management strategies. Users can adjust sensitivity parameters, minimum profit thresholds, and trading pair preferences to customize the arbitrage detection according to their risk appetite and trading strategy.",
+    features: [
+      {
+        title: "Real-time Market Scanner",
+        description: "Monitor thousands of triangular arbitrage combinations across multiple exchanges simultaneously with millisecond updates on price changes."
+      },
+      {
+        title: "Profit Path Visualization",
+        description: "View complete trading cycles with interactive flowcharts showing each step in the arbitrage path, including exact conversion rates and profit calculations."
+      },
+      {
+        title: "Fee-Adjusted Calculations",
+        description: "Account for all trading fees, gas costs (for DeFi), and slippage in profit calculations to ensure displayed opportunities represent realistic outcomes."
+      },
+      {
+        title: "Historical Opportunity Analysis",
+        description: "Review past arbitrage opportunities with detailed statistics on frequency, duration, and profitability to optimize detection parameters."
+      },
+      {
+        title: "Exchange Connectivity",
+        description: "Connect to multiple cryptocurrency exchanges via API to access real market data and simulate how arbitrage opportunities would play out in live conditions."
+      },
+      {
+        title: "Customizable Alerts",
+        description: "Set up notifications for profitable opportunities based on minimum profit thresholds, specific currency pairs, or exchanges of interest."
+      }
+    ],
+    technologies: [
+      "React", "TypeScript", "TailwindCSS", "Express.js", 
+      "PostgreSQL", "Drizzle ORM", "WebSockets", "D3.js", 
+      "Redux", "Cryptocurrency Exchange APIs", "JWT Authentication"
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1621761191319-c6fb62004040",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71"
+    ]
   },
   {
     id: "dydx",
@@ -216,9 +360,45 @@ export const apps: AppInfo[] = [
     primaryColor: "#F59E0B",
     secondaryColor: "#FBBF24",
     accentColor: "#D97706",
-    imageUrl: "",
+    imageUrl: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d",
     tags: ["Cointegration", "Z-scores", "L2"],
-    route: "/dydx"
+    route: "/dydx",
+    detailedContent: "The DYDX Pairs Bot is an advanced statistical arbitrage simulator focusing on pairs trading strategies across perpetual contracts on the dYdX decentralized exchange. This application leverages sophisticated mathematical techniques to identify cointegrated cryptocurrency pairs and capitalize on temporary price divergences between assets that historically move together.\n\nThe platform implements a complete statistical pairs trading workflow, starting with pair selection through cointegration testing, followed by z-score calculation to determine entry and exit points, and finishing with simulated order execution and position management. The application computes Augmented Dickey-Fuller tests, Johansen tests, and Engle-Granger methodologies to scientifically validate cointegration relationships between crypto assets.\n\nThe interactive dashboard presents real-time spread visualizations with dynamic z-score bands that indicate optimal trade entry and exit zones. Advanced users can customize strategy parameters including lookback periods, z-score thresholds, position sizing rules, and risk management constraints to fine-tune the trading approach to their specific preferences.",
+    features: [
+      {
+        title: "Cointegration Testing Suite",
+        description: "Apply rigorous statistical tests including Augmented Dickey-Fuller, Johansen, and Engle-Granger methodologies to identify truly cointegrated asset pairs."
+      },
+      {
+        title: "Dynamic Z-Score Analysis",
+        description: "Visualize mean-reversion opportunities with real-time z-score calculations that highlight statistically significant deviations in pair spreads."
+      },
+      {
+        title: "Spread Visualization Tools",
+        description: "Monitor pair relationships through interactive spread charts with support for various normalization methods and custom timeframe selection."
+      },
+      {
+        title: "Position Sizing Calculator",
+        description: "Determine optimal position ratios for each side of the pair based on price volatility, hedge ratios, and available margin allocation."
+      },
+      {
+        title: "Risk Management System",
+        description: "Implement comprehensive risk controls including maximum position limits, stop-loss levels, and correlation breakdowns alerts."
+      },
+      {
+        title: "Performance Analytics",
+        description: "Track simulated trading performance with detailed metrics on profit/loss, Sharpe ratio, maximum drawdown, and win rate across different market conditions."
+      }
+    ],
+    technologies: [
+      "React", "TypeScript", "TailwindCSS", "Express.js", 
+      "PostgreSQL", "Drizzle ORM", "WebSockets", "TradingView Lightweight Charts", 
+      "dYdX API Integration", "Simple-Statistics", "JWT Authentication"
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1642790551116-18e150f248e5",
+      "https://images.unsplash.com/photo-1642790490564-3bbc7c4cbde4"
+    ]
   },
   {
     id: "statarb",
@@ -228,9 +408,45 @@ export const apps: AppInfo[] = [
     primaryColor: "#10B981",
     secondaryColor: "#34D399",
     accentColor: "#059669",
-    imageUrl: "",
+    imageUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3",
     tags: ["Trading", "Charts", "Algorithm"],
-    route: "/statarb"
+    route: "/statarb",
+    detailedContent: "StatArb Bot is a sophisticated statistical arbitrage platform designed for simulating mean-reversion trading strategies across equity markets. This application applies rigorous statistical methods to identify temporary market inefficiencies where asset prices deviate from their historical statistical relationships, providing opportunities for profit when they revert to their expected states.\n\nThe platform implements multiple statistical models, including z-score calculations, Bollinger Bands, and machine learning algorithms, to detect when assets are trading significantly above or below their historical means. These signals are then used to generate automated trading recommendations based on the assumption that prices will eventually revert to statistically expected levels.\n\nThe application features a comprehensive backtesting environment where users can evaluate strategy performance across different market conditions, optimize parameters, and analyze risk metrics. The intuitive dashboard displays real-time market data, strategy signals, and performance metrics, allowing users to monitor active strategies and make informed adjustments.",
+    features: [
+      {
+        title: "Multi-Asset Analysis",
+        description: "Analyze thousands of stocks simultaneously to identify mean-reversion opportunities across different sectors, market caps, and trading venues."
+      },
+      {
+        title: "Statistical Model Selection",
+        description: "Choose from multiple statistical approaches including z-score, Bollinger Bands, and machine learning algorithms to detect reversion opportunities."
+      },
+      {
+        title: "Advanced Backtesting Engine",
+        description: "Test strategies against historical data with detailed performance metrics, transaction costs, slippage simulation, and market impact models."
+      },
+      {
+        title: "Risk Management Tools",
+        description: "Implement sophisticated risk controls including position limits, volatility-based sizing, correlation analysis, and automated stop-loss mechanisms."
+      },
+      {
+        title: "Portfolio Construction",
+        description: "Build diversified portfolios of mean-reverting strategies with optimization for maximum Sharpe ratio, minimum drawdown, or custom objectives."
+      },
+      {
+        title: "Performance Analytics",
+        description: "Track and analyze strategy performance with comprehensive metrics including risk-adjusted returns, drawdowns, win/loss ratios, and factor exposures."
+      }
+    ],
+    technologies: [
+      "React", "TypeScript", "TailwindCSS", "Express.js", 
+      "PostgreSQL", "Drizzle ORM", "D3.js", "WebSockets", 
+      "TensorFlow.js", "Financial Data APIs", "JWT Authentication"
+    ],
+    screenshots: [
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3",
+      "https://images.unsplash.com/photo-1535320903710-d993d3d77d29"
+    ]
   },
   {
     id: "bi",
