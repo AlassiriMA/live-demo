@@ -80,7 +80,7 @@ export default function Footer() {
               {isLoading ? (
                 Array(4).fill(0).map((_, i) => (
                   <li key={i} className="flex items-center">
-                    <Skeleton className="h-4 w-24" />
+                    <div><Skeleton className="h-4 w-24" /></div>
                   </li>
                 ))
               ) : (
@@ -105,7 +105,7 @@ export default function Footer() {
               <li className="flex items-center text-gray-600">
                 <HiMail className="mr-2 text-gray-500" size={18} />
                 {isLoading ? (
-                  <Skeleton className="h-4 w-32" />
+                  <div><Skeleton className="h-4 w-32" /></div>
                 ) : (
                   <span>{getSetting<string>(contactSettings, "contact.email", "")}</span>
                 )}
@@ -113,7 +113,7 @@ export default function Footer() {
               <li className="flex items-center text-gray-600">
                 <HiPhone className="mr-2 text-gray-500" size={18} />
                 {isLoading ? (
-                  <Skeleton className="h-4 w-32" />
+                  <div><Skeleton className="h-4 w-32" /></div>
                 ) : (
                   <span>{getSetting<string>(contactSettings, "contact.phone", "")}</span>
                 )}
@@ -121,7 +121,7 @@ export default function Footer() {
               <li className="flex items-center text-gray-600">
                 <HiLocationMarker className="mr-2 text-gray-500" size={18} />
                 {isLoading ? (
-                  <Skeleton className="h-4 w-32" />
+                  <div><Skeleton className="h-4 w-32" /></div>
                 ) : (
                   <span>{getSetting<string>(contactSettings, "contact.address", "")}</span>
                 )}
@@ -152,13 +152,13 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-200 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-600 text-sm mb-4 md:mb-0">
-            {isLoading ? (
-              <Skeleton className="h-4 w-64" />
-            ) : (
-              getSetting<string>(footerSettings, "footer.copyright", "© 2025 All rights reserved.")
-            )}
-          </p>
+          {isLoading ? (
+            <Skeleton className="h-4 w-64 mb-4 md:mb-0" />
+          ) : (
+            <p className="text-gray-600 text-sm mb-4 md:mb-0">
+              {getSetting<string>(footerSettings, "footer.copyright", "© 2025 All rights reserved.")}
+            </p>
+          )}
           <div className="flex space-x-6">
             <a href="/terms" className="text-gray-600 hover:text-[#6366F1] text-sm transition-colors">Terms & Conditions</a>
             <a href="/privacy" className="text-gray-600 hover:text-[#6366F1] text-sm transition-colors">Privacy Policy</a>
