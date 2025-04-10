@@ -1,167 +1,80 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#8B5CF6" offset="0%"></stop>
-            <stop stop-color="#7C3AED" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="business-gradient">
-            <stop stop-color="#F59E0B" offset="0%"></stop>
-            <stop stop-color="#D97706" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="travel-gradient">
-            <stop stop-color="#10B981" offset="0%"></stop>
-            <stop stop-color="#059669" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="academic-gradient">
-            <stop stop-color="#3B82F6" offset="0%"></stop>
-            <stop stop-color="#2563EB" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="casual-gradient">
-            <stop stop-color="#EC4899" offset="0%"></stop>
-            <stop stop-color="#DB2777" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
-        
-        <!-- Header -->
-        <rect fill="url(#linearGradient-1)" x="0" y="0" width="800" height="60"></rect>
-        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="24" y="38">
-            English AI Tutor
-        </text>
-        
-        <!-- Navigation -->
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="320" y="38">
-            Conversation
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="430" y="38">
-            Lessons
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="510" y="38">
-            Vocabulary
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="610" y="38">
-            Grammar
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="700" y="38">
-            Profile
-        </text>
-        
-        <!-- Main Content - Lessons -->
-        <rect fill="#FFFFFF" x="0" y="60" width="800" height="440"></rect>
-        
-        <!-- Page Title and Progress -->
-        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="40" y="100">
-            Your Learning Journey
-        </text>
-        
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="40" y="130">
-            Continue your English learning path
-        </text>
-        
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="600" y="130">
-            Overall Progress: 42%
-        </text>
-        <rect fill="#E5E7EB" x="600" y="140" width="160" height="8" rx="4"></rect>
-        <rect fill="#7C3AED" x="600" y="140" width="67" height="8" rx="4"></rect>
-        
-        <!-- Continue Learning Section -->
-        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="40" y="170">
-            Continue Learning
-        </text>
-        
-        <!-- Current Lesson Card -->
-        <rect fill="#FFFFFF" x="40" y="185" width="720" height="120" rx="8" stroke="#E5E7EB" stroke-width="1"></rect>
-        
-        <rect fill="url(#business-gradient)" x="60" y="205" width="80" height="80" rx="8"></rect>
-        <text font-family="Arial" font-size="32" font-weight="bold" fill="#FFFFFF" x="85" y="255">
-            B
-        </text>
-        
-        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="160" y="225">
-            Business Meetings: Key Phrases
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="160" y="250">
-            Learn essential phrases to navigate business meetings professionally
-        </text>
-        
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="160" y="280">
-            Lesson 3/5 • Intermediate • 10 minutes left
-        </text>
-        
-        <rect fill="#7C3AED" x="640" y="225" width="100" height="40" rx="20"></rect>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="655" y="250">
-            Continue
-        </text>
-        
-        <!-- Recommended Courses -->
-        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="40" y="335">
-            Recommended Lessons
-        </text>
-        
-        <!-- Lesson Cards - Row 1 -->
-        <rect fill="#FFFFFF" x="40" y="350" width="230" height="140" rx="8" stroke="#E5E7EB" stroke-width="1"></rect>
-        <rect fill="url(#travel-gradient)" x="55" y="365" width="50" height="50" rx="25"></rect>
-        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="70" y="400">
-            T
-        </text>
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="55" y="435">
-            Travel Essentials
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="55" y="460">
-            Beginner • 30 min
-        </text>
-        <rect fill="#E5E7EB" x="190" y="365" width="60" height="25" rx="12.5"></rect>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#374151" x="200" y="382">
-            Start
-        </text>
-        
-        <rect fill="#FFFFFF" x="285" y="350" width="230" height="140" rx="8" stroke="#E5E7EB" stroke-width="1"></rect>
-        <rect fill="url(#academic-gradient)" x="300" y="365" width="50" height="50" rx="25"></rect>
-        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="315" y="400">
-            A
-        </text>
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="300" y="435">
-            Academic Writing
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="300" y="460">
-            Advanced • 45 min
-        </text>
-        <rect fill="#E5E7EB" x="435" y="365" width="60" height="25" rx="12.5"></rect>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#374151" x="445" y="382">
-            Start
-        </text>
-        
-        <rect fill="#FFFFFF" x="530" y="350" width="230" height="140" rx="8" stroke="#E5E7EB" stroke-width="1"></rect>
-        <rect fill="url(#casual-gradient)" x="545" y="365" width="50" height="50" rx="25"></rect>
-        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="560" y="400">
-            C
-        </text>
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="545" y="435">
-            Casual Conversations
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="545" y="460">
-            Intermediate • 25 min
-        </text>
-        <rect fill="#E5E7EB" x="680" y="365" width="60" height="25" rx="12.5"></rect>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#374151" x="690" y="382">
-            Start
-        </text>
-        
-        <!-- Achievement Section -->
-        <rect fill="#F3F4F6" x="0" y="510" width="800" height="65" rx="0"></rect>
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="40" y="540">
-            Your Achievements
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="200" y="540">
-            36 lessons completed
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="360" y="540">
-            218 vocabulary words mastered
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="580" y="540">
-            24 grammar rules learned
-        </text>
-    </g>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#f8fafc" />
+  
+  <!-- Header -->
+  <rect width="800" height="60" fill="#4f46e5" />
+  <text x="30" y="38" font-family="Arial" font-size="22" font-weight="bold" fill="white">English AI Tutor</text>
+  <circle cx="750" cy="30" r="20" fill="#818cf8" />
+  <text x="750" y="38" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">JD</text>
+  
+  <!-- Left Sidebar -->
+  <rect x="0" y="60" width="200" height="440" fill="#f1f5f9" />
+  <text x="20" y="100" font-family="Arial" font-size="16" font-weight="bold" fill="#334155">Course Progress</text>
+  
+  <!-- Progress Bar -->
+  <rect x="20" y="120" width="160" height="10" rx="5" fill="#e2e8f0" />
+  <rect x="20" y="120" width="92" height="10" rx="5" fill="#4f46e5" />
+  <text x="20" y="150" font-family="Arial" font-size="14" fill="#64748b">57% Complete</text>
+  
+  <!-- Nav Items -->
+  <rect x="10" y="180" width="180" height="40" rx="5" fill="#4f46e5" />
+  <text x="50" y="205" font-family="Arial" font-size="14" font-weight="bold" fill="white">Lessons</text>
+  
+  <rect x="10" y="230" width="180" height="40" rx="5" fill="transparent" />
+  <text x="50" y="255" font-family="Arial" font-size="14" fill="#334155">Vocabulary</text>
+  
+  <rect x="10" y="280" width="180" height="40" rx="5" fill="transparent" />
+  <text x="50" y="305" font-family="Arial" font-size="14" fill="#334155">Grammar</text>
+  
+  <rect x="10" y="330" width="180" height="40" rx="5" fill="transparent" />
+  <text x="50" y="355" font-family="Arial" font-size="14" fill="#334155">Practice Tests</text>
+  
+  <rect x="10" y="380" width="180" height="40" rx="5" fill="transparent" />
+  <text x="50" y="405" font-family="Arial" font-size="14" fill="#334155">Settings</text>
+  
+  <!-- Main Content -->
+  <text x="230" y="100" font-family="Arial" font-size="24" font-weight="bold" fill="#1e293b">Lesson Library</text>
+  <text x="230" y="130" font-family="Arial" font-size="16" fill="#64748b">Browse all available lessons to continue your learning journey</text>
+  
+  <!-- Lesson Cards -->
+  <!-- Card 1 -->
+  <rect x="230" y="160" width="260" height="140" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <rect x="230" y="160" width="260" height="50" rx="8" fill="#c7d2fe" />
+  <text x="250" y="190" font-family="Arial" font-size="16" font-weight="bold" fill="#4338ca">Daily Conversations</text>
+  <text x="250" y="230" font-family="Arial" font-size="14" fill="#64748b">Learn how to engage in everyday</text>
+  <text x="250" y="250" font-family="Arial" font-size="14" fill="#64748b">conversations with confidence</text>
+  <rect x="250" y="270" width="80" height="20" rx="10" fill="#4f46e5" />
+  <text x="290" y="285" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Continue</text>
+  <text x="380" y="285" font-family="Arial" font-size="12" fill="#64748b">4/7 completed</text>
+  
+  <!-- Card 2 -->
+  <rect x="510" y="160" width="260" height="140" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <rect x="510" y="160" width="260" height="50" rx="8" fill="#bfdbfe" />
+  <text x="530" y="190" font-family="Arial" font-size="16" font-weight="bold" fill="#1e40af">Business English</text>
+  <text x="530" y="230" font-family="Arial" font-size="14" fill="#64748b">Master professional communication</text>
+  <text x="530" y="250" font-family="Arial" font-size="14" fill="#64748b">for workplace success</text>
+  <rect x="530" y="270" width="80" height="20" rx="10" fill="#4f46e5" />
+  <text x="570" y="285" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Start</text>
+  <text x="660" y="285" font-family="Arial" font-size="12" fill="#64748b">0/5 completed</text>
+  
+  <!-- Card 3 -->
+  <rect x="230" y="320" width="260" height="140" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <rect x="230" y="320" width="260" height="50" rx="8" fill="#fecaca" />
+  <text x="250" y="350" font-family="Arial" font-size="16" font-weight="bold" fill="#991b1b">Travel & Tourism</text>
+  <text x="250" y="390" font-family="Arial" font-size="14" fill="#64748b">Essential phrases and vocabulary</text>
+  <text x="250" y="410" font-family="Arial" font-size="14" fill="#64748b">for travelers</text>
+  <rect x="250" y="430" width="80" height="20" rx="10" fill="#4f46e5" />
+  <text x="290" y="445" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Continue</text>
+  <text x="380" y="445" font-family="Arial" font-size="12" fill="#64748b">2/6 completed</text>
+  
+  <!-- Card 4 -->
+  <rect x="510" y="320" width="260" height="140" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <rect x="510" y="320" width="260" height="50" rx="8" fill="#d8b4fe" />
+  <text x="530" y="350" font-family="Arial" font-size="16" font-weight="bold" fill="#6b21a8">Academic Writing</text>
+  <text x="530" y="390" font-family="Arial" font-size="14" fill="#64748b">Improve your essay writing and</text>
+  <text x="530" y="410" font-family="Arial" font-size="14" fill="#64748b">research paper skills</text>
+  <rect x="530" y="430" width="80" height="20" rx="10" fill="#6d28d9" />
+  <text x="570" y="445" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Locked</text>
+  <text x="660" y="445" font-family="Arial" font-size="12" fill="#64748b">Premium Course</text>
 </svg>

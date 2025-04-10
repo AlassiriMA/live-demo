@@ -950,9 +950,9 @@ export default function ProjectDetailsPage() {
                       caption: "Natural language learning with AI tutor"
                     },
                     {
-                      src: "/assets/images/screenshots/english-ai/vocabulary.svg",
-                      alt: "Vocabulary Learning",
-                      caption: "Expand vocabulary with interactive flashcards"
+                      src: "/assets/images/screenshots/english-ai/lessons.svg",
+                      alt: "Lesson Library",
+                      caption: "Comprehensive course catalog with progress tracking"
                     },
                     {
                       src: "/assets/images/screenshots/english-ai/grammar.svg",
@@ -960,9 +960,9 @@ export default function ProjectDetailsPage() {
                       caption: "Interactive grammar lessons and exercises"
                     },
                     {
-                      src: "/assets/images/screenshots/english-ai/lessons.svg",
-                      alt: "Lesson Journey",
-                      caption: "Progressive learning path with achievements"
+                      src: "/assets/images/screenshots/english-ai/analytics.svg",
+                      alt: "Learning Analytics",
+                      caption: "Detailed progress tracking and skill analysis"
                     }
                   ]}
                   aspectRatio="wide"
