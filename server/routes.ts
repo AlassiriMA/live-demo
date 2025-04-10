@@ -68,6 +68,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: 'Internal Server Error' });
     }
   };
+  
+  // Public site settings route
+  app.get('/api/site-settings', async (req, res) => {
+    try {
+      // Get the requested category
+      const category = req.query.category as string | undefined;
+      
+      let settings;
+      if (category) {
+        // Get settings for specific category
+        settings = await storage.getSettingsByCategory(category);
+      } else {
+        // Get all settings
+        settings = await storage.getAllSettings();
+      }
+      
+      // Transform to a more usable format for the frontend
+      const formattedSettings = settings.reduce((acc, setting) => {
+        acc[setting.key] = setting.value;
+        return acc;
+      }, {} as Record<string, any>);
+      
+      res.json({ success: true, settings: formattedSettings });
+    } catch (error) {
+      console.error('Error fetching site settings:', error);
+      res.status(500).json({ message: 'Failed to fetch site settings' });
+    }
+  });
 
   // POS Routes
   app.get('/api/pos/books', async (_req, res) => {
