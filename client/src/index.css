@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-gray-400;
+  }
+}
+
+@layer components {
+  /* Neumorphism style for POS app */
+  .neu-bg {
+    @apply bg-[#f0f0f3];
+  }
+  
+  .neu-button {
+    @apply rounded-lg bg-[#f0f0f3] shadow-[8px_8px_16px_#d1d1d1,-8px_-8px_16px_#ffffff] transition-all duration-200 ease-in-out;
+  }
+  
+  .neu-button:hover {
+    @apply shadow-[12px_12px_24px_#d1d1d1,-12px_-12px_24px_#ffffff];
+  }
+  
+  .neu-button:active {
+    @apply shadow-[inset_5px_5px_10px_#d1d1d1,inset_-5px_-5px_10px_#ffffff];
+  }
+  
+  .neu-input {
+    @apply rounded-lg bg-[#f0f0f3] shadow-[inset_2px_2px_5px_#d1d1d1,inset_-2px_-2px_5px_#ffffff] px-4 py-2 outline-none;
+  }
+  
+  /* Glassmorphism style for Marketing app */
+  .glass-bg {
+    @apply rounded-xl bg-white/25 backdrop-blur-[16px] border border-white/20;
+  }
+  
+  /* Cyberpunk style for TriArb app */
+  .cyber-grid {
+    @apply bg-[#0f172a] bg-[linear-gradient(rgba(139,92,246,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.3)_1px,transparent_1px)] bg-[size:40px_40px];
+  }
+  
+  /* Terminal style for StatArb app */
+  .terminal-bg {
+    @apply bg-[#1a1a1a] text-[#33ff33] font-mono p-5 rounded-lg shadow-md;
+  }
+  
+  /* TradingView style for DYDX app */
+  .trading-view-bg {
+    @apply bg-[#131722] text-[#d1d4dc];
+  }
+  
+  /* App Card hover effect */
+  .app-card {
+    @apply transition-all duration-300;
+  }
+  
+  .app-card:hover {
+    @apply transform -translate-y-2;
+  }
+  
+  /* Nav link underline animation */
+  .nav-link {
+    @apply relative;
+  }
+  
+  .nav-link::after {
+    @apply content-[''] absolute bottom-[-2px] left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}
