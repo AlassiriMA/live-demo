@@ -11,6 +11,8 @@ import {
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import { sessionConfig } from './session';
 
 // Import route files
 import authRoutes from './routes/auth';
@@ -21,6 +23,9 @@ import settingsRoutes from './routes/settings';
 export async function registerRoutes(app: Express): Promise<Server> {
   // Set up cookie parser for auth
   app.use(cookieParser());
+  
+  // Set up session middleware with PostgreSQL session store
+  app.use(session(sessionConfig));
   
   // Set up CMS routes
   app.use('/api/auth', authRoutes);

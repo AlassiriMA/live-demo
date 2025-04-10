@@ -6,6 +6,7 @@ import { generateToken, auth, AuthRequest, adminOnly } from '../middleware/auth'
 import { db } from '../db';
 import { users } from '@shared/schema';
 import { eq } from 'drizzle-orm';
+import { sessionStore } from '../session';
 
 // Global dev mode flag - set to false for production
 const DEV_MODE = true;
@@ -221,7 +222,18 @@ router.get('/me', auth, (req: AuthRequest, res: Response) => {
 
 // Logout
 router.post('/logout', (req: Request, res: Response) => {
+  // Clear JWT cookie
   res.clearCookie('token');
+  
+  // Destroy session if using session-based auth
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        console.error('Error destroying session:', err);
+      }
+    });
+  }
+  
   return res.status(200).json({ success: true, message: 'Logged out' });
 });
 

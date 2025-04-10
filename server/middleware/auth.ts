@@ -5,6 +5,9 @@ import { storage } from '../storage';
 // Define JWT secret - in production, this should be in environment variables
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-jwt-key'; 
 
+// Set session expiration time (24 hours)
+const SESSION_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
 export interface AuthRequest extends Request {
   user?: {
     id: number;
