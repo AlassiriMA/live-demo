@@ -59,16 +59,16 @@ export default function ParticleBackground({
   const getColor = useCallback(() => {
     switch (colorScheme) {
       case 'blue':
-        return `rgba(59, 130, 246, ${Math.random() * 0.5 + 0.3})`;
+        return `rgba(59, 130, 246, ${Math.random() * 0.5 + 0.5})`;
       case 'purple':
-        return `rgba(139, 92, 246, ${Math.random() * 0.5 + 0.3})`;
+        return `rgba(139, 92, 246, ${Math.random() * 0.5 + 0.5})`;
       case 'orange':
-        return `rgba(249, 115, 22, ${Math.random() * 0.5 + 0.3})`;
+        return `rgba(249, 115, 22, ${Math.random() * 0.5 + 0.5})`;
       case 'green':
-        return `rgba(16, 185, 129, ${Math.random() * 0.5 + 0.3})`;
+        return `rgba(16, 185, 129, ${Math.random() * 0.5 + 0.5})`;
       case 'rainbow':
         const hue = Math.floor(Math.random() * 360);
-        return `hsla(${hue}, 80%, 60%, ${Math.random() * 0.5 + 0.3})`;
+        return `hsla(${hue}, 100%, 60%, ${Math.random() * 0.5 + 0.5})`;
       default:
         return `rgba(59, 130, 246, ${Math.random() * 0.5 + 0.3})`;
     }
@@ -76,10 +76,10 @@ export default function ParticleBackground({
 
   // Get particle size based on size prop
   const getSize = useCallback(() => {
-    const baseSize = size === 'small' ? 2 : size === 'medium' ? 4 : 6;
+    const baseSize = size === 'small' ? 3 : size === 'medium' ? 6 : 9;
     
     if (size === 'mixed') {
-      return Math.random() * 5 + 1;
+      return Math.random() * 7 + 2; // Larger mixed sizes
     }
     
     return baseSize * (Math.random() * 0.5 + 0.8); // Some variation within the size category
@@ -110,7 +110,7 @@ export default function ParticleBackground({
         speedX: getSpeed(),
         speedY: getSpeed(),
         color: getColor(),
-        opacity: Math.random() * 0.5 + 0.3
+        opacity: Math.random() * 0.3 + 0.7 // Higher base opacity
       });
     }
     
@@ -177,8 +177,8 @@ export default function ParticleBackground({
   const connectParticlesFunc = useCallback((ctx: CanvasRenderingContext2D, particles: Particle[]) => {
     if (!connectParticles) return;
     
-    const connectionDistance = 150; // Max distance to connect particles
-    const opacityDecrease = 0.7; // How much the opacity decreases with distance
+    const connectionDistance = 180; // Increased max distance to connect particles
+    const opacityDecrease = 0.8; // Increased opacity
     
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -197,9 +197,9 @@ export default function ParticleBackground({
           // Set the line style
           ctx.globalAlpha = opacity;
           ctx.strokeStyle = colorScheme === 'rainbow' ? 
-            `rgba(150, 150, 150, ${opacity})` : 
+            `rgba(200, 200, 255, ${opacity})` : // Brighter connecting lines
             color1;
-          ctx.lineWidth = 0.5;
+          ctx.lineWidth = 1.0; // Thicker lines
           
           // Draw the line
           ctx.beginPath();

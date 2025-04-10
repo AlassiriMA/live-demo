@@ -18,14 +18,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function ParticleGenerator() {
   const [isOpen, setIsOpen] = useState(false);
   const [config, setConfig] = useState<ParticleBackgroundProps>({
-    count: 60,
-    colorScheme: 'blue',
+    count: 120, // Increased count for more particles
+    colorScheme: 'rainbow', // More colorful default
     speed: 'medium',
-    density: 'medium',
+    density: 'high', // Higher density
     interactive: true,
     size: 'mixed',
     blur: false,
-    shape: 'circle',
+    shape: 'mixed', // Mixed shapes for more variety
     connectParticles: true,
   });
 

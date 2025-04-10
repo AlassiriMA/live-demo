@@ -210,7 +210,7 @@ export default function ParticlesDemo() {
                     <div className="absolute inset-0">
                       <ParticleBackground 
                         {...preset.config} 
-                        count={Math.floor(preset.config.count / 3)} 
+                        count={Math.floor((preset.config.count || 50) / 3)} 
                         interactive={false}
                       />
                     </div>

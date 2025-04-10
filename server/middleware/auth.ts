@@ -22,6 +22,21 @@ export const generateToken = (user: { id: number; username: string; role: string
 };
 
 export const auth = async (req: AuthRequest, res: Response, next: NextFunction) => {
+  // DEVELOPMENT MODE: Auto-authenticate as admin for development purposes
+  // Comment out this block for production use
+  const DEV_MODE = true; // Set to false for production
+  
+  if (DEV_MODE) {
+    console.log('🔑 [Development Mode] Auto-authenticating as admin');
+    // Create a development admin user
+    req.user = {
+      id: 9999, // Development user ID
+      username: 'dev-admin',
+      role: 'admin'
+    };
+    return next();
+  }
+
   try {
     // Get token from cookie or authorization header
     const token = req.cookies.token || 
