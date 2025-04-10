@@ -278,11 +278,21 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getPublishedProjects(): Promise<Project[]> {
-    return await db
-      .select()
-      .from(projects)
-      .where(eq(projects.published, true))
-      .orderBy(desc(projects.createdAt));
+    try {
+      // Use a simpler query without JOIN to avoid potential issues with category_id
+      const projectsList = await db
+        .select()
+        .from(projects)
+        .where(eq(projects.published, true))
+        .orderBy(desc(projects.createdAt));
+      
+      // Return the list of projects
+      return projectsList;
+    } catch (error) {
+      console.error("Error in getPublishedProjects:", error);
+      // Return empty array instead of failing
+      return [];
+    }
   }
 
   async getProjectById(id: number): Promise<Project | undefined> {

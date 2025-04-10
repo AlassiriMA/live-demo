@@ -44,6 +44,7 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
     setNavLinks([
       { text: "Home", url: "/" },
       { text: "Apps", url: "#apps", isAnchor: true },
+      { text: "Projects", url: "/projects" },
       { text: "Skills", url: "/skills" },
       { text: "Blog", url: "/blog" },
       { text: "About", url: "#about", isAnchor: true },

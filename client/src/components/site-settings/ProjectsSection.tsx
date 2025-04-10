@@ -103,6 +103,10 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
     tags: project.tags ? project.tags.split(',').map((tag: string) => tag.trim()) : []
   };
 
+  // Get actual route to use - prefer route from project if available, then from app info
+  const demoRoute = project.route || appInfo.route;
+  const imageUrl = project.imageUrl || appInfo.imageUrl;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -115,6 +119,17 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col h-full hover:shadow-lg transition-shadow duration-300"
         style={{ borderTopColor: appInfo.primaryColor, borderTopWidth: '4px' }}
       >
+        {/* Project Image - Show if available */}
+        {imageUrl && (
+          <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100">
+            <img 
+              src={imageUrl} 
+              alt={`${project.name} preview`}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+          </div>
+        )}
+        
         <div className="flex items-center mb-4">
           <div 
             className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-white"
@@ -148,15 +163,29 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             ))}
           </div>
           
-          <Link 
-            href={`/project/${project.slug}`} 
-            className="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800"
-          >
-            Details
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
+          <div className="flex items-center space-x-2">
+            {/* Details Link */}
+            <Link 
+              href={`/project/${project.slug}`} 
+              className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
+            >
+              Details
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </Link>
+            
+            {/* Live Demo Link */}
+            <Link 
+              href={demoRoute} 
+              className="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800"
+            >
+              Demo
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
     </motion.div>
