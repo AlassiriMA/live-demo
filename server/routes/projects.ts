@@ -14,7 +14,9 @@ const createProjectSchema = insertProjectSchema.extend({
   }),
   name: z.string().min(2).max(255),
   description: z.string().min(10),
-  tags: z.array(z.string()).optional(),
+  tags: z.array(z.string()).optional().transform(tags => 
+    tags ? tags.join(',') : null
+  ),
   features: z.array(z.object({
     title: z.string(),
     description: z.string()
@@ -152,6 +154,11 @@ router.patch('/:id', auth, adminOnly, async (req: AuthRequest, res: Response) =>
     const id = parseInt(req.params.id);
     if (isNaN(id)) {
       return res.status(400).json({ message: 'Invalid ID format' });
+    }
+
+    // Process tags if they're in array format
+    if (req.body.tags && Array.isArray(req.body.tags)) {
+      req.body.tags = req.body.tags.join(',');
     }
 
     // Validate request

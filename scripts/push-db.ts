@@ -9,19 +9,11 @@ async function pushDB() {
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         username TEXT NOT NULL UNIQUE,
-        email TEXT UNIQUE,
         password TEXT NOT NULL,
-        first_name TEXT,
-        last_name TEXT,
         role TEXT NOT NULL DEFAULT 'user',
-        active BOOLEAN DEFAULT TRUE,
-        profile_image_url TEXT,
-        last_login TIMESTAMP,
-        created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW()
+        created_at TIMESTAMP DEFAULT NOW()
       );
       
-      CREATE INDEX IF NOT EXISTS users_email_idx ON users(email);
       CREATE INDEX IF NOT EXISTS users_role_idx ON users(role);
     `);
     console.log('✓ Created users table');
