@@ -176,7 +176,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
       >
         {/* Project Image - Show if available and make clickable */}
         {imageUrl && (
-          <Link href={`/project/${project.slug}`}>
+          <Link href={route}>
             <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100 shadow-inner relative group cursor-pointer">
               <img 
                 src={imageUrl} 
@@ -185,7 +185,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
                 <span className="text-white font-medium pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 px-4 py-1 rounded-full text-sm">
-                  View Project
+                  View Demo
                 </span>
               </div>
             </div>
@@ -203,7 +203,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
               </svg>
             </div>
           </Link>
-          <Link href={`/project/${project.slug}`}>
+          <Link href={route}>
             <h3 className="font-heading text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors cursor-pointer">
               {name}
             </h3>
@@ -228,7 +228,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
           <div className="flex items-center space-x-3">
             {/* Details Link */}
             <Link 
-              href={`/project/${project.slug}`} 
+              href={route} 
               className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
             >
               Details

@@ -122,17 +122,7 @@ export default function TechIconsGrid() {
 
   return (
     <div className="py-10 overflow-hidden" ref={ref}>
-      <motion.h2 
-        className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600"
-        initial={{ opacity: 0, y: 20 }}
-        animate={controls}
-        variants={{
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-          hidden: { opacity: 0, y: 20 }
-        }}
-      >
-        Technologies I Work With
-      </motion.h2>
+
 
       {/* First row - moves left to right */}
       <div className="relative mb-8 py-4 h-28 bg-gray-50/50 rounded-lg overflow-hidden shadow-inner">
@@ -162,8 +152,8 @@ export default function TechIconsGrid() {
                     rotate: [0, -5, 5, -5, 0],
                     transition: { duration: 0.5 }
                   }}
-                  className="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center mb-1
-                             hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-opacity-90 group cursor-pointer"
+                  className="relative w-16 h-16 rounded-full bg-transparent shadow-md flex items-center justify-center mb-1
+                             hover:shadow-xl transition-all duration-300 backdrop-blur-sm group cursor-pointer"
                   style={{ color: tech.color }}
                 >
                   {tech.icon}

@@ -142,12 +142,13 @@ export default function ProjectDetailsPage() {
         {/* Keyframes are defined in the CSS */}
         
         <div className="container max-w-6xl mx-auto px-4 relative z-10">
-          <Link href="/projects">
-            <a className="inline-flex items-center text-white/90 hover:text-white mb-6 transition-colors">
-              <ChevronLeft className="mr-1 h-4 w-4" />
-              Back to Projects
-            </a>
-          </Link>
+          <button 
+            onClick={() => setLocation('/')} 
+            className="inline-flex items-center text-white/90 hover:text-white mb-6 transition-colors cursor-pointer"
+          >
+            <ChevronLeft className="mr-1 h-4 w-4" />
+            Back to Home
+          </button>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
