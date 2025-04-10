@@ -1,18 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <rect width="800" height="600" fill="#6366F1" />
-  <g transform="translate(150, 150)">
-    <rect width="500" height="300" fill="#5045E3" rx="10" />
-    <path d="M50,200 L100,150 L150,250 L200,50 L250,100 L300,200 L350,150 L400,180 L450,80" 
-      stroke="white" stroke-width="6" fill="none" />
+  <rect width="800" height="600" fill="#14B8A6" />
+  <g transform="translate(180, 100)">
+    <rect x="50" y="30" width="340" height="250" rx="15" fill="white" />
     
-    <circle cx="100" cy="150" r="8" fill="white" />
-    <circle cx="150" cy="250" r="8" fill="white" />
-    <circle cx="200" cy="50" r="8" fill="white" />
-    <circle cx="250" cy="100" r="8" fill="white" />
-    <circle cx="300" cy="200" r="8" fill="white" />
-    <circle cx="350" cy="150" r="8" fill="white" />
-    <circle cx="400" cy="180" r="8" fill="white" />
-    <circle cx="450" cy="80" r="8" fill="white" />
+    <!-- Price chart -->
+    <polyline 
+      points="80,170 120,150 160,180 200,130 240,150 280,110 320,160 360,120"
+      fill="none"
+      stroke="#14B8A6"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    
+    <!-- Second price chart -->
+    <polyline 
+      points="80,200 120,180 160,210 200,160 240,190 280,145 320,195 360,150"
+      fill="none"
+      stroke="#F43F5E"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    
+    <!-- Arbitrage arrows -->
+    <path d="M110,150 L110,180" stroke="#6366F1" stroke-width="2" />
+    <path d="M110,180 L110,150" stroke="#6366F1" stroke-width="2" />
+    <path d="M105,155 L110,150 L115,155" stroke="#6366F1" stroke-width="2" fill="none" />
+    <path d="M105,175 L110,180 L115,175" stroke="#6366F1" stroke-width="2" fill="none" />
+    
+    <path d="M160,180 L160,210" stroke="#6366F1" stroke-width="2" />
+    <path d="M160,210 L160,180" stroke="#6366F1" stroke-width="2" />
+    <path d="M155,185 L160,180 L165,185" stroke="#6366F1" stroke-width="2" fill="none" />
+    <path d="M155,205 L160,210 L165,205" stroke="#6366F1" stroke-width="2" fill="none" />
+    
+    <path d="M200,130 L200,160" stroke="#6366F1" stroke-width="2" />
+    <path d="M200,160 L200,130" stroke="#6366F1" stroke-width="2" />
+    <path d="M195,135 L200,130 L205,135" stroke="#6366F1" stroke-width="2" fill="none" />
+    <path d="M195,155 L200,160 L205,155" stroke="#6366F1" stroke-width="2" fill="none" />
+    
+    <path d="M320,160 L320,195" stroke="#6366F1" stroke-width="2" />
+    <path d="M320,195 L320,160" stroke="#6366F1" stroke-width="2" />
+    <path d="M315,165 L320,160 L325,165" stroke="#6366F1" stroke-width="2" fill="none" />
+    <path d="M315,190 L320,195 L325,190" stroke="#6366F1" stroke-width="2" fill="none" />
+    
+    <!-- Statistical formula -->
+    <text x="100" y="70" font-family="monospace" font-size="14" fill="#333">μ = E[X] = ∑(x·p(x))</text>
+    <text x="100" y="90" font-family="monospace" font-size="14" fill="#333">σ² = E[(X-μ)²]</text>
+    <text x="100" y="110" font-family="monospace" font-size="14" fill="#333">Z = (X-μ)/σ</text>
+    
+    <!-- X-axis labels -->
+    <line x1="80" y1="230" x2="360" y2="230" stroke="#9CA3AF" stroke-width="1" />
+    <text x="80" y="250" font-family="Arial" font-size="10" fill="#6B7280">t₀</text>
+    <text x="160" y="250" font-family="Arial" font-size="10" fill="#6B7280">t₁</text>
+    <text x="240" y="250" font-family="Arial" font-size="10" fill="#6B7280">t₂</text>
+    <text x="320" y="250" font-family="Arial" font-size="10" fill="#6B7280">t₃</text>
   </g>
+  
   <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Statistical Arbitrage</text>
 </svg>

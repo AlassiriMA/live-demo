@@ -1,20 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
   <rect width="800" height="600" fill="#8B5CF6" />
-  <g transform="translate(250, 150)">
-    <polygon points="150,0 300,260 0,260" stroke="white" stroke-width="6" fill="none" />
-    <polygon points="150,80 250,260 50,260" stroke="white" stroke-width="4" fill="#7C3AED" />
+  <g transform="translate(180, 100)">
+    <rect x="50" y="30" width="340" height="250" rx="15" fill="white" />
     
-    <circle cx="150" cy="0" r="30" fill="white" />
-    <circle cx="300" cy="260" r="30" fill="white" />
-    <circle cx="0" cy="260" r="30" fill="white" />
+    <!-- Triangle diagram -->
+    <polygon points="220,70 100,200 340,200" fill="none" stroke="#8B5CF6" stroke-width="3" />
     
-    <text x="150" y="10" font-family="Arial" font-size="24" fill="#8B5CF6" text-anchor="middle">BTC</text>
-    <text x="300" y="270" font-family="Arial" font-size="24" fill="#8B5CF6" text-anchor="middle">ETH</text>
-    <text x="0" y="270" font-family="Arial" font-size="24" fill="#8B5CF6" text-anchor="middle">USD</text>
+    <!-- Triangle circles at vertices -->
+    <circle cx="220" cy="70" r="20" fill="#8B5CF6" />
+    <circle cx="100" cy="200" r="20" fill="#F43F5E" />
+    <circle cx="340" cy="200" r="20" fill="#14B8A6" />
     
-    <path d="M150,35 L270,230" stroke="white" stroke-width="3" stroke-dasharray="10,5" />
-    <path d="M150,35 L30,230" stroke="white" stroke-width="3" stroke-dasharray="10,5" />
-    <path d="M30,230 L270,230" stroke="white" stroke-width="3" stroke-dasharray="10,5" />
+    <!-- Currency labels -->
+    <text x="220" y="76" font-family="Arial" font-size="14" fill="white" text-anchor="middle">USD</text>
+    <text x="100" y="206" font-family="Arial" font-size="14" fill="white" text-anchor="middle">EUR</text>
+    <text x="340" y="206" font-family="Arial" font-size="14" fill="white" text-anchor="middle">JPY</text>
+    
+    <!-- Arrows with rates -->
+    <path d="M210,100 L130,180" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="160" y="150" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">1:0.91</text>
+    
+    <path d="M130,190 L320,190" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="220" y="180" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">1:142</text>
+    
+    <path d="M320,180 L230,90" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <text x="290" y="120" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">1:0.0077</text>
+    
+    <!-- Profit calculation -->
+    <rect x="130" y="230" width="240" height="30" rx="5" fill="#F3F4F6" />
+    <text x="250" y="250" font-family="monospace" font-size="14" fill="#333" text-anchor="middle">100 USD → 91 EUR → 12922 JPY → 100.12 USD</text>
+    
+    <!-- Small profit indicator -->
+    <rect x="300" y="260" width="60" height="20" rx="5" fill="#22C55E" />
+    <text x="330" y="274" font-family="Arial" font-size="12" fill="white" text-anchor="middle">+0.12%</text>
+    
+    <!-- Define the arrowhead marker -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+      </marker>
+    </defs>
   </g>
+  
   <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Triangular Arbitrage</text>
 </svg>
