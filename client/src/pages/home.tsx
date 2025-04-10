@@ -3,6 +3,7 @@ import AppShell from "@/components/layout/AppShell";
 import SectionHeading from "@/components/ui/section-heading";
 import AppCard from "@/components/ui/app-card";
 import ContactForm from "@/components/ui/contact-form";
+import TechIconsGrid from "@/components/ui/tech-icons-grid";
 import { apps } from "@/lib/app-data";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -101,6 +102,25 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+      
+      {/* Skills Section with moving icons */}
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <SectionHeading
+              title="Technology Expertise"
+              subtitle="A glimpse at the diverse set of technologies I work with"
+              centered
+            />
+            <TechIconsGrid />
+          </motion.div>
         </div>
       </section>
 
