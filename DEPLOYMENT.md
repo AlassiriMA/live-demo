@@ -1,278 +1,191 @@
-# Deployment Guide for Oracle VPS
+# Deployment Guide for Oracle Cloud
 
-This guide provides step-by-step instructions for deploying the Portfolio application to an Oracle VPS with NGINX and custom domain mapping.
+This document provides step-by-step instructions for deploying the Portfolio application to Oracle Cloud Infrastructure (OCI).
 
 ## Prerequisites
 
-- Oracle VPS with Ubuntu 20.04 or later
-- SSH access to the VPS
-- Domain name pointed to your VPS IP address
-- Node.js 16+ installed on the VPS
+- Oracle Cloud account with a Compute instance (VM.Standard shape recommended)
+- Domain name pointed to your Oracle Cloud VM's public IP
+- Basic familiarity with Linux command line
 
-## Step 1: Prepare the VPS
+## Setup Process
 
-```bash
-# Update packages
-sudo apt update && sudo apt upgrade -y
+### 1. Provision Oracle Cloud VM
 
-# Install Node.js and npm if not already installed
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt-get install -y nodejs
+1. Log in to your Oracle Cloud dashboard
+2. Create a Compute instance with at least 2 OCPUs and 4GB RAM
+3. Use Oracle Linux or Ubuntu 22.04 as the operating system
+4. Create a Virtual Cloud Network (VCN) with public subnet
+5. Configure security list to allow:
+   - SSH (port 22)
+   - HTTP (port 80)
+   - HTTPS (port 443)
+   - Application port (5000)
 
-# Install PM2 globally
-sudo npm install -g pm2
+### 2. Initial Server Setup
 
-# Install PostgreSQL
-sudo apt install -y postgresql postgresql-contrib
+1. SSH into your VM:
+   ```bash
+   ssh opc@your-vm-public-ip -i your-private-key.pem
+   ```
 
-# Start and enable PostgreSQL
-sudo systemctl start postgresql
-sudo systemctl enable postgresql
-```
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/portfolio.git /opt/portfolio
+   cd /opt/portfolio
+   ```
 
-## Step 2: Set Up PostgreSQL Database
+3. Run the server setup script:
+   ```bash
+   sudo ./scripts/setup-server.sh
+   ```
 
-```bash
-# Connect to PostgreSQL
-sudo -u postgres psql
+This script will:
+- Update system packages
+- Install Docker and Docker Compose
+- Configure firewall
+- Install Nginx and Certbot for SSL
 
-# In PostgreSQL shell, create a database and user
-CREATE DATABASE portfolio;
-CREATE USER portfolio_user WITH ENCRYPTED PASSWORD 'your_secure_password';
-GRANT ALL PRIVILEGES ON DATABASE portfolio TO portfolio_user;
-\q
+### 3. Configure SSL Certificates
 
-# Edit pg_hba.conf to allow password authentication
-sudo nano /etc/postgresql/*/main/pg_hba.conf
+1. Use Certbot to obtain and configure SSL certificates:
+   ```bash
+   sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
+   ```
 
-# Add or modify this line to allow password authentication
-# host    all             all             127.0.0.1/32            md5
+2. Copy certificates to the nginx/ssl directory:
+   ```bash
+   sudo mkdir -p /opt/portfolio/nginx/ssl
+   sudo cp /etc/letsencrypt/live/yourdomain.com/fullchain.pem /opt/portfolio/nginx/ssl/server.crt
+   sudo cp /etc/letsencrypt/live/yourdomain.com/privkey.pem /opt/portfolio/nginx/ssl/server.key
+   sudo chown -R $(whoami):$(whoami) /opt/portfolio/nginx/ssl
+   ```
 
-# Restart PostgreSQL
-sudo systemctl restart postgresql
-```
+### 4. Configure Environment Variables
 
-## Step 3: Clone and Set Up the Application
+1. Create a `.env` file from the template:
+   ```bash
+   cp .env.example .env
+   ```
 
-```bash
-# Navigate to your home directory
-cd ~
+2. Edit the `.env` file with your production values:
+   ```bash
+   nano .env
+   ```
 
-# Clone the repository
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
+   Ensure you set secure values for:
+   - `DATABASE_URL`
+   - `PGUSER`, `PGPASSWORD`, `PGDATABASE`
+   - `SESSION_SECRET`
+   - `JWT_SECRET`
+   - `APP_DOMAIN`
 
-# Install dependencies
-npm install --production
+### 5. Deploy the Application
 
-# Create .env file
-cat > .env << EOF
-# Environment Variables for Production
-NODE_ENV=production
+1. Run the deployment script:
+   ```bash
+   ./scripts/deploy.sh
+   ```
 
-# Database Configuration
-DATABASE_URL=postgresql://portfolio_user:your_secure_password@localhost:5432/portfolio
+2. Verify the application is running:
+   ```bash
+   docker-compose ps
+   docker-compose logs -f
+   ```
 
-# JWT Secret for Authentication
-JWT_SECRET=$(openssl rand -hex 32)
+3. Access your application at https://yourdomain.com
 
-# Application Port
-PORT=5000
-
-# Enable/Disable Compression and Rate Limiting
-ENABLE_COMPRESSION=true
-ENABLE_RATE_LIMIT=true
-
-# CORS Configuration
-CORS_ORIGIN=https://yourdomain.com
-EOF
-
-# Initialize the database schema
-npm run db:push
-```
-
-## Step 4: Set Up NGINX and SSL
-
-Run the automated script:
-
-```bash
-# Make the script executable
-chmod +x scripts/setup-nginx.sh
-
-# Run the script with your domain name
-./scripts/setup-nginx.sh yourdomain.com
-```
-
-Or manually configure NGINX:
-
-```bash
-# Install NGINX
-sudo apt install -y nginx
-
-# Create NGINX config file
-sudo nano /etc/nginx/sites-available/portfolio.conf
-
-# Add this configuration (replace yourdomain.com with your domain)
-server {
-    listen 80;
-    server_name yourdomain.com www.yourdomain.com;
-
-    location / {
-        proxy_pass http://localhost:5000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Optimize asset caching
-    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg)$ {
-        proxy_pass http://localhost:5000;
-        expires 7d;
-        add_header Cache-Control "public, max-age=604800, immutable";
-    }
-}
-
-# Enable the site
-sudo ln -sf /etc/nginx/sites-available/portfolio.conf /etc/nginx/sites-enabled/
-
-# Remove default site if necessary
-sudo rm -f /etc/nginx/sites-enabled/default
-
-# Test NGINX configuration
-sudo nginx -t
-
-# If the test is successful, reload NGINX
-sudo systemctl reload nginx
-```
-
-## Step 5: Set Up SSL with Let's Encrypt
-
-```bash
-# Install Certbot and the NGINX plugin
-sudo apt install -y certbot python3-certbot-nginx
-
-# Obtain SSL certificate
-sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
-
-# Follow the prompts to set up SSL
-```
-
-## Step 6: Start the Application as a Service
-
-### Using PM2:
-
-```bash
-# Start the application with PM2
-pm2 start ecosystem.config.js --env production
-
-# Make PM2 start on boot
-pm2 startup
-pm2 save
-```
-
-### Using systemd (alternative):
-
-```bash
-# Copy the service file
-sudo cp scripts/portfolio.service /etc/systemd/system/
-
-# Reload systemd
-sudo systemctl daemon-reload
-
-# Enable and start the service
-sudo systemctl enable portfolio
-sudo systemctl start portfolio
-
-# Check status
-sudo systemctl status portfolio
-```
-
-## Step 7: Verify Deployment
-
-Visit your domain in a web browser to verify that the application is working correctly.
-
-## Maintenance and Troubleshooting
-
-### Viewing Logs
-
-```bash
-# PM2 logs
-pm2 logs portfolio
-
-# NGINX logs
-sudo tail -f /var/log/nginx/access.log
-sudo tail -f /var/log/nginx/error.log
-
-# System service logs (if using systemd)
-sudo journalctl -u portfolio -f
-```
+## Maintenance
 
 ### Updating the Application
 
-```bash
-# Pull the latest changes
-git pull
-
-# Install dependencies (if needed)
-npm install --production
-
-# Rebuild (if necessary)
-npm run build
-
-# Restart the application
-pm2 restart portfolio
-# or 
-sudo systemctl restart portfolio
-```
-
-### Backup Database
-
-```bash
-# Backup PostgreSQL database
-pg_dump -h localhost -U portfolio_user -W -F c portfolio > portfolio_backup_$(date +%Y%m%d).dump
-
-# Restore from backup if needed
-pg_restore -h localhost -U portfolio_user -W -d portfolio portfolio_backup_YYYYMMDD.dump
-```
-
-## Security Best Practices
-
-1. **Firewall Setup:** Configure a firewall to allow only necessary ports (80, 443, SSH).
+1. Pull the latest changes:
    ```bash
-   sudo ufw allow ssh
-   sudo ufw allow http
-   sudo ufw allow https
-   sudo ufw enable
+   cd /opt/portfolio
+   git pull
    ```
 
-2. **Secure SSH:** Disable password authentication and use key-based authentication only.
-
-3. **Regular Updates:** Keep the system and applications updated.
+2. Redeploy:
    ```bash
-   sudo apt update && sudo apt upgrade -y
+   ./scripts/deploy.sh
    ```
 
-4. **Monitor Logs:** Regularly check application and system logs for suspicious activity.
+### Backup and Restore
 
-5. **Database Security:** Use strong passwords and restrict network access to the database.
+1. Backup the database:
+   ```bash
+   docker-compose exec postgres pg_dump -U postgres -d portfolio > backup.sql
+   ```
 
-6. **HTTPS Redirection:** Ensure all HTTP traffic is redirected to HTTPS.
+2. Restore the database:
+   ```bash
+   cat backup.sql | docker-compose exec -T postgres psql -U postgres -d portfolio
+   ```
 
-7. **Rate Limiting:** Protect against brute force attacks (already configured in the application).
+### Monitoring
 
-## Additional Optimizations
+1. View application logs:
+   ```bash
+   docker-compose logs -f app
+   ```
 
-1. **Content Delivery Network (CDN):** Consider using a CDN for static assets.
+2. Check container status:
+   ```bash
+   docker-compose ps
+   ```
 
-2. **Caching:** Implement additional caching strategies for frequently accessed data.
+## Troubleshooting
 
-3. **Database Optimization:** Regularly analyze and optimize database queries.
+### Database Connection Issues
 
-4. **Monitoring:** Set up monitoring tools like Prometheus and Grafana for real-time performance monitoring.
+1. Check database container is running:
+   ```bash
+   docker-compose ps postgres
+   ```
 
-5. **Backup Automation:** Schedule regular automated backups of the database and application files.
+2. Verify database credentials in `.env` file:
+   ```bash
+   nano .env
+   ```
+
+3. Connect to database manually:
+   ```bash
+   docker-compose exec postgres psql -U postgres -d portfolio
+   ```
+
+### Nginx SSL Issues
+
+1. Verify SSL certificates are correctly placed:
+   ```bash
+   ls -la nginx/ssl/
+   ```
+
+2. Check Nginx configuration:
+   ```bash
+   docker-compose exec nginx nginx -t
+   ```
+
+3. Renew SSL certificates:
+   ```bash
+   sudo certbot renew
+   ```
+
+### Application Not Starting
+
+1. Check application logs:
+   ```bash
+   docker-compose logs app
+   ```
+
+2. Verify all required environment variables are set in `.env`
+
+3. Rebuild the application container:
+   ```bash
+   docker-compose build --no-cache app
+   docker-compose up -d
+   ```
+
+## Support
+
+For assistance with deployment issues, please contact:
+- Email: me@alassiri.nl

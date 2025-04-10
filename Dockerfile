@@ -3,6 +3,9 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
+# Install PostgreSQL client for health checks
+RUN apk add --no-cache postgresql-client
+
 # Copy package.json and lock files
 COPY package*.json ./
 
@@ -11,6 +14,9 @@ RUN npm ci
 
 # Copy source code
 COPY . .
+
+# Make entrypoint script executable
+RUN chmod +x scripts/docker-entrypoint.sh
 
 # Build the application
 RUN npm run build
@@ -22,5 +28,5 @@ EXPOSE 5000
 ENV NODE_ENV=production
 ENV PORT=5000
 
-# Start the server
-CMD ["npm", "run", "start"]
+# Use entrypoint script
+ENTRYPOINT ["/app/scripts/docker-entrypoint.sh"]
