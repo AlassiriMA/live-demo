@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ExternalLink, Layers, Code, Calendar, Tag, Star, Eye, ArrowUpRight, Zap, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AnimatedSkeleton } from "@/components/ui/animated-skeleton";
 import { Button } from "@/components/ui/button";
 import { apps } from "@/lib/app-data";
 
@@ -372,34 +373,72 @@ export default function ProjectDetailsPage() {
 function ProjectDetailsSkeleton() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero skeleton with gradient background */}
+      {/* Hero skeleton with gradient background and progress indicator */}
       <div className="w-full py-20 bg-gradient-to-br from-indigo-600 to-indigo-700 relative overflow-hidden">
+        {/* Global loading progress bar */}
+        <AnimatedSkeleton 
+          className="absolute top-0 left-0 h-1 z-50 bg-blue-300"
+          animation="progress"
+          fullWidth
+          showProgress={true}
+        />
+        
         {/* Skeleton background patterns */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)' }}></div>
         </div>
         
         <div className="container max-w-6xl mx-auto px-4 relative z-10">
+          {/* Back button */}
           <div className="mb-6 h-5 w-24">
-            <Skeleton className="h-full w-full bg-white/20" />
+            <AnimatedSkeleton 
+              className="h-full w-full bg-white/20"
+              animation="shimmer"
+              delay={0.1}
+            />
           </div>
           
+          {/* Title */}
           <div className="mb-4">
-            <Skeleton className="h-12 w-3/4 md:w-1/2 bg-white/20" />
+            <AnimatedSkeleton 
+              className="h-12 w-3/4 md:w-1/2 bg-white/20"
+              animation="shimmer"
+              delay={0.2}
+            />
           </div>
           
+          {/* Description */}
           <div className="mb-6">
-            <Skeleton className="h-6 w-full md:w-2/3 bg-white/20 mb-2" />
-            <Skeleton className="h-6 w-full md:w-1/2 bg-white/20" />
+            <AnimatedSkeleton 
+              className="h-6 w-full md:w-2/3 bg-white/20 mb-2"
+              animation="shimmer"
+              delay={0.3}
+            />
+            <AnimatedSkeleton 
+              className="h-6 w-full md:w-1/2 bg-white/20"
+              animation="shimmer"
+              delay={0.4}
+            />
           </div>
           
+          {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-8">
             {[1, 2, 3, 4, 5].map(i => (
-              <Skeleton key={i} className="h-8 w-20 md:w-24 rounded-full bg-white/20" />
+              <AnimatedSkeleton 
+                key={i} 
+                className="h-8 w-20 md:w-24 rounded-full bg-white/20"
+                animation="pulse"
+                delay={0.2 + (i * 0.1)}
+              />
             ))}
           </div>
           
-          <Skeleton className="h-12 w-32 rounded-lg bg-white/30" />
+          {/* Button */}
+          <AnimatedSkeleton 
+            className="h-12 w-32 rounded-lg bg-white/30"
+            animation="pulse"
+            delay={0.8}
+          />
         </div>
       </div>
       
@@ -407,74 +446,182 @@ function ProjectDetailsSkeleton() {
       <div className="container max-w-6xl mx-auto py-12 px-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
-              <Skeleton className="h-8 w-40 mb-4" />
-              <Skeleton className="h-5 w-full mb-2" />
-              <Skeleton className="h-5 w-full mb-2" />
-              <Skeleton className="h-5 w-full mb-2" />
-              <Skeleton className="h-5 w-full mb-2" />
-              <Skeleton className="h-5 w-3/4" />
+            {/* Overview section */}
+            <div className="bg-white rounded-xl p-6 shadow-sm mb-8 relative overflow-hidden">
+              {/* Shimmer effect overlay */}
+              <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              
+              <AnimatedSkeleton 
+                className="h-8 w-40 mb-4"
+                animation="wave"
+                delay={0.4}
+              />
+              
+              <AnimatedSkeleton 
+                className="h-5 w-full mb-2"
+                animation="wave"
+                delay={0.5}
+              />
+              <AnimatedSkeleton 
+                className="h-5 w-full mb-2"
+                animation="wave"
+                delay={0.6}
+              />
+              <AnimatedSkeleton 
+                className="h-5 w-full mb-2"
+                animation="wave"
+                delay={0.7}
+              />
+              <AnimatedSkeleton 
+                className="h-5 w-full mb-2"
+                animation="wave"
+                delay={0.8}
+              />
+              <AnimatedSkeleton 
+                className="h-5 w-3/4"
+                animation="wave"
+                delay={0.9}
+              />
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
-              <Skeleton className="h-8 w-40 mb-4" />
+            {/* Features section */}
+            <div className="bg-white rounded-xl p-6 shadow-sm mb-8 relative overflow-hidden">
+              <AnimatedSkeleton 
+                className="h-8 w-40 mb-4"
+                animation="wave"
+                delay={1.0}
+              />
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {[1, 2, 3, 4].map(i => (
                   <div 
                     key={i} 
-                    className="flex p-4 rounded-xl border border-gray-100" 
+                    className="flex p-4 rounded-xl border border-gray-100 relative overflow-hidden" 
                     style={{ backgroundColor: `hsla(${i * 60}, 85%, 96%, 1)` }}
                   >
-                    <Skeleton className="h-12 w-12 rounded-lg mr-4" style={{ backgroundColor: `hsla(${i * 60}, 70%, 85%, 1)` }} />
+                    <AnimatedSkeleton 
+                      className="h-12 w-12 rounded-lg mr-4"
+                      animation="pulse"
+                      delay={1.0 + (i * 0.1)}
+                      style={{ backgroundColor: `hsla(${i * 60}, 70%, 85%, 1)` }}
+                    />
+                    
                     <div className="flex-grow">
-                      <Skeleton className="h-5 w-full max-w-[120px] mb-2" />
-                      <Skeleton className="h-4 w-full mb-1" />
-                      <Skeleton className="h-4 w-4/5" />
+                      <AnimatedSkeleton 
+                        className="h-5 w-full max-w-[120px] mb-2"
+                        animation="pulse"
+                        delay={1.1 + (i * 0.1)}
+                      />
+                      <AnimatedSkeleton 
+                        className="h-4 w-full mb-1"
+                        animation="pulse"
+                        delay={1.2 + (i * 0.1)}
+                      />
+                      <AnimatedSkeleton 
+                        className="h-4 w-4/5"
+                        animation="pulse"
+                        delay={1.3 + (i * 0.1)}
+                      />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             
-            <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
-              <Skeleton className="h-8 w-40 mb-4" />
+            {/* Preview section */}
+            <div className="bg-white rounded-xl p-6 shadow-sm mb-8 relative overflow-hidden">
+              <AnimatedSkeleton 
+                className="h-8 w-40 mb-4"
+                animation="combined"
+                delay={1.5}
+              />
+              
               <div className="rounded-lg overflow-hidden border border-gray-200 h-64">
-                <Skeleton className="h-full w-full" />
+                <AnimatedSkeleton 
+                  className="h-full w-full"
+                  animation="combined"
+                  showProgress={true}
+                  delay={1.6}
+                />
               </div>
             </div>
           </div>
           
+          {/* Sidebar */}
           <div>
-            <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
-              <Skeleton className="h-6 w-32 mb-4" />
+            <div className="bg-white rounded-xl p-6 shadow-sm mb-8 relative overflow-hidden">
+              <AnimatedSkeleton 
+                className="absolute inset-0 opacity-30"
+                animation="shimmer"
+                delay={1.7}
+              />
+              
+              <AnimatedSkeleton 
+                className="h-6 w-32 mb-4"
+                animation="wave"
+                delay={1.7}
+              />
               
               <div className="space-y-4">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="flex items-start">
-                    <Skeleton className="h-5 w-5 rounded-md mr-3" />
+                    <AnimatedSkeleton 
+                      className="h-5 w-5 rounded-md mr-3"
+                      animation="pulse"
+                      delay={1.8 + (i * 0.1)}
+                    />
                     <div className="flex-grow">
-                      <Skeleton className="h-4 w-20 mb-1" />
-                      <Skeleton className="h-5 w-full" />
+                      <AnimatedSkeleton 
+                        className="h-4 w-20 mb-1"
+                        animation="pulse"
+                        delay={1.9 + (i * 0.1)}
+                      />
+                      <AnimatedSkeleton 
+                        className="h-5 w-full"
+                        animation="pulse"
+                        delay={2.0 + (i * 0.1)}
+                      />
                     </div>
                   </div>
                 ))}
               </div>
               
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <Skeleton className="h-10 w-full rounded-md" />
+                <AnimatedSkeleton 
+                  className="h-10 w-full rounded-md"
+                  animation="combined"
+                  showProgress={true}
+                  delay={2.3}
+                />
               </div>
             </div>
             
             {/* Additional skeleton for related projects */}
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <Skeleton className="h-6 w-40 mb-4" />
+            <div className="bg-white rounded-xl p-6 shadow-sm relative overflow-hidden">
+              <AnimatedSkeleton 
+                className="h-6 w-40 mb-4"
+                animation="combined"
+                delay={2.4}
+              />
               <div className="space-y-4">
                 {[1, 2].map(i => (
                   <div key={i} className="flex items-center">
-                    <Skeleton className="h-14 w-14 rounded-md mr-3" />
+                    <AnimatedSkeleton 
+                      className="h-14 w-14 rounded-md mr-3"
+                      animation="pulse"
+                      delay={2.5 + (i * 0.1)}
+                    />
                     <div className="flex-grow">
-                      <Skeleton className="h-5 w-3/4 mb-1" />
-                      <Skeleton className="h-4 w-1/2" />
+                      <AnimatedSkeleton 
+                        className="h-5 w-3/4 mb-1"
+                        animation="pulse"
+                        delay={2.6 + (i * 0.1)}
+                      />
+                      <AnimatedSkeleton 
+                        className="h-4 w-1/2"
+                        animation="pulse"
+                        delay={2.7 + (i * 0.1)}
+                      />
                     </div>
                   </div>
                 ))}
