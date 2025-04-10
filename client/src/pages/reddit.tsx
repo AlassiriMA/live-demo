@@ -216,6 +216,47 @@ export default function RedditClone() {
     }
   };
   
+  // Enhanced animation variants
+  const postContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.05
+      }
+    }
+  };
+  
+  const postItemVariants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { 
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        mass: 1
+      }
+    }
+  };
+  
+  const fadeScaleVariants = {
+    hidden: { opacity: 0, scale: 0.92 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.4 }
+    }
+  };
+  
+  const votingAnimation = {
+    up: { y: -3, scale: 1.2, transition: { duration: 0.2 } },
+    down: { y: 3, scale: 1.2, transition: { duration: 0.2 } },
+    normal: { y: 0, scale: 1, transition: { duration: 0.2 } }
+  };
+  
   // Create a new post
   const [newPostContent, setNewPostContent] = useState('');
   const [newPostTitle, setNewPostTitle] = useState('');
@@ -379,36 +420,51 @@ export default function RedditClone() {
             {/* Posts feed */}
             {!selectedPost && (
               <motion.div
-                variants={containerVariants}
+                variants={postContainerVariants}
                 initial="hidden"
                 animate="visible"
                 className="space-y-4"
               >
                 {posts.map(post => (
-                  <motion.div key={post.id} variants={itemVariants}>
-                    <Card className="p-3 hover:border-orange-200 transition-colors">
+                  <motion.div 
+                    key={post.id} 
+                    variants={postItemVariants}
+                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  >
+                    <Card className="p-3 hover:border-orange-200 hover:shadow-md transition-all duration-300">
                       <div className="flex">
                         {/* Vote buttons */}
                         <div className="flex flex-col items-center pr-3 mr-2">
-                          <button 
+                          <motion.button 
                             className={`p-1 rounded ${post.userVote === 'up' ? 'text-orange-500' : 'text-gray-400 hover:text-orange-500'}`}
                             onClick={() => handleVote(post.id, 'up')}
+                            whileHover={votingAnimation.up}
+                            whileTap={{ scale: 0.9 }}
                           >
                             <ArrowBigUp className="h-6 w-6" />
-                          </button>
-                          <span className={`text-xs font-medium my-1 ${
-                            post.userVote === 'up' ? 'text-orange-500' : 
-                            post.userVote === 'down' ? 'text-blue-500' : 
-                            'text-gray-600'
-                          }`}>
+                          </motion.button>
+                          <motion.span 
+                            className={`text-xs font-medium my-1 ${
+                              post.userVote === 'up' ? 'text-orange-500' : 
+                              post.userVote === 'down' ? 'text-blue-500' : 
+                              'text-gray-600'
+                            }`}
+                            animate={{ 
+                              scale: [1, 1.2, 1],
+                              transition: { duration: 0.3 }
+                            }}
+                            key={post.votes} // This causes animation to trigger when votes change
+                          >
                             {formatNumber(post.votes)}
-                          </span>
-                          <button 
+                          </motion.span>
+                          <motion.button 
                             className={`p-1 rounded ${post.userVote === 'down' ? 'text-blue-500' : 'text-gray-400 hover:text-blue-500'}`}
                             onClick={() => handleVote(post.id, 'down')}
+                            whileHover={votingAnimation.down}
+                            whileTap={{ scale: 0.9 }}
                           >
                             <ArrowBigDown className="h-6 w-6" />
-                          </button>
+                          </motion.button>
                         </div>
                         
                         {/* Post content */}
@@ -472,124 +528,170 @@ export default function RedditClone() {
             
             {/* Selected post with comments view */}
             {selectedPost && (
-              <div>
-                <button 
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4 }}
+              >
+                <motion.button 
                   className="flex items-center text-gray-500 hover:text-orange-500 mb-4"
                   onClick={() => setSelectedPost(null)}
+                  whileHover={{ x: -5, transition: { duration: 0.2 } }}
                 >
-                  <ArrowBigUp className="h-5 w-5 rotate-270 mr-1" />
+                  <ArrowBigUp className="h-5 w-5 mr-1" style={{ transform: "rotate(270deg)" }} />
                   <span>Back to posts</span>
-                </button>
+                </motion.button>
                 
-                <Card className="p-4 mb-6">
-                  <div className="flex">
-                    {/* Vote buttons */}
-                    <div className="flex flex-col items-center pr-3 mr-2">
-                      <button 
-                        className={`p-1 rounded ${selectedPost.userVote === 'up' ? 'text-orange-500' : 'text-gray-400 hover:text-orange-500'}`}
-                        onClick={() => handleVote(selectedPost.id, 'up')}
-                      >
-                        <ArrowBigUp className="h-6 w-6" />
-                      </button>
-                      <span className={`text-xs font-medium my-1 ${
-                        selectedPost.userVote === 'up' ? 'text-orange-500' : 
-                        selectedPost.userVote === 'down' ? 'text-blue-500' : 
-                        'text-gray-600'
-                      }`}>
-                        {formatNumber(selectedPost.votes)}
-                      </span>
-                      <button 
-                        className={`p-1 rounded ${selectedPost.userVote === 'down' ? 'text-blue-500' : 'text-gray-400 hover:text-blue-500'}`}
-                        onClick={() => handleVote(selectedPost.id, 'down')}
-                      >
-                        <ArrowBigDown className="h-6 w-6" />
-                      </button>
-                    </div>
-                    
-                    {/* Post content */}
-                    <div className="flex-1">
-                      <div className="flex items-center text-xs text-gray-500 mb-1">
-                        <span className="font-medium text-gray-700">{selectedPost.subreddit}</span>
-                        <span className="mx-1">•</span>
-                        <span>Posted by u/{selectedPost.author}</span>
-                        <span className="mx-1">•</span>
-                        <span>{selectedPost.createdAt}</span>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Card className="p-4 mb-6 hover:shadow-md transition-shadow duration-300">
+                    <div className="flex">
+                      {/* Vote buttons */}
+                      <div className="flex flex-col items-center pr-3 mr-2">
+                        <motion.button 
+                          className={`p-1 rounded ${selectedPost.userVote === 'up' ? 'text-orange-500' : 'text-gray-400 hover:text-orange-500'}`}
+                          onClick={() => handleVote(selectedPost.id, 'up')}
+                          whileHover={votingAnimation.up}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <ArrowBigUp className="h-6 w-6" />
+                        </motion.button>
+                        <motion.span 
+                          className={`text-xs font-medium my-1 ${
+                            selectedPost.userVote === 'up' ? 'text-orange-500' : 
+                            selectedPost.userVote === 'down' ? 'text-blue-500' : 
+                            'text-gray-600'
+                          }`}
+                          animate={{ 
+                            scale: [1, 1.2, 1],
+                            transition: { duration: 0.3 }
+                          }}
+                          key={selectedPost.votes} // This causes animation to trigger when votes change
+                        >
+                          {formatNumber(selectedPost.votes)}
+                        </motion.span>
+                        <motion.button 
+                          className={`p-1 rounded ${selectedPost.userVote === 'down' ? 'text-blue-500' : 'text-gray-400 hover:text-blue-500'}`}
+                          onClick={() => handleVote(selectedPost.id, 'down')}
+                          whileHover={votingAnimation.down}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <ArrowBigDown className="h-6 w-6" />
+                        </motion.button>
                       </div>
                       
-                      <h2 className="text-xl font-semibold text-gray-900 mb-3">
-                        {selectedPost.title}
-                      </h2>
-                      
-                      <div className="mb-4">
-                        <p className="text-gray-800">{selectedPost.content}</p>
-                      </div>
-                      
-                      {selectedPost.image && (
-                        <div className="mb-4">
-                          <img 
-                            src={selectedPost.image} 
-                            alt={selectedPost.title}
-                            className="rounded-md max-h-[500px] w-auto mx-auto"
-                          />
+                      {/* Post content */}
+                      <div className="flex-1">
+                        <div className="flex items-center text-xs text-gray-500 mb-1">
+                          <span className="font-medium text-gray-700">{selectedPost.subreddit}</span>
+                          <span className="mx-1">•</span>
+                          <span>Posted by u/{selectedPost.author}</span>
+                          <span className="mx-1">•</span>
+                          <span>{selectedPost.createdAt}</span>
                         </div>
-                      )}
-                      
-                      <div className="flex text-gray-500 text-sm border-t border-gray-200 pt-3 mt-3">
-                        <button className="flex items-center p-1 rounded hover:bg-gray-100">
-                          <MessageSquare className="h-4 w-4 mr-1" />
-                          <span>{selectedPost.comments} Comments</span>
-                        </button>
-                        <button className="flex items-center p-1 rounded hover:bg-gray-100 ml-3">
-                          <Share2 className="h-4 w-4 mr-1" />
-                          <span>Share</span>
-                        </button>
-                        <button className="flex items-center p-1 rounded hover:bg-gray-100 ml-3">
-                          <Bookmark className="h-4 w-4 mr-1" />
-                          <span>Save</span>
-                        </button>
-                        <button className="flex items-center p-1 rounded hover:bg-gray-100 ml-3">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </button>
+                        
+                        <h2 className="text-xl font-semibold text-gray-900 mb-3">
+                          {selectedPost.title}
+                        </h2>
+                        
+                        <div className="mb-4">
+                          <p className="text-gray-800">{selectedPost.content}</p>
+                        </div>
+                        
+                        {selectedPost.image && (
+                          <div className="mb-4">
+                            <img 
+                              src={selectedPost.image} 
+                              alt={selectedPost.title}
+                              className="rounded-md max-h-[500px] w-auto mx-auto"
+                            />
+                          </div>
+                        )}
+                        
+                        <div className="flex text-gray-500 text-sm border-t border-gray-200 pt-3 mt-3">
+                          <button className="flex items-center p-1 rounded hover:bg-gray-100">
+                            <MessageSquare className="h-4 w-4 mr-1" />
+                            <span>{selectedPost.comments} Comments</span>
+                          </button>
+                          <button className="flex items-center p-1 rounded hover:bg-gray-100 ml-3">
+                            <Share2 className="h-4 w-4 mr-1" />
+                            <span>Share</span>
+                          </button>
+                          <button className="flex items-center p-1 rounded hover:bg-gray-100 ml-3">
+                            <Bookmark className="h-4 w-4 mr-1" />
+                            <span>Save</span>
+                          </button>
+                          <button className="flex items-center p-1 rounded hover:bg-gray-100 ml-3">
+                            <MoreHorizontal className="h-4 w-4" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </motion.div>
                 
-                <Card className="p-4 mb-6">
-                  <div className="flex space-x-3">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src={user.avatar} alt={user.username} />
-                      <AvatarFallback>{user.username.slice(0, 2).toUpperCase()}</AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <Textarea 
-                        placeholder="What are your thoughts?" 
-                        className="mb-3"
-                        rows={3}
-                      />
-                      <div className="flex justify-end">
-                        <Button className="bg-orange-500 hover:bg-orange-600">
-                          Comment
-                        </Button>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  <Card className="p-4 mb-6">
+                    <div className="flex space-x-3">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={user.avatar} alt={user.username} />
+                        <AvatarFallback>{user.username.slice(0, 2).toUpperCase()}</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <Textarea 
+                          placeholder="What are your thoughts?" 
+                          className="mb-3"
+                          rows={3}
+                        />
+                        <div className="flex justify-end">
+                          <Button className="bg-orange-500 hover:bg-orange-600">
+                            Comment
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </motion.div>
                 
-                <div className="border-t border-gray-200 pt-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="border-t border-gray-200 pt-4"
+                >
                   <h3 className="text-base font-medium text-gray-900 mb-4">Comments ({selectedPost.comments})</h3>
                   
                   {/* Sample comments */}
-                  <div className="space-y-6">
-                    <div className="flex space-x-3">
+                  <motion.div 
+                    className="space-y-6"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <motion.div className="flex space-x-3" variants={itemVariants}>
                       <div className="flex flex-col items-center">
-                        <button className="text-gray-400 hover:text-orange-500">
+                        <motion.button 
+                          className="text-gray-400 hover:text-orange-500"
+                          whileHover={votingAnimation.up}
+                          whileTap={{ scale: 0.9 }}
+                        >
                           <ArrowBigUp className="h-5 w-5" />
-                        </button>
+                        </motion.button>
                         <span className="text-xs my-1">86</span>
-                        <button className="text-gray-400 hover:text-blue-500">
+                        <motion.button 
+                          className="text-gray-400 hover:text-blue-500"
+                          whileHover={votingAnimation.down}
+                          whileTap={{ scale: 0.9 }}
+                        >
                           <ArrowBigDown className="h-5 w-5" />
-                        </button>
+                        </motion.button>
                       </div>
                       <div>
                         <div className="flex items-center mb-1">
@@ -615,17 +717,25 @@ export default function RedditClone() {
                           </button>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                     
-                    <div className="flex space-x-3">
+                    <motion.div className="flex space-x-3" variants={itemVariants}>
                       <div className="flex flex-col items-center">
-                        <button className="text-orange-500">
+                        <motion.button 
+                          className="text-orange-500"
+                          whileHover={votingAnimation.up}
+                          whileTap={{ scale: 0.9 }}
+                        >
                           <ArrowBigUp className="h-5 w-5" />
-                        </button>
+                        </motion.button>
                         <span className="text-xs my-1 text-orange-500">42</span>
-                        <button className="text-gray-400 hover:text-blue-500">
+                        <motion.button 
+                          className="text-gray-400 hover:text-blue-500"
+                          whileHover={votingAnimation.down}
+                          whileTap={{ scale: 0.9 }}
+                        >
                           <ArrowBigDown className="h-5 w-5" />
-                        </button>
+                        </motion.button>
                       </div>
                       <div>
                         <div className="flex items-center mb-1">
@@ -651,92 +761,128 @@ export default function RedditClone() {
                           </button>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             )}
           </div>
           
           {/* Sidebar */}
           <div className="md:w-1/3 space-y-6">
             {/* About community */}
-            <Card className="p-4">
-              <h2 className="text-lg font-semibold mb-3">Welcome to ThreadVerse!</h2>
-              <p className="text-sm text-gray-600 mb-4">
-                A community-driven platform for discussions, sharing content, and discovering new ideas. 
-                Join the conversation!
-              </p>
-              <div className="flex items-center justify-between mb-4">
-                <div className="text-center">
-                  <div className="text-xl font-bold">2.5m</div>
-                  <div className="text-xs text-gray-500">Members</div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <Card className="p-4">
+                <h2 className="text-lg font-semibold mb-3">Welcome to ThreadVerse!</h2>
+                <p className="text-sm text-gray-600 mb-4">
+                  A community-driven platform for discussions, sharing content, and discovering new ideas. 
+                  Join the conversation!
+                </p>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="text-center">
+                    <div className="text-xl font-bold">2.5m</div>
+                    <div className="text-xs text-gray-500">Members</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xl font-bold">12.4k</div>
+                    <div className="text-xs text-gray-500">Online</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-xl font-bold">2011</div>
+                    <div className="text-xs text-gray-500">Created</div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold">12.4k</div>
-                  <div className="text-xs text-gray-500">Online</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold">2011</div>
-                  <div className="text-xs text-gray-500">Created</div>
-                </div>
-              </div>
-              <Button className="w-full bg-orange-500 hover:bg-orange-600 mb-3">Create Post</Button>
-              <Button variant="outline" className="w-full">Create Community</Button>
-            </Card>
+                <Button 
+                  className="w-full bg-orange-500 hover:bg-orange-600 mb-3"
+                  onClick={() => setIsCreatingPost(true)}
+                >
+                  Create Post
+                </Button>
+                <Button variant="outline" className="w-full">Create Community</Button>
+              </Card>
+            </motion.div>
             
             {/* Popular communities */}
-            <Card className="p-4">
-              <h2 className="text-lg font-semibold mb-3">Popular Communities</h2>
-              <div className="divide-y">
-                {communities.map((community) => (
-                  <div key={community.name} className="py-3 first:pt-0 last:pb-0">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <Avatar className="h-8 w-8 mr-3">
-                          <AvatarImage src={community.icon} alt={community.name} />
-                          <AvatarFallback>{community.name.substring(2, 4)}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <div className="text-sm font-medium">{community.name}</div>
-                          <div className="text-xs text-gray-500">{formatNumber(community.members)} members</div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Card className="p-4">
+                <h2 className="text-lg font-semibold mb-3">Popular Communities</h2>
+                <div className="divide-y">
+                  {communities.map((community, index) => (
+                    <motion.div 
+                      key={community.name} 
+                      className="py-3 first:pt-0 last:pb-0"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 * index, duration: 0.3 }}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <Avatar className="h-8 w-8 mr-3">
+                            <AvatarImage src={community.icon} alt={community.name} />
+                            <AvatarFallback>{community.name.substring(2, 4)}</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <div className="text-sm font-medium">{community.name}</div>
+                            <div className="text-xs text-gray-500">{formatNumber(community.members)} members</div>
+                          </div>
                         </div>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Button 
+                            variant={community.isUserJoined ? "outline" : "default"} 
+                            className={community.isUserJoined 
+                              ? "text-xs h-8 border-orange-500 text-orange-500 hover:bg-orange-50" 
+                              : "text-xs h-8 bg-orange-500 hover:bg-orange-600"
+                            }
+                            onClick={() => toggleJoinCommunity(community.name)}
+                          >
+                            {community.isUserJoined ? 'Joined' : 'Join'}
+                          </Button>
+                        </motion.div>
                       </div>
-                      <Button 
-                        variant={community.isUserJoined ? "outline" : "default"} 
-                        className={community.isUserJoined 
-                          ? "text-xs h-8 border-orange-500 text-orange-500 hover:bg-orange-50" 
-                          : "text-xs h-8 bg-orange-500 hover:bg-orange-600"
-                        }
-                        onClick={() => toggleJoinCommunity(community.name)}
-                      >
-                        {community.isUserJoined ? 'Joined' : 'Join'}
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-3 pt-3 border-t border-gray-200">
-                <Button variant="ghost" className="w-full text-orange-500 hover:text-orange-600 hover:bg-orange-50">
-                  View All Communities
-                </Button>
-              </div>
-            </Card>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-3 pt-3 border-t border-gray-200">
+                  <Button variant="ghost" className="w-full text-orange-500 hover:text-orange-600 hover:bg-orange-50">
+                    View All Communities
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
             
             {/* Subreddit rules */}
-            <Card className="p-4">
-              <h2 className="text-lg font-semibold mb-3">ThreadVerse Rules</h2>
-              <ol className="list-decimal list-inside text-sm space-y-3 text-gray-700">
-                <li>Remember the human - treat others with respect</li>
-                <li>Behave like you would in real life</li>
-                <li>Look for the original source of content</li>
-                <li>Search for duplicates before posting</li>
-                <li>Read the community's rules</li>
-              </ol>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Card className="p-4">
+                <h2 className="text-lg font-semibold mb-3">ThreadVerse Rules</h2>
+                <ol className="list-decimal list-inside text-sm space-y-3 text-gray-700">
+                  <li>Remember the human - treat others with respect</li>
+                  <li>Behave like you would in real life</li>
+                  <li>Look for the original source of content</li>
+                  <li>Search for duplicates before posting</li>
+                  <li>Read the community's rules</li>
+                </ol>
+              </Card>
+            </motion.div>
             
             {/* footer */}
-            <div className="text-xs text-gray-500 p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-xs text-gray-500 p-4"
+            >
               <div className="flex flex-wrap gap-x-4 gap-y-2 mb-3">
                 <a href="#" className="hover:underline">Help</a>
                 <a href="#" className="hover:underline">ThreadVerse Coins</a>
@@ -752,7 +898,7 @@ export default function RedditClone() {
                 <a href="#" className="hover:underline">Moderation</a>
               </div>
               <p className="mt-4">© 2025 ThreadVerse, Inc. All rights reserved.</p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

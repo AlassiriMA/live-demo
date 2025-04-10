@@ -95,6 +95,51 @@ export default function EnglishAI() {
     }
   };
   
+  // Enhanced animation variants
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" }
+    }
+  };
+  
+  const scaleInVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+  
+  const staggerContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+        duration: 0.3
+      }
+    }
+  };
+  
+  const popInVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 15 
+      } 
+    }
+  };
+  
   return (
     <AppShell>
       <div className="container mx-auto px-4 py-8">
@@ -187,61 +232,100 @@ export default function EnglishAI() {
           <div className="w-full md:w-3/4">
             <Card className="p-6 h-full">
               {activeLesson === 'intro' && (
-                <div>
-                  <h2 className="text-2xl font-bold mb-4 text-gray-800">Welcome to English AI Teacher</h2>
-                  <p className="text-gray-600 mb-6">
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={staggerContainerVariants}
+                >
+                  <motion.h2 
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    variants={fadeInUpVariants}
+                  >
+                    Welcome to English AI Teacher
+                  </motion.h2>
+                  <motion.p 
+                    className="text-gray-600 mb-6"
+                    variants={fadeInUpVariants}
+                  >
                     This interactive platform helps you master English through AI-powered lessons, 
                     real-time feedback, and personalized learning paths. Let's get started!
-                  </p>
+                  </motion.p>
                   
-                  <div className="bg-teal-50 p-6 rounded-xl mb-8 border border-teal-100">
+                  <motion.div 
+                    className="bg-teal-50 p-6 rounded-xl mb-8 border border-teal-100"
+                    variants={scaleInVariants}
+                  >
                     <h3 className="text-lg font-medium text-teal-700 mb-3">How it works:</h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-start">
+                    <motion.ul 
+                      className="space-y-2"
+                      variants={containerVariants}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      <motion.li className="flex items-start" variants={itemVariants}>
                         <ChevronRight className="h-5 w-5 text-teal-500 mr-2 mt-0.5" />
                         <span className="text-gray-700">Practice conversations with our AI tutor</span>
-                      </li>
-                      <li className="flex items-start">
+                      </motion.li>
+                      <motion.li className="flex items-start" variants={itemVariants}>
                         <ChevronRight className="h-5 w-5 text-teal-500 mr-2 mt-0.5" />
                         <span className="text-gray-700">Get instant feedback on pronunciation and grammar</span>
-                      </li>
-                      <li className="flex items-start">
+                      </motion.li>
+                      <motion.li className="flex items-start" variants={itemVariants}>
                         <ChevronRight className="h-5 w-5 text-teal-500 mr-2 mt-0.5" />
                         <span className="text-gray-700">Complete interactive exercises tailored to your level</span>
-                      </li>
-                      <li className="flex items-start">
+                      </motion.li>
+                      <motion.li className="flex items-start" variants={itemVariants}>
                         <ChevronRight className="h-5 w-5 text-teal-500 mr-2 mt-0.5" />
                         <span className="text-gray-700">Track your progress across different skill areas</span>
-                      </li>
-                    </ul>
-                  </div>
+                      </motion.li>
+                    </motion.ul>
+                  </motion.div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                  <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
+                    variants={containerVariants}
+                  >
+                    <motion.div 
+                      className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                      variants={popInVariants}
+                      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                    >
                       <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mb-3">
                         <MessageCircle className="h-5 w-5 text-indigo-600" />
                       </div>
                       <h4 className="font-medium text-gray-800 mb-1">Interactive Conversations</h4>
                       <p className="text-sm text-gray-500">Practice real-world scenarios with our AI conversational partner</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                    </motion.div>
+                    <motion.div 
+                      className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                      variants={popInVariants}
+                      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                    >
                       <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mb-3">
                         <Book className="h-5 w-5 text-amber-600" />
                       </div>
                       <h4 className="font-medium text-gray-800 mb-1">Vocabulary Builder</h4>
                       <p className="text-sm text-gray-500">Expand your vocabulary with context-based learning</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                    </motion.div>
+                    <motion.div 
+                      className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                      variants={popInVariants}
+                      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                    >
                       <div className="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center mb-3">
                         <Award className="h-5 w-5 text-rose-600" />
                       </div>
                       <h4 className="font-medium text-gray-800 mb-1">Achievement System</h4>
                       <p className="text-sm text-gray-500">Earn badges and track progress to stay motivated</p>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                   
-                  <Button className="bg-teal-500 hover:bg-teal-600">Start My First Lesson</Button>
-                </div>
+                  <motion.div variants={fadeInUpVariants}>
+                    <Button className="bg-teal-500 hover:bg-teal-600 px-6 py-2 transition-all duration-300 hover:px-8">
+                      Start My First Lesson
+                    </Button>
+                  </motion.div>
+                </motion.div>
               )}
               
               {activeLesson === 'progress' && (
