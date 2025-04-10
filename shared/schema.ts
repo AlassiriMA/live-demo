@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, jsonb, timestamp, doublePrecision } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, jsonb, timestamp, doublePrecision, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -197,3 +197,125 @@ export type InsertTradingPair = z.infer<typeof insertTradingPairSchema>;
 
 export type Dashboard = typeof dashboards.$inferSelect;
 export type InsertDashboard = z.infer<typeof insertDashboardSchema>;
+
+// CMS - Projects
+export const projects = pgTable("projects", {
+  id: serial("id").primaryKey(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+  style: varchar("style", { length: 100 }),
+  primaryColor: varchar("primary_color", { length: 50 }),
+  secondaryColor: varchar("secondary_color", { length: 50 }),
+  accentColor: varchar("accent_color", { length: 50 }),
+  imageUrl: text("image_url"),
+  tags: jsonb("tags").default([]),
+  route: varchar("route", { length: 255 }).notNull(),
+  published: boolean("published").default(true),
+  detailedContent: text("detailed_content"),
+  features: jsonb("features").default([]),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertProjectSchema = createInsertSchema(projects).pick({
+  slug: true,
+  name: true,
+  description: true,
+  style: true,
+  primaryColor: true,
+  secondaryColor: true,
+  accentColor: true,
+  imageUrl: true,
+  tags: true,
+  route: true,
+  published: true,
+  detailedContent: true,
+  features: true,
+});
+
+export const updateProjectSchema = createInsertSchema(projects).pick({
+  name: true,
+  description: true,
+  style: true,
+  primaryColor: true,
+  secondaryColor: true,
+  accentColor: true,
+  imageUrl: true,
+  tags: true,
+  route: true,
+  published: true,
+  detailedContent: true,
+  features: true,
+}).partial();
+
+// CMS - Media Library
+export const mediaItems = pgTable("media_items", {
+  id: serial("id").primaryKey(),
+  filename: varchar("filename", { length: 255 }).notNull(),
+  fileType: varchar("file_type", { length: 50 }).notNull(),
+  fileSize: integer("file_size").notNull(),
+  url: text("url").notNull(),
+  altText: text("alt_text"),
+  uploadedBy: integer("uploaded_by").references(() => users.id),
+  uploadedAt: timestamp("uploaded_at").defaultNow(),
+});
+
+export const insertMediaItemSchema = createInsertSchema(mediaItems).pick({
+  filename: true,
+  fileType: true,
+  fileSize: true,
+  url: true,
+  altText: true,
+  uploadedBy: true,
+});
+
+// CMS - Activity Logs
+export const activityLogs = pgTable("activity_logs", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  action: varchar("action", { length: 100 }).notNull(),
+  entityType: varchar("entity_type", { length: 100 }).notNull(),
+  entityId: integer("entity_id"),
+  details: jsonb("details"),
+  timestamp: timestamp("timestamp").defaultNow(),
+});
+
+export const insertActivityLogSchema = createInsertSchema(activityLogs).pick({
+  userId: true,
+  action: true,
+  entityType: true,
+  entityId: true,
+  details: true,
+});
+
+// CMS - Settings
+export const siteSettings = pgTable("site_settings", {
+  id: serial("id").primaryKey(),
+  key: varchar("key", { length: 255 }).notNull().unique(),
+  value: jsonb("value"),
+  category: varchar("category", { length: 100 }),
+  updatedBy: integer("updated_by").references(() => users.id),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertSiteSettingSchema = createInsertSchema(siteSettings).pick({
+  key: true,
+  value: true,
+  category: true,
+  updatedBy: true,
+});
+
+// CMS Type exports
+export type Project = typeof projects.$inferSelect;
+export type InsertProject = z.infer<typeof insertProjectSchema>;
+export type UpdateProject = z.infer<typeof updateProjectSchema>;
+
+export type MediaItem = typeof mediaItems.$inferSelect;
+export type InsertMediaItem = z.infer<typeof insertMediaItemSchema>;
+
+export type ActivityLog = typeof activityLogs.$inferSelect;
+export type InsertActivityLog = z.infer<typeof insertActivityLogSchema>;
+
+export type SiteSetting = typeof siteSettings.$inferSelect;
+export type InsertSiteSetting = z.infer<typeof insertSiteSettingSchema>;

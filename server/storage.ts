@@ -7,7 +7,11 @@ import {
   testimonials, type Testimonial, type InsertTestimonial,
   leads, type Lead, type InsertLead,
   tradingPairs, type TradingPair, type InsertTradingPair,
-  dashboards, type Dashboard, type InsertDashboard
+  dashboards, type Dashboard, type InsertDashboard,
+  projects, type Project, type InsertProject, type UpdateProject,
+  mediaItems, type MediaItem, type InsertMediaItem,
+  activityLogs, type ActivityLog, type InsertActivityLog,
+  siteSettings, type SiteSetting, type InsertSiteSetting
 } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
@@ -54,6 +58,31 @@ export interface IStorage {
   createDashboard(dashboard: InsertDashboard): Promise<Dashboard>;
   updateDashboard(id: number, dashboard: Partial<InsertDashboard>): Promise<Dashboard | undefined>;
   deleteDashboard(id: number): Promise<boolean>;
+  
+  // CMS - Projects methods
+  getAllProjects(): Promise<Project[]>;
+  getPublishedProjects(): Promise<Project[]>;
+  getProjectById(id: number): Promise<Project | undefined>;
+  getProjectBySlug(slug: string): Promise<Project | undefined>;
+  createProject(project: InsertProject): Promise<Project>;
+  updateProject(id: number, project: UpdateProject): Promise<Project | undefined>;
+  deleteProject(id: number): Promise<boolean>;
+  
+  // CMS - Media Library methods
+  getAllMediaItems(): Promise<MediaItem[]>;
+  getMediaItemById(id: number): Promise<MediaItem | undefined>;
+  createMediaItem(mediaItem: InsertMediaItem): Promise<MediaItem>;
+  deleteMediaItem(id: number): Promise<boolean>;
+  
+  // CMS - Activity Logs methods
+  getActivityLogs(limit?: number): Promise<ActivityLog[]>;
+  createActivityLog(log: InsertActivityLog): Promise<ActivityLog>;
+  
+  // CMS - Settings methods
+  getAllSettings(): Promise<SiteSetting[]>;
+  getSettingsByCategory(category: string): Promise<SiteSetting[]>;
+  getSettingByKey(key: string): Promise<SiteSetting | undefined>;
+  updateSetting(key: string, value: any, userId: number): Promise<SiteSetting | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -241,6 +270,141 @@ export class DatabaseStorage implements IStorage {
   async deleteDashboard(id: number): Promise<boolean> {
     const result = await db.delete(dashboards).where(eq(dashboards.id, id));
     return result.rowCount > 0;
+  }
+
+  // CMS - Projects methods
+  async getAllProjects(): Promise<Project[]> {
+    return await db.select().from(projects).orderBy(desc(projects.createdAt));
+  }
+
+  async getPublishedProjects(): Promise<Project[]> {
+    return await db
+      .select()
+      .from(projects)
+      .where(eq(projects.published, true))
+      .orderBy(desc(projects.createdAt));
+  }
+
+  async getProjectById(id: number): Promise<Project | undefined> {
+    const [project] = await db.select().from(projects).where(eq(projects.id, id));
+    return project || undefined;
+  }
+
+  async getProjectBySlug(slug: string): Promise<Project | undefined> {
+    const [project] = await db.select().from(projects).where(eq(projects.slug, slug));
+    return project || undefined;
+  }
+
+  async createProject(insertProject: InsertProject): Promise<Project> {
+    const [project] = await db
+      .insert(projects)
+      .values({
+        ...insertProject,
+        updatedAt: new Date()
+      })
+      .returning();
+    return project;
+  }
+
+  async updateProject(id: number, projectUpdate: UpdateProject): Promise<Project | undefined> {
+    const [updatedProject] = await db
+      .update(projects)
+      .set({
+        ...projectUpdate,
+        updatedAt: new Date()
+      })
+      .where(eq(projects.id, id))
+      .returning();
+    return updatedProject || undefined;
+  }
+
+  async deleteProject(id: number): Promise<boolean> {
+    const result = await db.delete(projects).where(eq(projects.id, id));
+    return result.rowCount > 0;
+  }
+
+  // CMS - Media Library methods
+  async getAllMediaItems(): Promise<MediaItem[]> {
+    return await db.select().from(mediaItems).orderBy(desc(mediaItems.uploadedAt));
+  }
+
+  async getMediaItemById(id: number): Promise<MediaItem | undefined> {
+    const [mediaItem] = await db.select().from(mediaItems).where(eq(mediaItems.id, id));
+    return mediaItem || undefined;
+  }
+
+  async createMediaItem(insertMediaItem: InsertMediaItem): Promise<MediaItem> {
+    const [mediaItem] = await db
+      .insert(mediaItems)
+      .values(insertMediaItem)
+      .returning();
+    return mediaItem;
+  }
+
+  async deleteMediaItem(id: number): Promise<boolean> {
+    const result = await db.delete(mediaItems).where(eq(mediaItems.id, id));
+    return result.rowCount > 0;
+  }
+
+  // CMS - Activity Logs methods
+  async getActivityLogs(limit?: number): Promise<ActivityLog[]> {
+    let query = db.select().from(activityLogs).orderBy(desc(activityLogs.timestamp));
+    if (limit) {
+      query = query.limit(limit);
+    }
+    return await query;
+  }
+
+  async createActivityLog(insertLog: InsertActivityLog): Promise<ActivityLog> {
+    const [log] = await db
+      .insert(activityLogs)
+      .values(insertLog)
+      .returning();
+    return log;
+  }
+
+  // CMS - Settings methods
+  async getAllSettings(): Promise<SiteSetting[]> {
+    return await db.select().from(siteSettings);
+  }
+
+  async getSettingsByCategory(category: string): Promise<SiteSetting[]> {
+    return await db
+      .select()
+      .from(siteSettings)
+      .where(eq(siteSettings.category, category));
+  }
+
+  async getSettingByKey(key: string): Promise<SiteSetting | undefined> {
+    const [setting] = await db.select().from(siteSettings).where(eq(siteSettings.key, key));
+    return setting || undefined;
+  }
+
+  async updateSetting(key: string, value: any, userId: number): Promise<SiteSetting | undefined> {
+    const existingSetting = await this.getSettingByKey(key);
+    
+    if (existingSetting) {
+      const [updatedSetting] = await db
+        .update(siteSettings)
+        .set({
+          value: value,
+          updatedBy: userId,
+          updatedAt: new Date()
+        })
+        .where(eq(siteSettings.key, key))
+        .returning();
+      return updatedSetting;
+    } else {
+      const [newSetting] = await db
+        .insert(siteSettings)
+        .values({
+          key: key,
+          value: value,
+          updatedBy: userId
+        })
+        .returning();
+      return newSetting;
+    }
   }
 }
 

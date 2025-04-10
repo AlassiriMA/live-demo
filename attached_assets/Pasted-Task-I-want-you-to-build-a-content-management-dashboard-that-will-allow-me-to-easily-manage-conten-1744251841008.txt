@@ -1,0 +1,72 @@
+Task:
+
+I want you to build a content management dashboard that will allow me to easily manage content across the entire app. The dashboard should be a react-based admin interface with user authentication, allowing me to edit and update content on my demo project pages without touching the code directly.
+
+Key Features to Implement:
+Admin Authentication:
+
+Create a secure login system for the dashboard using JWT or session-based authentication.
+
+Admin can log in with credentials (you can hardcode a simple username and password for now for quick testing).
+
+Only authenticated users should be able to access the dashboard.
+
+Content Management:
+
+Ability to edit project descriptions, add/remove projects, and modify existing content (text, images, and links).
+
+Each project can be updated dynamically (e.g., the Fruits & Greens eCommerce project should have editable fields for the description, tech stack, links to the live demo, etc.).
+
+Add a rich text editor for editing project descriptions (e.g., TinyMCE or Quill).
+
+Allow for uploading and replacing images related to each project.
+
+Project List:
+
+Show a list of all 7 demo apps on the dashboard.
+
+Each project entry should show the project name, current status (published/unpublished), and a quick edit option.
+
+Provide the ability to publish or unpublish projects to hide them from the live website.
+
+Data Storage:
+
+Use a database (like Drizzle ORM, MongoDB, or SQLite) to store the content (project descriptions, images, links).
+
+Ensure that all updates to content are saved and reflected live.
+
+Real-time Updates:
+
+Implement real-time updates to the front end when content is modified through the dashboard.
+
+You can use React Query or Socket.io for real-time communication between the dashboard and the front end.
+
+Admin User Interface:
+
+Build a clean and simple admin UI that’s easy to navigate.
+
+Side navigation should include:
+
+Dashboard Home
+
+Project Management
+
+Add New Project
+
+Account Settings
+
+Use TailwindCSS for styling.
+
+Add animations to make the UI more dynamic (e.g., fade-in transitions for editing forms).
+
+Error Handling:
+
+Implement proper error handling in the dashboard (e.g., display clear error messages when something goes wrong).
+
+Show loading states and success notifications when data is saved.
+
+Additional Features (optional):
+
+User Permissions: Allow role-based access control (RBAC) so that in the future you can give others access to view or edit content without full administrative access.
+
+Analytics: Include basic website analytics like page views for each project or general usage statistics if relevant.
