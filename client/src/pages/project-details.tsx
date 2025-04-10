@@ -15,7 +15,7 @@ export default function ProjectDetailsPage() {
   
   // Fetch project details from API
   const { data, isLoading, error } = useQuery<{success: boolean, project: any}>({
-    queryKey: ['/api/projects/slug/', slug],
+    queryKey: [`/api/projects/slug/${slug}`],
     enabled: !!slug,
   });
   
