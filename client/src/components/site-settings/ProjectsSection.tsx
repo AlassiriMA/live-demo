@@ -215,14 +215,14 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             {renderTags()}
           </div>
           
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             {/* Details Link */}
             <Link 
               href={`/project/${project.slug}`} 
-              className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
+              className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
             >
               Details
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </Link>
@@ -230,10 +230,14 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             {/* Live Demo Link */}
             <Link 
               href={route} 
-              className="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800"
+              className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md"
+              style={{
+                backgroundColor: `${primaryColor}15`,
+                color: primaryColor
+              }}
             >
               Demo
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </Link>

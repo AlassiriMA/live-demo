@@ -107,13 +107,15 @@ export default function ProjectDetailsPage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero section */}
       <div 
-        className="w-full py-16 relative overflow-hidden" 
+        className="w-full py-20 relative overflow-hidden bg-gradient-to-br" 
         style={{ 
-          backgroundColor: project.primaryColor || '#6366F1',
+          backgroundImage: `linear-gradient(135deg, ${project.primaryColor || '#6366F1'}, ${project.secondaryColor || '#4F46E5'})`,
           color: '#ffffff'
         }}
       >
-        <div className="absolute inset-0 opacity-10">
+        {/* Animated Particles Background */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)' }}></div>
           <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" version="1.1">
             <defs>
               <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -127,6 +129,23 @@ export default function ProjectDetailsPage() {
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
         </div>
+        
+        {/* Animated highlight shape */}
+        <div 
+          className="absolute top-0 -right-40 h-full w-96 rotate-12 transform opacity-20 blur-3xl"
+          style={{ 
+            background: `linear-gradient(90deg, transparent, ${project.accentColor || '#818cf8'})`,
+            animation: 'pulse 8s infinite'
+          }}
+        ></div>
+        
+        <style jsx>{`
+          @keyframes pulse {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.1; }
+          }
+        `}</style>
         
         <div className="container max-w-6xl mx-auto px-4 relative z-10">
           <Link href="/projects">
@@ -147,18 +166,27 @@ export default function ProjectDetailsPage() {
             </p>
             
             <div className="flex flex-wrap gap-2 mb-8">
-              {tags.map((tag: string, idx: number) => (
-                <span 
-                  key={idx} 
-                  className="px-3 py-1 rounded-full text-sm font-medium" 
-                  style={{ 
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    backdropFilter: 'blur(8px)'
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
+              {tags.map((tag: string, idx: number) => {
+                // Create a tag-specific color based on the tag content for consistency
+                const tagHash = tag.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                const hue = (tagHash % 360);
+                
+                return (
+                  <span 
+                    key={idx} 
+                    className="px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-md" 
+                    style={{ 
+                      backgroundColor: `hsla(${hue}, 85%, 85%, 0.25)`,
+                      backdropFilter: 'blur(8px)',
+                      color: `hsl(${hue}, 70%, 25%)`,
+                      border: `1px solid hsla(${hue}, 70%, 70%, 0.3)`,
+                      boxShadow: `0 2px 5px hsla(${hue}, 60%, 50%, 0.1)`
+                    }}
+                  >
+                    {tag}
+                  </span>
+                );
+              })}
             </div>
             
             <div className="flex flex-wrap gap-4">

@@ -1,6 +1,7 @@
 import { Router, Response } from 'express';
 import { z } from 'zod';
 import { storage } from '../storage';
+import { db } from '../db';
 import { auth, AuthRequest, adminOnly } from '../middleware/auth';
 import { insertProjectSchema, updateProjectSchema } from '@shared/schema';
 
@@ -72,17 +73,39 @@ router.get('/slug/:slug', async (req: AuthRequest, res: Response) => {
   try {
     const slug = req.params.slug;
     
-    const project = await storage.getProjectBySlug(slug);
-    if (!project) {
-      return res.status(404).json({ message: 'Project not found' });
+    // First try to get project using ORM
+    try {
+      const project = await storage.getProjectBySlug(slug);
+      if (project) {
+        // If project is not published and user is not admin, return 404
+        if (!project.published && (!req.user || req.user.role !== 'admin')) {
+          return res.status(404).json({ message: 'Project not found' });
+        }
+        return res.status(200).json({ success: true, project });
+      }
+    } catch (ormError) {
+      console.error('ORM fetch error:', ormError);
     }
-
-    // If project is not published and user is not admin, return 404
-    if (!project.published && (!req.user || req.user.role !== 'admin')) {
-      return res.status(404).json({ message: 'Project not found' });
+    
+    // If ORM fails, try direct SQL
+    try {
+      const result = await db.query.projects.findFirst({
+        where: (projects, { eq, and }) => 
+          and(eq(projects.slug, slug), eq(projects.published, true))
+      });
+      
+      if (result) {
+        // The ORM query returns the project with camelCase field names already
+        const project = result;
+        
+        return res.status(200).json({ success: true, project });
+      }
+    } catch (sqlError) {
+      console.error('SQL fetch error:', sqlError);
     }
-
-    return res.status(200).json({ success: true, project });
+    
+    // If no project found via any method, return 404
+    return res.status(404).json({ message: 'Project not found' });
   } catch (error) {
     console.error('Get project by slug error:', error);
     return res.status(500).json({ message: 'Server error' });
