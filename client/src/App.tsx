@@ -21,6 +21,15 @@ import BlogPost from "@/pages/blog/[id]";
 import PosDetail from "@/pages/app-details/PosDetail";
 import FruitsDetail from "@/pages/app-details/FruitsDetail";
 
+// Import admin pages
+import AdminLogin from "@/pages/admin/login";
+import AdminDashboard from "@/pages/admin/index";
+import ProjectsPage from "@/pages/admin/projects/index";
+import NewProjectPage from "@/pages/admin/projects/new";
+
+// Import auth provider
+import { AuthProvider } from "@/hooks/use-auth";
+
 function Router() {
   return (
     <Switch>
