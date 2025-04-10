@@ -295,6 +295,8 @@ export const siteSettings = pgTable("site_settings", {
   key: varchar("key", { length: 255 }).notNull().unique(),
   value: jsonb("value"),
   category: varchar("category", { length: 100 }),
+  description: text("description"),
+  createdBy: integer("created_by").references(() => users.id),
   updatedBy: integer("updated_by").references(() => users.id),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
@@ -303,6 +305,8 @@ export const insertSiteSettingSchema = createInsertSchema(siteSettings).pick({
   key: true,
   value: true,
   category: true,
+  description: true,
+  createdBy: true,
   updatedBy: true,
 });
 

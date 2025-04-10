@@ -167,8 +167,8 @@ async function seedSettings() {
         value: setting.value,
         category: setting.category,
         description: setting.description,
-        created_by: 9999, // Default admin user ID
-        updated_by: 9999
+        createdBy: 5, // Admin user ID
+        updatedBy: 5 // Admin user ID
       });
       console.log(`Created setting: ${setting.key}`);
     } else {
@@ -179,17 +179,15 @@ async function seedSettings() {
   console.log("✅ Site settings seeding completed.");
 }
 
-// Run the function if this script is executed directly
-if (require.main === module) {
-  seedSettings()
-    .then(() => {
-      console.log("Settings seeding completed successfully");
-      process.exit(0);
-    })
-    .catch((error) => {
-      console.error("Error seeding settings:", error);
-      process.exit(1);
-    });
-}
+// Run the function
+seedSettings()
+  .then(() => {
+    console.log("Settings seeding completed successfully");
+    process.exit(0);
+  })
+  .catch((error) => {
+    console.error("Error seeding settings:", error);
+    process.exit(1);
+  });
 
 export { seedSettings };
