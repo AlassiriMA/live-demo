@@ -149,6 +149,7 @@ export default function POS() {
           itemCount={itemCount}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
+          addToCart={addToCart}
         >
           {view === "browse" ? (
             <ProductList 

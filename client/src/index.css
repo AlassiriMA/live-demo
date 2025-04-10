@@ -32,20 +32,81 @@
     @apply bg-[#f0f0f3];
   }
   
+  .dark-pos .neu-bg {
+    @apply bg-gray-800;
+  }
+  
   .neu-button {
     @apply rounded-lg bg-[#f0f0f3] shadow-[8px_8px_16px_#d1d1d1,-8px_-8px_16px_#ffffff] transition-all duration-200 ease-in-out;
+  }
+  
+  .dark-pos .neu-button {
+    @apply bg-gray-800 shadow-[5px_5px_10px_#0f172a,-5px_-5px_10px_#334155];
   }
   
   .neu-button:hover {
     @apply shadow-[12px_12px_24px_#d1d1d1,-12px_-12px_24px_#ffffff];
   }
   
+  .dark-pos .neu-button:hover {
+    @apply shadow-[8px_8px_16px_#0f172a,-8px_-8px_16px_#334155];
+  }
+  
   .neu-button:active {
     @apply shadow-[inset_5px_5px_10px_#d1d1d1,inset_-5px_-5px_10px_#ffffff];
   }
   
+  .dark-pos .neu-button:active {
+    @apply shadow-[inset_3px_3px_6px_#0f172a,inset_-3px_-3px_6px_#334155];
+  }
+  
   .neu-input {
     @apply rounded-lg bg-[#f0f0f3] shadow-[inset_2px_2px_5px_#d1d1d1,inset_-2px_-2px_5px_#ffffff] px-4 py-2 outline-none;
+  }
+  
+  .dark-pos .neu-input {
+    @apply bg-gray-700 shadow-[inset_2px_2px_5px_#0f172a,inset_-2px_-2px_5px_#334155] text-white;
+  }
+  
+  /* Dark mode styles for POS app */
+  .dark-pos {
+    @apply bg-gray-900 text-gray-100;
+  }
+  
+  .dark-pos h1, .dark-pos h2, .dark-pos h3, .dark-pos h4, .dark-pos h5, .dark-pos h6 {
+    @apply text-white;
+  }
+  
+  .dark-pos .text-gray-800 {
+    @apply text-gray-100;
+  }
+  
+  .dark-pos .text-gray-700 {
+    @apply text-gray-200;
+  }
+  
+  .dark-pos .text-gray-600 {
+    @apply text-gray-300;
+  }
+  
+  .dark-pos .bg-white {
+    @apply bg-gray-800;
+  }
+  
+  .dark-pos .bg-gray-100 {
+    @apply bg-gray-700;
+  }
+  
+  .dark-pos .bg-gray-200 {
+    @apply bg-gray-600;
+  }
+  
+  .dark-pos .border-gray-200 {
+    @apply border-gray-700;
+  }
+  
+  .dark-pos .shadow-neu {
+    @apply shadow-[5px_5px_10px_#0f172a,-5px_-5px_10px_#334155];
   }
   
   /* Glassmorphism style for Marketing app */
