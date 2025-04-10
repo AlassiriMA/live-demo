@@ -79,7 +79,7 @@ export default function ParticleGenerator() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: "spring", bounce: 0.3 }}
-            className="fixed bottom-20 right-4 w-80 z-50"
+            className="fixed bottom-20 right-4 w-72 max-h-[80vh] overflow-y-auto z-50"
           >
             <Card className="p-4 shadow-xl bg-background/90 backdrop-blur-md border-primary/20">
               <div className="flex justify-between items-center mb-4">

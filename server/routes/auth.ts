@@ -30,6 +30,46 @@ router.post('/login', async (req: Request, res: Response) => {
 
     const { username, password } = validation.data;
 
+    // DEV MODE: Hardcoded admin user for development
+    const DEV_MODE = true; // Set to false for production
+    
+    if (DEV_MODE && username === 'admin' && password === 'admin') {
+      console.log('🔑 [Development Mode] Authenticating as admin using hardcoded credentials');
+      // Simulate an admin user
+      const devUser = {
+        id: 9999,
+        username: 'admin',
+        password: 'admin', // Not used but needed for type compliance
+        role: 'admin'
+      };
+      
+      // Generate token for dev user
+      const token = generateToken({
+        id: devUser.id,
+        username: devUser.username,
+        role: devUser.role
+      });
+      
+      // Set cookie
+      res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        sameSite: 'strict'
+      });
+      
+      // Return success with dev user info (exclude password)
+      return res.status(200).json({
+        success: true,
+        user: {
+          id: devUser.id,
+          username: devUser.username,
+          role: devUser.role
+        },
+        token
+      });
+    }
+
+    // Normal flow for production
     // Find user
     const user = await storage.getUserByUsername(username);
     if (!user) {
