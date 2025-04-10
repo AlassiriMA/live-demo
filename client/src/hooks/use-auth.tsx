@@ -7,6 +7,13 @@ interface AuthUser {
   role: string;
 }
 
+interface AuthResponse {
+  success: boolean;
+  user: AuthUser;
+  token?: string;
+  message?: string;
+}
+
 interface AuthContextType {
   user: AuthUser | null;
   isLoading: boolean;
@@ -27,10 +34,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await apiRequest<{ success: boolean; user: AuthUser }>('/api/auth/me', {
+        const response = await apiRequest('/api/auth/me', {
           method: 'GET',
           credentials: 'include',
-        });
+        }) as AuthResponse;
         
         if (response.success && response.user) {
           setUser(response.user);
@@ -51,21 +58,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null);
 
     try {
-      const response = await apiRequest<{ success: boolean; user: AuthUser; token: string }>('/api/auth/login', {
+      const response = await apiRequest('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
         credentials: 'include',
-      });
+      }) as AuthResponse;
 
       if (response.success && response.user) {
         setUser(response.user);
         // Store token in localStorage for non-cookie fallback (optional)
-        localStorage.setItem('token', response.token);
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+        }
       } else {
-        setError('Failed to login');
+        setError(response.message || 'Failed to login');
       }
     } catch (err) {
       setError('Invalid credentials');

@@ -52,6 +52,12 @@ function Router() {
       {/* App detail routes */}
       <Route path="/app-details/pos" component={PosDetail} />
       <Route path="/app-details/fruits" component={FruitsDetail} />
+      
+      {/* Admin routes */}
+      <Route path="/admin/login" component={AdminLogin} />
+      <Route path="/admin" component={AdminDashboard} />
+      <Route path="/admin/projects" component={ProjectsPage} />
+      <Route path="/admin/projects/new" component={NewProjectPage} />
 
       <Route component={NotFound} />
     </Switch>
@@ -61,8 +67,10 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
-      <Toaster />
+      <AuthProvider>
+        <Router />
+        <Toaster />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
