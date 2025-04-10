@@ -1,170 +1,221 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#6366F1" offset="0%"></stop>
+            <stop stop-color="#4F46E5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#F8FAFC" x="0" y="0" width="800" height="500"></rect>
+        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
         
         <!-- Header -->
-        <rect fill="#4F46E5" x="0" y="0" width="800" height="60"></rect>
-        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="30" y="37">
-            Bookstore POS System
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="800" height="60"></rect>
+        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="24" y="38">
+            BookStore POS
         </text>
         
         <!-- Navigation -->
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="650" y="37">
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="320" y="38">
+            Dashboard
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="420" y="38">
             Inventory
         </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="730" y="37">
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="520" y="38">
             Sales
         </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="600" y="38">
+            Reports
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="690" y="38">
+            Settings
+        </text>
         
-        <!-- Sidebar -->
-        <rect fill="#F1F5F9" x="0" y="60" width="200" height="440"></rect>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#1E293B" x="20" y="100">
+        <!-- Left Sidebar -->
+        <rect fill="#F3F4F6" x="0" y="60" width="200" height="440"></rect>
+        
+        <rect fill="#E5E7EB" x="20" y="90" width="160" height="40" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#4F46E5" x="70" y="115">
+            Inventory
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="70" y="170">
+            Add Book
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="70" y="210">
             Categories
         </text>
-        <rect fill="#E2E8F0" x="20" y="120" width="160" height="30" rx="4"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="30" y="140">
-            All Books
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="70" y="250">
+            Publishers
         </text>
-        <rect fill="#FFFFFF" x="20" y="160" width="160" height="30" rx="4"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="30" y="180">
-            Fiction
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="70" y="290">
+            Authors
         </text>
-        <rect fill="#FFFFFF" x="20" y="200" width="160" height="30" rx="4"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="30" y="220">
-            Non-Fiction
+        
+        <line x1="20" y1="340" x2="180" y2="340" stroke="#E5E7EB" stroke-width="1"></line>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="70" y="380">
+            Help
         </text>
-        <rect fill="#FFFFFF" x="20" y="240" width="160" height="30" rx="4"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="30" y="260">
-            Children's Books
-        </text>
-        <rect fill="#FFFFFF" x="20" y="280" width="160" height="30" rx="4"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="30" y="300">
-            Academic
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="70" y="420">
+            Logout
         </text>
         
         <!-- Main Content -->
-        <rect fill="#FFFFFF" x="220" y="80" width="560" height="400" rx="4"></rect>
-        <text font-family="Arial" font-size="18" font-weight="bold" fill="#1E293B" x="240" y="110">
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="230" y="100">
             Book Inventory
         </text>
         
-        <!-- Search Bar -->
-        <rect fill="#F8FAFC" x="240" y="130" width="360" height="36" rx="4" stroke="#CBD5E1" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#94A3B8" x="250" y="153">
-            Search by title, author, or ISBN...
+        <!-- Search and Filter -->
+        <rect fill="#FFFFFF" x="230" y="120" width="240" height="40" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#9CA3AF" x="245" y="145">
+            Search books...
         </text>
-        <rect fill="#4F46E5" x="610" y="130" width="80" height="36" rx="4"></rect>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="630" y="153">
-            Search
+        
+        <rect fill="#FFFFFF" x="480" y="120" width="140" height="40" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="505" y="145">
+            All Categories
         </text>
-        <rect fill="#10B981" x="700" y="130" width="60" height="36" rx="4"></rect>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="712" y="153">
-            Add
+        
+        <rect fill="#4F46E5" x="630" y="120" width="120" height="40" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="658" y="145">
+            Add Book
         </text>
         
         <!-- Table Header -->
-        <rect fill="#F1F5F9" x="240" y="180" width="520" height="40"></rect>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="250" y="205">
+        <rect fill="#F3F4F6" x="230" y="180" width="520" height="40" rx="4"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#374151" x="245" y="205">
             ISBN
         </text>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="350" y="205">
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#374151" x="325" y="205">
             Title
         </text>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="500" y="205">
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#374151" x="455" y="205">
             Author
         </text>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="600" y="205">
-            Price
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#374151" x="555" y="205">
+            Category
         </text>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="670" y="205">
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#374151" x="640" y="205">
             Stock
         </text>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="730" y="205">
-            Actions
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#374151" x="695" y="205">
+            Price
         </text>
         
-        <!-- Table Rows -->
-        <rect fill="#FFFFFF" x="240" y="220" width="520" height="50" stroke="#E2E8F0" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="250" y="250">
+        <!-- Table Row 1 -->
+        <rect fill="#FFFFFF" x="230" y="220" width="520" height="50" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="245" y="250">
             9781234567897
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="350" y="250">
-            The Great Adventure
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#111827" x="325" y="250">
+            The Great Novel
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="500" y="250">
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="455" y="250">
             John Smith
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="600" y="250">
-            $19.99
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="555" y="250">
+            Fiction
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="670" y="250">
-            24
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="640" y="250">
+            15
         </text>
-        <rect fill="#3B82F6" x="720" y="235" width="20" height="20" rx="4"></rect>
-        <rect fill="#EF4444" x="750" y="235" width="20" height="20" rx="4"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="695" y="250">
+            $24.99
+        </text>
         
-        <rect fill="#FFFFFF" x="240" y="270" width="520" height="50" stroke="#E2E8F0" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="250" y="300">
+        <!-- Table Row 2 -->
+        <rect fill="#F9FAFB" x="230" y="270" width="520" height="50" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="245" y="300">
             9780987654321
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="350" y="300">
-            Programming 101
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="500" y="300">
-            Alice Johnson
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="600" y="300">
-            $34.95
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="670" y="300">
-            16
-        </text>
-        <rect fill="#3B82F6" x="720" y="285" width="20" height="20" rx="4"></rect>
-        <rect fill="#EF4444" x="750" y="285" width="20" height="20" rx="4"></rect>
-        
-        <rect fill="#FFFFFF" x="240" y="320" width="520" height="50" stroke="#E2E8F0" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="250" y="350">
-            9785432167890
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="350" y="350">
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#111827" x="325" y="300">
             History of Time
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="500" y="350">
-            Robert Brown
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="455" y="300">
+            Jane Doe
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="600" y="350">
-            $24.50
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="555" y="300">
+            Non-fiction
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="670" y="350">
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="640" y="300">
             8
         </text>
-        <rect fill="#3B82F6" x="720" y="335" width="20" height="20" rx="4"></rect>
-        <rect fill="#EF4444" x="750" y="335" width="20" height="20" rx="4"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="695" y="300">
+            $32.50
+        </text>
         
-        <rect fill="#FFFFFF" x="240" y="370" width="520" height="50" stroke="#E2E8F0" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="250" y="400">
-            9783216549870
+        <!-- Table Row 3 -->
+        <rect fill="#FFFFFF" x="230" y="320" width="520" height="50" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="245" y="350">
+            9783456789012
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="350" y="400">
-            Fantasy World
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#111827" x="325" y="350">
+            Programming 101
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="500" y="400">
-            Sarah Williams
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="455" y="350">
+            Alan Coding
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="600" y="400">
-            $16.99
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="555" y="350">
+            Technical
         </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="670" y="400">
-            32
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#EF4444" x="640" y="350">
+            2
         </text>
-        <rect fill="#3B82F6" x="720" y="385" width="20" height="20" rx="4"></rect>
-        <rect fill="#EF4444" x="750" y="385" width="20" height="20" rx="4"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="695" y="350">
+            $45.99
+        </text>
+        
+        <!-- Table Row 4 -->
+        <rect fill="#F9FAFB" x="230" y="370" width="520" height="50" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="245" y="400">
+            9784567890123
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#111827" x="325" y="400">
+            Cooking Mastery
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="455" y="400">
+            Chef Gordon
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="555" y="400">
+            Cooking
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="640" y="400">
+            12
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="695" y="400">
+            $29.95
+        </text>
         
         <!-- Pagination -->
-        <rect fill="#F1F5F9" x="240" y="440" width="520" height="30"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="480" y="460">
-            Page 1 of 4
+        <rect fill="#FFFFFF" x="230" y="440" width="520" height="40"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="230" y="465">
+            Showing 1-4 of 42 books
+        </text>
+        
+        <rect fill="#FFFFFF" x="600" y="445" width="30" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="610" y="465">
+            1
+        </text>
+        
+        <rect fill="#F3F4F6" x="635" y="445" width="30" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="645" y="465">
+            2
+        </text>
+        
+        <rect fill="#FFFFFF" x="670" y="445" width="30" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="680" y="465">
+            3
+        </text>
+        
+        <rect fill="#FFFFFF" x="705" y="445" width="45" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="715" y="465">
+            Next
         </text>
     </g>
 </svg>
