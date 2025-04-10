@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#EC4899" offset="0%"></stop>
+            <stop stop-color="#BE185D" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-2.1%" y="-5.2%" width="104.1%" height="110.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FDF2F8" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="800" height="70"></rect>
+        <text font-family="Arial" font-size="26" font-weight="bold" fill="#FFFFFF" x="30" y="44">
+            Bella Beauty Salon
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="320" y="44">
+            Home
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="390" y="44">
+            Services
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="480" y="44">
+            Book Now
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="570" y="44">
+            Gallery
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="650" y="44">
+            Contact
+        </text>
+        
+        <!-- Main Content - Our Team -->
+        <text font-family="Arial" font-size="32" font-weight="bold" fill="#BE185D" x="290" y="110">
+            Meet Our Stylists
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#6B7280" x="245" y="140">
+            Our experienced team is passionate about making you look beautiful
+        </text>
+        
+        <!-- Stylists Row 1 -->
+        <rect fill="#FFFFFF" x="100" y="170" width="250" height="300" rx="8" filter="url(#filter-1)"></rect>
+        <circle fill="#FBCFE8" cx="225" cy="240" r="50"></circle>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#BE185D" x="215" y="250">
+            SJ
+        </text>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#111827" x="150" y="320">
+            Sarah Johnson
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="medium" fill="#6B7280" x="155" y="345">
+            Senior Hair Stylist
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="145" y="370">
+            Specializes in coloring and
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="170" y="390">
+            cutting techniques
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#F59E0B" x="190" y="420">
+            ★★★★★
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="253" y="420">
+            (48)
+        </text>
+        <rect fill="#EC4899" x="175" y="435" width="100" height="25" rx="12.5"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="195" y="452">
+            Book Now
+        </text>
+        
+        <rect fill="#FFFFFF" x="370" y="170" width="250" height="300" rx="8" filter="url(#filter-1)"></rect>
+        <circle fill="#F9A8D4" cx="495" cy="240" r="50"></circle>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#BE185D" x="485" y="250">
+            MP
+        </text>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#111827" x="420" y="320">
+            Michael Parker
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="medium" fill="#6B7280" x="425" y="345">
+            Master Stylist
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="415" y="370">
+            Expert in precision cutting
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="420" y="390">
+            and styling for events
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#F59E0B" x="460" y="420">
+            ★★★★★
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="523" y="420">
+            (32)
+        </text>
+        <rect fill="#EC4899" x="445" y="435" width="100" height="25" rx="12.5"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="465" y="452">
+            Book Now
+        </text>
+        
+        <rect fill="#FFFFFF" x="640" y="170" width="250" height="300" rx="8" filter="url(#filter-1)"></rect>
+        <circle fill="#F472B6" cx="765" cy="240" r="50"></circle>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#BE185D" x="755" y="250">
+            JR
+        </text>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#111827" x="695" y="320">
+            Jennifer Rivera
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="medium" fill="#6B7280" x="695" y="345">
+            Makeup Artist
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="685" y="370">
+            Specializes in bridal and
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="685" y="390">
+            special occasion makeup
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#F59E0B" x="730" y="420">
+            ★★★★☆
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="793" y="420">
+            (27)
+        </text>
+        <rect fill="#EC4899" x="715" y="435" width="100" height="25" rx="12.5"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="735" y="452">
+            Book Now
+        </text>
+        
+        <!-- View All Section -->
+        <rect fill="#FFFFFF" x="300" y="490" width="200" height="40" rx="20" filter="url(#filter-1)"></rect>
+        <text font-family="Arial" font-size="14" font-weight="medium" fill="#BE185D" x="350" y="515">
+            View All Stylists
+        </text>
+    </g>
+</svg>

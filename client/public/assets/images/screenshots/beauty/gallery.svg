@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#EC4899" offset="0%"></stop>
+            <stop stop-color="#BE185D" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-2.1%" y="-5.2%" width="104.1%" height="110.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FDF2F8" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="800" height="70"></rect>
+        <text font-family="Arial" font-size="26" font-weight="bold" fill="#FFFFFF" x="30" y="44">
+            Bella Beauty Salon
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="320" y="44">
+            Home
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="390" y="44">
+            Services
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="480" y="44">
+            Book Now
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#FFFFFF" x="570" y="44">
+            Gallery
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="650" y="44">
+            Contact
+        </text>
+        
+        <!-- Main Content - Gallery -->
+        <text font-family="Arial" font-size="32" font-weight="bold" fill="#BE185D" x="300" y="110">
+            Our Work Gallery
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#6B7280" x="265" y="140">
+            Browse through our portfolio of beautiful transformations
+        </text>
+        
+        <!-- Filter Tabs -->
+        <rect fill="#FFFFFF" x="100" y="170" width="600" height="50" rx="25" filter="url(#filter-1)"></rect>
+        
+        <rect fill="#FDF2F8" x="105" y="175" width="100" height="40" rx="20"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#BE185D" x="135" y="200">
+            All
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="225" y="200">
+            Hair
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="285" y="200">
+            Makeup
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="365" y="200">
+            Nails
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="435" y="200">
+            Facials
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="510" y="200">
+            Bridal
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="585" y="200">
+            Events
+        </text>
+        
+        <!-- Gallery Grid - Row 1 -->
+        <rect fill="#FBCFE8" x="50" y="240" width="220" height="150" rx="8" filter="url(#filter-1)"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="115" y="315">
+            Hair 1
+        </text>
+        
+        <rect fill="#F9A8D4" x="290" y="240" width="220" height="150" rx="8" filter="url(#filter-1)"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="355" y="315">
+            Hair 2
+        </text>
+        
+        <rect fill="#F472B6" x="530" y="240" width="220" height="150" rx="8" filter="url(#filter-1)"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="595" y="315">
+            Hair 3
+        </text>
+        
+        <!-- Gallery Grid - Row 2 -->
+        <rect fill="#C084FC" x="50" y="410" width="220" height="150" rx="8" filter="url(#filter-1)"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="110" y="485">
+            Makeup 1
+        </text>
+        
+        <rect fill="#A855F7" x="290" y="410" width="220" height="150" rx="8" filter="url(#filter-1)"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="350" y="485">
+            Makeup 2
+        </text>
+        
+        <rect fill="#8B5CF6" x="530" y="410" width="220" height="150" rx="8" filter="url(#filter-1)"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="590" y="485">
+            Makeup 3
+        </text>
+        
+        <!-- Pagination -->
+        <rect fill="#FFFFFF" x="340" y="580" width="120" height="40" rx="20" filter="url(#filter-1)"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="355" y="605">
+            1
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#BE185D" x="375" y="605">
+            2
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="395" y="605">
+            3
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="415" y="605">
+            4
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="435" y="605">
+            >
+        </text>
+    </g>
+</svg>

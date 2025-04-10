@@ -376,9 +376,19 @@ export default function ProjectDetailsPage() {
                       caption: "Comprehensive inventory management for bookstore"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
+                      src: "/assets/images/screenshots/pos/sales-dashboard.svg",
                       alt: "POS Sales Dashboard",
                       caption: "Real-time sales tracking and analytics"
+                    },
+                    {
+                      src: "/assets/images/screenshots/pos/transaction.svg",
+                      alt: "POS Transaction Interface",
+                      caption: "Streamlined checkout process for sales"
+                    },
+                    {
+                      src: "/assets/images/screenshots/pos/categories.svg",
+                      alt: "Book Categories Management",
+                      caption: "Organize inventory with customizable categories"
                     }
                   ]}
                   aspectRatio="wide"
@@ -397,9 +407,19 @@ export default function ProjectDetailsPage() {
                       caption: "Interactive data visualization dashboard"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
+                      src: "/assets/images/screenshots/bi/reports.svg",
                       alt: "Custom Report Builder",
-                      caption: "Create custom reports with drag-and-drop interface"
+                      caption: "Create and manage custom reports"
+                    },
+                    {
+                      src: "/assets/images/screenshots/bi/data-sources.svg",
+                      alt: "Data Sources Management",
+                      caption: "Connect to and manage multiple data sources"
+                    },
+                    {
+                      src: "/assets/images/screenshots/bi/analytics.svg",
+                      alt: "Advanced Analytics",
+                      caption: "Perform in-depth data analysis with visualizations"
                     }
                   ]}
                   aspectRatio="wide"
@@ -418,9 +438,19 @@ export default function ProjectDetailsPage() {
                       caption: "Natural language learning with AI tutor"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
-                      alt: "Pronunciation Practice",
-                      caption: "Speech recognition for pronunciation feedback"
+                      src: "/assets/images/screenshots/english-ai/vocabulary.svg",
+                      alt: "Vocabulary Learning",
+                      caption: "Expand vocabulary with interactive flashcards"
+                    },
+                    {
+                      src: "/assets/images/screenshots/english-ai/grammar.svg",
+                      alt: "Grammar Practice",
+                      caption: "Interactive grammar lessons and exercises"
+                    },
+                    {
+                      src: "/assets/images/screenshots/english-ai/lessons.svg",
+                      alt: "Lesson Journey",
+                      caption: "Progressive learning path with achievements"
                     }
                   ]}
                   aspectRatio="wide"
@@ -439,9 +469,19 @@ export default function ProjectDetailsPage() {
                       caption: "Easy appointment scheduling for clients"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
+                      src: "/assets/images/screenshots/beauty/services.svg",
                       alt: "Beauty Services Catalog",
                       caption: "Browse available treatments and services"
+                    },
+                    {
+                      src: "/assets/images/screenshots/beauty/gallery.svg",
+                      alt: "Beauty Salon Gallery",
+                      caption: "Showcase of previous client transformations"
+                    },
+                    {
+                      src: "/assets/images/screenshots/beauty/stylists.svg",
+                      alt: "Meet Our Stylists",
+                      caption: "Professional stylist profiles with reviews"
                     }
                   ]}
                   aspectRatio="wide"
