@@ -500,9 +500,19 @@ export default function ProjectDetailsPage() {
                       caption: "Community-driven content feed with voting"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
-                      alt: "Comment Thread System",
+                      src: "/assets/images/screenshots/reddit/post-detail.svg",
+                      alt: "Post Detail View",
                       caption: "Nested comment system for discussions"
+                    },
+                    {
+                      src: "/assets/images/screenshots/reddit/submit.svg",
+                      alt: "Content Submission",
+                      caption: "Create and submit posts to communities"
+                    },
+                    {
+                      src: "/assets/images/screenshots/reddit/profile.svg",
+                      alt: "User Profile",
+                      caption: "Profile with posting history and karma"
                     }
                   ]}
                   aspectRatio="wide"
@@ -521,15 +531,92 @@ export default function ProjectDetailsPage() {
                       caption: "Real-time portfolio performance tracking"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
+                      src: "/assets/images/screenshots/statarb/pairs.svg",
                       alt: "Pair Selection Tool",
                       caption: "Advanced pair selection with statistical analysis"
+                    },
+                    {
+                      src: "/assets/images/screenshots/statarb/analytics.svg",
+                      alt: "Trading Analytics",
+                      caption: "In-depth performance and risk analytics"
+                    },
+                    {
+                      src: "/assets/images/screenshots/statarb/settings.svg",
+                      alt: "Strategy Configuration",
+                      caption: "Customizable parameters for trading strategies"
                     }
                   ]}
                   aspectRatio="wide"
                   columns={2}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* Statistical Arbitrage Tech Stack */}
+              {(project.slug === 'statistical-arbitrage' || project.id === 5) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Python', icon: 'SiPython', type: 'backend', url: 'https://www.python.org' },
+                          { name: 'FastAPI', icon: 'SiFastapi', type: 'backend', url: 'https://fastapi.tiangolo.com' },
+                          { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
+                          { name: 'Redis', icon: 'SiRedis', type: 'database', url: 'https://redis.io' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' },
+                          { name: 'NGINX', icon: 'SiNginx', type: 'devops', url: 'https://nginx.org' },
+                          { name: 'Pandas', icon: 'SiPandas', type: 'tool', url: 'https://pandas.pydata.org' },
+                          { name: 'NumPy', icon: 'SiNumpy', type: 'tool', url: 'https://numpy.org' },
+                          { name: 'TradingView', icon: 'SiTradingview', type: 'tool', url: 'https://www.tradingview.com' },
+                          { name: 'GitHub Actions', icon: 'SiGithubactions', type: 'devops', url: 'https://github.com/features/actions' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Deployment Architecture</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li>Frontend deployed on <span className="font-medium">Vercel</span> for global CDN distribution</li>
+                          <li>Backend APIs containerized with <span className="font-medium">Docker</span> and hosted on <span className="font-medium">Oracle Cloud Infrastructure</span></li>
+                          <li>Microservices architecture with dedicated containers for data fetching, analysis, and execution</li>
+                          <li>NGINX as reverse proxy with SSL termination for secure communications</li>
+                          <li>Redis for real-time data caching and pub/sub messaging between services</li>
+                          <li>CI/CD pipeline with <span className="font-medium">GitHub Actions</span> for automated testing and deployment</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Key Features</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">Correlation Analysis</h5>
+                          <p className="text-sm text-gray-700">Advanced statistical models to identify correlated pairs for arbitrage opportunities.</p>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-md">
+                          <h5 className="font-medium text-purple-700 mb-2">Risk Management</h5>
+                          <p className="text-sm text-gray-700">Dynamic position sizing and stop-loss mechanisms based on volatility metrics.</p>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-md">
+                          <h5 className="font-medium text-green-700 mb-2">Backtesting Engine</h5>
+                          <p className="text-sm text-gray-700">Historical simulation with comprehensive performance analytics.</p>
+                        </div>
+                        <div className="bg-amber-50 p-4 rounded-md">
+                          <h5 className="font-medium text-amber-700 mb-2">Real-time Execution</h5>
+                          <p className="text-sm text-gray-700">Low-latency order execution with exchange APIs and real-time market data.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* Triangular Arbitrage Screenshots */}
@@ -542,15 +629,88 @@ export default function ProjectDetailsPage() {
                       caption: "Visual analysis of arbitrage opportunities"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
+                      src: "/assets/images/screenshots/triarb/scanner.svg",
+                      alt: "Market Scanner",
+                      caption: "Real-time scanning for triangular opportunities"
+                    },
+                    {
+                      src: "/assets/images/screenshots/triarb/execution.svg",
                       alt: "Trading Execution",
                       caption: "Automated trading execution interface"
+                    },
+                    {
+                      src: "/assets/images/screenshots/triarb/history.svg",
+                      alt: "Trade History",
+                      caption: "Historical performance and analytics"
                     }
                   ]}
                   aspectRatio="wide"
                   columns={2}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* Triangular Arbitrage Tech Stack */}
+              {(project.slug === 'triangular-arbitrage' || project.id === 6) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Go', icon: 'SiGo', type: 'backend', url: 'https://golang.org' },
+                          { name: 'gRPC', icon: 'SiGooglecloud', type: 'backend', url: 'https://grpc.io' },
+                          { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
+                          { name: 'InfluxDB', icon: 'SiInfluxdb', type: 'database', url: 'https://www.influxdata.com' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' },
+                          { name: 'Kubernetes', icon: 'SiKubernetes', type: 'devops', url: 'https://kubernetes.io' },
+                          { name: 'Grafana', icon: 'SiGrafana', type: 'tool', url: 'https://grafana.com' },
+                          { name: 'Prometheus', icon: 'SiPrometheus', type: 'tool', url: 'https://prometheus.io' },
+                          { name: 'WebSockets', icon: 'SiSocketdotio', type: 'backend', url: 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API' },
+                          { name: 'GitHub Actions', icon: 'SiGithubactions', type: 'devops', url: 'https://github.com/features/actions' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Deployment Architecture</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li>High-performance core written in <span className="font-medium">Go</span> for maximum throughput and minimal latency</li>
+                          <li>Microservices deployed on <span className="font-medium">Kubernetes</span> for horizontal scaling and resilience</li>
+                          <li>Time-series market data stored in <span className="font-medium">InfluxDB</span> for efficient temporal querying</li>
+                          <li>Real-time exchange connections via <span className="font-medium">WebSockets</span> with automatic failover</li>
+                          <li>Advanced monitoring with <span className="font-medium">Prometheus</span> and <span className="font-medium">Grafana</span> dashboards</li>
+                          <li>Frontend deployed as static assets via <span className="font-medium">CloudFront CDN</span> for global access</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">System Architecture</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-violet-50 p-4 rounded-md">
+                          <h5 className="font-medium text-violet-700 mb-2">Market Data Collector</h5>
+                          <p className="text-sm text-gray-700">Connects to 15+ exchanges to collect order book and ticker data at sub-second intervals.</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">Opportunity Scanner</h5>
+                          <p className="text-sm text-gray-700">Analyzes thousands of currency triplets to identify profitable triangular paths.</p>
+                        </div>
+                        <div className="bg-teal-50 p-4 rounded-md">
+                          <h5 className="font-medium text-teal-700 mb-2">Execution Engine</h5>
+                          <p className="text-sm text-gray-700">Places coordinated orders with nanosecond precision to capture arbitrage spread.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* dYdX Trading Interface Screenshots */}
