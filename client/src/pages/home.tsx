@@ -435,7 +435,7 @@ export default function Home() {
                     <h2 className="font-heading text-2xl font-bold mb-3 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#EC4899]">
                       About Me
                     </h2>
-                    <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center md:text-left">Mohammad Alassiri</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center md:text-left">Mohammad A. Alassiri</h3>
                     <p className="text-gray-700 font-medium text-center md:text-left text-sm">Full-Stack Developer, Problem Solver, Entrepreneur</p>
                     <p className="text-gray-600 mt-3 text-sm">
                       For me, coding is like solving a puzzle — turning ideas into reality with creativity. I build applications that are functional, beautiful and intuitive.

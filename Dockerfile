@@ -1,52 +1,26 @@
-# Multi-stage build for the Portfolio application
-
-# Stage 1: Build the frontend
-FROM node:18-alpine AS frontend-builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build:client
-
-# Stage 2: Build the backend
-FROM node:18-alpine AS backend-builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-COPY --from=frontend-builder /app/client/dist ./client/dist
-RUN npm run build:server
-
-# Stage 3: Production image
 FROM node:18-alpine
+
+# Set working directory
 WORKDIR /app
 
-# Install production dependencies
+# Copy package.json and lock files
 COPY package*.json ./
-RUN npm ci --only=production
 
-# Copy built application
-COPY --from=backend-builder /app/server/dist ./server/dist
-COPY --from=frontend-builder /app/client/dist ./client/dist
+# Install dependencies
+RUN npm ci
 
-# Copy required scripts and configuration
-COPY scripts/prod-server.js ./scripts/
-COPY ecosystem.config.js ./.env.production.sample ./
+# Copy source code
+COPY . .
 
-# Install PM2 globally
-RUN npm install -g pm2
+# Build the application
+RUN npm run build
 
-# Set environment variables
+# Expose port
+EXPOSE 5000
+
+# Set environment variables for production
 ENV NODE_ENV=production
 ENV PORT=5000
 
-# Create a non-root user and switch to it
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-RUN chown -R appuser:appgroup /app
-USER appuser
-
-# Expose the application port
-EXPOSE 5000
-
-# Start the application with PM2
-CMD ["pm2-runtime", "ecosystem.config.js"]
+# Start the server
+CMD ["npm", "run", "start"]
