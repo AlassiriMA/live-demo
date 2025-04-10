@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams, useLocation } from "wouter";
+import { useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { ChevronLeft, ExternalLink, Layers, Code, Calendar, Tag, Star, Eye, ArrowUpRight } from "lucide-react";
 import { Link } from "wouter";
@@ -9,7 +9,7 @@ import { apps } from "@/lib/app-data";
 
 export default function ProjectDetailsPage() {
   // Get the project slug from URL
-  const [, params] = useParams();
+  const [match, params] = useRoute<{ slug: string }>("/project/:slug");
   const slug = params?.slug;
   const [, setLocation] = useLocation();
   
@@ -68,13 +68,19 @@ export default function ProjectDetailsPage() {
     createdAt: new Date().toISOString(),
   };
   
+  // Define types for project data
+  type FeatureItem = {
+    title: string;
+    description: string;
+  };
+
   // Parse tags if they're a string
   const tags = typeof project.tags === 'string' 
     ? project.tags.split(',').map((tag: string) => tag.trim())
     : (Array.isArray(project.tags) ? project.tags : []);
     
   // Parse features if they're a JSON string
-  let features = [];
+  let features: Array<FeatureItem | string> = [];
   try {
     if (typeof project.features === 'string') {
       features = JSON.parse(project.features);
@@ -141,7 +147,7 @@ export default function ProjectDetailsPage() {
             </p>
             
             <div className="flex flex-wrap gap-2 mb-8">
-              {tags.map((tag, idx) => (
+              {tags.map((tag: string, idx: number) => (
                 <span 
                   key={idx} 
                   className="px-3 py-1 rounded-full text-sm font-medium" 
@@ -208,7 +214,7 @@ export default function ProjectDetailsPage() {
               >
                 <h2 className="text-2xl font-bold mb-4">Key Features</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {features.map((feature, idx) => (
+                  {features.map((feature: FeatureItem | string, idx: number) => (
                     <div key={idx} className="flex">
                       <div 
                         className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg mr-4 text-white"

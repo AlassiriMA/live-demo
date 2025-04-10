@@ -130,11 +130,25 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
       tagsToRender = matchingApp.tags.slice(0, 3);
     }
     
-    return tagsToRender.map((tag, idx) => (
-      <span key={idx} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
-        {tag}
-      </span>
-    ));
+    return tagsToRender.map((tag, idx) => {
+      // Generate slightly different pastel colors for each tag
+      const hues = [342, 360, 280, 220, 180, 160];
+      const hue = hues[idx % hues.length];
+      
+      return (
+        <span 
+          key={idx} 
+          className="text-xs px-3 py-1 rounded-full text-white font-medium shadow-sm"
+          style={{ 
+            backgroundColor: `hsla(${hue}, 80%, 60%, 0.85)`,
+            backdropFilter: 'blur(4px)',
+            boxShadow: `0 2px 5px hsla(${hue}, 80%, 40%, 0.2)`
+          }}
+        >
+          {tag}
+        </span>
+      );
+    });
   };
   
   // Get values with fallbacks
@@ -153,17 +167,22 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
       className="flex flex-col h-full"
     >
       <div 
-        className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col h-full hover:shadow-lg transition-shadow duration-300"
-        style={{ borderTopColor: primaryColor, borderTopWidth: '4px' }}
+        className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md border border-gray-100 p-6 flex flex-col h-full hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+        style={{ 
+          borderTopColor: primaryColor, 
+          borderTopWidth: '4px',
+          background: `linear-gradient(to bottom right, white, ${primaryColor}05)`
+        }}
       >
         {/* Project Image - Show if available */}
         {imageUrl && (
-          <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100">
+          <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100 shadow-inner relative group">
             <img 
               src={imageUrl} 
               alt={`${name} preview`}
-              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
         )}
         
