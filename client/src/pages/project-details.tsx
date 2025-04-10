@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { ChevronLeft, ExternalLink, Layers, Code, Calendar, Tag, Star, Eye, ArrowUpRight } from "lucide-react";
+import { ChevronLeft, ExternalLink, Layers, Code, Calendar, Tag, Star, Eye, ArrowUpRight, Zap, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -139,13 +139,7 @@ export default function ProjectDetailsPage() {
           }}
         ></div>
         
-        <style jsx>{`
-          @keyframes pulse {
-            0% { opacity: 0.1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 0.1; }
-          }
-        `}</style>
+        {/* Keyframes are defined in the CSS */}
         
         <div className="container max-w-6xl mx-auto px-4 relative z-10">
           <Link href="/projects">
@@ -241,25 +235,51 @@ export default function ProjectDetailsPage() {
                 className="bg-white rounded-xl p-6 shadow-sm mb-8"
               >
                 <h2 className="text-2xl font-bold mb-4">Key Features</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {features.map((feature: FeatureItem | string, idx: number) => (
-                    <div key={idx} className="flex">
-                      <div 
-                        className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg mr-4 text-white"
-                        style={{ backgroundColor: project.secondaryColor || '#4F46E5' }}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {features.map((feature: FeatureItem | string, idx: number) => {
+                    // Calculate a feature-specific hue based on its index or content
+                    const featureHue = typeof feature === 'object' 
+                      ? feature.title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360
+                      : (idx * 60) % 360;
+                    
+                    // Generate complementary colors
+                    const bgColor = `hsla(${featureHue}, 85%, 96%, 1)`;
+                    const iconBgColor = project.secondaryColor || `hsl(${featureHue}, 70%, 55%)`;
+                    const borderColor = `hsla(${featureHue}, 70%, 85%, 1)`;
+                    
+                    return (
+                      <motion.div 
+                        key={idx} 
+                        className="flex p-4 rounded-xl border transition-all duration-300 hover:shadow-md group"
+                        style={{ borderColor, backgroundColor: bgColor }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 * idx, duration: 0.4 }}
+                        whileHover={{ y: -5 }}
                       >
-                        <Layers className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-lg">
-                          {typeof feature === 'object' ? feature.title : `Feature ${idx + 1}`}
-                        </h3>
-                        <p className="text-gray-600">
-                          {typeof feature === 'object' ? feature.description : feature}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                        <div 
+                          className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-lg mr-4 text-white shadow-sm group-hover:shadow-md transition-all duration-300"
+                          style={{ backgroundColor: iconBgColor }}
+                        >
+                          {idx % 3 === 0 ? (
+                            <Layers className="h-6 w-6" />
+                          ) : idx % 3 === 1 ? (
+                            <Zap className="h-6 w-6" />
+                          ) : (
+                            <CheckCircle className="h-6 w-6" />
+                          )}
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-lg text-gray-800">
+                            {typeof feature === 'object' ? feature.title : `Feature ${idx + 1}`}
+                          </h3>
+                          <p className="text-gray-600">
+                            {typeof feature === 'object' ? feature.description : feature}
+                          </p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </motion.div>
             )}
@@ -350,9 +370,14 @@ export default function ProjectDetailsPage() {
 function ProjectDetailsSkeleton() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero skeleton */}
-      <div className="w-full py-16 bg-indigo-600">
-        <div className="container max-w-6xl mx-auto px-4">
+      {/* Hero skeleton with gradient background */}
+      <div className="w-full py-20 bg-gradient-to-br from-indigo-600 to-indigo-700 relative overflow-hidden">
+        {/* Skeleton background patterns */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)' }}></div>
+        </div>
+        
+        <div className="container max-w-6xl mx-auto px-4 relative z-10">
           <div className="mb-6 h-5 w-24">
             <Skeleton className="h-full w-full bg-white/20" />
           </div>
@@ -366,17 +391,17 @@ function ProjectDetailsSkeleton() {
             <Skeleton className="h-6 w-full md:w-1/2 bg-white/20" />
           </div>
           
-          <div className="flex gap-2 mb-8">
-            <Skeleton className="h-8 w-20 rounded-full bg-white/20" />
-            <Skeleton className="h-8 w-24 rounded-full bg-white/20" />
-            <Skeleton className="h-8 w-16 rounded-full bg-white/20" />
+          <div className="flex flex-wrap gap-2 mb-8">
+            {[1, 2, 3, 4, 5].map(i => (
+              <Skeleton key={i} className="h-8 w-20 md:w-24 rounded-full bg-white/20" />
+            ))}
           </div>
           
-          <Skeleton className="h-12 w-32 rounded-lg bg-white/20" />
+          <Skeleton className="h-12 w-32 rounded-lg bg-white/30" />
         </div>
       </div>
       
-      {/* Content skeleton */}
+      {/* Content skeleton with improved visuals */}
       <div className="container max-w-6xl mx-auto py-12 px-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
@@ -391,10 +416,14 @@ function ProjectDetailsSkeleton() {
             
             <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
               <Skeleton className="h-8 w-40 mb-4" />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {[1, 2, 3, 4].map(i => (
-                  <div key={i} className="flex">
-                    <Skeleton className="h-10 w-10 rounded-lg mr-4" />
+                  <div 
+                    key={i} 
+                    className="flex p-4 rounded-xl border border-gray-100" 
+                    style={{ backgroundColor: `hsla(${i * 60}, 85%, 96%, 1)` }}
+                  >
+                    <Skeleton className="h-12 w-12 rounded-lg mr-4" style={{ backgroundColor: `hsla(${i * 60}, 70%, 85%, 1)` }} />
                     <div className="flex-grow">
                       <Skeleton className="h-5 w-full max-w-[120px] mb-2" />
                       <Skeleton className="h-4 w-full mb-1" />
@@ -402,6 +431,13 @@ function ProjectDetailsSkeleton() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
+              <Skeleton className="h-8 w-40 mb-4" />
+              <div className="rounded-lg overflow-hidden border border-gray-200 h-64">
+                <Skeleton className="h-full w-full" />
               </div>
             </div>
           </div>
@@ -413,7 +449,7 @@ function ProjectDetailsSkeleton() {
               <div className="space-y-4">
                 {[1, 2, 3].map(i => (
                   <div key={i} className="flex items-start">
-                    <Skeleton className="h-5 w-5 mr-3" />
+                    <Skeleton className="h-5 w-5 rounded-md mr-3" />
                     <div className="flex-grow">
                       <Skeleton className="h-4 w-20 mb-1" />
                       <Skeleton className="h-5 w-full" />
@@ -424,6 +460,22 @@ function ProjectDetailsSkeleton() {
               
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <Skeleton className="h-10 w-full rounded-md" />
+              </div>
+            </div>
+            
+            {/* Additional skeleton for related projects */}
+            <div className="bg-white rounded-xl p-6 shadow-sm">
+              <Skeleton className="h-6 w-40 mb-4" />
+              <div className="space-y-4">
+                {[1, 2].map(i => (
+                  <div key={i} className="flex items-center">
+                    <Skeleton className="h-14 w-14 rounded-md mr-3" />
+                    <div className="flex-grow">
+                      <Skeleton className="h-5 w-3/4 mb-1" />
+                      <Skeleton className="h-4 w-1/2" />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
