@@ -28,6 +28,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use('/api/cms/media', mediaRoutes);
   app.use('/api/cms/settings', settingsRoutes);
   
+  // Health check endpoint for monitoring
+  app.get('/health', async (_req, res) => {
+    const healthcheck = {
+      uptime: process.uptime(),
+      message: 'OK',
+      timestamp: Date.now(),
+      services: {
+        database: { status: 'checking' },
+        server: { status: 'up' }
+      }
+    };
+    
+    try {
+      // Check database connection
+      try {
+        // Try to get a user to test DB connection
+        await storage.getUserByUsername('admin');
+        healthcheck.services.database.status = 'up';
+      } catch (dbError) {
+        healthcheck.services.database.status = 'down';
+        healthcheck.message = 'Database connection failed';
+      }
+      
+      const status = healthcheck.services.database.status === 'up' ? 200 : 503;
+      res.status(status).json(healthcheck);
+    } catch (error) {
+      healthcheck.message = error instanceof Error ? error.message : 'Error';
+      res.status(503).json(healthcheck);
+    }
+  });
+  
   // Error handling middleware for Zod validation
   const handleZodError = (error: unknown, res: Response) => {
     if (error instanceof ZodError) {

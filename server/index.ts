@@ -2,9 +2,62 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
+// Import security packages
+let helmet, compression, rateLimit, cors;
+// Only import in production to avoid issues in development
+if (process.env.NODE_ENV === 'production') {
+  helmet = require('helmet');
+  compression = require('compression');
+  rateLimit = require('express-rate-limit');
+  cors = require('cors');
+}
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Apply production security middleware
+if (process.env.NODE_ENV === 'production') {
+  // Add security headers
+  app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+        imgSrc: ["'self'", 'data:', 'blob:'],
+        fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+        connectSrc: ["'self'", 'https://api.etherscan.io']
+      }
+    }
+  }));
+  
+  // Enable compression
+  if (process.env.ENABLE_COMPRESSION === 'true') {
+    app.use(compression());
+  }
+  
+  // Enable rate limiting
+  if (process.env.ENABLE_RATE_LIMIT === 'true') {
+    const apiLimiter = rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100, // Limit each IP to 100 requests per windowMs
+      standardHeaders: true,
+      legacyHeaders: false,
+      message: { message: 'Too many requests, please try again later.' }
+    });
+    app.use('/api/', apiLimiter);
+  }
+  
+  // CORS configuration
+  const corsOptions = {
+    origin: process.env.CORS_ORIGIN || '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
+  };
+  app.use(cors(corsOptions));
+}
 
 app.use((req, res, next) => {
   const start = Date.now();
