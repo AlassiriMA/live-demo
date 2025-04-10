@@ -174,30 +174,40 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
           background: `linear-gradient(to bottom right, white, ${primaryColor}05)`
         }}
       >
-        {/* Project Image - Show if available */}
+        {/* Project Image - Show if available and make clickable */}
         {imageUrl && (
-          <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100 shadow-inner relative group">
-            <img 
-              src={imageUrl} 
-              alt={`${name} preview`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
+          <Link href={`/project/${project.slug}`}>
+            <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100 shadow-inner relative group cursor-pointer">
+              <img 
+                src={imageUrl} 
+                alt={`${name} preview`}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
+                <span className="text-white font-medium pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 px-4 py-1 rounded-full text-sm">
+                  View Project
+                </span>
+              </div>
+            </div>
+          </Link>
         )}
         
         <div className="flex items-center mb-4">
-          <div 
-            className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-white"
-            style={{ backgroundColor: primaryColor }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-          </div>
-          <h3 className="font-heading text-lg font-semibold text-gray-800">
-            {name}
-          </h3>
+          <Link href={route}>
+            <div 
+              className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-white cursor-pointer transform transition-transform hover:scale-110 hover:shadow-md"
+              style={{ backgroundColor: primaryColor }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+          </Link>
+          <Link href={`/project/${project.slug}`}>
+            <h3 className="font-heading text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors cursor-pointer">
+              {name}
+            </h3>
+          </Link>
         </div>
         
         <p className="text-gray-600 text-sm mb-4 flex-grow">

@@ -20,6 +20,7 @@ interface TechIcon {
   name: string;
   color: string;
   proficiency: number; // Experience level as a percentage
+  url: string; // URL to the technology's website
 }
 
 export default function TechIconsGrid() {
