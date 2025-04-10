@@ -110,23 +110,39 @@ export function ProjectsSection() {
 }
 
 function ProjectCard({ project, index }: { project: any, index: number }) {
-  // Find a matching app from our app data or use default values
-  const appInfo = apps.find(app => app.id === project.slug) || {
-    id: project.id?.toString() || "0",
-    name: project.name || "Project",
-    description: project.description || "",
-    route: project.route || `/project/${project.slug}`,
-    primaryColor: project.primaryColor || "#6366F1",
-    secondaryColor: project.secondaryColor || "#A5B4FC",
-    style: project.style || "Modern",
-    accentColor: project.accentColor || "#4F46E5",
-    imageUrl: project.imageUrl || "",
-    tags: []
+  // Get matching app data if available
+  const matchingApp = apps.find(app => app.id === project.slug);
+  
+  // Prepare tag display based on the type of tags (string or array)
+  const renderTags = () => {
+    let tagsToRender: string[] = [];
+    
+    // If project has tags as string (from database)
+    if (project.tags && typeof project.tags === 'string') {
+      tagsToRender = project.tags.split(',').map((t: string) => t.trim()).slice(0, 3);
+    } 
+    // If project has tags as array
+    else if (project.tags && Array.isArray(project.tags)) {
+      tagsToRender = project.tags.slice(0, 3);
+    } 
+    // Fallback to app data tags if available
+    else if (matchingApp && Array.isArray(matchingApp.tags)) {
+      tagsToRender = matchingApp.tags.slice(0, 3);
+    }
+    
+    return tagsToRender.map((tag, idx) => (
+      <span key={idx} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
+        {tag}
+      </span>
+    ));
   };
-
-  // Get actual route to use - prefer route from project if available, then from app info
-  const demoRoute = project.route || appInfo.route;
-  const imageUrl = project.imageUrl || appInfo.imageUrl;
+  
+  // Get values with fallbacks
+  const name = project.name || (matchingApp?.name || "Project");
+  const description = project.description || (matchingApp?.description || "");
+  const primaryColor = project.primaryColor || (matchingApp?.primaryColor || "#6366F1");
+  const imageUrl = project.imageUrl || (matchingApp?.imageUrl || "");
+  const route = project.route || (matchingApp?.route || `/project/${project.slug}`);
 
   return (
     <motion.div
@@ -138,14 +154,14 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
     >
       <div 
         className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col h-full hover:shadow-lg transition-shadow duration-300"
-        style={{ borderTopColor: appInfo.primaryColor, borderTopWidth: '4px' }}
+        style={{ borderTopColor: primaryColor, borderTopWidth: '4px' }}
       >
         {/* Project Image - Show if available */}
         {imageUrl && (
           <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100">
             <img 
               src={imageUrl} 
-              alt={`${project.name} preview`}
+              alt={`${name} preview`}
               className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             />
           </div>
@@ -154,22 +170,22 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         <div className="flex items-center mb-4">
           <div 
             className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-white"
-            style={{ backgroundColor: appInfo.primaryColor }}
+            style={{ backgroundColor: primaryColor }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
           </div>
           <h3 className="font-heading text-lg font-semibold text-gray-800">
-            {project.name}
+            {name}
           </h3>
         </div>
         
         <p className="text-gray-600 text-sm mb-4 flex-grow">
-          {project.description ? 
-            (project.description.length > 120 ? 
-              `${project.description.substring(0, 120)}...` : 
-              project.description
+          {description ? 
+            (description.length > 120 ? 
+              `${description.substring(0, 120)}...` : 
+              description
             ) : 
             "No description available"
           }
@@ -177,21 +193,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         
         <div className="mt-auto flex justify-between items-center">
           <div className="flex flex-wrap gap-2">
-            {project.tags && typeof project.tags === 'string' ? 
-              // If tags is a string (from database), split by comma
-              project.tags.split(',').slice(0, 3).map((tag: string, idx: number) => (
-                <span key={idx} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
-                  {tag.trim()}
-                </span>
-              )) 
-            : 
-              // If tags is already an array (from fallback data)
-              Array.isArray(project.tags) && project.tags.slice(0, 3).map((tag: string, idx: number) => (
-                <span key={idx} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
-                  {tag}
-                </span>
-              ))
-            }
+            {renderTags()}
           </div>
           
           <div className="flex items-center space-x-2">
@@ -208,7 +210,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             
             {/* Live Demo Link */}
             <Link 
-              href={demoRoute} 
+              href={route} 
               className="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800"
             >
               Demo

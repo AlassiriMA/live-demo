@@ -279,32 +279,53 @@ export class DatabaseStorage implements IStorage {
 
   async getPublishedProjects(): Promise<Project[]> {
     try {
-      // First try to get projects using ORM
-      const projectsList = await db
-        .select()
-        .from(projects)
-        .where(eq(projects.published, true))
-        .orderBy(desc(projects.createdAt));
+      // Use raw SQL with specific column selection to avoid ORM mapping issues
+      const result = await db.execute(`
+        SELECT 
+          id, slug, name, description, style, 
+          primary_color, secondary_color, accent_color, 
+          image_url, tags, route, published, 
+          featured, sort_order, detailed_content, 
+          meta_title, meta_description, features, 
+          screenshots, status, created_by, updated_by, 
+          created_at, updated_at
+        FROM projects 
+        WHERE published = true 
+        ORDER BY created_at DESC
+      `);
       
-      return projectsList;
+      if (result.rows) {
+        // Convert field names from snake_case to camelCase
+        return result.rows.map(row => ({
+          id: row.id,
+          slug: row.slug,
+          name: row.name,
+          description: row.description,
+          style: row.style,
+          primaryColor: row.primary_color,
+          secondaryColor: row.secondary_color,
+          accentColor: row.accent_color,
+          imageUrl: row.image_url,
+          tags: row.tags,
+          route: row.route,
+          published: row.published,
+          featured: row.featured,
+          sortOrder: row.sort_order,
+          detailedContent: row.detailed_content,
+          metaTitle: row.meta_title,
+          metaDescription: row.meta_description,
+          features: row.features,
+          screenshots: row.screenshots,
+          status: row.status,
+          createdBy: row.created_by,
+          updatedBy: row.updated_by,
+          createdAt: row.created_at,
+          updatedAt: row.updated_at
+        })) as Project[];
+      }
+      return [];
     } catch (error) {
       console.error("Error in getPublishedProjects:", error);
-      
-      try {
-        // As a fallback, execute SQL query directly
-        const result = await db.execute(`
-          SELECT * FROM projects 
-          WHERE published = true 
-          ORDER BY created_at DESC
-        `);
-        
-        if (result.rows) {
-          return result.rows as Project[];
-        }
-      } catch (fallbackError) {
-        console.error("Fallback query also failed:", fallbackError);
-      }
-      
       // Return empty array if all attempts fail
       return [];
     }
