@@ -67,10 +67,31 @@ export function ProjectsSection() {
   }
 
   if (!projects?.length) {
+    // Use simplified project type for fallback display
+    const appProjects: DisplayProject[] = apps.map((app, i) => ({
+      id: i + 1,
+      name: app.name,
+      slug: app.id,
+      description: app.description,
+      primaryColor: app.primaryColor,
+      secondaryColor: app.secondaryColor,
+      accentColor: app.accentColor,
+      imageUrl: app.imageUrl,
+      tags: app.tags.join(', '),
+      route: app.route,
+      published: true,
+      featured: i < 3
+    }));
+    
     return (
-      <div className="text-center py-12">
-        <h3 className="text-xl font-medium text-gray-700">No projects available yet</h3>
-        <p className="text-gray-500 mt-2">Check back soon for exciting projects!</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {appProjects.map((project, index) => (
+          <ProjectCard 
+            key={index} 
+            project={project as any} 
+            index={index} 
+          />
+        ))}
       </div>
     );
   }

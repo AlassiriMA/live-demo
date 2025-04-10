@@ -13,7 +13,7 @@ import {
   activityLogs, type ActivityLog, type InsertActivityLog,
   siteSettings, type SiteSetting, type InsertSiteSetting
 } from "@shared/schema";
-import { db } from "./db";
+import { db, pool } from "./db";
 import { eq } from "drizzle-orm";
 import { desc } from "drizzle-orm";
 
@@ -279,15 +279,15 @@ export class DatabaseStorage implements IStorage {
 
   async getPublishedProjects(): Promise<Project[]> {
     try {
-      // Use a simpler query without JOIN to avoid potential issues with category_id
-      const projectsList = await db
-        .select()
-        .from(projects)
-        .where(eq(projects.published, true))
-        .orderBy(desc(projects.createdAt));
+      // Execute SQL query directly to avoid ORM issues with missing columns
+      const { rows } = await pool.query(`
+        SELECT * FROM projects 
+        WHERE published = true 
+        ORDER BY created_at DESC
+      `);
       
       // Return the list of projects
-      return projectsList;
+      return rows;
     } catch (error) {
       console.error("Error in getPublishedProjects:", error);
       // Return empty array instead of failing
