@@ -4,6 +4,9 @@ import bcrypt from 'bcryptjs';
 import { storage } from '../storage';
 import { generateToken, auth, AuthRequest, adminOnly } from '../middleware/auth';
 
+// Global dev mode flag - set to false for production
+const DEV_MODE = true;
+
 const router = Router();
 
 // Login validation schema
@@ -22,16 +25,26 @@ const registerSchema = z.object({
 // Login route
 router.post('/login', async (req: Request, res: Response) => {
   try {
-    // Validate request
-    const validation = loginSchema.safeParse(req.body);
-    if (!validation.success) {
-      return res.status(400).json({ errors: validation.error.format() });
+    // DEV MODE: Skip validation for development
+    
+    // Get credentials from request body directly for dev mode
+    let username, password;
+    
+    if (DEV_MODE) {
+      username = req.body.username;
+      password = req.body.password;
+    } else {
+      // Normal validation for production
+      const validation = loginSchema.safeParse(req.body);
+      if (!validation.success) {
+        return res.status(400).json({ errors: validation.error.format() });
+      }
+      
+      username = validation.data.username;
+      password = validation.data.password;
     }
 
-    const { username, password } = validation.data;
-
     // DEV MODE: Hardcoded admin user for development
-    const DEV_MODE = true; // Set to false for production
     
     if (DEV_MODE && username === 'admin' && password === 'admin') {
       console.log('🔑 [Development Mode] Authenticating as admin using hardcoded credentials');
