@@ -183,7 +183,7 @@ async function seedDatabase() {
       exchange: "Coinbase",
       correlation: 0.87
     }
-  ]).onConflictDoNothing();
+  ]);
   console.log("✅ Trading pairs seeded");
   
   console.log("Database seeding completed!");
