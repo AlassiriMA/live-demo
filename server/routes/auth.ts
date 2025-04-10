@@ -9,13 +9,13 @@ const router = Router();
 // Login validation schema
 const loginSchema = z.object({
   username: z.string().min(3),
-  password: z.string().min(6)
+  password: z.string().min(1) // Reduced minimum length for development purposes
 });
 
 // Register validation schema
 const registerSchema = z.object({
   username: z.string().min(3),
-  password: z.string().min(6),
+  password: z.string().min(1), // Reduced for dev purposes
   role: z.enum(['user', 'admin']).default('user')
 });
 
