@@ -723,15 +723,91 @@ export default function ProjectDetailsPage() {
                       caption: "Professional crypto derivatives trading"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
-                      alt: "Advanced Order Types",
-                      caption: "Support for various order types and strategies"
+                      src: "/assets/images/screenshots/dydx/orders.svg",
+                      alt: "Portfolio Management",
+                      caption: "Comprehensive portfolio and position tracking"
                     }
                   ]}
                   aspectRatio="wide"
                   columns={2}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* dYdX Trading Interface Tech Stack */}
+              {(project.slug === 'dydx-interface' || project.id === 7) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
+                          { name: 'Express', icon: 'SiExpress', type: 'backend', url: 'https://expressjs.com' },
+                          { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
+                          { name: 'Redis', icon: 'SiRedis', type: 'database', url: 'https://redis.io' },
+                          { name: 'Ethers.js', icon: 'SiEthereum', type: 'tool', url: 'https://docs.ethers.io/' },
+                          { name: 'WebSockets', icon: 'SiSocketdotio', type: 'backend', url: 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API' },
+                          { name: 'TradingView', icon: 'SiTradingview', type: 'tool', url: 'https://www.tradingview.com' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' },
+                          { name: 'GitHub Actions', icon: 'SiGithubactions', type: 'devops', url: 'https://github.com/features/actions' },
+                          { name: 'AWS', icon: 'SiAmazonaws', type: 'devops', url: 'https://aws.amazon.com' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Web3 Integration</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li>Seamless connection to <span className="font-medium">MetaMask</span> and other Web3 wallets using <span className="font-medium">ethers.js</span></li>
+                          <li>Direct interaction with <span className="font-medium">dYdX's smart contracts</span> for on-chain operations</li>
+                          <li>Support for both Layer 1 and Layer 2 trading via <span className="font-medium">StarkEx</span> integration</li>
+                          <li>Real-time market data streaming through <span className="font-medium">WebSockets</span> for minimal latency</li>
+                          <li>Advanced rendering of trading charts using the <span className="font-medium">TradingView Charting Library</span></li>
+                          <li>Secure credential management with client-side encryption</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Key Trading Features</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-indigo-50 p-4 rounded-md">
+                          <h5 className="font-medium text-indigo-700 mb-2">Advanced Order Types</h5>
+                          <p className="text-sm text-gray-700">Supports limit, market, stop, stop-limit, trailing stop, and conditional orders.</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">Portfolio Management</h5>
+                          <p className="text-sm text-gray-700">Real-time position tracking, P&L calculation, and collateral management.</p>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-md">
+                          <h5 className="font-medium text-purple-700 mb-2">Risk Controls</h5>
+                          <p className="text-sm text-gray-700">Liquidation protection, position size limits, and customizable margin alerts.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Security Considerations</h4>
+                      <div className="bg-amber-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li><span className="font-medium">Hardware security module (HSM)</span> integration for secure key management</li>
+                          <li>Multi-signature authorization for large withdrawals</li>
+                          <li>Protection against front-running and sandwich attacks</li>
+                          <li>Comprehensive rate limiting and DDoS protection</li>
+                          <li>Regular security audits by leading blockchain security firms</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* For all other projects, show generic placeholder if no specific screenshots */}

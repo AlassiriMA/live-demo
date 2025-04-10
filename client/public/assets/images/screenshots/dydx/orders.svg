@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#5D5FEF" offset="0%"></stop>
+            <stop stop-color="#4F46E5" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-2.1%" y="-5.2%" width="104.1%" height="110.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#0F172A" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="#1E293B" x="0" y="0" width="800" height="60"></rect>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="30" y="38">
+            dYdX Trading Interface
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="290" y="38">
+            Dashboard
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="380" y="38">
+            Trade
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="440" y="38">
+            Portfolio
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="520" y="38">
+            History
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="590" y="38">
+            Analytics
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="670" y="38">
+            Settings
+        </text>
+        <circle fill="#10B981" cx="730" cy="30" r="5"></circle>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="745" y="38">
+            Connected
+        </text>
+        
+        <!-- Main Content -->
+        <rect fill="#0F172A" x="0" y="60" width="800" height="440"></rect>
+        
+        <!-- Portfolio Header -->
+        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="30" y="100">
+            Portfolio
+        </text>
+        
+        <!-- Portfolio Summary -->
+        <rect fill="#1E293B" x="30" y="120" width="740" height="80" rx="6"></rect>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="50" y="145">
+            Total Balance
+        </text>
+        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="50" y="175">
+            $85,642.76
+        </text>
+        
+        <line x1="220" y1="135" x2="220" y2="185" stroke="#334155" stroke-width="1"></line>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="240" y="145">
+            Available Balance
+        </text>
+        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="240" y="175">
+            $37,829.53
+        </text>
+        
+        <line x1="430" y1="135" x2="430" y2="185" stroke="#334155" stroke-width="1"></line>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="450" y="145">
+            Margin Used
+        </text>
+        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="450" y="175">
+            $47,813.23 (55.8%)
+        </text>
+        
+        <!-- Portfolio Tabs -->
+        <rect fill="#1E293B" x="30" y="220" width="740" height="40" rx="6"></rect>
+        
+        <rect fill="#334155" x="40" y="225" width="120" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="70" y="245">
+            Positions
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="190" y="245">
+            Open Orders
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="320" y="245">
+            Fills
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="420" y="245">
+            Funding
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="520" y="245">
+            Transfers
+        </text>
+        
+        <!-- Positions Header -->
+        <rect fill="#1E293B" x="30" y="270" width="740" height="40" rx="2"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="50" y="295">
+            Market
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="180" y="295">
+            Size
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="280" y="295">
+            Entry Price
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="400" y="295">
+            Mark Price
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="520" y="295">
+            Unrealized P&L
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="670" y="295">
+            Realized P&L
+        </text>
+        
+        <!-- Position 1 - BTC Long -->
+        <rect fill="#1B3C34" x="30" y="310" width="740" height="60" rx="2"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="50" y="345">
+            BTC-USD
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#10B981" x="180" y="345">
+            +0.75 BTC
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="280" y="345">
+            $61,854.25
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="400" y="345">
+            $63,421.85
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#10B981" x="520" y="345">
+            +$1,180.70 (+1.9%)
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#10B981" x="670" y="345">
+            +$842.35
+        </text>
+        
+        <!-- Position 2 - ETH Long -->
+        <rect fill="#1B3C34" x="30" y="370" width="740" height="60" rx="2"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="50" y="405">
+            ETH-USD
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#10B981" x="180" y="405">
+            +5.2 ETH
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="280" y="405">
+            $2,980.50
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="400" y="405">
+            $3,024.32
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#10B981" x="520" y="405">
+            +$227.86 (+1.5%)
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#10B981" x="670" y="405">
+            +$352.40
+        </text>
+        
+        <!-- Position 3 - LINK Short -->
+        <rect fill="#3F1D38" x="30" y="430" width="740" height="60" rx="2"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="50" y="465">
+            LINK-USD
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#EF4444" x="180" y="465">
+            -200 LINK
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="280" y="465">
+            $17.85
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="400" y="465">
+            $18.24
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#EF4444" x="520" y="465">
+            -$78.00 (-2.2%)
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#10B981" x="670" y="465">
+            +$126.20
+        </text>
+    </g>
+</svg>
