@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SiReact, SiNodedotjs, SiTypescript, SiPostgresql, SiPython, SiDocker, SiTailwindcss, SiGit } from "react-icons/si";
+import TechIconsGrid from "@/components/ui/tech-icons-grid";
 
 export default function Skills() {
   // Animation variant for staggered animations
@@ -35,6 +36,17 @@ export default function Skills() {
             subtitle="A comprehensive overview of my technical skills and business acumen"
             centered
           />
+          
+          <div className="mt-8 mb-12">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-2xl font-bold text-center mb-8">100+ Technologies in My Toolbox</h2>
+              <TechIconsSlider />
+            </motion.div>
+          </div>
 
           <Tabs defaultValue="technical" className="w-full max-w-5xl mx-auto mt-12">
             <TabsList className="w-full justify-center mb-8">
