@@ -16,6 +16,7 @@ import BI from "@/pages/bi";
 import EnglishAI from "@/pages/english-ai";
 import Beauty from "@/pages/beauty";
 import Reddit from "@/pages/reddit";
+import ParticlesDemo from "@/pages/particles";
 
 // Import additional pages
 import Skills from "@/pages/skills";

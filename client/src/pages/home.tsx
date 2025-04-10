@@ -4,6 +4,7 @@ import SectionHeading from "@/components/ui/section-heading";
 import AppCard from "@/components/ui/app-card";
 import ContactForm from "@/components/ui/contact-form";
 import TechIconsGrid from "@/components/ui/tech-icons-grid";
+import ParticleGenerator from "@/components/ui/particle-generator";
 import { apps } from "@/lib/app-data";
 import { Link } from "wouter";
 import { motion } from "framer-motion";

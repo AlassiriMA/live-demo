@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Loader2 } from "lucide-react";
+import ParticleGenerator from "@/components/ui/particle-generator";
 
 interface AppShellProps {
   children: ReactNode;
@@ -48,6 +49,7 @@ export default function AppShell({ children }: AppShellProps) {
         )}
       </AnimatePresence>
       <Footer />
+      <ParticleGenerator />
     </div>
   );
 }
