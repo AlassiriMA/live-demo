@@ -39,11 +39,14 @@ export default function TechIconsGrid() {
     const row2 = row2Ref.current;
     
     if (row1 && row2) {
+      // Set initial position for the second row
+      gsap.set(row2, { x: "-50%" });
+      
       // Create infinite animation for first row (left to right)
       gsap.to(row1, {
         x: "-50%",
         duration: 40,
-        ease: "none", 
+        ease: "linear", 
         repeat: -1,
         yoyo: false
       });
@@ -52,13 +55,9 @@ export default function TechIconsGrid() {
       gsap.to(row2, {
         x: "0%",
         duration: 30,
-        ease: "none", 
+        ease: "linear", 
         repeat: -1,
-        yoyo: false,
-        onStart: () => {
-          // Set initial position for the second row
-          gsap.set(row2, { x: "-50%" });
-        }
+        yoyo: false
       });
     }
 
@@ -133,7 +132,7 @@ export default function TechIconsGrid() {
       </motion.h2>
 
       {/* First row - moves left to right */}
-      <div className="relative mb-12 py-4">
+      <div className="relative mb-8 py-4 h-28 bg-gray-50/50 rounded-lg overflow-hidden shadow-inner">
         <div 
           ref={row1Ref} 
           className="flex absolute whitespace-nowrap"
@@ -142,7 +141,7 @@ export default function TechIconsGrid() {
           {row1Icons.map((tech, index) => (
             <div 
               key={`row1-${tech.name}-${index}`}
-              className="flex flex-col items-center justify-center px-5"
+              className="flex flex-col items-center justify-center px-4"
             >
               <motion.div
                 whileHover={{ 
@@ -150,13 +149,13 @@ export default function TechIconsGrid() {
                   rotate: [0, -5, 5, -5, 0],
                   transition: { duration: 0.5 }
                 }}
-                className="w-16 h-16 rounded-xl bg-white shadow-lg flex items-center justify-center mb-2
+                className="w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center mb-1
                            hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-opacity-90"
                 style={{ color: tech.color }}
               >
                 {tech.icon}
               </motion.div>
-              <p className="text-xs text-center font-medium text-gray-700 dark:text-gray-300 w-20">
+              <p className="text-[10px] text-center font-medium text-gray-700 dark:text-gray-300 w-16 truncate">
                 {tech.name}
               </p>
             </div>
@@ -165,7 +164,7 @@ export default function TechIconsGrid() {
       </div>
 
       {/* Second row - moves right to left */}
-      <div className="relative py-4">
+      <div className="relative py-4 h-28 bg-gray-50/50 rounded-lg overflow-hidden shadow-inner">
         <div 
           ref={row2Ref} 
           className="flex absolute whitespace-nowrap"
@@ -174,7 +173,7 @@ export default function TechIconsGrid() {
           {row2Icons.map((tech, index) => (
             <div 
               key={`row2-${tech.name}-${index}`}
-              className="flex flex-col items-center justify-center px-5"
+              className="flex flex-col items-center justify-center px-4"
             >
               <motion.div
                 whileHover={{ 
@@ -182,13 +181,13 @@ export default function TechIconsGrid() {
                   rotate: [0, 5, -5, 5, 0],
                   transition: { duration: 0.5 }
                 }}
-                className="w-16 h-16 rounded-xl bg-white shadow-lg flex items-center justify-center mb-2
+                className="w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center mb-1
                            hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-opacity-90"
                 style={{ color: tech.color }}
               >
                 {tech.icon}
               </motion.div>
-              <p className="text-xs text-center font-medium text-gray-700 dark:text-gray-300 w-20">
+              <p className="text-[10px] text-center font-medium text-gray-700 dark:text-gray-300 w-16 truncate">
                 {tech.name}
               </p>
             </div>
