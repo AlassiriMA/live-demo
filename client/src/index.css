@@ -52,26 +52,21 @@
   
   /* Navigation styles */
   .nav-link {
-    @apply font-medium transition-colors duration-200 py-2 px-1 inline-block relative;
+    @apply font-medium text-white hover:text-gray-300 transition-colors duration-200 py-2 px-1 inline-block relative;
   }
   
-  /* Fix navigation link colors */
-  .header-nav .nav-link {
-    @apply text-white hover:text-gray-300 font-medium;
-  }
-  
-  /* Fix mobile menu links */
-  .mobile-menu .nav-link {
-    @apply text-white hover:text-gray-300 block py-3;
-  }
-  
-  /* Nav link underline animation */
+  /* Navigation link hover animation */
   .nav-link::after {
-    @apply content-[''] absolute bottom-[-2px] left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out;
+    @apply content-[''] absolute bottom-[-2px] left-0 w-0 h-0.5 bg-gray-300 transition-all duration-300 ease-in-out;
   }
   
   .nav-link:hover::after {
     @apply w-full;
+  }
+  
+  /* Mobile menu links */
+  .mobile-menu .nav-link {
+    @apply block py-3;
   }
 }
 
