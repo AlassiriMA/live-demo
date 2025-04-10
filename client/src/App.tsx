@@ -16,6 +16,9 @@ import BI from "@/pages/bi";
 import Skills from "@/pages/skills";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog/[id]";
+import Sitemap from "@/pages/sitemap";
+import Terms from "@/pages/terms";
+import Privacy from "@/pages/privacy";
 
 // Import app detail pages
 import PosDetail from "@/pages/app-details/PosDetail";
@@ -48,6 +51,9 @@ function Router() {
       <Route path="/skills" component={Skills} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:id" component={BlogPost} />
+      <Route path="/sitemap" component={Sitemap} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/privacy" component={Privacy} />
       
       {/* App detail routes */}
       <Route path="/app-details/pos" component={PosDetail} />
