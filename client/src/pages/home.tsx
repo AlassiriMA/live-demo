@@ -17,6 +17,7 @@ import {
   ContactPhone,
   ContactAddress
 } from "@/components/site-settings/HeroContent";
+import { ProjectsSection } from "@/components/site-settings/ProjectsSection";
 
 export default function Home() {
   // Add smooth scrolling for anchor links
@@ -144,18 +145,7 @@ export default function Home() {
             centered
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {apps.map((app, index) => (
-              <motion.div
-                key={app.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <AppCard app={app} index={index} />
-              </motion.div>
-            ))}
-          </div>
+          <ProjectsSection />
         </div>
       </section>
 

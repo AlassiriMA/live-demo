@@ -15,7 +15,7 @@ export function HeroSubtitle() {
   const { settings, isLoading } = useSiteSettings("homepage");
   
   if (isLoading) {
-    return <span className="inline-block w-full"><Skeleton className="h-6 w-full" /></span>;
+    return <div className="inline-block w-full"><Skeleton className="h-6 w-full" /></div>;
   }
   
   return <>{getSetting<string>(settings, "hero.subtitle", "Explore a collection of innovative web applications showcasing my skills across different domains")}</>;
@@ -46,11 +46,11 @@ export function AboutContent() {
   
   if (isLoading) {
     return (
-      <span className="inline-block w-full">
+      <div className="inline-block w-full">
         <Skeleton className="h-4 w-full my-2" />
         <Skeleton className="h-4 w-full my-2" />
         <Skeleton className="h-4 w-3/4 my-2" />
-      </span>
+      </div>
     );
   }
   
