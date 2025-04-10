@@ -15,7 +15,7 @@ export function HeroSubtitle() {
   const { settings, isLoading } = useSiteSettings("homepage");
   
   if (isLoading) {
-    return <div className="inline-block w-full"><Skeleton className="h-6 w-full" /></div>;
+    return <Skeleton className="h-6 w-full" />;
   }
   
   return <>{getSetting<string>(settings, "hero.subtitle", "Explore a collection of innovative web applications showcasing my skills across different domains")}</>;

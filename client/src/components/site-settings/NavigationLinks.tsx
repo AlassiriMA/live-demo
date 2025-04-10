@@ -61,7 +61,7 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
               <Link 
                 key={index}
                 href={`/${link.url}`} 
-                className={`nav-link text-gray-800 hover:text-gray-600 font-medium ${isMobile ? 'block py-3' : ''}`}
+                className={`nav-link text-white hover:text-gray-300 font-medium ${isMobile ? 'block py-3' : ''}`}
                 onClick={onItemClick}
               >
                 {link.text}
@@ -72,7 +72,7 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
               <a 
                 key={index}
                 href={link.url} 
-                className={`nav-link text-gray-800 hover:text-gray-600 font-medium ${isMobile ? 'block py-3' : ''}`}
+                className={`nav-link text-white hover:text-gray-300 font-medium ${isMobile ? 'block py-3' : ''}`}
                 onClick={onItemClick}
               >
                 {link.text}
