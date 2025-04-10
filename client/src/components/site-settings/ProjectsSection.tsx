@@ -7,20 +7,52 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { apps } from "@/lib/app-data";
 
 export function ProjectsSection() {
-  const { data: projects, isLoading } = useQuery<Project[]>({
+  const { data, isLoading, error } = useQuery<{success: boolean, projects: Project[]}>({
     queryKey: ['/api/projects/published'],
     refetchOnWindowFocus: false,
   });
+  
+  const projects = data?.projects || [];
 
   if (isLoading) {
     return <ProjectsSkeletonGrid />;
   }
 
-  if (!projects?.length) {
+  if (error) {
+    console.error("Error loading projects:", error);
     return (
-      <div className="text-center py-12">
-        <h3 className="text-xl font-medium text-gray-700">No projects available yet</h3>
-        <p className="text-gray-500 mt-2">Check back soon for exciting projects!</p>
+      <div className="text-center py-12 bg-red-50 rounded-lg border border-red-200">
+        <h3 className="text-xl font-medium text-red-700">Error loading projects</h3>
+        <p className="text-red-500 mt-2">Please try again later</p>
+      </div>
+    );
+  }
+
+  if (!projects?.length) {
+    // Fallback to app data for display purposes
+    const demoProjects = apps.map((app, i) => ({
+      id: i + 1,
+      name: app.name,
+      slug: app.id,
+      description: app.description,
+      content: '',
+      tags: app.tags.join(', '),
+      categoryId: 1,
+      published: true,
+      featured: i < 3,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    }));
+    
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {demoProjects.map((project, index) => (
+          <ProjectCard 
+            key={index} 
+            project={project} 
+            index={index} 
+          />
+        ))}
       </div>
     );
   }

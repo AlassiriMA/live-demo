@@ -68,6 +68,15 @@
   .mobile-menu .nav-link {
     @apply block py-3;
   }
+  
+  /* Header & Navigation Visibility */
+  header {
+    @apply z-50;
+  }
+  
+  header nav {
+    @apply flex;
+  }
 }
 
 @layer components {
