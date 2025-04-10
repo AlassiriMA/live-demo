@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#F472B6" />
+  <g transform="translate(250, 120)">
+    <path d="M150,0 C230,0 300,70 300,150 C300,230 230,300 150,300 C70,300 0,230 0,150 C0,70 70,0 150,0 Z" fill="#FDF2F8" />
+    
+    <path d="M150,40 C205,40 250,85 250,140 C250,195 205,240 150,240 C95,240 50,195 50,140 C50,85 95,40 150,40 Z" fill="#F472B6" />
+    
+    <path d="M75,150 C75,150 110,200 150,200 C190,200 225,150 225,150" stroke="white" stroke-width="6" fill="none" />
+    
+    <circle cx="80" cy="100" r="10" fill="white" />
+    <circle cx="220" cy="100" r="10" fill="white" />
+    
+    <path d="M130,85 Q150,65 170,85" stroke="white" stroke-width="4" fill="none" />
+  </g>
+  <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Beauty Salon</text>
+</svg>

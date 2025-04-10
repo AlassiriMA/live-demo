@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#EC4899" />
+  <g transform="translate(150, 100)">
+    <rect width="500" height="350" rx="20" fill="#DB2777" />
+    
+    <circle cx="250" cy="100" r="60" fill="white" />
+    <path d="M230,90 Q250,70 270,90" stroke="#DB2777" stroke-width="3" fill="none" />
+    <circle cx="230" cy="80" r="5" fill="#DB2777" />
+    <circle cx="270" cy="80" r="5" fill="#DB2777" />
+    
+    <rect x="100" y="200" width="300" height="60" rx="30" fill="white" />
+    <rect x="100" y="280" width="300" height="40" rx="20" fill="#FDF2F8" />
+    
+    <text x="250" y="240" font-family="Arial" font-size="20" fill="#DB2777" text-anchor="middle">How can I help you learn English?</text>
+    <text x="250" y="307" font-family="Arial" font-size="16" fill="#DB2777" text-anchor="middle">Type your question...</text>
+    
+    <g transform="translate(350, 300)">
+      <circle cx="0" cy="0" r="15" fill="#DB2777" />
+      <path d="M-5,-5 L5,5 M-5,5 L5,-5" stroke="white" stroke-width="2" />
+    </g>
+  </g>
+  <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">English AI Tutor</text>
+</svg>
