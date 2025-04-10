@@ -308,119 +308,95 @@ export default function ProjectDetailsPage() {
               className="bg-white rounded-xl p-6 shadow-sm mb-8"
             >
               <h2 className="text-2xl font-bold mb-4">App Screenshots</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Main Project Image */}
-                {project.imageUrl && (
-                  <div className="md:col-span-2 rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
-                    <img 
-                      src={project.imageUrl} 
-                      alt={`${project.name} preview`}
-                      className="w-full object-contain"
-                    />
+              
+              {/* Main Project Image first as a showcase */}
+              {project.imageUrl && (
+                <div className="mb-6 rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
+                  <img 
+                    src={project.imageUrl} 
+                    alt={`${project.name} preview`}
+                    className="w-full object-contain"
+                  />
+                </div>
+              )}
+              
+              {/* Use our ImageGridGallery component for screenshots */}
+              {/* Fruit Store Screenshots */}
+              {(project.slug === 'fruit-store' || project.id === 2) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/fruit/product-catalog.svg",
+                      alt: "Fruit Store Product Catalog",
+                      caption: "Browse our selection of fresh fruits with filtering options"
+                    },
+                    {
+                      src: "/assets/images/screenshots/fruit/shopping-cart.svg",
+                      alt: "Fruit Store Shopping Cart",
+                      caption: "Review your cart and checkout"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* Marketing Agency Screenshots */}
+              {(project.slug === 'marketing-agency' || project.id === 3) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/marketing/chatbot.svg",
+                      alt: "Marketing Chatbot",
+                      caption: "AI-powered chatbot for lead generation"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "Marketing Analytics Dashboard",
+                      caption: "Comprehensive analytics tracking"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* For all other projects, show generic placeholder if no specific screenshots */}
+              {!['fruit-store', 'marketing-agency'].includes(project.slug || '') && 
+                ![2, 3].includes(project.id || 0) && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                    <div className="h-48 bg-gradient-to-br p-4 flex items-center justify-center" 
+                         style={{ 
+                           backgroundImage: `linear-gradient(135deg, ${project.primaryColor || '#6366F1'}50, ${project.secondaryColor || '#4F46E5'}90)`,
+                         }}>
+                      <div className="text-white text-center">
+                        <div className="text-lg font-medium mb-2">User Interface</div>
+                        <p className="text-white/70 text-sm">Interactive dashboard with data visualization</p>
+                      </div>
+                    </div>
+                    <div className="p-3 bg-gray-50">
+                      <p className="font-medium text-gray-700">Main Dashboard</p>
+                    </div>
                   </div>
-                )}
-                
-                {/* Example screenshots based on project type */}
-                {project.slug === 'pos-bookstore' && (
-                  <>
-                    <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                      <img 
-                        src="/assets/images/screenshots/pos-1.jpg" 
-                        alt="POS Inventory Management"
-                        className="w-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = project.imageUrl || '';
-                          e.currentTarget.alt = "Screenshot unavailable";
-                        }}
-                      />
-                      <div className="p-3 bg-gray-50">
-                        <p className="font-medium text-gray-700">Inventory Management</p>
+                  <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
+                    <div className="h-48 bg-gradient-to-br p-4 flex items-center justify-center" 
+                         style={{ 
+                           backgroundImage: `linear-gradient(135deg, ${project.secondaryColor || '#4F46E5'}50, ${project.primaryColor || '#6366F1'}90)`,
+                         }}>
+                      <div className="text-white text-center">
+                        <div className="text-lg font-medium mb-2">Reports & Analytics</div>
+                        <p className="text-white/70 text-sm">Comprehensive data analysis tools</p>
                       </div>
                     </div>
-                    <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                      <img 
-                        src="/assets/images/screenshots/pos-2.jpg" 
-                        alt="POS Checkout Flow"
-                        className="w-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = project.imageUrl || '';
-                          e.currentTarget.alt = "Screenshot unavailable";
-                        }}
-                      />
-                      <div className="p-3 bg-gray-50">
-                        <p className="font-medium text-gray-700">Checkout Process</p>
-                      </div>
+                    <div className="p-3 bg-gray-50">
+                      <p className="font-medium text-gray-700">Analytics Module</p>
                     </div>
-                  </>
-                )}
-                
-                {project.slug === 'fruit-store' && (
-                  <>
-                    <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                      <img 
-                        src="/assets/images/screenshots/fruit-1.jpg" 
-                        alt="Fruit Store Products"
-                        className="w-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = project.imageUrl || '';
-                          e.currentTarget.alt = "Screenshot unavailable";
-                        }}
-                      />
-                      <div className="p-3 bg-gray-50">
-                        <p className="font-medium text-gray-700">Product Catalog</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                      <img 
-                        src="/assets/images/screenshots/fruit-2.jpg" 
-                        alt="Fruit Store Shopping Cart"
-                        className="w-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = project.imageUrl || '';
-                          e.currentTarget.alt = "Screenshot unavailable";
-                        }}
-                      />
-                      <div className="p-3 bg-gray-50">
-                        <p className="font-medium text-gray-700">Shopping Cart</p>
-                      </div>
-                    </div>
-                  </>
-                )}
-                
-                {/* Fallback screenshots for all other projects */}
-                {!['pos-bookstore', 'fruit-store'].includes(project.slug || '') && (
-                  <>
-                    <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                      <div className="h-48 bg-gradient-to-br p-4 flex items-center justify-center" 
-                           style={{ 
-                             backgroundImage: `linear-gradient(135deg, ${project.primaryColor || '#6366F1'}50, ${project.secondaryColor || '#4F46E5'}90)`,
-                           }}>
-                        <div className="text-white text-center">
-                          <div className="text-lg font-medium mb-2">User Interface</div>
-                          <p className="text-white/70 text-sm">Interactive dashboard with data visualization</p>
-                        </div>
-                      </div>
-                      <div className="p-3 bg-gray-50">
-                        <p className="font-medium text-gray-700">Main Dashboard</p>
-                      </div>
-                    </div>
-                    <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
-                      <div className="h-48 bg-gradient-to-br p-4 flex items-center justify-center" 
-                           style={{ 
-                             backgroundImage: `linear-gradient(135deg, ${project.secondaryColor || '#4F46E5'}50, ${project.primaryColor || '#6366F1'}90)`,
-                           }}>
-                        <div className="text-white text-center">
-                          <div className="text-lg font-medium mb-2">Reports & Analytics</div>
-                          <p className="text-white/70 text-sm">Comprehensive data analysis tools</p>
-                        </div>
-                      </div>
-                      <div className="p-3 bg-gray-50">
-                        <p className="font-medium text-gray-700">Analytics Module</p>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
           
