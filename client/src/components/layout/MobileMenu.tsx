@@ -19,6 +19,12 @@ export default function MobileMenu({ isOpen, onClose, isAppPage }: MobileMenuPro
           <Link href="/#apps" onClick={onClose} className="block py-2 text-gray-800 hover:text-gray-600 font-medium">
             All Apps
           </Link>
+          <Link href="/skills" onClick={onClose} className="block py-2 text-gray-800 hover:text-gray-600 font-medium">
+            Skills
+          </Link>
+          <Link href="/blog" onClick={onClose} className="block py-2 text-gray-800 hover:text-gray-600 font-medium">
+            Blog
+          </Link>
           <Link href="/#about" onClick={onClose} className="block py-2 text-gray-800 hover:text-gray-600 font-medium">
             About
           </Link>
@@ -34,6 +40,12 @@ export default function MobileMenu({ isOpen, onClose, isAppPage }: MobileMenuPro
           <a href="#apps" onClick={onClose} className="block py-2 text-gray-800 hover:text-gray-600 font-medium">
             Apps
           </a>
+          <Link href="/skills" onClick={onClose} className="block py-2 text-gray-800 hover:text-gray-600 font-medium">
+            Skills
+          </Link>
+          <Link href="/blog" onClick={onClose} className="block py-2 text-gray-800 hover:text-gray-600 font-medium">
+            Blog
+          </Link>
           <a href="#about" onClick={onClose} className="block py-2 text-gray-800 hover:text-gray-600 font-medium">
             About
           </a>

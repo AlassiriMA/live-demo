@@ -12,10 +12,20 @@ import TriArb from "@/pages/triarb";
 import DYDX from "@/pages/dydx";
 import BI from "@/pages/bi";
 
+// Import additional pages
+import Skills from "@/pages/skills";
+import Blog from "@/pages/blog";
+
+// Import app detail pages
+import PosDetail from "@/pages/app-details/PosDetail";
+import FruitsDetail from "@/pages/app-details/FruitsDetail";
+
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      
+      {/* Main app routes */}
       <Route path="/pos" component={POS} />
       <Route path="/fruits" component={Fruits} />
       <Route path="/marketing" component={Marketing} />
@@ -23,6 +33,15 @@ function Router() {
       <Route path="/triarb" component={TriArb} />
       <Route path="/dydx" component={DYDX} />
       <Route path="/bi" component={BI} />
+      
+      {/* Portfolio information pages */}
+      <Route path="/skills" component={Skills} />
+      <Route path="/blog" component={Blog} />
+      
+      {/* App detail routes */}
+      <Route path="/app-details/pos" component={PosDetail} />
+      <Route path="/app-details/fruits" component={FruitsDetail} />
+
       <Route component={NotFound} />
     </Switch>
   );

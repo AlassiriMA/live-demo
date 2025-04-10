@@ -36,6 +36,12 @@ export default function Header() {
               Apps
             </a>
           )}
+          <Link href="/skills" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
+            Skills
+          </Link>
+          <Link href="/blog" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
+            Blog
+          </Link>
           {isAppPage ? (
             <Link href="/#about" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
               About
