@@ -17,7 +17,8 @@ import { ArrowDown, ArrowUp, Save, Sparkles, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ParticleGenerator() {
-  const { toast } = useToast();
+  // Get the toast function from useToast hook
+  const { toast: showToast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [config, setConfig] = useState<ParticleBackgroundProps>({
     count: 120, // Increased count for more particles
@@ -249,8 +250,8 @@ export default function ParticleGenerator() {
                     onClick={() => {
                       // Save current config to localStorage
                       localStorage.setItem('particleConfig', JSON.stringify(config));
-                      // Show success toast
-                      toast.toast({
+                      // Show success toast directly from useToast
+                      showToast({
                         title: 'Configuration saved',
                         description: 'Your particle settings have been saved',
                         duration: 3000,
