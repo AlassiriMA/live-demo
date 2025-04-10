@@ -23,22 +23,35 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
     if (!isLoading) {
       try {
         const links = getSetting<string>(settings, "navigation.links", "[]");
-        setNavLinks(typeof links === 'string' ? JSON.parse(links) : links);
+        const parsedLinks = typeof links === 'string' ? JSON.parse(links) : links;
+        
+        // Only update state if we actually have links
+        if (Array.isArray(parsedLinks) && parsedLinks.length > 0) {
+          setNavLinks(parsedLinks);
+        } else {
+          // Fallback to default links if empty or not an array
+          setDefaultLinks();
+        }
       } catch (error) {
         console.error("Error parsing navigation links:", error);
-        // Fallback to default links
-        setNavLinks([
-          { text: "Home", url: "/" },
-          { text: "Apps", url: "#apps", isAnchor: true },
-          { text: "Skills", url: "/skills" },
-          { text: "Blog", url: "/blog" },
-          { text: "About", url: "#about", isAnchor: true },
-          { text: "Contact", url: "#contact", isAnchor: true }
-        ]);
+        setDefaultLinks();
       }
     }
   }, [settings, isLoading]);
 
+  // Set up default navigation links as a fallback
+  const setDefaultLinks = () => {
+    setNavLinks([
+      { text: "Home", url: "/" },
+      { text: "Apps", url: "#apps", isAnchor: true },
+      { text: "Skills", url: "/skills" },
+      { text: "Blog", url: "/blog" },
+      { text: "About", url: "#about", isAnchor: true },
+      { text: "Contact", url: "#contact", isAnchor: true }
+    ]);
+  };
+
+  // Show skeleton loaders while loading
   if (isLoading) {
     return (
       <>
@@ -49,6 +62,12 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
         ))}
       </>
     );
+  }
+
+  // If we somehow still don't have any links, use defaults
+  if (!navLinks || navLinks.length === 0) {
+    setDefaultLinks();
+    return null; // Render nothing this render cycle
   }
 
   return (
