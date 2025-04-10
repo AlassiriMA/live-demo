@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#F8FAFC" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="#4F46E5" x="0" y="0" width="800" height="60"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="30" y="37">
+            Bookstore POS System
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="650" y="37">
+            Inventory
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="730" y="37">
+            Sales
+        </text>
+        
+        <!-- Two Pane Layout -->
+        <line x1="500" y1="60" x2="500" y2="500" stroke="#E2E8F0" stroke-width="1"></line>
+        
+        <!-- Left Side - Shopping Cart -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#1E293B" x="30" y="100">
+            Current Transaction
+        </text>
+        
+        <!-- Cart Items -->
+        <rect fill="#FFFFFF" x="30" y="120" width="440" height="80" rx="4" stroke="#E2E8F0" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#334155" x="50" y="145">
+            The Great Adventure
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#64748B" x="50" y="165">
+            John Smith - ISBN: 9781234567897
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#334155" x="380" y="155">
+            $19.99
+        </text>
+        <rect fill="#F1F5F9" x="320" y="145" width="30" height="25" rx="4" stroke="#CBD5E1" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="330" y="162">
+            1
+        </text>
+        
+        <rect fill="#FFFFFF" x="30" y="210" width="440" height="80" rx="4" stroke="#E2E8F0" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#334155" x="50" y="235">
+            Programming 101
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#64748B" x="50" y="255">
+            Alice Johnson - ISBN: 9780987654321
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#334155" x="380" y="245">
+            $34.95
+        </text>
+        <rect fill="#F1F5F9" x="320" y="235" width="30" height="25" rx="4" stroke="#CBD5E1" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#334155" x="330" y="252">
+            2
+        </text>
+        
+        <!-- Summary -->
+        <rect fill="#F1F5F9" x="30" y="320" width="440" height="120" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#334155" x="50" y="350">
+            Subtotal (3 items):
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#334155" x="380" y="350">
+            $89.89
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#334155" x="50" y="380">
+            Tax (8%):
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#334155" x="380" y="380">
+            $7.19
+        </text>
+        <line x1="50" y1="395" x2="420" y2="395" stroke="#CBD5E1" stroke-width="1"></line>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#334155" x="50" y="420">
+            Total:
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#334155" x="380" y="420">
+            $97.08
+        </text>
+        
+        <!-- Action Buttons -->
+        <rect fill="#10B981" x="30" y="460" width="150" height="40" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="70" y="485">
+            Complete Sale
+        </text>
+        
+        <rect fill="#F43F5E" x="190" y="460" width="130" height="40" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="220" y="485">
+            Cancel
+        </text>
+        
+        <rect fill="#3B82F6" x="330" y="460" width="140" height="40" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="358" y="485">
+            Apply Discount
+        </text>
+        
+        <!-- Right Side - Book Catalog -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#1E293B" x="530" y="100">
+            Book Catalog
+        </text>
+        
+        <rect fill="#F8FAFC" x="530" y="120" width="240" height="36" rx="4" stroke="#CBD5E1" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#94A3B8" x="540" y="143">
+            Search...
+        </text>
+        
+        <!-- Books Grid -->
+        <rect fill="#FFFFFF" x="530" y="170" width="110" height="140" rx="4" stroke="#CBD5E1" stroke-width="1"></rect>
+        <rect fill="#4F46E5" opacity="0.1" x="535" y="175" width="100" height="90"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="538" y="280">
+            History of Time
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="normal" fill="#334155" x="538" y="298">
+            $24.50
+        </text>
+        
+        <rect fill="#FFFFFF" x="660" y="170" width="110" height="140" rx="4" stroke="#CBD5E1" stroke-width="1"></rect>
+        <rect fill="#4F46E5" opacity="0.1" x="665" y="175" width="100" height="90"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="668" y="280">
+            Fantasy World
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="normal" fill="#334155" x="668" y="298">
+            $16.99
+        </text>
+        
+        <rect fill="#FFFFFF" x="530" y="320" width="110" height="140" rx="4" stroke="#CBD5E1" stroke-width="1"></rect>
+        <rect fill="#4F46E5" opacity="0.1" x="535" y="325" width="100" height="90"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="538" y="430">
+            Science Today
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="normal" fill="#334155" x="538" y="448">
+            $29.99
+        </text>
+        
+        <rect fill="#FFFFFF" x="660" y="320" width="110" height="140" rx="4" stroke="#CBD5E1" stroke-width="1"></rect>
+        <rect fill="#4F46E5" opacity="0.1" x="665" y="325" width="100" height="90"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#334155" x="668" y="430">
+            Art of Cooking
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="normal" fill="#334155" x="668" y="448">
+            $22.95
+        </text>
+    </g>
+</svg>
