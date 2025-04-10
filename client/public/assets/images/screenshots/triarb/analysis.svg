@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#0F172A" offset="0%"></stop>
+            <stop stop-color="#1E293B" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#2563EB" offset="0%"></stop>
+            <stop stop-color="#3B82F6" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#0F172A" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Left Sidebar -->
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="180" height="500"></rect>
+        
+        <!-- Logo/Title -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="25" y="35">
+            TriArb Pro
+        </text>
+        
+        <!-- Navigation -->
+        <rect fill="#1E293B" x="10" y="60" width="160" height="40" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="45" y="85">
+            Dashboard
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="135">
+            Opportunities
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="175">
+            Exchanges
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="215">
+            Auto-Trading
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="255">
+            History
+        </text>
+        
+        <line x1="15" y1="290" x2="165" y2="290" stroke="#334155" stroke-width="1"></line>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="335">
+            Settings
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="375">
+            API Keys
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="455">
+            Logout
+        </text>
+        
+        <!-- Main Content -->
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="200" y="35">
+            Triangular Arbitrage Opportunities
+        </text>
+        
+        <!-- Filters -->
+        <rect fill="#1E293B" x="530" y="20" width="120" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="545" y="38">
+            Exchange: All ▼
+        </text>
+        
+        <rect fill="#1E293B" x="660" y="20" width="120" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="675" y="38">
+            Min Profit: 0.2% ▼
+        </text>
+        
+        <!-- Stats Summary -->
+        <rect fill="#1E293B" x="200" y="55" width="180" height="90" rx="6"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#94A3B8" x="215" y="80">
+            Active Opportunities
+        </text>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="215" y="110">
+            14
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="215" y="130">
+            ↑ 3 from yesterday
+        </text>
+        
+        <rect fill="#1E293B" x="400" y="55" width="180" height="90" rx="6"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#94A3B8" x="415" y="80">
+            Highest Profit
+        </text>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="415" y="110">
+            0.83%
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="415" y="130">
+            BTC → ETH → SOL → BTC
+        </text>
+        
+        <rect fill="#1E293B" x="600" y="55" width="180" height="90" rx="6"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#94A3B8" x="615" y="80">
+            Total Profit (24h)
+        </text>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="615" y="110">
+            $1,284.35
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="615" y="130">
+            ↑ $235.92 from yesterday
+        </text>
+        
+        <!-- Visualization -->
+        <rect fill="#1E293B" x="200" y="160" width="580" height="150" rx="6"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="215" y="185">
+            Opportunity Visualization
+        </text>
+        
+        <!-- Currency Nodes -->
+        <circle cx="350" cy="235" r="30" fill="#2563EB" stroke="#0F172A" stroke-width="2"></circle>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="335" y="240">
+            BTC
+        </text>
+        
+        <circle cx="490" cy="235" r="30" fill="#3B82F6" stroke="#0F172A" stroke-width="2"></circle>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="475" y="240">
+            ETH
+        </text>
+        
+        <circle cx="630" cy="235" r="30" fill="#60A5FA" stroke="#0F172A" stroke-width="2"></circle>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="615" y="240">
+            SOL
+        </text>
+        
+        <!-- Connection Arrows -->
+        <line x1="380" y1="235" x2="460" y2="235" stroke="#94A3B8" stroke-width="2"></line>
+        <polygon fill="#94A3B8" points="455,230 465,235 455,240"></polygon>
+        
+        <line x1="520" y1="235" x2="600" y2="235" stroke="#94A3B8" stroke-width="2"></line>
+        <polygon fill="#94A3B8" points="595,230 605,235 595,240"></polygon>
+        
+        <path 
+            d="M630,265 C630,300 490,310 350,265" 
+            stroke="#10B981" 
+            stroke-width="2" 
+            fill="none">
+        </path>
+        <polygon fill="#10B981" transform="translate(350, 265) rotate(-30)" points="-5,-5 5,0 -5,5"></polygon>
+        
+        <!-- Exchange Rates -->
+        <text font-family="Arial" font-size="10" font-weight="normal" fill="#FFFFFF" x="410" y="225">
+            1 BTC = 18.32 ETH
+        </text>
+        
+        <text font-family="Arial" font-size="10" font-weight="normal" fill="#FFFFFF" x="550" y="225">
+            1 ETH = 15.41 SOL
+        </text>
+        
+        <text font-family="Arial" font-size="10" font-weight="normal" fill="#FFFFFF" x="420" y="295">
+            1 BTC = 284.37 SOL
+        </text>
+        
+        <!-- Opportunities Table -->
+        <rect fill="#1E293B" x="200" y="325" width="580" height="160" rx="6"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="215" y="350">
+            Top Opportunities
+        </text>
+        
+        <!-- Table Headers -->
+        <text font-family="Arial" font-size="11" font-weight="medium" fill="#94A3B8" x="215" y="375">
+            Path
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="medium" fill="#94A3B8" x="380" y="375">
+            Exchange
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="medium" fill="#94A3B8" x="460" y="375">
+            Profit
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="medium" fill="#94A3B8" x="530" y="375">
+            Volume (24h)
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="medium" fill="#94A3B8" x="635" y="375">
+            Status
+        </text>
+        <text font-family="Arial" font-size="11" font-weight="medium" fill="#94A3B8" x="725" y="375">
+            Action
+        </text>
+        
+        <line x1="215" y1="385" x2="760" y2="385" stroke="#334155" stroke-width="1"></line>
+        
+        <!-- Table Row 1 -->
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="215" y="405">
+            BTC → ETH → SOL → BTC
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="380" y="405">
+            Binance
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="460" y="405">
+            0.83%
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="530" y="405">
+            $2.4M
+        </text>
+        <rect fill="rgba(16, 185, 129, 0.2)" x="635" y="395" width="70" height="20" rx="2"></rect>
+        <text font-family="Arial" font-size="11" font-weight="normal" fill="#10B981" x="645" y="408">
+            Active
+        </text>
+        <rect fill="#3B82F6" x="725" y="395" width="20" height="20" rx="4"></rect>
+        <text font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" x="731" y="410">
+            ➤
+        </text>
+        
+        <!-- Table Row 2 -->
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="215" y="435">
+            USDT → BNB → DOGE → USDT
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="380" y="435">
+            Kucoin
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="460" y="435">
+            0.62%
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="530" y="435">
+            $1.8M
+        </text>
+        <rect fill="rgba(16, 185, 129, 0.2)" x="635" y="425" width="70" height="20" rx="2"></rect>
+        <text font-family="Arial" font-size="11" font-weight="normal" fill="#10B981" x="645" y="438">
+            Active
+        </text>
+        <rect fill="#3B82F6" x="725" y="425" width="20" height="20" rx="4"></rect>
+        <text font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" x="731" y="440">
+            ➤
+        </text>
+        
+        <!-- Table Row 3 -->
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="215" y="465">
+            ETH → LINK → AVAX → ETH
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="380" y="465">
+            Coinbase
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="460" y="465">
+            0.41%
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="530" y="465">
+            $840K
+        </text>
+        <rect fill="rgba(251, 191, 36, 0.2)" x="635" y="455" width="70" height="20" rx="2"></rect>
+        <text font-family="Arial" font-size="11" font-weight="normal" fill="#F59E0B" x="645" y="468">
+            Pending
+        </text>
+        <rect fill="#3B82F6" x="725" y="455" width="20" height="20" rx="4"></rect>
+        <text font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" x="731" y="470">
+            ➤
+        </text>
+    </g>
+</svg>

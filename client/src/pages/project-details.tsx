@@ -366,9 +366,178 @@ export default function ProjectDetailsPage() {
                 />
               )}
               
+              {/* POS Bookstore Screenshots */}
+              {(project.slug === 'pos-bookstore' || project.id === 1) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/pos/inventory.svg",
+                      alt: "POS Inventory Management",
+                      caption: "Comprehensive inventory management for bookstore"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "POS Sales Dashboard",
+                      caption: "Real-time sales tracking and analytics"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* BI Dashboard Screenshots */}
+              {(project.slug === 'bi-dashboard' || project.id === 4) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/bi/dashboard.svg",
+                      alt: "Business Intelligence Dashboard",
+                      caption: "Interactive data visualization dashboard"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "Custom Report Builder",
+                      caption: "Create custom reports with drag-and-drop interface"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* English AI Tutor Screenshots */}
+              {(project.slug === 'english-ai-tutor' || project.id === 8) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/english-ai/conversation.svg",
+                      alt: "AI Conversation Interface",
+                      caption: "Natural language learning with AI tutor"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "Pronunciation Practice",
+                      caption: "Speech recognition for pronunciation feedback"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* Beauty Salon Screenshots */}
+              {(project.slug === 'beauty-salon' || project.id === 9) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/beauty/booking.svg",
+                      alt: "Beauty Salon Booking System",
+                      caption: "Easy appointment scheduling for clients"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "Beauty Services Catalog",
+                      caption: "Browse available treatments and services"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* Reddit Clone Screenshots */}
+              {(project.slug === 'reddit-clone' || project.id === 10) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/reddit/feed.svg",
+                      alt: "Reddit Clone Feed",
+                      caption: "Community-driven content feed with voting"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "Comment Thread System",
+                      caption: "Nested comment system for discussions"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* StatArb Trading Screenshots */}
+              {(project.slug === 'statistical-arbitrage' || project.id === 5) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/statarb/dashboard.svg",
+                      alt: "Statistical Arbitrage Dashboard",
+                      caption: "Real-time portfolio performance tracking"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "Pair Selection Tool",
+                      caption: "Advanced pair selection with statistical analysis"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* Triangular Arbitrage Screenshots */}
+              {(project.slug === 'triangular-arbitrage' || project.id === 6) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/triarb/analysis.svg",
+                      alt: "Triangular Arbitrage Analysis",
+                      caption: "Visual analysis of arbitrage opportunities"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "Trading Execution",
+                      caption: "Automated trading execution interface"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
+              {/* dYdX Trading Interface Screenshots */}
+              {(project.slug === 'dydx-interface' || project.id === 7) && (
+                <ImageGridGallery 
+                  images={[
+                    {
+                      src: "/assets/images/screenshots/dydx/trading.svg",
+                      alt: "dYdX Trading Interface",
+                      caption: "Professional crypto derivatives trading"
+                    },
+                    {
+                      src: "/assets/images/placeholder-image.svg",
+                      alt: "Advanced Order Types",
+                      caption: "Support for various order types and strategies"
+                    }
+                  ]}
+                  aspectRatio="wide"
+                  columns={2}
+                  lightboxEnabled={true}
+                />
+              )}
+              
               {/* For all other projects, show generic placeholder if no specific screenshots */}
-              {!['fruit-store', 'marketing-agency'].includes(project.slug || '') && 
-               ![2, 3].includes(project.id || 0) && (
+              {!['fruit-store', 'marketing-agency', 'pos-bookstore', 'bi-dashboard', 'english-ai-tutor', 
+                 'beauty-salon', 'reddit-clone', 'statistical-arbitrage', 'triangular-arbitrage', 'dydx-interface'].includes(project.slug || '') && 
+               ![1, 2, 3, 4, 5, 6, 7, 8, 9, 10].includes(project.id || 0) && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]">
                     <div className="h-48 bg-gradient-to-br p-4 flex items-center justify-center" 
