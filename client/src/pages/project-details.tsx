@@ -7,6 +7,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { AnimatedSkeleton } from "@/components/ui/animated-skeleton";
 import { Button } from "@/components/ui/button";
 import { apps } from "@/lib/app-data";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 
 export default function ProjectDetailsPage() {
   // Get the project slug from URL
@@ -221,7 +224,16 @@ export default function ProjectDetailsPage() {
             >
               <h2 className="text-2xl font-bold mb-4">Overview</h2>
               <div className="prose max-w-none">
-                {project.detailedContent || (
+                {project.detailedContent ? (
+                  <div className="markdown-content">
+                    <ReactMarkdown 
+                      rehypePlugins={[rehypeRaw, rehypeSanitize]}
+                      components={{}}
+                    >
+                      {project.detailedContent}
+                    </ReactMarkdown>
+                  </div>
+                ) : (
                   <p className="text-gray-600">
                     This project provides a comprehensive demonstration of key concepts and technologies.
                     Explore the live demo to see it in action!

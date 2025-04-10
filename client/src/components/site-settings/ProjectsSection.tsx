@@ -190,7 +190,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                 <img 
                   src={imageUrl} 
                   alt={`${name} preview`}
-                  className="w-full h-full object-contain p-2 transition-all duration-500 group-hover:scale-105"
+                  className="project-card-image transition-all duration-500 group-hover:scale-105"
                   style={{
                     filter: 'drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07))'
                   }}
