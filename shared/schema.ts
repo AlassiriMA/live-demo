@@ -53,11 +53,12 @@ export const bookCategories = pgTable("book_categories", {
   name: text("name").notNull().unique(),
   description: text("description"),
   slug: text("slug").notNull().unique(),
-  parentId: integer("parent_id").references(() => bookCategories.id),
+  parentId: integer("parent_id"),
   createdAt: timestamp("created_at").defaultNow(),
 }, (table) => {
   return {
     slugIdx: index("book_categories_slug_idx").on(table.slug),
+    parentIdx: index("book_categories_parent_idx").on(table.parentId),
   };
 });
 

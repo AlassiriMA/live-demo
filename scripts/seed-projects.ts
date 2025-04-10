@@ -27,6 +27,15 @@ async function seedProjects() {
         tags: "React,Express,PostgreSQL,Tailwind CSS",
         route: "/pos",
         published: true,
+        featured: true,
+        sortOrder: 1,
+        metaTitle: "POS Bookstore | Professional Bookstore Management System",
+        metaDescription: "A comprehensive point-of-sale system for managing book inventory, sales, and reporting for bookstores.",
+        status: "published",
+        screenshots: [
+          { src: "/assets/images/projects/pos-bookstore-1.jpg", alt: "Bookstore POS Dashboard" },
+          { src: "/assets/images/projects/pos-bookstore-2.jpg", alt: "Inventory Management Screen" }
+        ],
         detailedContent: "This POS system is designed specifically for bookstores, providing inventory management, sales tracking, and reporting capabilities. It features a clean, intuitive interface for cashiers and administrators with different permission levels.",
         features: [
           {
@@ -55,6 +64,15 @@ async function seedProjects() {
         tags: "React,Express,PostgreSQL,Framer Motion",
         route: "/fruits",
         published: true,
+        featured: true,
+        sortOrder: 2,
+        metaTitle: "Organic Fruit Store | Fresh Produce E-commerce",
+        metaDescription: "Shop for fresh, organic fruits with real-time inventory tracking and convenient delivery options.",
+        status: "published",
+        screenshots: [
+          { src: "/assets/images/projects/fruit-store-1.jpg", alt: "Fruit Store Homepage" },
+          { src: "/assets/images/projects/fruit-store-2.jpg", alt: "Shopping Cart" }
+        ],
         detailedContent: "This organic fruit store allows customers to browse and purchase fresh, organic fruits. The application includes features like real-time inventory tracking, seasonal specials, and nutritional information for each product.",
         features: [
           {
