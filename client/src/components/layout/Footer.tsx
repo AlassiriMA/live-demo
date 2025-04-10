@@ -1,86 +1,170 @@
-import React from 'react';
-import { Link } from 'wouter';
-import { Github, Linkedin, Twitter, Mail, Lock } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Link } from "wouter";
+import { useSiteSettings, getSetting } from "@/hooks/use-site-settings";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { HiMail, HiPhone, HiLocationMarker } from "react-icons/hi";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+interface FooterLink {
+  text: string;
+  url: string;
+}
+
+export default function Footer() {
+  const { settings: footerSettings, isLoading: isFooterLoading } = useSiteSettings("footer");
+  const { settings: contactSettings, isLoading: isContactLoading } = useSiteSettings("contact");
+  const { settings: socialSettings, isLoading: isSocialLoading } = useSiteSettings("social");
+
+  const [footerLinks, setFooterLinks] = useState<FooterLink[]>([]);
+  
+  useEffect(() => {
+    if (!isFooterLoading) {
+      try {
+        const links = getSetting<string>(footerSettings, "footer.links", "[]");
+        setFooterLinks(typeof links === 'string' ? JSON.parse(links) : links);
+      } catch (error) {
+        console.error("Error parsing footer links:", error);
+        setFooterLinks([]);
+      }
+    }
+  }, [footerSettings, isFooterLoading]);
+
+  const isLoading = isFooterLoading || isContactLoading || isSocialLoading;
   
   return (
-    <footer className="bg-background border-t">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Main Site Links */}
+    <footer className="bg-gray-50 border-t border-gray-200">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* About Column */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Navigation</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">About This Portfolio</h3>
+            <p className="text-gray-600 mb-4 text-sm">
+              A showcase of 10 interactive demo applications built with modern technologies, 
+              featuring real database connections and comprehensive content management.
+            </p>
+            <div className="flex space-x-4">
+              <a 
+                href={getSetting<string>(socialSettings, "social.github", "#")} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-[#6366F1] transition-colors"
+                aria-label="GitHub"
+              >
+                <FaGithub size={22} />
+              </a>
+              <a 
+                href={getSetting<string>(socialSettings, "social.linkedin", "#")} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-[#6366F1] transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={22} />
+              </a>
+              <a 
+                href={getSetting<string>(socialSettings, "social.twitter", "#")} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-[#6366F1] transition-colors"
+                aria-label="Twitter"
+              >
+                <FaTwitter size={22} />
+              </a>
+            </div>
+          </div>
+          
+          {/* Quick Links Column */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link href="/" className="text-foreground/80 hover:text-primary transition-colors">Home</Link></li>
-              <li><Link href="/skills" className="text-foreground/80 hover:text-primary transition-colors">Skills</Link></li>
-              <li><Link href="/blog" className="text-foreground/80 hover:text-primary transition-colors">Blog</Link></li>
-              <li><Link href="/contact" className="text-foreground/80 hover:text-primary transition-colors">Contact</Link></li>
+              {isLoading ? (
+                Array(4).fill(0).map((_, i) => (
+                  <li key={i} className="flex items-center">
+                    <Skeleton className="h-4 w-24" />
+                  </li>
+                ))
+              ) : (
+                footerLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link 
+                      href={link.url}
+                      className="text-gray-600 hover:text-[#6366F1] transition-colors"
+                    >
+                      {link.text}
+                    </Link>
+                  </li>
+                ))
+              )}
             </ul>
           </div>
           
-          {/* Demo Apps */}
+          {/* Contact Column */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Demo Apps</h3>
-            <ul className="space-y-2">
-              <li><Link href="/pos" className="text-foreground/80 hover:text-primary transition-colors">POS System</Link></li>
-              <li><Link href="/fruits" className="text-foreground/80 hover:text-primary transition-colors">Fruit Store</Link></li>
-              <li><Link href="/marketing" className="text-foreground/80 hover:text-primary transition-colors">Marketing Agency</Link></li>
-              <li><Link href="/bi" className="text-foreground/80 hover:text-primary transition-colors">BI Dashboard</Link></li>
-            </ul>
-          </div>
-          
-          {/* Financial Tools */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Financial Tools</h3>
-            <ul className="space-y-2">
-              <li><Link href="/statarb" className="text-foreground/80 hover:text-primary transition-colors">Statistical Arbitrage</Link></li>
-              <li><Link href="/triarb" className="text-foreground/80 hover:text-primary transition-colors">Triangular Arbitrage</Link></li>
-              <li><Link href="/dydx" className="text-foreground/80 hover:text-primary transition-colors">dYdX Trading</Link></li>
-            </ul>
-          </div>
-          
-          {/* Legal & Admin */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Legal & Admin</h3>
-            <ul className="space-y-2">
-              <li><Link href="/sitemap" className="text-foreground/80 hover:text-primary transition-colors">Sitemap</Link></li>
-              <li><Link href="/terms" className="text-foreground/80 hover:text-primary transition-colors">Terms of Service</Link></li>
-              <li><Link href="/privacy" className="text-foreground/80 hover:text-primary transition-colors">Privacy Policy</Link></li>
-              <li>
-                <Link href="/admin/login" className="text-foreground/80 hover:text-primary flex items-center gap-1 transition-colors">
-                  <Lock className="h-4 w-4" />
-                  <span>Admin Login</span>
-                </Link>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Contact</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center text-gray-600">
+                <HiMail className="mr-2 text-gray-500" size={18} />
+                {isLoading ? (
+                  <Skeleton className="h-4 w-32" />
+                ) : (
+                  <span>{getSetting<string>(contactSettings, "contact.email", "")}</span>
+                )}
+              </li>
+              <li className="flex items-center text-gray-600">
+                <HiPhone className="mr-2 text-gray-500" size={18} />
+                {isLoading ? (
+                  <Skeleton className="h-4 w-32" />
+                ) : (
+                  <span>{getSetting<string>(contactSettings, "contact.phone", "")}</span>
+                )}
+              </li>
+              <li className="flex items-center text-gray-600">
+                <HiLocationMarker className="mr-2 text-gray-500" size={18} />
+                {isLoading ? (
+                  <Skeleton className="h-4 w-32" />
+                ) : (
+                  <span>{getSetting<string>(contactSettings, "contact.address", "")}</span>
+                )}
               </li>
             </ul>
           </div>
+          
+          {/* Newsletter Column */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Stay Updated</h3>
+            <p className="text-gray-600 mb-4 text-sm">
+              Subscribe to receive updates on new projects and features.
+            </p>
+            <form className="flex flex-col space-y-2">
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6366F1]/50"
+              />
+              <button 
+                type="submit" 
+                className="bg-[#6366F1] text-white font-medium py-2 px-4 rounded-lg hover:bg-[#4F46E5] transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
         
-        {/* Social Links & Copyright */}
-        <div className="mt-8 pt-6 border-t flex flex-col md:flex-row justify-between items-center">
-          <div className="flex space-x-4 mb-4 md:mb-0">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary">
-              <Github className="h-5 w-5" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary">
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary">
-              <Twitter className="h-5 w-5" />
-            </a>
-            <a href="mailto:contact@example.com" className="text-foreground/70 hover:text-primary">
-              <Mail className="h-5 w-5" />
-            </a>
-          </div>
-          <div className="text-sm text-foreground/60">
-            © {currentYear} Portfolio & Skill Tracker. All rights reserved.
+        <div className="border-t border-gray-200 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-600 text-sm mb-4 md:mb-0">
+            {isLoading ? (
+              <Skeleton className="h-4 w-64" />
+            ) : (
+              getSetting<string>(footerSettings, "footer.copyright", "© 2025 All rights reserved.")
+            )}
+          </p>
+          <div className="flex space-x-6">
+            <a href="/terms" className="text-gray-600 hover:text-[#6366F1] text-sm transition-colors">Terms & Conditions</a>
+            <a href="/privacy" className="text-gray-600 hover:text-[#6366F1] text-sm transition-colors">Privacy Policy</a>
           </div>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

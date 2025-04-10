@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import MobileMenu from "./MobileMenu";
+import { useSiteSettings, getSetting } from "@/hooks/use-site-settings";
+import { SiteAuthor } from "@/components/site-settings/HeroContent";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
