@@ -1076,10 +1076,20 @@ export default function ProjectDetailsPage() {
                       src: "/assets/images/screenshots/beauty/stylists.svg",
                       alt: "Meet Our Stylists",
                       caption: "Professional stylist profiles with reviews"
+                    },
+                    {
+                      src: "/assets/images/screenshots/beauty/treatments.svg",
+                      alt: "Luxury Treatments",
+                      caption: "Premium beauty services with detailed descriptions"
+                    },
+                    {
+                      src: "/assets/images/screenshots/beauty/store.svg",
+                      alt: "Online Store",
+                      caption: "Shop professional beauty products with ease"
                     }
                   ]}
                   aspectRatio="wide"
-                  columns={2}
+                  columns={3}
                   lightboxEnabled={true}
                 />
               )}

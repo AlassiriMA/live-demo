@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#fdf2f8" />
+  
+  <!-- Header -->
+  <rect width="800" height="80" fill="#be185d" />
+  <text x="40" y="50" font-family="Arial" font-size="28" font-weight="bold" fill="white">Elegance Beauty Salon</text>
+  
+  <!-- Navigation -->
+  <text x="400" y="50" font-family="Arial" font-size="16" fill="white">Home</text>
+  <text x="470" y="50" font-family="Arial" font-size="16" fill="white">Services</text>
+  <text x="555" y="50" font-family="Arial" font-size="16" fill="white">Treatments</text>
+  <text x="650" y="50" font-family="Arial" font-size="16" font-weight="bold" fill="#fdf2f8">Shop</text>
+  <text x="720" y="50" font-family="Arial" font-size="16" fill="white">Contact</text>
+  
+  <!-- Shopping Cart -->
+  <circle cx="760" cy="40" r="16" fill="#f9a8d4" />
+  <text x="760" y="45" font-family="Arial" font-size="14" font-weight="bold" fill="#be185d" text-anchor="middle">3</text>
+  
+  <!-- Page Title -->
+  <text x="400" y="120" font-family="Arial" font-size="30" font-weight="bold" fill="#be185d" text-anchor="middle">Beauty Products</text>
+  <text x="400" y="150" font-family="Arial" font-size="16" fill="#64748b" text-anchor="middle">Explore our professional-grade products for home care</text>
+  
+  <!-- Category Filters -->
+  <rect x="40" y="180" width="720" height="40" rx="20" fill="white" stroke="#f9a8d4" stroke-width="1" />
+  <rect x="50" y="185" width="100" height="30" rx="15" fill="#be185d" />
+  <text x="100" y="205" font-family="Arial" font-size="14" fill="white" text-anchor="middle">All</text>
+  
+  <rect x="160" y="185" width="100" height="30" rx="15" fill="white" />
+  <text x="210" y="205" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">Skincare</text>
+  
+  <rect x="270" y="185" width="100" height="30" rx="15" fill="white" />
+  <text x="320" y="205" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">Haircare</text>
+  
+  <rect x="380" y="185" width="100" height="30" rx="15" fill="white" />
+  <text x="430" y="205" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">Makeup</text>
+  
+  <rect x="490" y="185" width="120" height="30" rx="15" fill="white" />
+  <text x="550" y="205" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">Body & Bath</text>
+  
+  <rect x="620" y="185" width="130" height="30" rx="15" fill="white" />
+  <text x="685" y="205" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">Aromatherapy</text>
+  
+  <!-- Product Cards -->
+  <!-- Card 1 -->
+  <rect x="40" y="240" width="220" height="240" rx="10" fill="white" stroke="#f9a8d4" stroke-width="1" />
+  <rect x="40" y="240" width="220" height="140" rx="10" fill="#fbcfe8" />
+  <circle cx="150" cy="300" r="50" fill="#db2777" />
+  <text x="150" y="305" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">PRODUCT</text>
+  
+  <text x="50" y="400" font-family="Arial" font-size="16" font-weight="bold" fill="#be185d">Hydrating Facial Serum</text>
+  <text x="50" y="425" font-family="Arial" font-size="14" fill="#64748b">Replenishing formula with</text>
+  <text x="50" y="445" font-family="Arial" font-size="14" fill="#64748b">hyaluronic acid complex</text>
+  <text x="50" y="470" font-family="Arial" font-size="16" font-weight="bold" fill="#be185d">$45.99</text>
+  <rect x="180" y="455" width="70" height="30" rx="15" fill="#be185d" />
+  <text x="215" y="475" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Add</text>
+  
+  <!-- Card 2 -->
+  <rect x="290" y="240" width="220" height="240" rx="10" fill="white" stroke="#f9a8d4" stroke-width="1" />
+  <rect x="290" y="240" width="220" height="140" rx="10" fill="#ddd6fe" />
+  <circle cx="400" cy="300" r="50" fill="#7e22ce" />
+  <text x="400" y="305" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">PRODUCT</text>
+  
+  <text x="300" y="400" font-family="Arial" font-size="16" font-weight="bold" fill="#7e22ce">Hair Repair Mask</text>
+  <text x="300" y="425" font-family="Arial" font-size="14" fill="#64748b">Intensive treatment for damaged</text>
+  <text x="300" y="445" font-family="Arial" font-size="14" fill="#64748b">hair with keratin and oils</text>
+  <text x="300" y="470" font-family="Arial" font-size="16" font-weight="bold" fill="#7e22ce">$38.50</text>
+  <rect x="430" y="455" width="70" height="30" rx="15" fill="#7e22ce" />
+  <text x="465" y="475" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Add</text>
+  
+  <!-- Card 3 -->
+  <rect x="540" y="240" width="220" height="240" rx="10" fill="white" stroke="#f9a8d4" stroke-width="1" />
+  <rect x="540" y="240" width="220" height="140" rx="10" fill="#bfdbfe" />
+  <circle cx="650" cy="300" r="50" fill="#1d4ed8" />
+  <text x="650" y="305" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">PRODUCT</text>
+  
+  <text x="550" y="400" font-family="Arial" font-size="16" font-weight="bold" fill="#1d4ed8">Gentle Cleansing Foam</text>
+  <text x="550" y="425" font-family="Arial" font-size="14" fill="#64748b">Sulfate-free formula with</text>
+  <text x="550" y="445" font-family="Arial" font-size="14" fill="#64748b">chamomile extract</text>
+  <text x="550" y="470" font-family="Arial" font-size="16" font-weight="bold" fill="#1d4ed8">$29.95</text>
+  <rect x="680" y="455" width="70" height="30" rx="15" fill="#1d4ed8" />
+  <text x="715" y="475" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Add</text>
+</svg>
