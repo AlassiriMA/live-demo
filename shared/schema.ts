@@ -1,20 +1,71 @@
-import { pgTable, text, serial, integer, boolean, jsonb, timestamp, doublePrecision, varchar } from "drizzle-orm/pg-core";
+import { 
+  pgTable, 
+  text, 
+  serial, 
+  integer, 
+  boolean, 
+  jsonb, 
+  timestamp, 
+  doublePrecision, 
+  varchar,
+  index,
+  foreignKey,
+  uniqueIndex
+} from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
+import { relations } from "drizzle-orm";
 import { z } from "zod";
 
 // User model
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
+  email: text("email").unique(),
   password: text("password").notNull(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
   role: text("role").notNull().default("user"),
+  active: boolean("active").default(true),
+  profileImageUrl: text("profile_image_url"),
+  lastLogin: timestamp("last_login"),
   createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+}, (table) => {
+  return {
+    emailIdx: index("users_email_idx").on(table.email),
+    roleIdx: index("users_role_idx").on(table.role),
+  };
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
+  email: true,
   password: true,
+  firstName: true,
+  lastName: true,
   role: true,
+  profileImageUrl: true,
+});
+
+// Book categories
+export const bookCategories = pgTable("book_categories", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull().unique(),
+  description: text("description"),
+  slug: text("slug").notNull().unique(),
+  parentId: integer("parent_id").references(() => bookCategories.id),
+  createdAt: timestamp("created_at").defaultNow(),
+}, (table) => {
+  return {
+    slugIdx: index("book_categories_slug_idx").on(table.slug),
+  };
+});
+
+export const insertBookCategorySchema = createInsertSchema(bookCategories).pick({
+  name: true,
+  description: true,
+  slug: true,
+  parentId: true,
 });
 
 // POS - Books
@@ -26,7 +77,22 @@ export const books = pgTable("books", {
   price: doublePrecision("price").notNull(),
   stock: integer("stock").notNull().default(0),
   imageUrl: text("image_url"),
-  category: text("category"),
+  categoryId: integer("category_id").references(() => bookCategories.id),
+  publishedDate: timestamp("published_date"),
+  publisher: text("publisher"),
+  language: text("language").default("English"),
+  pages: integer("pages"),
+  featured: boolean("featured").default(false),
+  description: text("description"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+}, (table) => {
+  return {
+    titleIdx: index("books_title_idx").on(table.title),
+    authorIdx: index("books_author_idx").on(table.author),
+    categoryIdx: index("books_category_idx").on(table.categoryId),
+    featuredIdx: index("books_featured_idx").on(table.featured),
+  };
 });
 
 export const insertBookSchema = createInsertSchema(books).pick({
@@ -36,7 +102,13 @@ export const insertBookSchema = createInsertSchema(books).pick({
   price: true,
   stock: true,
   imageUrl: true,
-  category: true,
+  categoryId: true,
+  publishedDate: true,
+  publisher: true,
+  language: true,
+  pages: true,
+  featured: true,
+  description: true,
 });
 
 // POS - Transactions
@@ -170,9 +242,36 @@ export const insertDashboardSchema = createInsertSchema(dashboards).pick({
   layout: true,
 });
 
+// Relations
+export const usersRelations = relations(users, ({ many }) => ({
+  transactions: many(transactions),
+  dashboards: many(dashboards),
+  mediaItems: many(mediaItems),
+  activityLogs: many(activityLogs),
+}));
+
+export const bookCategoriesRelations = relations(bookCategories, ({ many, one }) => ({
+  books: many(books),
+  parent: one(bookCategories, {
+    fields: [bookCategories.parentId],
+    references: [bookCategories.id],
+  }),
+  children: many(bookCategories),
+}));
+
+export const booksRelations = relations(books, ({ one }) => ({
+  category: one(bookCategories, {
+    fields: [books.categoryId],
+    references: [bookCategories.id],
+  }),
+}));
+
 // Type exports
 export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
+
+export type BookCategory = typeof bookCategories.$inferSelect;
+export type InsertBookCategory = z.infer<typeof insertBookCategorySchema>;
 
 export type Book = typeof books.$inferSelect;
 export type InsertBook = z.infer<typeof insertBookSchema>;
@@ -198,6 +297,26 @@ export type InsertTradingPair = z.infer<typeof insertTradingPairSchema>;
 export type Dashboard = typeof dashboards.$inferSelect;
 export type InsertDashboard = z.infer<typeof insertDashboardSchema>;
 
+// CMS - Project Categories
+export const projectCategories = pgTable("project_categories", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 100 }).notNull(),
+  slug: varchar("slug", { length: 100 }).notNull().unique(),
+  description: text("description"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+}, (table) => {
+  return {
+    slugIdx: index("project_categories_slug_idx").on(table.slug),
+  };
+});
+
+export const insertProjectCategorySchema = createInsertSchema(projectCategories).pick({
+  name: true,
+  slug: true,
+  description: true,
+});
+
 // CMS - Projects
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
@@ -209,13 +328,30 @@ export const projects = pgTable("projects", {
   secondaryColor: varchar("secondary_color", { length: 50 }),
   accentColor: varchar("accent_color", { length: 50 }),
   imageUrl: text("image_url"),
-  tags: jsonb("tags").default([]),
+  categoryId: integer("category_id").references(() => projectCategories.id),
+  tags: varchar("tags", { length: 255 }),
   route: varchar("route", { length: 255 }).notNull(),
   published: boolean("published").default(true),
+  featured: boolean("featured").default(false),
+  sortOrder: integer("sort_order").default(0),
   detailedContent: text("detailed_content"),
+  metaTitle: varchar("meta_title", { length: 255 }),
+  metaDescription: text("meta_description"),
   features: jsonb("features").default([]),
+  screenshots: jsonb("screenshots").default([]),
+  status: varchar("status", { length: 50 }).default("published"),
+  createdBy: integer("created_by").references(() => users.id),
+  updatedBy: integer("updated_by").references(() => users.id),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
+}, (table) => {
+  return {
+    slugIdx: index("projects_slug_idx").on(table.slug),
+    categoryIdx: index("projects_category_idx").on(table.categoryId),
+    publishedIdx: index("projects_published_idx").on(table.published),
+    featuredIdx: index("projects_featured_idx").on(table.featured),
+    statusIdx: index("projects_status_idx").on(table.status),
+  };
 });
 
 export const insertProjectSchema = createInsertSchema(projects).pick({
@@ -227,11 +363,19 @@ export const insertProjectSchema = createInsertSchema(projects).pick({
   secondaryColor: true,
   accentColor: true,
   imageUrl: true,
+  categoryId: true,
   tags: true,
   route: true,
   published: true,
+  featured: true,
+  sortOrder: true,
   detailedContent: true,
+  metaTitle: true,
+  metaDescription: true,
   features: true,
+  screenshots: true,
+  status: true,
+  createdBy: true,
 });
 
 export const updateProjectSchema = createInsertSchema(projects).pick({
@@ -242,11 +386,19 @@ export const updateProjectSchema = createInsertSchema(projects).pick({
   secondaryColor: true,
   accentColor: true,
   imageUrl: true,
+  categoryId: true,
   tags: true,
   route: true,
   published: true,
+  featured: true,
+  sortOrder: true,
   detailedContent: true,
+  metaTitle: true,
+  metaDescription: true,
   features: true,
+  screenshots: true,
+  status: true,
+  updatedBy: true,
 }).partial();
 
 // CMS - Media Library
@@ -310,7 +462,46 @@ export const insertSiteSettingSchema = createInsertSchema(siteSettings).pick({
   updatedBy: true,
 });
 
+// Project relations
+export const projectCategoriesRelations = relations(projectCategories, ({ many }) => ({
+  projects: many(projects),
+}));
+
+export const projectsRelations = relations(projects, ({ one }) => ({
+  category: one(projectCategories, {
+    fields: [projects.categoryId],
+    references: [projectCategories.id],
+  }),
+  creator: one(users, {
+    fields: [projects.createdBy],
+    references: [users.id],
+  }),
+  updater: one(users, {
+    fields: [projects.updatedBy],
+    references: [users.id],
+  }),
+}));
+
+// Media relations
+export const mediaItemsRelations = relations(mediaItems, ({ one }) => ({
+  uploader: one(users, {
+    fields: [mediaItems.uploadedBy],
+    references: [users.id],
+  }),
+}));
+
+// Activity logs relations
+export const activityLogsRelations = relations(activityLogs, ({ one }) => ({
+  user: one(users, {
+    fields: [activityLogs.userId],
+    references: [users.id],
+  }),
+}));
+
 // CMS Type exports
+export type ProjectCategory = typeof projectCategories.$inferSelect;
+export type InsertProjectCategory = z.infer<typeof insertProjectCategorySchema>;
+
 export type Project = typeof projects.$inferSelect;
 export type InsertProject = z.infer<typeof insertProjectSchema>;
 export type UpdateProject = z.infer<typeof updateProjectSchema>;
