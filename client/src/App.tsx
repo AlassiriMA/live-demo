@@ -16,7 +16,6 @@ import BI from "@/pages/bi";
 import EnglishAI from "@/pages/english-ai";
 import Beauty from "@/pages/beauty";
 import Reddit from "@/pages/reddit";
-import ParticlesDemo from "@/pages/particles";
 
 // Import additional pages
 import Skills from "@/pages/skills";
@@ -29,12 +28,6 @@ import Privacy from "@/pages/privacy";
 // Import app detail pages
 import PosDetail from "@/pages/app-details/PosDetail";
 import FruitsDetail from "@/pages/app-details/FruitsDetail";
-
-// Import admin pages
-import AdminLogin from "@/pages/admin/login";
-import AdminDashboard from "@/pages/admin/index";
-import ProjectsPage from "@/pages/admin/projects/index";
-import NewProjectPage from "@/pages/admin/projects/new";
 
 // Import auth provider
 import { AuthProvider } from "@/hooks/use-auth";
@@ -56,7 +49,6 @@ function Router() {
       <Route path="/english-ai" component={EnglishAI} />
       <Route path="/beauty" component={Beauty} />
       <Route path="/reddit" component={Reddit} />
-      <Route path="/particles" component={ParticlesDemo} />
       
       {/* Portfolio information pages */}
       <Route path="/skills" component={Skills} />
@@ -69,12 +61,6 @@ function Router() {
       {/* App detail routes */}
       <Route path="/app-details/pos" component={PosDetail} />
       <Route path="/app-details/fruits" component={FruitsDetail} />
-      
-      {/* Admin routes */}
-      <Route path="/admin/login" component={AdminLogin} />
-      <Route path="/admin" component={AdminDashboard} />
-      <Route path="/admin/projects" component={ProjectsPage} />
-      <Route path="/admin/projects/new" component={NewProjectPage} />
 
       <Route component={NotFound} />
     </Switch>
