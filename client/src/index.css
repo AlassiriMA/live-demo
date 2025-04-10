@@ -73,7 +73,7 @@
 
 /* Project card image styling */
 .project-card-image {
-  @apply w-full h-full object-contain;
+  @apply w-full h-full object-cover;
   aspect-ratio: 16/9;
 }
 

@@ -312,16 +312,99 @@ export default function ProjectDetailsPage() {
             >
               <h2 className="text-2xl font-bold mb-4">App Screenshots</h2>
               
-              {/* Main Project Image first as a showcase */}
-              {project.imageUrl && (
-                <div className="mb-6 rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
+              {/* Main Project Screenshot - using app screenshots instead of card image */}
+              <div className="mb-6 rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
+                {project.slug === 'pos-bookstore' && (
+                  <img 
+                    src="/assets/images/screenshots/pos/overview.svg" 
+                    alt={`${project.name} overview`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'fruit-store' && (
+                  <img 
+                    src="/assets/images/screenshots/fruits/storefront.svg" 
+                    alt={`${project.name} storefront`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'marketing-agency' && (
+                  <img 
+                    src="/assets/images/screenshots/marketing/homepage.svg" 
+                    alt={`${project.name} homepage`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'bi-dashboard' && (
+                  <img 
+                    src="/assets/images/screenshots/bi/overview.svg" 
+                    alt={`${project.name} overview`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'statistical-arbitrage' && (
+                  <img 
+                    src="/assets/images/screenshots/statarb/overview.svg" 
+                    alt={`${project.name} overview`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'triangular-arbitrage' && (
+                  <img 
+                    src="/assets/images/screenshots/triarb/overview.svg" 
+                    alt={`${project.name} overview`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'dydx-trading' && (
+                  <img 
+                    src="/assets/images/screenshots/dydx/overview.svg" 
+                    alt={`${project.name} overview`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'english-ai-tutor' && (
+                  <img 
+                    src="/assets/images/screenshots/english-ai/overview.svg" 
+                    alt={`${project.name} overview`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'beauty-salon' && (
+                  <img 
+                    src="/assets/images/screenshots/beauty/overview.svg" 
+                    alt={`${project.name} overview`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {project.slug === 'reddit-clone' && (
+                  <img 
+                    src="/assets/images/screenshots/reddit/overview.svg" 
+                    alt={`${project.name} overview`}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                )}
+                
+                {/* Fallback to project.imageUrl if no specific screenshot is available */}
+                {!['pos-bookstore', 'fruit-store', 'marketing-agency', 'bi-dashboard', 
+                   'statistical-arbitrage', 'triangular-arbitrage', 'dydx-trading', 
+                   'english-ai-tutor', 'beauty-salon', 'reddit-clone'].includes(project.slug || '') && project.imageUrl && (
                   <img 
                     src={project.imageUrl} 
                     alt={`${project.name} preview`}
-                    className="w-full object-contain"
+                    className="w-full h-auto object-cover rounded-lg"
                   />
-                </div>
-              )}
+                )}
+              </div>
               
               {/* Use our ImageGridGallery component for screenshots */}
               {/* Fruit Store Screenshots */}
