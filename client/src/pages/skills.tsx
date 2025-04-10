@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SiReact, SiNodedotjs, SiTypescript, SiPostgresql, SiPython, SiDocker, SiTailwindcss, SiGit } from "react-icons/si";
 import TechIconsGrid from "@/components/ui/tech-icons-grid";
+import { CircularProgress } from "@/components/ui/circular-progress";
 
 export default function Skills() {
   // Animation variant for staggered animations
@@ -26,6 +27,18 @@ export default function Skills() {
       transition: { duration: 0.5 }
     }
   };
+  
+  // Core skills with proficiency percentages
+  const coreSkills = [
+    { name: "React / Next.js", proficiency: 96, icon: <SiReact className="h-10 w-10" />, color: "#61DAFB" },
+    { name: "Node.js / Express", proficiency: 93, icon: <SiNodedotjs className="h-10 w-10" />, color: "#339933" },
+    { name: "TypeScript", proficiency: 90, icon: <SiTypescript className="h-10 w-10" />, color: "#3178C6" },
+    { name: "PostgreSQL", proficiency: 92, icon: <SiPostgresql className="h-10 w-10" />, color: "#4169E1" },
+    { name: "Python", proficiency: 88, icon: <SiPython className="h-10 w-10" />, color: "#3776AB" },
+    { name: "Docker / DevOps", proficiency: 88, icon: <SiDocker className="h-10 w-10" />, color: "#2496ED" },
+    { name: "UI / UX Design", proficiency: 95, icon: <SiTailwindcss className="h-10 w-10" />, color: "#06B6D4" },
+    { name: "Git / GitHub", proficiency: 94, icon: <SiGit className="h-10 w-10" />, color: "#F05032" },
+  ];
 
   return (
     <AppShell>
@@ -47,6 +60,43 @@ export default function Skills() {
               <TechIconsGrid />
             </motion.div>
           </div>
+
+          {/* Core Skills Section with Circular Progress */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="max-w-5xl mx-auto mb-16"
+          >
+            <h2 className="text-2xl font-bold text-center mb-10 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
+              Core Technical Expertise
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {coreSkills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex flex-col items-center"
+                >
+                  <div className="relative mb-3">
+                    <CircularProgress 
+                      value={skill.proficiency} 
+                      color={skill.color}
+                      size={100}
+                      strokeWidth={4}
+                      showText={true}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center" style={{ color: skill.color }}>
+                      {skill.icon}
+                    </div>
+                  </div>
+                  <p className="text-center font-medium">{skill.name}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
           <Tabs defaultValue="technical" className="w-full max-w-5xl mx-auto mt-12">
             <TabsList className="w-full justify-center mb-8">
