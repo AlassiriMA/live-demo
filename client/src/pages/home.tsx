@@ -278,97 +278,76 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-indigo-50 to-purple-50">
+      {/* About Me and Contact Section (Combined in one row) */}
+      <section id="about-me" className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-                Let's Connect
-              </h2>
-              <p className="text-gray-700 max-w-2xl mx-auto">
-                Feel free to reach out if you'd like to collaborate, chat about a project, or just want to say hi. 
-                I'm always open to learning new things and collaborating on cool ideas.
-              </p>
-            </motion.div>
-          </div>
-          
-          <motion.div 
-            className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <ContactForm />
-          </motion.div>
-        </div>
-      </section>
-      
-      {/* About Me Section */}
-      <section id="about-me" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="max-w-4xl mx-auto bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg border border-gray-100"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex flex-col md:flex-row items-center md:items-start">
-              <div className="w-32 h-32 rounded-full bg-gray-200 overflow-hidden mb-6 md:mb-0 md:mr-8">
-                <div className="w-full h-full bg-gradient-to-br from-[#6366F1] to-[#EC4899] flex items-center justify-center text-white font-heading font-bold text-3xl">
-                  MA
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* About Me Column */}
+            <div className="lg:w-1/2">
+              <motion.div 
+                className="h-full bg-white p-6 rounded-xl shadow-md border border-gray-100"
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex flex-col md:flex-row items-center md:items-start">
+                  <div className="w-24 h-24 rounded-full bg-gray-200 overflow-hidden mb-4 md:mb-0 md:mr-6 flex-shrink-0">
+                    <div className="w-full h-full bg-gradient-to-br from-[#6366F1] to-[#EC4899] flex items-center justify-center text-white font-heading font-bold text-2xl">
+                      MA
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="font-heading text-2xl font-bold mb-3 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#EC4899]">
+                      About Me
+                    </h2>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center md:text-left">Mohammad Alassiri</h3>
+                    <p className="text-gray-700 font-medium text-center md:text-left text-sm">Full-Stack Developer, Problem Solver, Entrepreneur</p>
+                    <p className="text-gray-600 mt-3 text-sm">
+                      For me, coding is like solving a puzzle — turning ideas into reality with creativity. I build applications that are functional, beautiful and intuitive.
+                    </p>
+                    <p className="text-gray-600 mt-2 text-sm">
+                      I'm passionate about pushing boundaries and constantly evolving as a developer. When I'm building, I'm crafting experiences that matter.
+                    </p>
+                    <div className="mt-4 flex items-center space-x-3 justify-center md:justify-start">
+                      <a 
+                        href="https://alassiri.nl" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="bg-gradient-to-r from-[#6366F1] to-[#4F46E5] text-white px-4 py-2 rounded-lg hover:shadow-md transition-all duration-300 inline-flex items-center text-sm"
+                      >
+                        <span>Visit Website</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                          <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex-1">
-                <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#EC4899]">
-                  About Me
-                </h2>
-                <div className="h-1 w-20 bg-gradient-to-r from-[#6366F1] to-[#EC4899] rounded-full mb-6 hidden md:block"></div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center md:text-left">Mohammad Alassiri</h3>
-                <p className="text-gray-700 font-medium text-center md:text-left">Full-Stack Developer, Problem Solver, Entrepreneur</p>
-                <p className="text-gray-600 mt-4">
-                  For me, coding is like solving a giant puzzle — and I love every piece of it. It's about turning ideas into reality and using creativity to make things work. Each of these projects is a reflection of my drive to learn, explore, and create solutions that make life easier or more exciting.
-                </p>
-                <p className="text-gray-600 mt-3">
-                  I'm passionate about building applications that are not just functional, but also beautiful and intuitive. The portfolio you're exploring now showcases this philosophy through 10 distinct applications spanning different industries and use cases.
-                </p>
-                <p className="text-gray-600 mt-3">
-                  It's all about pushing boundaries, learning along the way, and constantly evolving as a developer. When I'm building, I'm not just coding. I'm crafting experiences that matter.
-                </p>
-                <div className="mt-6 flex items-center space-x-4 justify-center md:justify-start">
-                  <a 
-                    href="https://alassiri.nl" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="bg-gradient-to-r from-[#6366F1] to-[#4F46E5] text-white px-5 py-3 rounded-lg hover:shadow-md transition-all duration-300 inline-flex items-center"
-                  >
-                    <span>Visit Website</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                      <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                    </svg>
-                  </a>
-                  <a 
-                    href="#contact" 
-                    className="bg-white text-[#6366F1] border border-[#6366F1] px-5 py-3 rounded-lg hover:bg-[#6366F1]/5 transition-all duration-300 inline-flex items-center"
-                  >
-                    <span>Contact Me</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
+              </motion.div>
             </div>
-          </motion.div>
+            
+            {/* Let's Connect Column */}
+            <div id="contact" className="lg:w-1/2">
+              <motion.div 
+                className="h-full bg-white p-6 rounded-xl shadow-md border border-gray-100"
+                initial={{ opacity: 0, x: 10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="font-heading text-2xl font-bold mb-3 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                  Let's Connect
+                </h2>
+                <p className="text-gray-700 mb-4 text-sm">
+                  Feel free to reach out if you'd like to collaborate, chat about a project, or just want to say hi. 
+                  I'm always open to learning new things and collaborating on cool ideas.
+                </p>
+                <ContactForm />
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
     </AppShell>
