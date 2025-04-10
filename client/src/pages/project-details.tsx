@@ -513,12 +513,92 @@ export default function ProjectDetailsPage() {
                       src: "/assets/images/screenshots/reddit/profile.svg",
                       alt: "User Profile",
                       caption: "Profile with posting history and karma"
+                    },
+                    {
+                      src: "/assets/images/screenshots/reddit/comments.svg",
+                      alt: "Comment Thread",
+                      caption: "Threaded discussion with voting system"
                     }
                   ]}
                   aspectRatio="wide"
-                  columns={2}
+                  columns={3}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* Reddit Clone Tech Stack */}
+              {(project.slug === 'reddit-clone' || project.id === 10) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
+                          { name: 'Express', icon: 'SiExpress', type: 'backend', url: 'https://expressjs.com' },
+                          { name: 'MongoDB', icon: 'SiMongodb', type: 'database', url: 'https://www.mongodb.com' },
+                          { name: 'Redis', icon: 'SiRedis', type: 'database', url: 'https://redis.io' },
+                          { name: 'Socket.io', icon: 'SiSocketdotio', type: 'backend', url: 'https://socket.io' },
+                          { name: 'AWS S3', icon: 'SiAmazons3', type: 'tool', url: 'https://aws.amazon.com/s3' },
+                          { name: 'Tailwind CSS', icon: 'SiTailwindcss', type: 'frontend', url: 'https://tailwindcss.com' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' },
+                          { name: 'GitHub Actions', icon: 'SiGithubactions', type: 'devops', url: 'https://github.com/features/actions' },
+                          { name: 'Jest', icon: 'SiJest', type: 'tool', url: 'https://jestjs.io' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Architecture Overview</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li>Full-stack MERN application with <span className="font-medium">TypeScript</span> for type safety</li>
+                          <li>RESTful API design with <span className="font-medium">Express.js</span> for content and user management</li>
+                          <li>Real-time notifications and updates using <span className="font-medium">Socket.io</span></li>
+                          <li>Efficient data caching with <span className="font-medium">Redis</span> for high-traffic endpoints</li>
+                          <li>Optimized MongoDB schemas with indexes for fast content retrieval</li>
+                          <li><span className="font-medium">AWS S3</span> integration for media uploads with direct browser upload capability</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Key Features</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-orange-50 p-4 rounded-md">
+                          <h5 className="font-medium text-orange-700 mb-2">Community System</h5>
+                          <p className="text-sm text-gray-700">Create and join communities with customizable rules and moderation tools.</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">Voting System</h5>
+                          <p className="text-sm text-gray-700">Upvote/downvote functionality with karma tracking and trending content algorithms.</p>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-md">
+                          <h5 className="font-medium text-green-700 mb-2">Rich Media</h5>
+                          <p className="text-sm text-gray-700">Support for images, videos, links, and text posts with markdown formatting.</p>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-md">
+                          <h5 className="font-medium text-purple-700 mb-2">Threaded Comments</h5>
+                          <p className="text-sm text-gray-700">Nested comment system with infinite depth and collapsible threads.</p>
+                        </div>
+                        <div className="bg-yellow-50 p-4 rounded-md">
+                          <h5 className="font-medium text-yellow-700 mb-2">User Profiles</h5>
+                          <p className="text-sm text-gray-700">Comprehensive profiles with activity history, karma breakdown, and customization.</p>
+                        </div>
+                        <div className="bg-pink-50 p-4 rounded-md">
+                          <h5 className="font-medium text-pink-700 mb-2">Moderation Tools</h5>
+                          <p className="text-sm text-gray-700">Reporting system, content filtering, and moderator action logs.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* StatArb Trading Screenshots */}

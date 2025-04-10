@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF4500" offset="0%"></stop>
+            <stop stop-color="#FF7B52" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-2.1%" y="-5.2%" width="104.1%" height="110.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="#FFFFFF" x="0" y="0" width="800" height="60" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FF4500" x="20" y="38">
+            redclone
+        </text>
+        
+        <!-- Navigation -->
+        <rect fill="#F3F4F6" x="110" y="15" width="200" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="140" y="35">
+            Search communities...
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="360" y="35">
+            Home
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="420" y="35">
+            Popular
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="500" y="35">
+            All
+        </text>
+        
+        <rect fill="#FF4500" x="580" y="15" width="80" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="600" y="35">
+            Login
+        </text>
+        
+        <rect fill="#FFFFFF" x="670" y="15" width="100" height="30" rx="15" stroke="#FF4500" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FF4500" x="692" y="35">
+            Sign Up
+        </text>
+        
+        <!-- Main Content Area -->
+        <rect fill="#F3F4F6" x="0" y="60" width="800" height="440"></rect>
+        
+        <!-- Post Container -->
+        <rect fill="#FFFFFF" x="150" y="80" width="500" height="400" rx="4" filter="url(#filter-1)"></rect>
+        
+        <!-- Post Header -->
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="170" y="100">
+            Posted by u/tech_enthusiast • 4 hours ago in r/programming
+        </text>
+        
+        <!-- Post Title -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#1F2937" x="170" y="130">
+            What's your favorite programming language in 2025?
+        </text>
+        
+        <!-- Post Content -->
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="170" y="160">
+            I'm curious what languages are trending this year. I've been using TypeScript
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="170" y="180">
+            for the past few years but I'm considering learning Rust or Go. What's your
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="170" y="200">
+            go-to language right now and why?
+        </text>
+        
+        <!-- Post Stats -->
+        <rect fill="#F3F4F6" x="170" y="230" width="70" height="28" rx="14"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="190" y="248">
+            ▲ 142 ▼
+        </text>
+        
+        <rect fill="#F3F4F6" x="250" y="230" width="100" height="28" rx="14"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="280" y="248">
+            💬 47
+        </text>
+        
+        <rect fill="#F3F4F6" x="360" y="230" width="100" height="28" rx="14"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="390" y="248">
+            ↗ Share
+        </text>
+        
+        <rect fill="#F3F4F6" x="470" y="230" width="100" height="28" rx="14"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="500" y="248">
+            ⋯ More
+        </text>
+        
+        <!-- Comment Form -->
+        <rect fill="#F9FAFB" x="170" y="270" width="460" height="40" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#9CA3AF" x="190" y="295">
+            Add a comment...
+        </text>
+        
+        <!-- Comments Section -->
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#1F2937" x="170" y="340">
+            Comments (47)
+        </text>
+        
+        <!-- Comment 1 -->
+        <line x1="170" y1="355" x2="630" y2="355" stroke="#E5E7EB" stroke-width="1"></line>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#4B5563" x="170" y="375">
+            rustlover42 • 2 hours ago
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#1F2937" x="170" y="395">
+            Rust has been amazing for me. The safety guarantees and performance
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#1F2937" x="170" y="415">
+            are unmatched. It has a learning curve but it's worth it!
+        </text>
+        <rect fill="#F3F4F6" x="170" y="430" width="70" height="24" rx="12"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="190" y="445">
+            ▲ 38 ▼
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#4B5563" x="250" y="445">
+            💬 Reply
+        </text>
+        
+        <!-- Comment 2 with nested reply -->
+        <line x1="170" y1="460" x2="630" y2="460" stroke="#E5E7EB" stroke-width="1"></line>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#4B5563" x="170" y="480">
+            pythonista • 3 hours ago
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#1F2937" x="170" y="500">
+            Python keeps getting better with each release. I'm loving the 3.13 features.
+        </text>
+    </g>
+</svg>
