@@ -1,172 +1,195 @@
 import { db } from "../server/db";
 import { siteSettings } from "../shared/schema";
+import { eq } from "drizzle-orm";
+
+export type SeedSetting = {
+  key: string;
+  value: any;
+  category: string;
+  description: string;
+};
 
 async function seedSettings() {
-  try {
-    console.log("Starting to seed site settings...");
+  console.log("🌱 Seeding site settings...");
+
+  const defaultSettings: SeedSetting[] = [
+    // Homepage - Hero Section
+    {
+      key: "hero.title",
+      value: "Welcome to My Journey in Tech and Creativity",
+      category: "homepage",
+      description: "Main headline for the homepage hero section"
+    },
+    {
+      key: "hero.subtitle",
+      value: "Explore a collection of 10 innovative web applications showcasing my skills across different domains",
+      category: "homepage",
+      description: "Subtitle text for the homepage hero section"
+    },
+    {
+      key: "hero.cta",
+      value: "Explore Projects",
+      category: "homepage",
+      description: "Call-to-action button text in the hero section"
+    },
     
-    // Check if settings already exist
-    const existingSettings = await db.select().from(siteSettings);
+    // About Section
+    {
+      key: "about.title",
+      value: "About Me",
+      category: "homepage",
+      description: "Title for the about section"
+    },
+    {
+      key: "about.content",
+      value: "For me, coding is like solving a giant puzzle — and I love every piece of it. It's about turning ideas into reality and using creativity to make things work. Each of these projects is a reflection of my drive to learn, explore, and create solutions.",
+      category: "homepage",
+      description: "Main content for the about section"
+    },
     
-    if (existingSettings.length > 0) {
-      console.log(`Found ${existingSettings.length} existing settings. Skipping seed.`);
-      return;
+    // Site Information
+    {
+      key: "site.title",
+      value: "Mohammad Alassiri's Portfolio",
+      category: "site-info",
+      description: "Website title used in metadata and browser tab"
+    },
+    {
+      key: "site.description",
+      value: "A showcase of innovative web applications built with modern technologies",
+      category: "site-info",
+      description: "Website description used in metadata"
+    },
+    {
+      key: "site.author",
+      value: "Mohammad Alassiri",
+      category: "site-info",
+      description: "Author name for the website"
+    },
+    {
+      key: "site.keywords",
+      value: "portfolio, web development, react, nodejs, fullstack, projects",
+      category: "site-info",
+      description: "Keywords for search engine optimization"
+    },
+
+    // Contact Information
+    {
+      key: "contact.email",
+      value: "contact@example.com",
+      category: "contact",
+      description: "Contact email address"
+    },
+    {
+      key: "contact.phone",
+      value: "+1234567890",
+      category: "contact",
+      description: "Contact phone number"
+    },
+    {
+      key: "contact.address",
+      value: "Amsterdam, Netherlands",
+      category: "contact",
+      description: "Physical address or location"
+    },
+    
+    // Social Media Links
+    {
+      key: "social.github",
+      value: "https://github.com/yourusername",
+      category: "social",
+      description: "GitHub profile URL"
+    },
+    {
+      key: "social.linkedin",
+      value: "https://linkedin.com/in/yourusername",
+      category: "social",
+      description: "LinkedIn profile URL"
+    },
+    {
+      key: "social.twitter",
+      value: "https://twitter.com/yourusername",
+      category: "social",
+      description: "Twitter profile URL"
+    },
+    
+    // Footer Content
+    {
+      key: "footer.copyright",
+      value: "© 2025 Mohammad Alassiri. All rights reserved.",
+      category: "footer",
+      description: "Copyright text in the footer"
+    },
+    {
+      key: "footer.links",
+      value: JSON.stringify([
+        { text: "Home", url: "/" },
+        { text: "Projects", url: "#apps" },
+        { text: "About", url: "#about" },
+        { text: "Contact", url: "#contact" }
+      ]),
+      category: "footer",
+      description: "JSON array of footer navigation links"
+    },
+    
+    // Theme Settings
+    {
+      key: "theme.primaryColor",
+      value: "#6366F1",
+      category: "theme",
+      description: "Primary color for the website"
+    },
+    {
+      key: "theme.secondaryColor",
+      value: "#EC4899",
+      category: "theme",
+      description: "Secondary color for the website"
+    },
+    {
+      key: "theme.fontPrimary",
+      value: "'Inter', sans-serif",
+      category: "theme",
+      description: "Primary font family"
     }
-    
-    // Sample settings data - group by categories
-    const settingsData = [
-      // Site Information
-      {
-        key: "site.title",
-        value: "Mohammad Alassiri's Portfolio",
-        category: "site-info",
-        updatedBy: 5 // admin user ID
-      },
-      {
-        key: "site.description",
-        value: "A portfolio showcasing 10 interactive demo applications across different industries and technologies.",
-        category: "site-info",
-        updatedBy: 5
-      },
-      {
-        key: "site.keywords",
-        value: ["portfolio", "developer", "full-stack", "react", "node.js", "javascript", "typescript"],
-        category: "site-info",
-        updatedBy: 5
-      },
-      {
-        key: "site.author",
-        value: "Mohammad Alassiri",
-        category: "site-info",
-        updatedBy: 5
-      },
-      
-      // Contact Information
-      {
-        key: "contact.email",
-        value: "contact@example.com",
-        category: "contact",
-        updatedBy: 5
-      },
-      {
-        key: "contact.phone",
-        value: "+1234567890",
-        category: "contact",
-        updatedBy: 5
-      },
-      {
-        key: "contact.address",
-        value: "Amsterdam, Netherlands",
-        category: "contact",
-        updatedBy: 5
-      },
-      
-      // Social Media
-      {
-        key: "social.github",
-        value: "https://github.com/yourusername",
-        category: "social",
-        updatedBy: 5
-      },
-      {
-        key: "social.linkedin",
-        value: "https://linkedin.com/in/yourusername",
-        category: "social",
-        updatedBy: 5
-      },
-      {
-        key: "social.twitter",
-        value: "https://twitter.com/yourusername",
-        category: "social",
-        updatedBy: 5
-      },
-      
-      // Theme Settings
-      {
-        key: "theme.primaryColor",
-        value: "#6366F1",
-        category: "theme",
-        updatedBy: 5
-      },
-      {
-        key: "theme.secondaryColor",
-        value: "#EC4899",
-        category: "theme",
-        updatedBy: 5
-      },
-      {
-        key: "theme.fontPrimary",
-        value: "Inter, sans-serif",
-        category: "theme",
-        updatedBy: 5
-      },
-      {
-        key: "theme.fontSecondary",
-        value: "Poppins, sans-serif",
-        category: "theme",
-        updatedBy: 5
-      },
-      
-      // Hero Section
-      {
-        key: "hero.title",
-        value: "Welcome to My Journey in Tech and Creativity",
-        category: "homepage",
-        updatedBy: 5
-      },
-      {
-        key: "hero.subtitle",
-        value: "Explore a collection of innovative web applications showcasing my skills across different domains",
-        category: "homepage",
-        updatedBy: 5
-      },
-      {
-        key: "hero.cta",
-        value: "Explore Projects",
-        category: "homepage",
-        updatedBy: 5
-      },
-      
-      // About Section
-      {
-        key: "about.title",
-        value: "About Me",
-        category: "homepage",
-        updatedBy: 5
-      },
-      {
-        key: "about.content",
-        value: "For me, coding is like solving a giant puzzle — and I love every piece of it. It's about turning ideas into reality and using creativity to make things work. Each of these projects is a reflection of my drive to learn, explore, and create solutions that make life easier or more exciting.",
-        category: "homepage",
-        updatedBy: 5
-      },
-      {
-        key: "about.skills",
-        value: ["JavaScript", "TypeScript", "React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Framer Motion", "Web3"],
-        category: "homepage",
-        updatedBy: 5
-      }
-    ];
-    
-    // Insert settings
-    const insertResult = await db.insert(siteSettings).values(settingsData);
-    
-    console.log(`Successfully seeded ${settingsData.length} site settings.`);
-    return { success: true, count: settingsData.length };
-    
-  } catch (error) {
-    console.error("Error seeding site settings:", error);
-    return { success: false, error };
+  ];
+
+  for (const setting of defaultSettings) {
+    // Check if setting already exists
+    const existingSetting = await db.select()
+      .from(siteSettings)
+      .where(eq(siteSettings.key, setting.key))
+      .limit(1);
+
+    if (existingSetting.length === 0) {
+      // Setting doesn't exist, insert it
+      await db.insert(siteSettings).values({
+        key: setting.key,
+        value: setting.value,
+        category: setting.category,
+        description: setting.description,
+        created_by: 9999, // Default admin user ID
+        updated_by: 9999
+      });
+      console.log(`Created setting: ${setting.key}`);
+    } else {
+      console.log(`Setting already exists: ${setting.key}`);
+    }
   }
+
+  console.log("✅ Site settings seeding completed.");
 }
 
-// Execute the seed function
-seedSettings()
-  .then(result => {
-    console.log("Site settings seeding complete:", result);
-    process.exit(0);
-  })
-  .catch(error => {
-    console.error("Site settings seeding failed:", error);
-    process.exit(1);
-  });
+// Run the function if this script is executed directly
+if (require.main === module) {
+  seedSettings()
+    .then(() => {
+      console.log("Settings seeding completed successfully");
+      process.exit(0);
+    })
+    .catch((error) => {
+      console.error("Error seeding settings:", error);
+      process.exit(1);
+    });
+}
+
+export { seedSettings };

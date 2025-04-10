@@ -1,91 +1,72 @@
-import { Router, Response } from 'express';
-import { z } from 'zod';
+import { Router, Request, Response } from 'express';
 import { storage } from '../storage';
-import { auth, AuthRequest, adminOnly } from '../middleware/auth';
+import { auth, adminOnly, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 
-// Validation schema for updating settings
-const updateSettingSchema = z.object({
-  value: z.any(),
-  category: z.string().optional()
-});
-
-// Get all settings (admin only)
-router.get('/', auth, adminOnly, async (req: AuthRequest, res: Response) => {
+// Get all settings
+router.get('/', async (req: Request, res: Response) => {
   try {
-    const settings = await storage.getAllSettings();
-    return res.status(200).json({ success: true, settings });
+    const category = req.query.category as string | undefined;
+    const settings = category 
+      ? await storage.getSettingsByCategory(category) 
+      : await storage.getAllSettings();
+    
+    // Convert to key-value format for easier consumption in frontend
+    const settingsObj = settings.reduce((acc: Record<string, any>, setting) => {
+      acc[setting.key] = setting.value;
+      return acc;
+    }, {});
+    
+    res.json({ success: true, settings: settingsObj });
   } catch (error) {
-    console.error('Get settings error:', error);
-    return res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Get settings by category (admin only)
-router.get('/category/:category', auth, adminOnly, async (req: AuthRequest, res: Response) => {
-  try {
-    const category = req.params.category;
-    const settings = await storage.getSettingsByCategory(category);
-    return res.status(200).json({ success: true, settings });
-  } catch (error) {
-    console.error('Get settings by category error:', error);
-    return res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching settings:', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch settings' });
   }
 });
 
 // Get setting by key
-router.get('/:key', auth, adminOnly, async (req: AuthRequest, res: Response) => {
+router.get('/:key', async (req: Request, res: Response) => {
   try {
     const key = req.params.key;
     const setting = await storage.getSettingByKey(key);
     
     if (!setting) {
-      return res.status(404).json({ message: 'Setting not found' });
+      return res.status(404).json({ success: false, message: 'Setting not found' });
     }
     
-    return res.status(200).json({ success: true, setting });
+    res.json({ success: true, setting });
   } catch (error) {
-    console.error('Get setting error:', error);
-    return res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching setting:', error);
+    res.status(500).json({ success: false, message: 'Failed to fetch setting' });
   }
 });
 
 // Update setting (admin only)
-router.put('/:key', auth, adminOnly, async (req: AuthRequest, res: Response) => {
+router.patch('/:key', auth, adminOnly, async (req: AuthRequest, res: Response) => {
   try {
     const key = req.params.key;
+    const { value } = req.body;
+    const userId = req.user?.id;
     
-    // Validate request
-    const validation = updateSettingSchema.safeParse(req.body);
-    if (!validation.success) {
-      return res.status(400).json({ errors: validation.error.format() });
+    if (!userId) {
+      return res.status(401).json({ success: false, message: 'User not authenticated' });
     }
     
-    // Update setting
-    const updatedSetting = await storage.updateSetting(
-      key, 
-      validation.data.value, 
-      req.user!.id
-    );
+    if (value === undefined) {
+      return res.status(400).json({ success: false, message: 'Value is required' });
+    }
+    
+    const updatedSetting = await storage.updateSetting(key, value, userId);
     
     if (!updatedSetting) {
-      return res.status(500).json({ message: 'Failed to update setting' });
+      return res.status(404).json({ success: false, message: 'Setting not found' });
     }
     
-    // Log activity
-    await storage.createActivityLog({
-      userId: req.user!.id,
-      action: 'update',
-      entityType: 'setting',
-      entityId: updatedSetting.id,
-      details: { key: updatedSetting.key, category: updatedSetting.category }
-    });
-    
-    return res.status(200).json({ success: true, setting: updatedSetting });
+    res.json({ success: true, setting: updatedSetting });
   } catch (error) {
-    console.error('Update setting error:', error);
-    return res.status(500).json({ message: 'Server error' });
+    console.error('Error updating setting:', error);
+    res.status(500).json({ success: false, message: 'Failed to update setting' });
   }
 });
 
