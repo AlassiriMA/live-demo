@@ -17,6 +17,7 @@ export default function ProjectDetailsPage() {
   const { data, isLoading, error } = useQuery<{success: boolean, project: any}>({
     queryKey: [`/api/projects/slug/${slug}`],
     enabled: !!slug,
+    retry: 1,
   });
   
   // Find matching app from local data for fallback

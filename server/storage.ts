@@ -360,8 +360,49 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getProjectBySlug(slug: string): Promise<Project | undefined> {
-    const [project] = await db.select().from(projects).where(eq(projects.slug, slug));
-    return project || undefined;
+    try {
+      // Try using Drizzle ORM first
+      const [project] = await db.select().from(projects).where(eq(projects.slug, slug));
+      if (project) {
+        return project;
+      }
+      
+      // Fallback to raw SQL if needed
+      const result = await db.execute(
+        `SELECT * FROM projects WHERE slug = '${slug}' LIMIT 1`
+      );
+      
+      if (result.rows && result.rows.length > 0) {
+        const row = result.rows[0];
+        // Convert field names from snake_case to camelCase
+        return {
+          id: row.id,
+          slug: row.slug,
+          name: row.name,
+          description: row.description,
+          style: row.style,
+          primaryColor: row.primary_color,
+          secondaryColor: row.secondary_color,
+          accentColor: row.accent_color,
+          imageUrl: row.image_url,
+          tags: row.tags,
+          route: row.route,
+          published: row.published,
+          featured: row.featured,
+          sortOrder: row.sort_order,
+          detailedContent: row.detailed_content,
+          features: row.features,
+          screenshots: row.screenshots,
+          status: row.status,
+          createdAt: row.created_at,
+          updatedAt: row.updated_at
+        } as Project;
+      }
+      return undefined;
+    } catch (error) {
+      console.error("Error in getProjectBySlug:", error);
+      throw error;
+    }
   }
 
   async createProject(insertProject: InsertProject): Promise<Project> {

@@ -89,24 +89,7 @@ router.get('/slug/:slug', async (req: AuthRequest, res: Response) => {
       console.error('ORM fetch error:', ormError);
     }
     
-    // If ORM fails, try direct SQL
-    try {
-      const result = await db.query.projects.findFirst({
-        where: (projects, { eq, and }) => 
-          and(eq(projects.slug, slug), eq(projects.published, true))
-      });
-      
-      if (result) {
-        // The ORM query returns the project with camelCase field names already
-        const project = result;
-        
-        return res.status(200).json({ success: true, project });
-      }
-    } catch (sqlError) {
-      console.error('SQL fetch error:', sqlError);
-    }
-    
-    // If no project found via any method, return 404
+    // If no project found via ORM, return 404
     return res.status(404).json({ message: 'Project not found' });
   } catch (error) {
     console.error('Get project by slug error:', error);
