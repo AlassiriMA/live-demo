@@ -28,7 +28,7 @@ export default function Header() {
           </span>
         </Link>
         
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-6 header-nav">
           <NavigationLinks isAppPage={isAppPage} />
         </nav>
         

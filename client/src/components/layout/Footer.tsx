@@ -42,12 +42,11 @@ export default function Footer() {
               A showcase of 10 interactive demo applications built with modern technologies, 
               featuring real database connections and comprehensive content management.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 footer-social">
               <a 
                 href={getSetting<string>(socialSettings, "social.github", "#")} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-[#6366F1] transition-colors"
                 aria-label="GitHub"
               >
                 <FaGithub size={22} />
@@ -56,7 +55,6 @@ export default function Footer() {
                 href={getSetting<string>(socialSettings, "social.linkedin", "#")} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-[#6366F1] transition-colors"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin size={22} />
@@ -65,7 +63,6 @@ export default function Footer() {
                 href={getSetting<string>(socialSettings, "social.twitter", "#")} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-[#6366F1] transition-colors"
                 aria-label="Twitter"
               >
                 <FaTwitter size={22} />
@@ -76,7 +73,7 @@ export default function Footer() {
           {/* Quick Links Column */}
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 footer-links">
               {isLoading ? (
                 Array(4).fill(0).map((_, i) => (
                   <li key={i} className="flex items-center">
@@ -86,10 +83,7 @@ export default function Footer() {
               ) : (
                 footerLinks.map((link, index) => (
                   <li key={index}>
-                    <Link 
-                      href={link.url}
-                      className="text-gray-600 hover:text-[#6366F1] transition-colors"
-                    >
+                    <Link href={link.url}>
                       {link.text}
                     </Link>
                   </li>
@@ -101,8 +95,8 @@ export default function Footer() {
           {/* Contact Column */}
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Contact</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center text-gray-600">
+            <ul className="space-y-3 footer-contact">
+              <li>
                 <HiMail className="mr-2 text-gray-500" size={18} />
                 {isLoading ? (
                   <div><Skeleton className="h-4 w-32" /></div>
@@ -110,7 +104,7 @@ export default function Footer() {
                   <span>{getSetting<string>(contactSettings, "contact.email", "")}</span>
                 )}
               </li>
-              <li className="flex items-center text-gray-600">
+              <li>
                 <HiPhone className="mr-2 text-gray-500" size={18} />
                 {isLoading ? (
                   <div><Skeleton className="h-4 w-32" /></div>
@@ -118,7 +112,7 @@ export default function Footer() {
                   <span>{getSetting<string>(contactSettings, "contact.phone", "")}</span>
                 )}
               </li>
-              <li className="flex items-center text-gray-600">
+              <li>
                 <HiLocationMarker className="mr-2 text-gray-500" size={18} />
                 {isLoading ? (
                   <div><Skeleton className="h-4 w-32" /></div>

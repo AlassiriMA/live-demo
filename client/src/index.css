@@ -27,7 +27,7 @@
   
   /* Footer styles */
   footer {
-    @apply bg-gray-50 border-t border-gray-200;
+    @apply bg-gray-50 border-t border-gray-200 mt-12;
   }
   
   footer h3 {
@@ -38,9 +38,31 @@
     @apply text-gray-600 hover:text-indigo-600 transition-colors;
   }
   
+  footer .footer-social a {
+    @apply text-gray-600 hover:text-[#6366F1] transition-colors;
+  }
+  
+  footer .footer-links a {
+    @apply text-gray-600 hover:text-[#6366F1] transition-colors block py-1;
+  }
+  
+  footer .footer-contact li {
+    @apply flex items-center text-gray-600 py-1;
+  }
+  
   /* Navigation styles */
   .nav-link {
-    @apply font-medium transition-colors duration-200;
+    @apply font-medium transition-colors duration-200 py-2 px-1 inline-block;
+  }
+  
+  /* Fix navigation link colors */
+  .header-nav .nav-link {
+    @apply text-white hover:text-gray-300 font-medium;
+  }
+  
+  /* Fix mobile menu links */
+  .mobile-menu .nav-link {
+    @apply text-white hover:text-gray-300 block py-3;
   }
 }
 
