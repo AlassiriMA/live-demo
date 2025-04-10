@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#f8f9fa" />
+  
+  <!-- Header -->
+  <rect width="800" height="80" fill="#166534" />
+  <text x="40" y="50" font-family="Arial" font-size="28" font-weight="bold" fill="white">Fresh Harvest</text>
+  
+  <!-- Navigation -->
+  <text x="400" y="50" font-family="Arial" font-size="16" fill="#bbf7d0">Home</text>
+  <text x="470" y="50" font-family="Arial" font-size="16" fill="#bbf7d0">Shop</text>
+  <text x="530" y="50" font-family="Arial" font-size="16" fill="#bbf7d0">About</text>
+  <text x="600" y="50" font-family="Arial" font-size="16" fill="#bbf7d0">Contact</text>
+  
+  <!-- Shopping Cart Icon -->
+  <circle cx="670" cy="45" r="16" fill="#bbf7d0" />
+  <text x="670" y="50" font-family="Arial" font-size="16" font-weight="bold" fill="#166534" text-anchor="middle">3</text>
+  
+  <!-- User Icon -->
+  <circle cx="720" cy="45" r="16" fill="white" />
+  <text x="720" y="50" font-family="Arial" font-size="16" font-weight="bold" fill="#166534" text-anchor="middle">U</text>
+  
+  <!-- Page Title -->
+  <text x="40" y="120" font-family="Arial" font-size="28" font-weight="bold" fill="#166534">Order Tracking</text>
+  
+  <!-- Order Info -->
+  <rect x="40" y="140" width="720" height="60" rx="5" fill="#dcfce7" />
+  <text x="60" y="165" font-family="Arial" font-size="16" fill="#166534">Order #FH78342</text>
+  <text x="60" y="185" font-family="Arial" font-size="14" fill="#4b5563">Placed on April 8, 2025 at 11:23 AM</text>
+  
+  <text x="560" y="165" font-family="Arial" font-size="16" font-weight="bold" fill="#166534">Estimated Delivery</text>
+  <text x="560" y="185" font-family="Arial" font-size="14" font-weight="bold" fill="#4b5563">Today, April 10, 2025, 2:00 PM - 5:00 PM</text>
+  
+  <!-- Tracking Progress -->
+  <rect x="40" y="220" width="720" height="120" rx="5" fill="white" stroke="#e5e7eb" stroke-width="1" />
+  
+  <!-- Progress Bar -->
+  <rect x="60" y="270" width="680" height="4" rx="2" fill="#e5e7eb" />
+  <rect x="60" y="270" width="510" height="4" rx="2" fill="#22c55e" />
+  
+  <!-- Progress Dots -->
+  <circle cx="60" cy="270" r="12" fill="#22c55e" />
+  <circle cx="60" cy="270" r="8" fill="white" />
+  <circle cx="60" cy="270" r="4" fill="#22c55e" />
+  
+  <circle cx="270" cy="270" r="12" fill="#22c55e" />
+  <circle cx="270" cy="270" r="8" fill="white" />
+  <circle cx="270" cy="270" r="4" fill="#22c55e" />
+  
+  <circle cx="480" cy="270" r="12" fill="#22c55e" />
+  <circle cx="480" cy="270" r="8" fill="white" />
+  <circle cx="480" cy="270" r="4" fill="#22c55e" />
+  
+  <circle cx="690" cy="270" r="12" fill="#e5e7eb" />
+  <circle cx="690" cy="270" r="8" fill="white" />
+  <circle cx="690" cy="270" r="4" fill="#e5e7eb" />
+  
+  <!-- Progress Labels -->
+  <text x="60" y="240" font-family="Arial" font-size="14" font-weight="bold" fill="#166534" text-anchor="middle">Order Placed</text>
+  <text x="60" y="310" font-family="Arial" font-size="12" fill="#4b5563" text-anchor="middle">Apr 8, 11:23 AM</text>
+  
+  <text x="270" y="240" font-family="Arial" font-size="14" font-weight="bold" fill="#166534" text-anchor="middle">Processing</text>
+  <text x="270" y="310" font-family="Arial" font-size="12" fill="#4b5563" text-anchor="middle">Apr 9, 9:15 AM</text>
+  
+  <text x="480" y="240" font-family="Arial" font-size="14" font-weight="bold" fill="#166534" text-anchor="middle">Out for Delivery</text>
+  <text x="480" y="310" font-family="Arial" font-size="12" fill="#4b5563" text-anchor="middle">Apr 10, 10:30 AM</text>
+  
+  <text x="690" y="240" font-family="Arial" font-size="14" font-weight="bold" fill="#9ca3af" text-anchor="middle">Delivered</text>
+  <text x="690" y="310" font-family="Arial" font-size="12" fill="#9ca3af" text-anchor="middle">Estimated 2-5 PM</text>
+  
+  <!-- Order Items -->
+  <rect x="40" y="360" width="720" height="220" rx="5" fill="white" stroke="#e5e7eb" stroke-width="1" />
+  <text x="60" y="390" font-family="Arial" font-size="18" font-weight="bold" fill="#111827">Order Items</text>
+  
+  <!-- Item 1 -->
+  <rect x="60" y="410" width="680" height="60" rx="5" fill="#f8f9fa" />
+  <circle cx="90" cy="440" r="20" fill="#a7f3d0" />
+  <text x="90" y="445" font-family="Arial" font-size="18" font-weight="bold" fill="#059669" text-anchor="middle">A</text>
+  
+  <text x="130" y="430" font-family="Arial" font-size="14" font-weight="bold" fill="#111827">Organic Apples</text>
+  <text x="130" y="450" font-family="Arial" font-size="12" fill="#4b5563">2kg pack</text>
+  
+  <text x="400" y="440" font-family="Arial" font-size="14" fill="#4b5563">$4.99/kg</text>
+  
+  <text x="500" y="440" font-family="Arial" font-size="14" fill="#4b5563">Quantity: 2</text>
+  
+  <text x="720" y="440" font-family="Arial" font-size="14" font-weight="bold" fill="#166534" text-anchor="end">$9.98</text>
+  
+  <!-- Item 2 -->
+  <rect x="60" y="480" width="680" height="60" rx="5" fill="#f8f9fa" />
+  <circle cx="90" cy="510" r="20" fill="#fbcfe8" />
+  <text x="90" y="515" font-family="Arial" font-size="18" font-weight="bold" fill="#be185d" text-anchor="middle">S</text>
+  
+  <text x="130" y="500" font-family="Arial" font-size="14" font-weight="bold" fill="#111827">Fresh Strawberries</text>
+  <text x="130" y="520" font-family="Arial" font-size="12" fill="#4b5563">1kg box</text>
+  
+  <text x="400" y="510" font-family="Arial" font-size="14" fill="#4b5563">$12.50/kg</text>
+  
+  <text x="500" y="510" font-family="Arial" font-size="14" fill="#4b5563">Quantity: 1</text>
+  
+  <text x="720" y="510" font-family="Arial" font-size="14" font-weight="bold" fill="#166534" text-anchor="end">$12.50</text>
+  
+  <!-- Contact Driver Button -->
+  <rect x="40" y="600" width="350" height="50" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="1" />
+  <text x="215" y="630" font-family="Arial" font-size="16" font-weight="bold" fill="#166534" text-anchor="middle">Contact Driver</text>
+  
+  <!-- Report Issue Button -->
+  <rect x="410" y="600" width="350" height="50" rx="5" fill="white" stroke="#e5e7eb" stroke-width="1" />
+  <text x="585" y="630" font-family="Arial" font-size="16" fill="#4b5563" text-anchor="middle">Report an Issue</text>
+</svg>

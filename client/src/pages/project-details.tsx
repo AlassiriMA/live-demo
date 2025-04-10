@@ -412,24 +412,24 @@ export default function ProjectDetailsPage() {
                 <ImageGridGallery 
                   images={[
                     {
-                      src: "/assets/images/screenshots/fruits/product-catalog.svg",
+                      src: "/assets/images/screenshots/fruit/product-catalog.svg",
                       alt: "Fruit Store Product Catalog",
                       caption: "Browse our selection of fresh fruits with filtering options"
                     },
                     {
-                      src: "/assets/images/screenshots/fruits/shopping-cart.svg",
+                      src: "/assets/images/screenshots/fruit/shopping-cart.svg",
                       alt: "Fruit Store Shopping Cart",
                       caption: "Review your cart and checkout"
                     },
                     {
-                      src: "/assets/images/screenshots/fruits/product-detail.svg",
-                      alt: "Fruit Product Detail",
-                      caption: "Detailed product information with nutritional facts"
-                    },
-                    {
-                      src: "/assets/images/screenshots/fruits/checkout.svg",
+                      src: "/assets/images/screenshots/fruit/checkout.svg",
                       alt: "Checkout Process",
                       caption: "Secure and streamlined checkout experience"
+                    },
+                    {
+                      src: "/assets/images/screenshots/fruit/order-tracking.svg",
+                      alt: "Order Tracking",
+                      caption: "Real-time tracking of your fresh fruit orders"
                     }
                   ]}
                   aspectRatio="wide"
@@ -549,23 +549,18 @@ export default function ProjectDetailsPage() {
                       caption: "AI-powered chatbot for lead generation"
                     },
                     {
-                      src: "/assets/images/screenshots/marketing/analytics.svg",
-                      alt: "Marketing Analytics Dashboard",
-                      caption: "Comprehensive campaign performance tracking"
+                      src: "/assets/images/screenshots/marketing/services.svg",
+                      alt: "Agency Services",
+                      caption: "Comprehensive marketing service offerings"
                     },
                     {
-                      src: "/assets/images/screenshots/marketing/leads.svg",
-                      alt: "Lead Management",
-                      caption: "Centralized lead tracking and nurturing system"
-                    },
-                    {
-                      src: "/assets/images/screenshots/marketing/content.svg",
-                      alt: "Content Calendar",
-                      caption: "Integrated content planning and publishing"
+                      src: "/assets/images/screenshots/marketing/portfolio.svg",
+                      alt: "Client Portfolio",
+                      caption: "Showcase of successful marketing campaigns"
                     }
                   ]}
                   aspectRatio="wide"
-                  columns={2}
+                  columns={3}
                   lightboxEnabled={true}
                 />
               )}

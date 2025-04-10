@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0f172a" />
+  
+  <!-- Header -->
+  <rect width="800" height="60" fill="#1e293b" />
+  <text x="40" y="38" font-family="Arial" font-size="22" font-weight="bold" fill="white">dYdX Trading Interface</text>
+  
+  <!-- Navigation -->
+  <text x="400" y="38" font-family="Arial" font-size="14" fill="#94a3b8">Dashboard</text>
+  <text x="500" y="38" font-family="Arial" font-size="14" fill="#94a3b8">Markets</text>
+  <text x="580" y="38" font-family="Arial" font-size="14" fill="#94a3b8">Trading</text>
+  <text x="660" y="38" font-family="Arial" font-size="14" fill="#94a3b8">Portfolio</text>
+  <text x="740" y="38" font-family="Arial" font-size="14" fill="#94a3b8">History</text>
+  
+  <!-- Page Title -->
+  <text x="40" y="90" font-family="Arial" font-size="24" font-weight="bold" fill="white">Performance Analytics</text>
+  
+  <!-- Time Range Selector -->
+  <rect x="500" y="80" width="260" height="30" rx="15" fill="#1e293b" />
+  <rect x="500" y="80" width="65" height="30" rx="15" fill="#38bdf8" />
+  <text x="532" y="100" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Day</text>
+  <text x="582" y="100" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Week</text>
+  <text x="632" y="100" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">Month</text>
+  <text x="690" y="100" font-family="Arial" font-size="12" fill="#94a3b8" text-anchor="middle">All Time</text>
+  
+  <!-- Portfolio Performance Chart -->
+  <rect x="40" y="130" width="720" height="200" rx="5" fill="#1e293b" />
+  <text x="60" y="160" font-family="Arial" font-size="18" font-weight="bold" fill="white">Portfolio Value</text>
+  <text x="60" y="185" font-family="Arial" font-size="22" font-weight="bold" fill="white">$124,758.93</text>
+  <text x="220" y="185" font-family="Arial" font-size="14" font-weight="bold" fill="#22c55e">+$1,289.45 (1.04%)</text>
+  
+  <!-- Chart Area -->
+  <polyline points="60,280 140,250 220,270 300,240 380,245 460,230 540,200 620,210 700,190" 
+            fill="none" stroke="#38bdf8" stroke-width="3" />
+  
+  <!-- Chart Fill Gradient -->
+  <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:0.2" />
+    <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:0" />
+  </linearGradient>
+  <path d="M60,280 L140,250 L220,270 L300,240 L380,245 L460,230 L540,200 L620,210 L700,190 L700,320 L60,320 Z" 
+        fill="url(#areaGradient)" />
+  
+  <!-- Chart Time Labels -->
+  <text x="60" y="340" font-family="Arial" font-size="10" fill="#94a3b8">09:00</text>
+  <text x="140" y="340" font-family="Arial" font-size="10" fill="#94a3b8">10:00</text>
+  <text x="220" y="340" font-family="Arial" font-size="10" fill="#94a3b8">11:00</text>
+  <text x="300" y="340" font-family="Arial" font-size="10" fill="#94a3b8">12:00</text>
+  <text x="380" y="340" font-family="Arial" font-size="10" fill="#94a3b8">13:00</text>
+  <text x="460" y="340" font-family="Arial" font-size="10" fill="#94a3b8">14:00</text>
+  <text x="540" y="340" font-family="Arial" font-size="10" fill="#94a3b8">15:00</text>
+  <text x="620" y="340" font-family="Arial" font-size="10" fill="#94a3b8">16:00</text>
+  <text x="700" y="340" font-family="Arial" font-size="10" fill="#94a3b8">17:00</text>
+  
+  <!-- Performance Metrics -->
+  <text x="40" y="380" font-family="Arial" font-size="18" font-weight="bold" fill="white">Key Metrics</text>
+  
+  <!-- Metrics Cards -->
+  <rect x="40" y="400" width="170" height="80" rx="5" fill="#1e293b" />
+  <text x="60" y="425" font-family="Arial" font-size="12" fill="#94a3b8">Realized P&L (24h)</text>
+  <text x="60" y="450" font-family="Arial" font-size="18" font-weight="bold" fill="#22c55e">+$843.27</text>
+  <text x="60" y="470" font-family="Arial" font-size="12" fill="#94a3b8">7 trades</text>
+  
+  <rect x="230" y="400" width="170" height="80" rx="5" fill="#1e293b" />
+  <text x="250" y="425" font-family="Arial" font-size="12" fill="#94a3b8">Unrealized P&L</text>
+  <text x="250" y="450" font-family="Arial" font-size="18" font-weight="bold" fill="#22c55e">+$446.18</text>
+  <text x="250" y="470" font-family="Arial" font-size="12" fill="#94a3b8">3 open positions</text>
+  
+  <rect x="420" y="400" width="170" height="80" rx="5" fill="#1e293b" />
+  <text x="440" y="425" font-family="Arial" font-size="12" fill="#94a3b8">Win Rate (7d)</text>
+  <text x="440" y="450" font-family="Arial" font-size="18" font-weight="bold" fill="white">68.4%</text>
+  <text x="440" y="470" font-family="Arial" font-size="12" fill="#94a3b8">13/19 trades</text>
+  
+  <rect x="610" y="400" width="170" height="80" rx="5" fill="#1e293b" />
+  <text x="630" y="425" font-family="Arial" font-size="12" fill="#94a3b8">Avg Trade Duration</text>
+  <text x="630" y="450" font-family="Arial" font-size="18" font-weight="bold" fill="white">3h 24m</text>
+  <text x="630" y="470" font-family="Arial" font-size="12" fill="#94a3b8">Last 7 days</text>
+</svg>

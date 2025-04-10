@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#0f172a" />
+  
+  <!-- Header -->
+  <rect width="800" height="60" fill="#1e293b" />
+  <text x="40" y="38" font-family="Arial" font-size="22" font-weight="bold" fill="white">dYdX Trading Interface</text>
+  
+  <!-- Navigation -->
+  <text x="400" y="38" font-family="Arial" font-size="14" fill="#94a3b8">Dashboard</text>
+  <text x="500" y="38" font-family="Arial" font-size="14" fill="#94a3b8">Markets</text>
+  <text x="580" y="38" font-family="Arial" font-size="14" fill="#94a3b8">Trading</text>
+  <text x="660" y="38" font-family="Arial" font-size="14" font-weight="bold" fill="#38bdf8">Portfolio</text>
+  <text x="740" y="38" font-family="Arial" font-size="14" fill="#94a3b8">History</text>
+  
+  <!-- Account Summary -->
+  <rect x="40" y="80" width="720" height="100" rx="5" fill="#1e293b" />
+  
+  <!-- Account Balance -->
+  <text x="60" y="105" font-family="Arial" font-size="14" fill="#94a3b8">Total Account Value</text>
+  <text x="60" y="135" font-family="Arial" font-size="24" font-weight="bold" fill="white">$124,758.93</text>
+  <text x="60" y="160" font-family="Arial" font-size="14" fill="#22c55e">+$1,289.45 (1.04%)</text>
+  
+  <!-- Margin -->
+  <text x="300" y="105" font-family="Arial" font-size="14" fill="#94a3b8">Available Margin</text>
+  <text x="300" y="135" font-family="Arial" font-size="24" font-weight="bold" fill="white">$83,172.58</text>
+  <text x="300" y="160" font-family="Arial" font-size="14" fill="#94a3b8">Margin Usage: 33.4%</text>
+  
+  <!-- Equity -->
+  <text x="540" y="105" font-family="Arial" font-size="14" fill="#94a3b8">Margin Equity</text>
+  <text x="540" y="135" font-family="Arial" font-size="24" font-weight="bold" fill="white">$124,758.93</text>
+  <text x="540" y="160" font-family="Arial" font-size="14" fill="#94a3b8">Maintenance: $20,793.18</text>
+  
+  <!-- Portfolio Assets -->
+  <text x="40" y="210" font-family="Arial" font-size="20" font-weight="bold" fill="white">Assets</text>
+  
+  <!-- Filter Options -->
+  <rect x="580" y="200" width="180" height="30" rx="15" fill="#334155" />
+  <text x="610" y="220" font-family="Arial" font-size="12" fill="white">All Assets</text>
+  <text x="700" y="220" font-family="Arial" font-size="12" fill="#94a3b8">Positions</text>
+  
+  <!-- Table Header -->
+  <rect x="40" y="240" width="720" height="40" rx="5" fill="#1e293b" />
+  <text x="60" y="265" font-family="Arial" font-size="14" font-weight="bold" fill="#94a3b8">Asset</text>
+  <text x="200" y="265" font-family="Arial" font-size="14" font-weight="bold" fill="#94a3b8">Balance</text>
+  <text x="350" y="265" font-family="Arial" font-size="14" font-weight="bold" fill="#94a3b8">Value (USD)</text>
+  <text x="500" y="265" font-family="Arial" font-size="14" font-weight="bold" fill="#94a3b8">Allocation</text>
+  <text x="650" y="265" font-family="Arial" font-size="14" font-weight="bold" fill="#94a3b8">24h Change</text>
+  
+  <!-- Asset Rows -->
+  <!-- BTC -->
+  <rect x="40" y="290" width="720" height="50" rx="5" fill="#0f172a" />
+  <circle cx="60" cy="315" r="15" fill="#f7931a" />
+  <text x="60" y="320" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">₿</text>
+  <text x="90" y="320" font-family="Arial" font-size="14" font-weight="bold" fill="white">Bitcoin</text>
+  <text x="200" y="320" font-family="Arial" font-size="14" fill="white">1.423 BTC</text>
+  <text x="350" y="320" font-family="Arial" font-size="14" fill="white">$68,375.82</text>
+  
+  <!-- Progress Bar -->
+  <rect x="500" y="315" width="80" height="10" rx="5" fill="#1e293b" />
+  <rect x="500" y="315" width="44" height="10" rx="5" fill="#f7931a" />
+  <text x="590" y="320" font-family="Arial" font-size="14" fill="white">54.8%</text>
+  
+  <text x="650" y="320" font-family="Arial" font-size="14" fill="#22c55e">+2.34%</text>
+  
+  <!-- ETH -->
+  <rect x="40" y="350" width="720" height="50" rx="5" fill="#0f172a" />
+  <circle cx="60" cy="375" r="15" fill="#627eea" />
+  <text x="60" y="380" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Ξ</text>
+  <text x="90" y="380" font-family="Arial" font-size="14" font-weight="bold" fill="white">Ethereum</text>
+  <text x="200" y="380" font-family="Arial" font-size="14" fill="white">12.5 ETH</text>
+  <text x="350" y="380" font-family="Arial" font-size="14" fill="white">$43,756.25</text>
+  
+  <!-- Progress Bar -->
+  <rect x="500" y="375" width="80" height="10" rx="5" fill="#1e293b" />
+  <rect x="500" y="375" width="28" height="10" rx="5" fill="#627eea" />
+  <text x="590" y="380" font-family="Arial" font-size="14" fill="white">35.1%</text>
+  
+  <text x="650" y="380" font-family="Arial" font-size="14" fill="#ef4444">-0.87%</text>
+  
+  <!-- SOL -->
+  <rect x="40" y="410" width="720" height="50" rx="5" fill="#0f172a" />
+  <circle cx="60" cy="435" r="15" fill="#00ffbd" />
+  <text x="60" y="440" font-family="Arial" font-size="12" font-weight="bold" fill="#1e293b" text-anchor="middle">S</text>
+  <text x="90" y="440" font-family="Arial" font-size="14" font-weight="bold" fill="white">Solana</text>
+  <text x="200" y="440" font-family="Arial" font-size="14" fill="white">155.3 SOL</text>
+  <text x="350" y="440" font-family="Arial" font-size="14" fill="white">$12,626.86</text>
+  
+  <!-- Progress Bar -->
+  <rect x="500" y="435" width="80" height="10" rx="5" fill="#1e293b" />
+  <rect x="500" y="435" width="8" height="10" rx="5" fill="#00ffbd" />
+  <text x="590" y="440" font-family="Arial" font-size="14" fill="white">10.1%</text>
+  
+  <text x="650" y="440" font-family="Arial" font-size="14" fill="#22c55e">+5.42%</text>
+  
+  <!-- Deposit/Withdraw Buttons -->
+  <rect x="210" y="480" width="180" height="40" rx="5" fill="#38bdf8" />
+  <text x="300" y="505" font-family="Arial" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">Deposit Funds</text>
+  
+  <rect x="410" y="480" width="180" height="40" rx="5" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+  <text x="500" y="505" font-family="Arial" font-size="14" font-weight="bold" fill="#38bdf8" text-anchor="middle">Withdraw</text>
+</svg>
