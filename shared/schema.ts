@@ -66,21 +66,11 @@ export const books = pgTable("books", {
   price: doublePrecision("price").notNull(),
   stock: integer("stock").notNull().default(0),
   imageUrl: text("image_url"),
-  categoryId: integer("category_id").references(() => bookCategories.id),
-  publishedDate: timestamp("published_date"),
-  publisher: text("publisher"),
-  language: text("language").default("English"),
-  pages: integer("pages"),
-  featured: boolean("featured").default(false),
-  description: text("description"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  category: text("category"),
 }, (table) => {
   return {
     titleIdx: index("books_title_idx").on(table.title),
     authorIdx: index("books_author_idx").on(table.author),
-    categoryIdx: index("books_category_idx").on(table.categoryId),
-    featuredIdx: index("books_featured_idx").on(table.featured),
   };
 });
 
@@ -91,13 +81,7 @@ export const insertBookSchema = createInsertSchema(books).pick({
   price: true,
   stock: true,
   imageUrl: true,
-  categoryId: true,
-  publishedDate: true,
-  publisher: true,
-  language: true,
-  pages: true,
-  featured: true,
-  description: true,
+  category: true,
 });
 
 // POS - Transactions
@@ -248,12 +232,8 @@ export const bookCategoriesRelations = relations(bookCategories, ({ many, one })
   children: many(bookCategories),
 }));
 
-export const booksRelations = relations(books, ({ one }) => ({
-  category: one(bookCategories, {
-    fields: [books.categoryId],
-    references: [bookCategories.id],
-  }),
-}));
+// Books no longer have a direct relation to book categories
+// with foreign keys since the db schema has 'category' as text
 
 // Type exports
 export type User = typeof users.$inferSelect;
@@ -317,29 +297,20 @@ export const projects = pgTable("projects", {
   secondaryColor: varchar("secondary_color", { length: 50 }),
   accentColor: varchar("accent_color", { length: 50 }),
   imageUrl: text("image_url"),
-  categoryId: integer("category_id").references(() => projectCategories.id),
-  tags: varchar("tags", { length: 255 }),
+  tags: jsonb("tags").default([]),
   route: varchar("route", { length: 255 }).notNull(),
   published: boolean("published").default(true),
   featured: boolean("featured").default(false),
   sortOrder: integer("sort_order").default(0),
   detailedContent: text("detailed_content"),
-  metaTitle: varchar("meta_title", { length: 255 }),
-  metaDescription: text("meta_description"),
   features: jsonb("features").default([]),
   screenshots: jsonb("screenshots").default([]),
-  status: varchar("status", { length: 50 }).default("published"),
-  createdBy: integer("created_by").references(() => users.id),
-  updatedBy: integer("updated_by").references(() => users.id),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 }, (table) => {
   return {
     slugIdx: index("projects_slug_idx").on(table.slug),
-    categoryIdx: index("projects_category_idx").on(table.categoryId),
     publishedIdx: index("projects_published_idx").on(table.published),
-    featuredIdx: index("projects_featured_idx").on(table.featured),
-    statusIdx: index("projects_status_idx").on(table.status),
   };
 });
 
@@ -352,19 +323,14 @@ export const insertProjectSchema = createInsertSchema(projects).pick({
   secondaryColor: true,
   accentColor: true,
   imageUrl: true,
-  categoryId: true,
   tags: true,
   route: true,
   published: true,
   featured: true,
   sortOrder: true,
   detailedContent: true,
-  metaTitle: true,
-  metaDescription: true,
   features: true,
   screenshots: true,
-  status: true,
-  createdBy: true,
 });
 
 export const updateProjectSchema = createInsertSchema(projects).pick({
@@ -375,19 +341,14 @@ export const updateProjectSchema = createInsertSchema(projects).pick({
   secondaryColor: true,
   accentColor: true,
   imageUrl: true,
-  categoryId: true,
   tags: true,
   route: true,
   published: true,
   featured: true,
   sortOrder: true,
   detailedContent: true,
-  metaTitle: true,
-  metaDescription: true,
   features: true,
   screenshots: true,
-  status: true,
-  updatedBy: true,
 }).partial();
 
 // CMS - Media Library
@@ -456,20 +417,8 @@ export const projectCategoriesRelations = relations(projectCategories, ({ many }
   projects: many(projects),
 }));
 
-export const projectsRelations = relations(projects, ({ one }) => ({
-  category: one(projectCategories, {
-    fields: [projects.categoryId],
-    references: [projectCategories.id],
-  }),
-  creator: one(users, {
-    fields: [projects.createdBy],
-    references: [users.id],
-  }),
-  updater: one(users, {
-    fields: [projects.updatedBy],
-    references: [users.id],
-  }),
-}));
+// We've removed relations since the fields don't exist in the actual database
+export const projectsRelations = relations(projects, ({ }) => ({}));
 
 // Media relations
 export const mediaItemsRelations = relations(mediaItems, ({ one }) => ({

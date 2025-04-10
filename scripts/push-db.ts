@@ -44,21 +44,11 @@ async function pushDB() {
         price DOUBLE PRECISION NOT NULL,
         stock INTEGER NOT NULL DEFAULT 0,
         image_url TEXT,
-        category_id INTEGER REFERENCES book_categories(id),
-        published_date TIMESTAMP,
-        publisher TEXT,
-        language TEXT DEFAULT 'English',
-        pages INTEGER,
-        featured BOOLEAN DEFAULT FALSE,
-        description TEXT,
-        created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW()
+        category TEXT
       );
       
       CREATE INDEX IF NOT EXISTS books_title_idx ON books(title);
       CREATE INDEX IF NOT EXISTS books_author_idx ON books(author);
-      CREATE INDEX IF NOT EXISTS books_category_idx ON books(category_id);
-      CREATE INDEX IF NOT EXISTS books_featured_idx ON books(featured);
     `);
     console.log('✓ Created books table');
     
@@ -186,29 +176,20 @@ async function pushDB() {
         secondary_color VARCHAR(50),
         accent_color VARCHAR(50),
         image_url TEXT,
-        category_id INTEGER REFERENCES project_categories(id),
-        tags VARCHAR(255),
+        tags JSONB DEFAULT '[]',
         route VARCHAR(255) NOT NULL,
         published BOOLEAN DEFAULT TRUE,
         featured BOOLEAN DEFAULT FALSE,
         sort_order INTEGER DEFAULT 0,
         detailed_content TEXT,
-        meta_title VARCHAR(255),
-        meta_description TEXT,
         features JSONB DEFAULT '[]',
         screenshots JSONB DEFAULT '[]',
-        status VARCHAR(50) DEFAULT 'published',
-        created_by INTEGER REFERENCES users(id),
-        updated_by INTEGER REFERENCES users(id),
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW()
       );
       
       CREATE INDEX IF NOT EXISTS projects_slug_idx ON projects(slug);
-      CREATE INDEX IF NOT EXISTS projects_category_idx ON projects(category_id);
       CREATE INDEX IF NOT EXISTS projects_published_idx ON projects(published);
-      CREATE INDEX IF NOT EXISTS projects_featured_idx ON projects(featured);
-      CREATE INDEX IF NOT EXISTS projects_status_idx ON projects(status);
     `);
     console.log('✓ Created projects table');
     
