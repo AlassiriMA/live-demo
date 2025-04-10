@@ -133,7 +133,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteBook(id: number): Promise<boolean> {
     const result = await db.delete(books).where(eq(books.id, id));
-    return result.rowCount > 0;
+    return !!result.rowCount && result.rowCount > 0;
   }
 
   async createTransaction(insertTransaction: InsertTransaction): Promise<Transaction> {
@@ -177,7 +177,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteFruitProduct(id: number): Promise<boolean> {
     const result = await db.delete(fruitProducts).where(eq(fruitProducts.id, id));
-    return result.rowCount > 0;
+    return !!result.rowCount && result.rowCount > 0;
   }
 
   async createFruitOrder(insertOrder: InsertFruitOrder): Promise<FruitOrder> {
@@ -269,7 +269,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteDashboard(id: number): Promise<boolean> {
     const result = await db.delete(dashboards).where(eq(dashboards.id, id));
-    return result.rowCount > 0;
+    return !!result.rowCount && result.rowCount > 0;
   }
 
   // CMS - Projects methods
@@ -320,7 +320,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteProject(id: number): Promise<boolean> {
     const result = await db.delete(projects).where(eq(projects.id, id));
-    return result.rowCount > 0;
+    return !!result.rowCount && result.rowCount > 0;
   }
 
   // CMS - Media Library methods
