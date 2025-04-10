@@ -1337,16 +1337,16 @@ export default function ProjectDetailsPage() {
                         technologies={[
                           { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
                           { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
-                          { name: 'Python', icon: 'SiPython', type: 'backend', url: 'https://www.python.org' },
+                          { name: 'Python', icon: 'SiPython', type: 'language', url: 'https://www.python.org' },
                           { name: 'FastAPI', icon: 'SiFastapi', type: 'backend', url: 'https://fastapi.tiangolo.com' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
                           { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
                           { name: 'Redis', icon: 'SiRedis', type: 'database', url: 'https://redis.io' },
-                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' },
-                          { name: 'NGINX', icon: 'SiNginx', type: 'devops', url: 'https://nginx.org' },
-                          { name: 'Pandas', icon: 'SiPandas', type: 'tool', url: 'https://pandas.pydata.org' },
+                          { name: 'TensorFlow', icon: 'SiTensorflow', type: 'tool', url: 'https://www.tensorflow.org' },
                           { name: 'NumPy', icon: 'SiNumpy', type: 'tool', url: 'https://numpy.org' },
-                          { name: 'TradingView', icon: 'SiTradingview', type: 'tool', url: 'https://www.tradingview.com' },
-                          { name: 'GitHub Actions', icon: 'SiGithubactions', type: 'devops', url: 'https://github.com/features/actions' }
+                          { name: 'pandas', icon: 'SiPandas', type: 'tool', url: 'https://pandas.pydata.org' },
+                          { name: 'Plotly', icon: 'SiPlotly', type: 'frontend', url: 'https://plotly.com/javascript/' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' }
                         ]}
                         grouped={true}
                         showLabels={true}
