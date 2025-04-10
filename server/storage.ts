@@ -279,18 +279,33 @@ export class DatabaseStorage implements IStorage {
 
   async getPublishedProjects(): Promise<Project[]> {
     try {
-      // Execute SQL query directly to avoid ORM issues with missing columns
-      const { rows } = await pool.query(`
-        SELECT * FROM projects 
-        WHERE published = true 
-        ORDER BY created_at DESC
-      `);
+      // First try to get projects using ORM
+      const projectsList = await db
+        .select()
+        .from(projects)
+        .where(eq(projects.published, true))
+        .orderBy(desc(projects.createdAt));
       
-      // Return the list of projects
-      return rows;
+      return projectsList;
     } catch (error) {
       console.error("Error in getPublishedProjects:", error);
-      // Return empty array instead of failing
+      
+      try {
+        // As a fallback, execute SQL query directly
+        const result = await db.execute(`
+          SELECT * FROM projects 
+          WHERE published = true 
+          ORDER BY created_at DESC
+        `);
+        
+        if (result.rows) {
+          return result.rows as Project[];
+        }
+      } catch (fallbackError) {
+        console.error("Fallback query also failed:", fallbackError);
+      }
+      
+      // Return empty array if all attempts fail
       return [];
     }
   }

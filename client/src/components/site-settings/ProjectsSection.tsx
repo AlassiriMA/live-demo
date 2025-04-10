@@ -17,7 +17,7 @@ export function ProjectsSection() {
     secondaryColor?: string | null;
     accentColor?: string | null;
     imageUrl?: string | null;
-    tags?: string;
+    tags?: string | string[];
     route?: string;
     published?: boolean;
     featured?: boolean;
@@ -121,7 +121,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
     style: project.style || "Modern",
     accentColor: project.accentColor || "#4F46E5",
     imageUrl: project.imageUrl || "",
-    tags: project.tags ? project.tags.split(',').map((tag: string) => tag.trim()) : []
+    tags: []
   };
 
   // Get actual route to use - prefer route from project if available, then from app info
@@ -177,11 +177,21 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         
         <div className="mt-auto flex justify-between items-center">
           <div className="flex flex-wrap gap-2">
-            {project.tags && project.tags.split(',').slice(0, 3).map((tag: string, idx: number) => (
-              <span key={idx} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
-                {tag.trim()}
-              </span>
-            ))}
+            {project.tags && typeof project.tags === 'string' ? 
+              // If tags is a string (from database), split by comma
+              project.tags.split(',').slice(0, 3).map((tag: string, idx: number) => (
+                <span key={idx} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
+                  {tag.trim()}
+                </span>
+              )) 
+            : 
+              // If tags is already an array (from fallback data)
+              Array.isArray(project.tags) && project.tags.slice(0, 3).map((tag: string, idx: number) => (
+                <span key={idx} className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
+                  {tag}
+                </span>
+              ))
+            }
           </div>
           
           <div className="flex items-center space-x-2">
