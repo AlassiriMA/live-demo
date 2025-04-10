@@ -24,7 +24,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Set up CMS routes
   app.use('/api/auth', authRoutes);
-  app.use('/api/cms/projects', projectRoutes);
+  app.use('/api/projects', projectRoutes); // Make projects directly accessible at /api/projects
   app.use('/api/cms/media', mediaRoutes);
   app.use('/api/settings', settingsRoutes); // Direct route for better accessibility
   

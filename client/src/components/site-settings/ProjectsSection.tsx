@@ -7,6 +7,22 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { apps } from "@/lib/app-data";
 
 export function ProjectsSection() {
+  // Define simplified Project type for display purposes only
+  type DisplayProject = {
+    id: number;
+    name: string;
+    slug: string;
+    description: string;
+    primaryColor?: string | null;
+    secondaryColor?: string | null;
+    accentColor?: string | null;
+    imageUrl?: string | null;
+    tags?: string;
+    route?: string;
+    published?: boolean;
+    featured?: boolean;
+  };
+
   const { data, isLoading, error } = useQuery<{success: boolean, projects: Project[]}>({
     queryKey: ['/api/projects/published'],
     refetchOnWindowFocus: false,
@@ -21,48 +37,28 @@ export function ProjectsSection() {
   if (error) {
     console.error("Error loading projects:", error);
     
-    // Display app-based projects as a fallback when API fails
-    const appProjects = apps.map((app, i) => {
-      // First create a partial object with the correct types
-      const project: Partial<Project> = {
-        id: i + 1,
-        name: app.name,
-        slug: app.id,
-        description: app.description,
-        style: app.style,
-        primaryColor: app.primaryColor,
-        secondaryColor: app.secondaryColor,
-        accentColor: app.accentColor,
-        imageUrl: app.imageUrl,
-        categoryId: 1,
-        tags: app.tags.join(', '),
-        route: app.route,
-        published: true,
-        featured: i < 3,
-        sortOrder: i,
-        detailedContent: app.description,
-        metaTitle: app.name,
-        metaDescription: app.description,
-        features: [],
-        screenshots: [],
-        status: "published",
-        createdBy: null,
-        updatedBy: null,
-        // Use proper Date objects for date fields
-        createdAt: new Date(),
-        updatedAt: new Date()
-      };
-      
-      // Type assertion after creating partial object
-      return project as Project;
-    });
+    // Use simplified project type for fallback display
+    const appProjects: DisplayProject[] = apps.map((app, i) => ({
+      id: i + 1,
+      name: app.name,
+      slug: app.id,
+      description: app.description,
+      primaryColor: app.primaryColor,
+      secondaryColor: app.secondaryColor,
+      accentColor: app.accentColor,
+      imageUrl: app.imageUrl,
+      tags: app.tags.join(', '),
+      route: app.route,
+      published: true,
+      featured: i < 3
+    }));
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {appProjects.map((project, index) => (
           <ProjectCard 
             key={index} 
-            project={project} 
+            project={project as any} 
             index={index} 
           />
         ))}
@@ -92,19 +88,19 @@ export function ProjectsSection() {
   );
 }
 
-function ProjectCard({ project, index }: { project: Project, index: number }) {
+function ProjectCard({ project, index }: { project: any, index: number }) {
   // Find a matching app from our app data or use default values
   const appInfo = apps.find(app => app.id === project.slug) || {
-    id: project.id.toString(),
+    id: project.id?.toString() || "0",
     name: project.name || "Project",
     description: project.description || "",
-    route: `/project/${project.slug}`,
-    primaryColor: "#6366F1",
-    secondaryColor: "#A5B4FC",
-    style: "Modern",
-    accentColor: "#4F46E5",
-    imageUrl: "",
-    tags: project.tags ? project.tags.split(',').map(tag => tag.trim()) : []
+    route: project.route || `/project/${project.slug}`,
+    primaryColor: project.primaryColor || "#6366F1",
+    secondaryColor: project.secondaryColor || "#A5B4FC",
+    style: project.style || "Modern",
+    accentColor: project.accentColor || "#4F46E5",
+    imageUrl: project.imageUrl || "",
+    tags: project.tags ? project.tags.split(',').map((tag: string) => tag.trim()) : []
   };
 
   return (
