@@ -361,15 +361,13 @@ export class DatabaseStorage implements IStorage {
 
   async getProjectBySlug(slug: string): Promise<Project | undefined> {
     try {
-      // Try using Drizzle ORM first
-      const [project] = await db.select().from(projects).where(eq(projects.slug, slug));
-      if (project) {
-        return project;
-      }
-      
-      // Fallback to raw SQL if needed
+      // Use raw SQL to avoid ORM field mapping issues with 'featured' column
       const result = await db.execute(
-        `SELECT * FROM projects WHERE slug = '${slug}' LIMIT 1`
+        `SELECT id, slug, name, description, style, primary_color, secondary_color, 
+        accent_color, image_url, tags, route, published, 
+        detailed_content, features, screenshots, status, 
+        created_at, updated_at
+        FROM projects WHERE slug = '${slug}' LIMIT 1`
       );
       
       if (result.rows && result.rows.length > 0) {
@@ -388,7 +386,7 @@ export class DatabaseStorage implements IStorage {
           tags: row.tags,
           route: row.route,
           published: row.published,
-          featured: row.featured,
+          featured: false, // Default value since this column doesn't exist in the database
           sortOrder: row.sort_order,
           detailedContent: row.detailed_content,
           features: row.features,

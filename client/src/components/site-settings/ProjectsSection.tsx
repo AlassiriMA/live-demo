@@ -190,11 +190,16 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                   alt={`${name} preview`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => {
+                    console.log("Image failed to load:", imageUrl);
                     // If image fails to load, replace with gradient background
                     e.currentTarget.style.display = 'none';
                     e.currentTarget.parentElement?.classList.add('image-fallback');
                   }}
                 />
+                {/* Add a debugging message */}
+                <div className="absolute bottom-0 right-0 bg-black/70 text-white text-xs px-2 py-1 hidden">
+                  {imageUrl}
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
                   <span className="text-white font-medium pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 px-4 py-1 rounded-full text-sm">
                     View Details
