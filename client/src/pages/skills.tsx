@@ -44,7 +44,7 @@ export default function Skills() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl font-bold text-center mb-8">100+ Technologies in My Toolbox</h2>
-              <TechIconsSlider />
+              <TechIconsGrid />
             </motion.div>
           </div>
 
