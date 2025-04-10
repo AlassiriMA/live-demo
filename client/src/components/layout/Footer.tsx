@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { useSiteSettings, getSetting } from "@/hooks/use-site-settings";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { HiMail, HiPhone, HiLocationMarker } from "react-icons/hi";
+import { HiMail, HiPhone, HiLocationMarker, HiDocumentDownload } from "react-icons/hi";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface FooterLink {
@@ -81,13 +81,25 @@ export default function Footer() {
                   </li>
                 ))
               ) : (
-                footerLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link href={link.url}>
-                      {link.text}
-                    </Link>
+                <>
+                  {footerLinks.map((link, index) => (
+                    <li key={index}>
+                      <Link href={link.url}>
+                        {link.text}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <a 
+                      href="/assets/documents/resume.pdf" 
+                      download 
+                      className="flex items-center text-[#6366F1] hover:text-[#4F46E5] transition-colors"
+                    >
+                      <HiDocumentDownload className="mr-1" size={18} />
+                      Download CV
+                    </a>
                   </li>
-                ))
+                </>
               )}
             </ul>
           </div>
