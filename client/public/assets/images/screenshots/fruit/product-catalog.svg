@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FCFAFF" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="#8B5CF6" x="0" y="0" width="800" height="70"></rect>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF" x="30" y="43">
+            Fresh Fruits Market
+        </text>
+        
+        <!-- Navigation -->
+        <rect fill="#A78BFA" x="430" y="20" width="100" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="450" y="40">
+            Home
+        </text>
+        
+        <rect fill="#A78BFA" x="540" y="20" width="100" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="553" y="40">
+            Products
+        </text>
+        
+        <rect fill="#A78BFA" x="650" y="20" width="100" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="670" y="40">
+            Cart
+        </text>
+        
+        <!-- Page Title -->
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#4C1D95" x="40" y="110">
+            Our Fresh Fruits
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6D28D9" x="40" y="135">
+            Handpicked fresh fruits, delivered to your doorstep
+        </text>
+        
+        <!-- Filter Bar -->
+        <rect fill="#F3E8FF" x="40" y="150" width="720" height="50" rx="8"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#7C3AED" x="60" y="180">
+            Filter by:
+        </text>
+        
+        <rect fill="#FFFFFF" x="150" y="160" width="100" height="30" rx="15" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="170" y="180">
+            All Fruits
+        </text>
+        
+        <rect fill="#FFFFFF" x="260" y="160" width="100" height="30" rx="15" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="285" y="180">
+            Citrus
+        </text>
+        
+        <rect fill="#FFFFFF" x="370" y="160" width="100" height="30" rx="15" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="382" y="180">
+            Tropical
+        </text>
+        
+        <rect fill="#FFFFFF" x="480" y="160" width="100" height="30" rx="15" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="500" y="180">
+            Berries
+        </text>
+        
+        <rect fill="#FFFFFF" x="590" y="160" width="150" height="30" rx="15" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="605" y="180">
+            Sort: Price (Low-High)
+        </text>
+        
+        <!-- Product Grid -->
+        <!-- Row 1 -->
+        <rect fill="#FFFFFF" x="40" y="220" width="220" height="250" rx="8" stroke="#E9D5FF" stroke-width="1"></rect>
+        <circle cx="150" cy="300" r="60" fill="#FEF3C7"></circle>
+        <path d="M150,310 C130,310 110,290 120,270 C130,250 180,240 180,270 C180,300 170,310 150,310 Z" fill="#F59E0B"></path>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#4C1D95" x="110" y="380">
+            Mango
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#7C3AED" x="120" y="405">
+            $2.99/lb
+        </text>
+        <rect fill="#8B5CF6" x="80" y="420" width="140" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="115" y="440">
+            Add to Cart
+        </text>
+        
+        <rect fill="#FFFFFF" x="290" y="220" width="220" height="250" rx="8" stroke="#E9D5FF" stroke-width="1"></rect>
+        <circle cx="400" cy="300" r="60" fill="#FEE2E2"></circle>
+        <path d="M400,300 C380,320 420,320 400,300 Z" fill="#059669"></path>
+        <circle cx="400" cy="300" r="55" fill="#EF4444" opacity="0.7"></circle>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#4C1D95" x="355" y="380">
+            Strawberry
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#7C3AED" x="370" y="405">
+            $3.49/lb
+        </text>
+        <rect fill="#8B5CF6" x="330" y="420" width="140" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="365" y="440">
+            Add to Cart
+        </text>
+        
+        <rect fill="#FFFFFF" x="540" y="220" width="220" height="250" rx="8" stroke="#E9D5FF" stroke-width="1"></rect>
+        <circle cx="650" cy="300" r="60" fill="#ECFDF5"></circle>
+        <path d="M650,300 C620,280 610,320 650,310 C690,320 680,280 650,300 Z" fill="#10B981" opacity="0.8"></path>
+        <circle cx="650" cy="300" r="50" fill="#34D399" opacity="0.7"></circle>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#4C1D95" x="615" y="380">
+            Kiwi
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#7C3AED" x="625" y="405">
+            $1.99/lb
+        </text>
+        <rect fill="#8B5CF6" x="580" y="420" width="140" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="615" y="440">
+            Add to Cart
+        </text>
+        
+        <!-- Footer Pagination -->
+        <rect fill="#F3E8FF" x="280" y="490" width="240" height="1"></rect>
+        <circle cx="350" cy="480" r="8" fill="#8B5CF6"></circle>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#8B5CF6" x="350" y="480">
+            1
+        </text>
+        
+        <circle cx="380" cy="480" r="8" fill="#E9D5FF"></circle>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#7C3AED" x="380" y="480">
+            2
+        </text>
+        
+        <circle cx="410" cy="480" r="8" fill="#E9D5FF"></circle>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#7C3AED" x="410" y="480">
+            3
+        </text>
+        
+        <circle cx="440" cy="480" r="8" fill="#E9D5FF"></circle>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#7C3AED" x="440" y="480">
+            4
+        </text>
+    </g>
+</svg>

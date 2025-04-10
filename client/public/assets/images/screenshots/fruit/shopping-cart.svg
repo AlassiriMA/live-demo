@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FCFAFF" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="#8B5CF6" x="0" y="0" width="800" height="70"></rect>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF" x="30" y="43">
+            Fresh Fruits Market
+        </text>
+        
+        <!-- Navigation -->
+        <rect fill="#A78BFA" x="430" y="20" width="100" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="450" y="40">
+            Home
+        </text>
+        
+        <rect fill="#A78BFA" x="540" y="20" width="100" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="553" y="40">
+            Products
+        </text>
+        
+        <rect fill="#7C3AED" x="650" y="20" width="100" height="30" rx="15"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="670" y="40">
+            Cart
+        </text>
+        
+        <!-- Page Title -->
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#4C1D95" x="40" y="110">
+            Your Shopping Cart
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6D28D9" x="40" y="135">
+            Review your items and checkout
+        </text>
+        
+        <!-- Cart Items Section -->
+        <rect fill="#FFFFFF" x="40" y="160" width="460" height="300" rx="8" stroke="#E9D5FF" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#4C1D95" x="60" y="190">
+            Cart Items (4)
+        </text>
+        
+        <!-- Item 1 -->
+        <rect fill="#F3E8FF" x="60" y="210" width="420" height="80" rx="8"></rect>
+        <circle cx="100" cy="250" r="25" fill="#FEF3C7"></circle>
+        <path d="M100,255 C90,255 80,245 85,235 C90,225 115,220 115,235 C115,250 110,255 100,255 Z" fill="#F59E0B"></path>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#4C1D95" x="140" y="240">
+            Mango
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="140" y="260">
+            $2.99/lb × 2.5 lb
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#4C1D95" x="400" y="250">
+            $7.48
+        </text>
+        <rect fill="#FFFFFF" x="320" y="230" width="25" height="25" rx="4" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="328" y="247">
+            -
+        </text>
+        <rect fill="#FFFFFF" x="350" y="230" width="25" height="25" rx="4" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="357" y="247">
+            2
+        </text>
+        <rect fill="#FFFFFF" x="380" y="230" width="25" height="25" rx="4" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="388" y="247">
+            +
+        </text>
+        
+        <!-- Item 2 -->
+        <rect fill="#FFFFFF" x="60" y="300" width="420" height="80" rx="8" stroke="#E9D5FF" stroke-width="1"></rect>
+        <circle cx="100" cy="340" r="25" fill="#FEE2E2"></circle>
+        <circle cx="100" cy="340" r="22" fill="#EF4444" opacity="0.7"></circle>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#4C1D95" x="140" y="330">
+            Strawberry
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="140" y="350">
+            $3.49/lb × 1 lb
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#4C1D95" x="400" y="340">
+            $3.49
+        </text>
+        <rect fill="#FFFFFF" x="320" y="320" width="25" height="25" rx="4" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="328" y="337">
+            -
+        </text>
+        <rect fill="#FFFFFF" x="350" y="320" width="25" height="25" rx="4" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="357" y="337">
+            1
+        </text>
+        <rect fill="#FFFFFF" x="380" y="320" width="25" height="25" rx="4" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#7C3AED" x="388" y="337">
+            +
+        </text>
+        
+        <!-- Item 3 -->
+        <rect fill="#F3E8FF" x="60" y="390" width="420" height="50" rx="8"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#4C1D95" x="140" y="420">
+            More items...
+        </text>
+        
+        <!-- Order Summary Section -->
+        <rect fill="#FFFFFF" x="520" y="160" width="240" height="300" rx="8" stroke="#E9D5FF" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#4C1D95" x="540" y="190">
+            Order Summary
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4C1D95" x="540" y="230">
+            Subtotal
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4C1D95" x="690" y="230">
+            $24.95
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4C1D95" x="540" y="260">
+            Shipping
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4C1D95" x="690" y="260">
+            $5.99
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4C1D95" x="540" y="290">
+            Tax
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4C1D95" x="690" y="290">
+            $2.50
+        </text>
+        
+        <line x1="540" y1="310" x2="740" y2="310" stroke="#E9D5FF" stroke-width="2"></line>
+        
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#4C1D95" x="540" y="340">
+            Total
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#4C1D95" x="690" y="340">
+            $33.44
+        </text>
+        
+        <rect fill="#8B5CF6" x="540" y="370" width="200" height="50" rx="8"></rect>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#FFFFFF" x="590" y="402">
+            Proceed to Checkout
+        </text>
+        
+        <!-- Promo Code -->
+        <rect fill="#F3E8FF" x="40" y="480" width="720" height="50" rx="8"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#7C3AED" x="60" y="513">
+            Have a promo code?
+        </text>
+        <rect fill="#FFFFFF" x="220" y="490" width="200" height="30" rx="4" stroke="#C4B5FD" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#A78BFA" x="230" y="510">
+            Enter code
+        </text>
+        <rect fill="#8B5CF6" x="430" y="490" width="100" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="455" y="510">
+            Apply
+        </text>
+    </g>
+</svg>

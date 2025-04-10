@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { ChevronLeft, ExternalLink, Layers, Code, Calendar, Tag, Star, Eye, ArrowUpRight, Zap, CheckCircle } from "lucide-react";
+import { ChevronLeft, ExternalLink, Download, Layers, Code, Calendar, Clock, Tag, Star, Eye, ArrowUpRight, Zap, Share2, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AnimatedSkeleton } from "@/components/ui/animated-skeleton";
@@ -10,6 +10,8 @@ import { apps } from "@/lib/app-data";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+import { ImageGridGallery } from '@/components/ui/image-grid-gallery';
+import { TechStackGrid } from '@/components/ui/tech-stack-grid';
 
 export default function ProjectDetailsPage() {
   // Get the project slug from URL
