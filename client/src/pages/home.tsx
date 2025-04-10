@@ -416,9 +416,20 @@ export default function Home() {
               >
                 <div className="flex flex-col md:flex-row items-center md:items-start">
                   <div className="w-24 h-24 rounded-full bg-gray-200 overflow-hidden mb-4 md:mb-0 md:mr-6 flex-shrink-0">
-                    <div className="w-full h-full bg-gradient-to-br from-[#6366F1] to-[#EC4899] flex items-center justify-center text-white font-heading font-bold text-2xl">
-                      MA
-                    </div>
+                    <img 
+                      src="/assets/images/profile.jpeg" 
+                      alt="Mohammad Alassiri" 
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback if image fails to load
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.parentElement!.innerHTML = `
+                          <div class="w-full h-full bg-gradient-to-br from-[#6366F1] to-[#EC4899] flex items-center justify-center text-white font-heading font-bold text-2xl">
+                            MA
+                          </div>
+                        `;
+                      }}
+                    />
                   </div>
                   <div className="flex-1">
                     <h2 className="font-heading text-2xl font-bold mb-3 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#EC4899]">
@@ -467,6 +478,34 @@ export default function Home() {
                   Feel free to reach out if you'd like to collaborate, chat about a project, or just want to say hi. 
                   I'm always open to learning new things and collaborating on cool ideas.
                 </p>
+                
+                <div className="mb-6 space-y-3">
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 font-medium">Phone Number</p>
+                      <a href="tel:+31610979730" className="text-gray-800 font-medium">+316 1097 9730</a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3 flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 font-medium">Email Address</p>
+                      <a href="mailto:me@alassiri.nl" className="text-gray-800 font-medium">me@alassiri.nl</a>
+                    </div>
+                  </div>
+                </div>
+                
                 <ContactForm />
               </motion.div>
             </div>

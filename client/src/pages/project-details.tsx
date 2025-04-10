@@ -143,11 +143,11 @@ export default function ProjectDetailsPage() {
         
         <div className="container max-w-6xl mx-auto px-4 relative z-10">
           <button 
-            onClick={() => setLocation('/')} 
+            onClick={() => setLocation('/projects')} 
             className="inline-flex items-center text-white/90 hover:text-white mb-6 transition-colors cursor-pointer"
           >
             <ChevronLeft className="mr-1 h-4 w-4" />
-            Back to Home
+            Back to Projects
           </button>
           
           <motion.div
