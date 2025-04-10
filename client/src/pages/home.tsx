@@ -7,6 +7,16 @@ import TechIconsGrid from "@/components/ui/tech-icons-grid";
 import { apps } from "@/lib/app-data";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { 
+  HeroTitle, 
+  HeroSubtitle, 
+  HeroCtaText, 
+  AboutTitle, 
+  AboutContent, 
+  ContactEmail,
+  ContactPhone,
+  ContactAddress
+} from "@/components/site-settings/HeroContent";
 
 export default function Home() {
   // Add smooth scrolling for anchor links
@@ -50,18 +60,19 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight">
-                Welcome to My Journey<br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">in Tech and Creativity!</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                  <HeroTitle />
+                </span>
               </h1>
               <p className="text-lg text-gray-700 mb-6 max-w-lg">
-                I'm Mohammad, a passionate developer, tinkerer, and builder who loves bringing ideas to life with code. Whether it's creating a sleek e-commerce store or a cutting-edge trading bot, I'm always working on something new, and I'm excited to share it with you.
+                <HeroSubtitle />
               </p>
               <p className="text-lg text-gray-600 mb-8 max-w-lg">
-                Each of my projects is a journey — a chance to learn, grow, and experiment with new ideas. It's not just about writing clean code; it's about creating something meaningful that can make a difference.
+                <AboutContent />
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#apps" className="inline-block bg-[#6366F1] hover:bg-[#4F46E5] text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300">
-                  Explore Apps
+                  <HeroCtaText />
                 </a>
                 <a href="#about-me" className="inline-block bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-md border border-gray-200 transition-all duration-300">
                   Learn More

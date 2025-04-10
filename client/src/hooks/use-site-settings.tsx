@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { getQueryFn } from "../lib/queryClient";
 
 export interface SiteSettings {
   [key: string]: any;
@@ -11,23 +10,25 @@ export interface SiteSettings {
  * @returns The site settings and query status
  */
 export function useSiteSettings(category?: string) {
-  const queryKey = category 
-    ? [`/api/site-settings?category=${category}`] 
-    : ['/api/site-settings'];
-    
-  const { 
-    data, 
-    isLoading, 
-    error 
+  const endpoint = category ? `/api/settings?category=${category}` : "/api/settings";
+  
+  const {
+    data,
+    isLoading,
+    error,
+    refetch,
   } = useQuery<{ success: boolean; settings: SiteSettings }>({
-    queryKey,
-    queryFn: getQueryFn(),
+    queryKey: [endpoint],
+    enabled: true,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
   return {
     settings: data?.settings || {},
     isLoading,
-    error: error as Error | null,
+    error,
+    refetch,
   };
 }
 
@@ -43,8 +44,5 @@ export function getSetting<T>(
   key: string,
   defaultValue?: T
 ): T {
-  if (key in settings) {
-    return settings[key] as T;
-  }
-  return defaultValue as T;
+  return settings[key] !== undefined ? settings[key] : defaultValue;
 }
