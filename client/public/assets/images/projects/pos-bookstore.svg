@@ -1,11 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <rect width="800" height="600" fill="#4F46E5" />
-  <g fill="#fff" transform="translate(250, 225)">
-    <path d="M60,20 L60,220 L260,220 L260,20 L60,20 Z M40,0 L280,0 L280,240 L40,240 L40,0 Z" />
-    <path d="M100,60 L220,60 L220,80 L100,80 L100,60 Z" />
-    <path d="M100,100 L220,100 L220,120 L100,120 L100,100 Z" />
-    <path d="M100,140 L220,140 L220,160 L100,160 L100,140 Z" />
-    <path d="M100,180 L160,180 L160,200 L100,200 L100,180 Z" />
+  <rect width="800" height="600" fill="#3B82F6" />
+  <g transform="translate(200, 100)">
+    <rect x="80" y="50" width="240" height="300" rx="10" fill="white" />
+    <!-- Books on shelf -->
+    <rect x="100" y="90" width="30" height="100" fill="#FFA500" />
+    <rect x="140" y="90" width="30" height="100" fill="#FF6347" />
+    <rect x="180" y="90" width="30" height="100" fill="#20B2AA" />
+    <rect x="220" y="90" width="30" height="100" fill="#9370DB" />
+    <rect x="260" y="90" width="30" height="100" fill="#3CB371" />
+    
+    <!-- Shelf -->
+    <rect x="90" y="190" width="220" height="10" fill="#8B4513" />
+    
+    <!-- Cash register -->
+    <rect x="120" y="220" width="160" height="60" rx="5" fill="#555" />
+    <rect x="130" y="230" width="140" height="30" rx="2" fill="#EEE" />
+    <rect x="150" y="280" width="100" height="40" rx="5" fill="#333" />
+    
+    <!-- Buttons -->
+    <circle cx="170" cy="300" r="8" fill="#FF4500" />
+    <circle cx="200" cy="300" r="8" fill="#4CAF50" />
+    <circle cx="230" cy="300" r="8" fill="#2196F3" />
   </g>
-  <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Bookstore POS System</text>
+  
+  <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">POS Bookstore</text>
 </svg>

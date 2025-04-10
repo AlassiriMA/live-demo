@@ -373,28 +373,26 @@ export class DatabaseStorage implements IStorage {
       if (result.rows && result.rows.length > 0) {
         const row = result.rows[0];
         // Convert field names from snake_case to camelCase
-        return {
-          id: row.id,
-          slug: row.slug,
-          name: row.name,
-          description: row.description,
-          style: row.style,
-          primaryColor: row.primary_color,
-          secondaryColor: row.secondary_color,
-          accentColor: row.accent_color,
-          imageUrl: row.image_url,
-          tags: row.tags,
-          route: row.route,
-          published: row.published,
-          featured: false, // Default value since this column doesn't exist in the database
-          sortOrder: 0, // Default value since this column doesn't exist in the database
-          detailedContent: row.detailed_content || '',
-          features: typeof row.features === 'string' ? JSON.parse(row.features || '[]') : (row.features || []),
-          screenshots: [], // Default value since this column doesn't exist in the database
-          status: 'active', // Default value since this column doesn't exist in the database
-          createdAt: row.created_at,
-          updatedAt: row.updated_at
-        } as Project;
+        // Convert the row to a properly typed Project object
+        const project: Project = {
+          id: Number(row.id),
+          slug: String(row.slug),
+          name: String(row.name),
+          description: String(row.description),
+          style: row.style ? String(row.style) : null,
+          primaryColor: row.primary_color ? String(row.primary_color) : null,
+          secondaryColor: row.secondary_color ? String(row.secondary_color) : null,
+          accentColor: row.accent_color ? String(row.accent_color) : null,
+          imageUrl: row.image_url ? String(row.image_url) : null,
+          tags: row.tags ? String(row.tags) : '',
+          route: row.route ? String(row.route) : null,
+          published: Boolean(row.published),
+          detailedContent: row.detailed_content ? String(row.detailed_content) : '',
+          createdAt: row.created_at ? new Date(row.created_at) : null,
+          updatedAt: row.updated_at ? new Date(row.updated_at) : null
+        };
+        
+        return project;
       }
       return undefined;
     } catch (error) {
