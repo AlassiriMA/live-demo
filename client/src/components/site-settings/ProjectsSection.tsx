@@ -132,18 +132,20 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
     }
     
     return tagsToRender.map((tag, idx) => {
-      // Generate slightly different pastel colors for each tag
-      const hues = [342, 360, 280, 220, 180, 160];
-      const hue = hues[idx % hues.length];
+      // Create a consistent but varied hash color based on tag content
+      const tagHash = tag.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      const hue = (tagHash % 360);
       
       return (
         <span 
           key={idx} 
-          className="text-xs px-3 py-1 rounded-full text-white font-medium shadow-sm"
+          className="text-xs px-3 py-1 rounded-full font-medium shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
           style={{ 
-            backgroundColor: `hsla(${hue}, 80%, 60%, 0.85)`,
+            backgroundColor: `hsla(${hue}, 85%, 95%, 1)`,
             backdropFilter: 'blur(4px)',
-            boxShadow: `0 2px 5px hsla(${hue}, 80%, 40%, 0.2)`
+            color: `hsl(${hue}, 70%, 40%)`,
+            border: `1px solid hsla(${hue}, 70%, 70%, 0.3)`,
+            boxShadow: `0 2px 5px hsla(${hue}, 60%, 50%, 0.1)`
           }}
         >
           {tag}
@@ -156,6 +158,8 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
   const name = project.name || (matchingApp?.name || "Project");
   const description = project.description || (matchingApp?.description || "");
   const primaryColor = project.primaryColor || (matchingApp?.primaryColor || "#6366F1");
+  const secondaryColor = project.secondaryColor || (matchingApp?.secondaryColor || "#4F46E5");
+  const accentColor = project.accentColor || (matchingApp?.accentColor || "#818cf8");
   const imageUrl = project.imageUrl || (matchingApp?.imageUrl || "");
   const slug = project.slug || matchingApp?.id || `project-${index}`;
   
@@ -174,36 +178,38 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
       className="flex flex-col h-full"
     >
       <div 
-        className="bg-white/90 backdrop-blur-sm rounded-xl shadow-md border border-gray-100 p-6 flex flex-col h-full hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+        className="group relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100 flex flex-col h-full hover:shadow-xl transition-all duration-500 hover:translate-y-[-5px]"
         style={{ 
-          borderTopColor: primaryColor, 
-          borderTopWidth: '4px',
-          background: `linear-gradient(to bottom right, white, ${primaryColor}10)`,
-          boxShadow: `0 10px 25px -5px ${primaryColor}20`
+          boxShadow: `0 10px 40px -12px ${primaryColor}30`
         }}
       >
+        {/* Accent top border with gradient */}
+        <div 
+          className="absolute top-0 inset-x-0 h-1.5 rounded-t-2xl z-10 overflow-hidden"
+          style={{
+            background: `linear-gradient(to right, ${primaryColor}, ${secondaryColor}, ${accentColor})`
+          }}
+        />
+        
         {/* Project Image - Show placeholder gradient background if image not available */}
         <Link href={detailRoute}>
-          <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100 shadow-inner relative group cursor-pointer">
+          <div className="overflow-hidden rounded-t-2xl h-48 relative group cursor-pointer">
             {imageUrl ? (
               <>
                 <img 
                   src={imageUrl} 
                   alt={`${name} preview`}
-                  className="project-card-image transition-all duration-500 group-hover:scale-105"
-                  style={{
-                    filter: 'drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07))'
-                  }}
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:saturate-[1.15]"
                   onError={(e) => {
                     console.log("Image failed to load:", imageUrl);
-                    // If image fails to load, replace with gradient background
                     e.currentTarget.style.display = 'none';
                     e.currentTarget.parentElement?.classList.add('image-fallback');
                   }}
                 />
-                {/* Remove debugging message */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center">
-                  <span className="text-white font-medium mb-6 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-sm px-5 py-2 rounded-full text-sm transform translate-y-4 group-hover:translate-y-0">
+                <div 
+                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4"
+                >
+                  <span className="text-white font-medium px-4 py-2 rounded-full text-sm bg-black/50 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform translate-y-2 group-hover:translate-y-0">
                     View Project Details
                   </span>
                 </div>
@@ -212,63 +218,66 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
               <div 
                 className="w-full h-full flex items-center justify-center"
                 style={{ 
-                  background: `linear-gradient(135deg, ${primaryColor}40, ${primaryColor}90)`,
+                  background: `linear-gradient(135deg, ${primaryColor}50, ${secondaryColor}80)`,
                 }}
               >
                 <div className="text-white text-center p-4">
                   <div className="text-3xl mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 mx-auto opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                     </svg>
                   </div>
-                  <div className="font-medium">View Details</div>
+                  <div className="font-medium text-white/90">View Details</div>
                 </div>
               </div>
             )}
           </div>
         </Link>
         
-        <div className="flex items-center mb-4">
-          <Link href={detailRoute}>
-            <div 
-              className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-white cursor-pointer transform transition-transform hover:scale-110 hover:shadow-md"
-              style={{ backgroundColor: primaryColor }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-            </div>
-          </Link>
-          <Link href={detailRoute}>
-            <h3 className="font-heading text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors cursor-pointer">
-              {name}
-            </h3>
-          </Link>
-        </div>
-        
-        <p className="text-gray-600 text-sm mb-4 flex-grow">
-          {description ? 
-            (description.length > 120 ? 
-              `${description.substring(0, 120)}...` : 
-              description
-            ) : 
-            "No description available"
-          }
-        </p>
-        
-        <div className="mt-auto flex justify-between items-center">
-          <div className="flex flex-wrap gap-2">
+        <div className="p-6 flex-1 flex flex-col">
+          <div className="flex items-start mb-3">
+            <Link href={detailRoute} className="mr-4">
+              <div 
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-white shadow-md transform transition-all group-hover:scale-110 group-hover:rotate-3 duration-500"
+                style={{ 
+                  background: `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`,
+                  boxShadow: `0 4px 10px -2px ${primaryColor}50`,
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+            </Link>
+            <Link href={detailRoute}>
+              <h3 className="font-heading text-lg font-bold text-gray-800 group-hover:text-primary transition-colors duration-300 leading-tight">
+                {name}
+              </h3>
+            </Link>
+          </div>
+          
+          <p className="text-gray-600 text-sm leading-relaxed mb-5 flex-grow">
+            {description ? 
+              (description.length > 110 ? 
+                `${description.substring(0, 110)}...` : 
+                description
+              ) : 
+              "No description available"
+            }
+          </p>
+          
+          <div className="flex flex-wrap gap-2 mb-5">
             {renderTags()}
           </div>
           
-          <div className="flex items-center space-x-3">
+          <div className="mt-auto flex items-center gap-3 pt-1">
             {/* Details Link */}
             <Link 
               href={detailRoute} 
-              className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+              className="inline-flex items-center text-sm font-medium px-4 py-2 rounded-md bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100 hover:border-gray-300 hover:shadow-sm transition-all duration-200"
             >
               Details
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 ml-1.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </Link>
@@ -276,15 +285,15 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             {/* Live Demo Link */}
             <Link 
               href={demoRoute} 
-              className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+              className="flex-1 inline-flex items-center justify-center text-sm font-medium px-4 py-2 rounded-md shadow-sm transition-all duration-200"
               style={{
-                backgroundColor: `${primaryColor}15`,
-                color: primaryColor,
-                boxShadow: `0 2px 4px ${primaryColor}20`
+                background: `linear-gradient(to right, ${primaryColor}, ${secondaryColor})`,
+                color: 'white',
+                boxShadow: `0 4px 10px -3px ${primaryColor}40`
               }}
             >
-              Demo
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              Live Demo
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </Link>
@@ -301,8 +310,11 @@ function ProjectsSkeletonGrid() {
       {Array(6).fill(0).map((_, i) => (
         <div 
           key={i} 
-          className="bg-white rounded-xl shadow-md border border-gray-100 p-6 relative overflow-hidden"
+          className="relative bg-white/90 rounded-2xl shadow-lg border border-gray-100 flex flex-col h-full overflow-hidden"
         >
+          {/* Top colored border */}
+          <div className="absolute top-0 inset-x-0 h-1.5 rounded-t-2xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 z-10" />
+          
           {/* Wrapper with shimmer effect */}
           <AnimatedSkeleton 
             animation="combined" 
@@ -315,80 +327,91 @@ function ProjectsSkeletonGrid() {
           <AnimatedSkeleton
             size="custom"
             animation="shimmer"
-            className="w-full h-40 rounded-lg mb-4"
+            className="w-full h-48 rounded-t-2xl"
             delay={i * 0.15}
           />
           
-          {/* Title and icon area */}
-          <div className="flex items-center mb-4">
-            <AnimatedSkeleton
-              size="custom"
-              animation="pulse"
-              className="w-12 h-12 rounded-lg mr-4"
-              delay={i * 0.2}
-            />
-            <AnimatedSkeleton
-              size="md" 
-              width="8rem"
-              animation="pulse"
-              delay={i * 0.2}
-            />
-          </div>
-          
-          {/* Description lines */}
-          <div className="mb-4">
-            <AnimatedSkeleton
-              size="sm"
-              fullWidth
-              className="mb-2"
-              animation="wave"
-              delay={i * 0.25}
-            />
-            <AnimatedSkeleton
-              size="sm"
-              fullWidth
-              className="mb-2"
-              animation="wave"
-              delay={i * 0.3}
-            />
-            <AnimatedSkeleton
-              size="sm"
-              width="75%"
-              animation="wave"
-              delay={i * 0.35}
-            />
-          </div>
-          
-          {/* Tags and buttons */}
-          <div className="flex justify-between items-center">
-            <div className="flex gap-2">
+          <div className="p-6 flex-1 flex flex-col">
+            {/* Title and icon area */}
+            <div className="flex items-start mb-3">
               <AnimatedSkeleton
-                size="md"
+                size="custom"
+                animation="pulse"
+                className="w-10 h-10 rounded-lg mr-4"
+                delay={i * 0.2}
+              />
+              <AnimatedSkeleton
+                size="md" 
+                width="8rem"
+                animation="pulse"
+                delay={i * 0.2}
+              />
+            </div>
+            
+            {/* Description lines */}
+            <div className="mb-5">
+              <AnimatedSkeleton
+                size="sm"
+                fullWidth
+                className="mb-2"
+                animation="wave"
+                delay={i * 0.25}
+              />
+              <AnimatedSkeleton
+                size="sm"
+                fullWidth
+                className="mb-2"
+                animation="wave"
+                delay={i * 0.3}
+              />
+              <AnimatedSkeleton
+                size="sm"
+                width="75%"
+                animation="wave"
+                delay={i * 0.35}
+              />
+            </div>
+            
+            {/* Tags */}
+            <div className="flex gap-2 mb-5">
+              <AnimatedSkeleton
+                size="sm"
                 rounded="full"
                 width="4rem"
                 animation="pulse"
                 delay={i * 0.4}
               />
               <AnimatedSkeleton
-                size="md"
+                size="sm"
                 rounded="full"
                 width="4rem"
                 animation="pulse"
                 delay={i * 0.45}
               />
-            </div>
-            <div className="flex space-x-2">
               <AnimatedSkeleton
-                size="lg"
-                width="5rem"
+                size="sm"
+                rounded="full"
+                width="4rem"
                 animation="pulse"
                 delay={i * 0.5}
               />
+            </div>
+            
+            {/* Action buttons */}
+            <div className="mt-auto flex items-center gap-3 pt-1">
               <AnimatedSkeleton
-                size="lg"
-                width="4rem"
+                size="md"
+                width="5rem"
                 animation="pulse"
+                className="rounded-md"
                 delay={i * 0.55}
+              />
+              <AnimatedSkeleton
+                size="md"
+                fullWidth
+                animation="pulse"
+                className="rounded-md"
+                delay={i * 0.6}
               />
             </div>
           </div>

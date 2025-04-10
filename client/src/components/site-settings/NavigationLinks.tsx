@@ -81,10 +81,14 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
               <Link 
                 key={index}
                 href={`/${link.url}`} 
-                className={`nav-link ${isMobile ? 'block py-3' : ''}`}
+                className={`nav-link relative ${isMobile ? 'block py-3 text-lg font-medium px-2' : ''} group font-medium overflow-hidden`}
                 onClick={onItemClick}
               >
-                {link.text}
+                <span className="relative z-10">
+                  {link.text}
+                  <span className="hidden lg:inline-block ml-1 text-primary/70 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
+                </span>
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/40 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
               </Link>
             );
           } else {
@@ -92,10 +96,14 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
               <a 
                 key={index}
                 href={link.url} 
-                className={`nav-link ${isMobile ? 'block py-3' : ''}`}
+                className={`nav-link relative ${isMobile ? 'block py-3 text-lg font-medium px-2' : ''} group font-medium overflow-hidden`}
                 onClick={onItemClick}
               >
-                {link.text}
+                <span className="relative z-10">
+                  {link.text}
+                  <span className="hidden lg:inline-block ml-1 text-primary/70 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
+                </span>
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/40 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
               </a>
             );
           }
@@ -106,10 +114,14 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
           <Link 
             key={index}
             href={link.url} 
-            className={`nav-link ${isMobile ? 'block py-3' : ''}`}
+            className={`nav-link relative ${isMobile ? 'block py-3 text-lg font-medium px-2' : ''} group font-medium overflow-hidden`}
             onClick={onItemClick}
           >
-            {link.text}
+            <span className="relative z-10">
+              {link.text}
+              <span className="hidden lg:inline-block ml-1 text-primary/70 opacity-0 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
+            </span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/40 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
           </Link>
         );
       })}
