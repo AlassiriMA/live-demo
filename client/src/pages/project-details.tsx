@@ -412,20 +412,131 @@ export default function ProjectDetailsPage() {
                 <ImageGridGallery 
                   images={[
                     {
-                      src: "/assets/images/screenshots/fruit/product-catalog.svg",
+                      src: "/assets/images/screenshots/fruits/product-catalog.svg",
                       alt: "Fruit Store Product Catalog",
                       caption: "Browse our selection of fresh fruits with filtering options"
                     },
                     {
-                      src: "/assets/images/screenshots/fruit/shopping-cart.svg",
+                      src: "/assets/images/screenshots/fruits/shopping-cart.svg",
                       alt: "Fruit Store Shopping Cart",
                       caption: "Review your cart and checkout"
+                    },
+                    {
+                      src: "/assets/images/screenshots/fruits/product-detail.svg",
+                      alt: "Fruit Product Detail",
+                      caption: "Detailed product information with nutritional facts"
+                    },
+                    {
+                      src: "/assets/images/screenshots/fruits/checkout.svg",
+                      alt: "Checkout Process",
+                      caption: "Secure and streamlined checkout experience"
                     }
                   ]}
                   aspectRatio="wide"
                   columns={2}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* Fruit Store Tech Stack */}
+              {(project.slug === 'fruit-store' || project.id === 2) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
+                          { name: 'Express', icon: 'SiExpress', type: 'backend', url: 'https://expressjs.com' },
+                          { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
+                          { name: 'Stripe', icon: 'SiStripe', type: 'tool', url: 'https://stripe.com' },
+                          { name: 'Framer Motion', icon: 'SiFramer', type: 'frontend', url: 'https://www.framer.com/motion' },
+                          { name: 'TailwindCSS', icon: 'SiTailwindcss', type: 'frontend', url: 'https://tailwindcss.com' },
+                          { name: 'Redux Toolkit', icon: 'SiRedux', type: 'frontend', url: 'https://redux-toolkit.js.org' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' },
+                          { name: 'Zod', icon: 'SiZotero', type: 'tool', url: 'https://zod.dev' },
+                          { name: 'Mapbox', icon: 'SiMapbox', type: 'tool', url: 'https://www.mapbox.com' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">E-Commerce Features</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li><span className="font-medium">Product management system</span> with seasonal inventory and advanced categorization</li>
+                          <li><span className="font-medium">Dynamic pricing</span> based on freshness, seasonality, and market demand</li>
+                          <li><span className="font-medium">Secure payment processing</span> via Stripe with multiple payment methods</li>
+                          <li><span className="font-medium">Delivery scheduling</span> with real-time tracking and delivery windows</li>
+                          <li><span className="font-medium">Customer account management</span> with purchase history and favorite items</li>
+                          <li><span className="font-medium">Subscription boxes</span> for regular delivery of seasonal fruit selections</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">User Experience Features</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-green-50 p-4 rounded-md">
+                          <h5 className="font-medium text-green-700 mb-2">Product Presentation</h5>
+                          <p className="text-sm text-gray-700">Interactive 3D fruit visualization with nutritional information and origin details.</p>
+                        </div>
+                        <div className="bg-yellow-50 p-4 rounded-md">
+                          <h5 className="font-medium text-yellow-700 mb-2">Recipe Suggestions</h5>
+                          <p className="text-sm text-gray-700">AI-powered recipe recommendations based on selected fruits with customizable preferences.</p>
+                        </div>
+                        <div className="bg-red-50 p-4 rounded-md">
+                          <h5 className="font-medium text-red-700 mb-2">Freshness Guarantee</h5>
+                          <p className="text-sm text-gray-700">Real-time freshness tracking with satisfaction guarantee and automatic refunds if needed.</p>
+                        </div>
+                        <div className="bg-lime-50 p-4 rounded-md">
+                          <h5 className="font-medium text-lime-700 mb-2">Farm Connections</h5>
+                          <p className="text-sm text-gray-700">Direct connection to source farms with stories and sustainable farming practices.</p>
+                        </div>
+                        <div className="bg-emerald-50 p-4 rounded-md">
+                          <h5 className="font-medium text-emerald-700 mb-2">Eco Packaging</h5>
+                          <p className="text-sm text-gray-700">Customizable eco-friendly packaging options with carbon footprint tracking.</p>
+                        </div>
+                        <div className="bg-orange-50 p-4 rounded-md">
+                          <h5 className="font-medium text-orange-700 mb-2">Loyalty Program</h5>
+                          <p className="text-sm text-gray-700">Points-based rewards system with seasonal challenges and exclusive discounts.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Technical Implementation</h4>
+                      <div className="bg-indigo-50 p-4 rounded-md">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="font-medium text-indigo-900 mb-2">Frontend Architecture</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>Component-based architecture with Atomic Design principles</li>
+                              <li>Global state management with Redux Toolkit and RTK Query</li>
+                              <li>Responsive design with mobile-first approach</li>
+                              <li>Advanced animations using Framer Motion for micro-interactions</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="font-medium text-indigo-900 mb-2">Backend Services</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>RESTful API with comprehensive documentation</li>
+                              <li>Real-time inventory updates with WebSockets</li>
+                              <li>Automated email notifications for order status</li>
+                              <li>Caching layer for product catalog with Redis</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* Marketing Agency Screenshots */}
@@ -438,15 +549,126 @@ export default function ProjectDetailsPage() {
                       caption: "AI-powered chatbot for lead generation"
                     },
                     {
-                      src: "/assets/images/placeholder-image.svg",
+                      src: "/assets/images/screenshots/marketing/analytics.svg",
                       alt: "Marketing Analytics Dashboard",
-                      caption: "Comprehensive analytics tracking"
+                      caption: "Comprehensive campaign performance tracking"
+                    },
+                    {
+                      src: "/assets/images/screenshots/marketing/leads.svg",
+                      alt: "Lead Management",
+                      caption: "Centralized lead tracking and nurturing system"
+                    },
+                    {
+                      src: "/assets/images/screenshots/marketing/content.svg",
+                      alt: "Content Calendar",
+                      caption: "Integrated content planning and publishing"
                     }
                   ]}
                   aspectRatio="wide"
                   columns={2}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* Marketing Agency Tech Stack */}
+              {(project.slug === 'marketing-agency' || project.id === 3) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
+                          { name: 'Express', icon: 'SiExpress', type: 'backend', url: 'https://expressjs.com' },
+                          { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
+                          { name: 'OpenAI API', icon: 'SiOpenai', type: 'tool', url: 'https://openai.com/api' },
+                          { name: 'Framer Motion', icon: 'SiFramer', type: 'frontend', url: 'https://www.framer.com/motion' },
+                          { name: 'Tailwind CSS', icon: 'SiTailwindcss', type: 'frontend', url: 'https://tailwindcss.com' },
+                          { name: 'SendGrid', icon: 'SiMailgun', type: 'tool', url: 'https://sendgrid.com' },
+                          { name: 'Twilio', icon: 'SiTwilio', type: 'tool', url: 'https://www.twilio.com' },
+                          { name: 'Google Analytics', icon: 'SiGoogleanalytics', type: 'tool', url: 'https://analytics.google.com' },
+                          { name: 'HubSpot', icon: 'SiHubspot', type: 'tool', url: 'https://www.hubspot.com' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">AI-Powered Marketing Features</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li><span className="font-medium">Intelligent Chatbot</span> built with OpenAI GPT for personalized lead qualification</li>
+                          <li><span className="font-medium">Automated content generation</span> for social media, blogs, and email campaigns</li>
+                          <li><span className="font-medium">Predictive analytics</span> for campaign performance forecasting</li>
+                          <li><span className="font-medium">Customer segmentation</span> with ML-based behavioral analysis</li>
+                          <li><span className="font-medium">Voice and sentiment analysis</span> for customer feedback processing</li>
+                          <li><span className="font-medium">Multi-channel attribution modeling</span> with advanced analytics integration</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Agency Platform Modules</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-purple-50 p-4 rounded-md">
+                          <h5 className="font-medium text-purple-700 mb-2">Campaign Management</h5>
+                          <p className="text-sm text-gray-700">End-to-end campaign planning, execution, and performance tracking across channels.</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">Client Portal</h5>
+                          <p className="text-sm text-gray-700">Branded client dashboards with real-time reporting and approval workflows.</p>
+                        </div>
+                        <div className="bg-pink-50 p-4 rounded-md">
+                          <h5 className="font-medium text-pink-700 mb-2">Social Media Suite</h5>
+                          <p className="text-sm text-gray-700">Content scheduling, engagement monitoring, and performance analytics across platforms.</p>
+                        </div>
+                        <div className="bg-amber-50 p-4 rounded-md">
+                          <h5 className="font-medium text-amber-700 mb-2">Email Marketing</h5>
+                          <p className="text-sm text-gray-700">Automated campaigns with A/B testing, personalization, and engagement tracking.</p>
+                        </div>
+                        <div className="bg-emerald-50 p-4 rounded-md">
+                          <h5 className="font-medium text-emerald-700 mb-2">SEO Tools</h5>
+                          <p className="text-sm text-gray-700">Keyword research, on-page optimization suggestions, and ranking monitoring.</p>
+                        </div>
+                        <div className="bg-indigo-50 p-4 rounded-md">
+                          <h5 className="font-medium text-indigo-700 mb-2">Asset Management</h5>
+                          <p className="text-sm text-gray-700">Centralized digital asset library with version control and usage analytics.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">UI/UX Design Highlights</h4>
+                      <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-md">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="font-medium text-purple-900 mb-2">Visual Design</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>Glassmorphic UI elements with subtle backdrop blur effects</li>
+                              <li>Dynamic color scheme adaptation based on client branding</li>
+                              <li>Micro-interactions with subtle animation cues</li>
+                              <li>Custom icon system with consistent visual language</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="font-medium text-blue-900 mb-2">User Experience</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>Intuitive drag-and-drop interfaces for content creation</li>
+                              <li>Progressive disclosure of complex features</li>
+                              <li>Contextual help system with AI-powered suggestions</li>
+                              <li>Personalized dashboards based on user role and behavior</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* POS Bookstore Screenshots */}
@@ -615,6 +837,107 @@ export default function ProjectDetailsPage() {
                   columns={2}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* BI Dashboard Tech Stack */}
+              {(project.slug === 'bi-dashboard' || project.id === 4) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
+                          { name: 'Express', icon: 'SiExpress', type: 'backend', url: 'https://expressjs.com' },
+                          { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
+                          { name: 'D3.js', icon: 'SiD3Dotjs', type: 'frontend', url: 'https://d3js.org' },
+                          { name: 'Recharts', icon: 'SiD3Dotjs', type: 'frontend', url: 'https://recharts.org' },
+                          { name: 'ApexCharts', icon: 'SiApache', type: 'frontend', url: 'https://apexcharts.com' },
+                          { name: 'GraphQL', icon: 'SiGraphql', type: 'backend', url: 'https://graphql.org' },
+                          { name: 'Apollo', icon: 'SiApollographql', type: 'backend', url: 'https://www.apollographql.com' },
+                          { name: 'Redis', icon: 'SiRedis', type: 'database', url: 'https://redis.io' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Data Visualization Features</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li><span className="font-medium">Interactive dashboards</span> with real-time data refresh capabilities</li>
+                          <li><span className="font-medium">Advanced chart types</span> including heatmaps, network graphs, and Sankey diagrams</li>
+                          <li><span className="font-medium">Dynamic filtering</span> with cross-chart interactions and synchronized views</li>
+                          <li><span className="font-medium">Drill-down exploration</span> with hierarchical data navigation</li>
+                          <li><span className="font-medium">Custom visualization builder</span> with drag-and-drop interface</li>
+                          <li><span className="font-medium">Geospatial analytics</span> with custom map overlays and region-based insights</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Data Integration Modules</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">Data Connectors</h5>
+                          <p className="text-sm text-gray-700">Plug-and-play connectors for database systems, APIs, and file-based sources with automatic schema detection.</p>
+                        </div>
+                        <div className="bg-teal-50 p-4 rounded-md">
+                          <h5 className="font-medium text-teal-700 mb-2">ETL Pipeline</h5>
+                          <p className="text-sm text-gray-700">Configurable extraction, transformation, and loading workflows with scheduling and monitoring.</p>
+                        </div>
+                        <div className="bg-amber-50 p-4 rounded-md">
+                          <h5 className="font-medium text-amber-700 mb-2">Data Cleansing</h5>
+                          <p className="text-sm text-gray-700">Automated data quality checks with outlier detection, missing value handling, and consistency validation.</p>
+                        </div>
+                        <div className="bg-emerald-50 p-4 rounded-md">
+                          <h5 className="font-medium text-emerald-700 mb-2">Data Modeling</h5>
+                          <p className="text-sm text-gray-700">Visual data model designer with relationship mapping and dimensional modeling support.</p>
+                        </div>
+                        <div className="bg-indigo-50 p-4 rounded-md">
+                          <h5 className="font-medium text-indigo-700 mb-2">Real-time Feeds</h5>
+                          <p className="text-sm text-gray-700">WebSocket-based streaming data integration for live dashboards and alerts.</p>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-md">
+                          <h5 className="font-medium text-purple-700 mb-2">Data Catalog</h5>
+                          <p className="text-sm text-gray-700">Searchable metadata repository with data lineage tracking and business glossary.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Advanced Analytics</h4>
+                      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-md">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="font-medium text-blue-900 mb-2">Statistical Analysis</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>Descriptive statistics with distribution analysis</li>
+                              <li>Correlation and regression modeling</li>
+                              <li>Time series forecasting with seasonal decomposition</li>
+                              <li>Anomaly detection with configurable thresholds</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="font-medium text-purple-900 mb-2">Machine Learning</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>Automated ML model training for classification and regression</li>
+                              <li>Clustering and segmentation with visualization</li>
+                              <li>Natural language processing for text analytics</li>
+                              <li>Model performance monitoring and retraining</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* English AI Tutor Screenshots */}
