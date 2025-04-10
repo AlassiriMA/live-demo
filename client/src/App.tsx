@@ -56,6 +56,7 @@ function Router() {
       <Route path="/english-ai" component={EnglishAI} />
       <Route path="/beauty" component={Beauty} />
       <Route path="/reddit" component={Reddit} />
+      <Route path="/particles" component={ParticlesDemo} />
       
       {/* Portfolio information pages */}
       <Route path="/skills" component={Skills} />

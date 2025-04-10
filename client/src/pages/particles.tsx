@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import AppShell from '@/components/layout/AppShell';
-import ParticleBackground from '@/components/ui/particle-background';
+import ParticleBackground, { ParticleBackgroundProps } from '@/components/ui/particle-background';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
 // Define preset configurations
-const presetConfigs = [
+const presetConfigs: Array<{
+  name: string;
+  description: string;
+  config: ParticleBackgroundProps;
+}> = [
   {
     name: 'Cosmic Nebula',
     description: 'A dreamy purple cosmos with flowing particles',
@@ -20,14 +24,14 @@ const presetConfigs = [
       blur: true,
       shape: 'circle',
       connectParticles: true,
-    }
+    } as ParticleBackgroundProps
   },
   {
     name: 'Digital Rain',
     description: 'Matrix-style falling green particles',
     config: {
       count: 150,
-      colorScheme: 'green',
+      colorScheme: 'green' as 'green',
       speed: 'fast',
       density: 'high',
       interactive: false,
@@ -42,7 +46,7 @@ const presetConfigs = [
     description: 'Warm orange particles that react to your movement',
     config: {
       count: 60,
-      colorScheme: 'orange',
+      colorScheme: 'orange' as 'orange',
       speed: 'medium',
       density: 'low',
       interactive: true,
