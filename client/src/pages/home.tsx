@@ -65,12 +65,12 @@ export default function Home() {
                   <HeroTitle />
                 </span>
               </h1>
-              <p className="text-lg text-gray-700 mb-6 max-w-lg">
+              <div className="text-lg text-gray-700 mb-6 max-w-lg">
                 <HeroSubtitle />
-              </p>
-              <p className="text-lg text-gray-600 mb-8 max-w-lg">
+              </div>
+              <div className="text-lg text-gray-600 mb-8 max-w-lg">
                 <AboutContent />
-              </p>
+              </div>
               <div className="flex flex-wrap gap-4">
                 <a href="#apps" className="inline-block bg-[#6366F1] hover:bg-[#4F46E5] text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300">
                   <HeroCtaText />
