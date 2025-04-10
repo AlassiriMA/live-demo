@@ -1,41 +1,54 @@
-import { db } from '../server/db';
-import { users } from '../shared/schema';
 import bcrypt from 'bcryptjs';
+import { Pool, neonConfig } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-serverless';
+import { users, insertUserSchema, type InsertUser } from '../shared/schema';
 import { eq } from 'drizzle-orm';
+import ws from 'ws';
+
+// Configure neon connection for WebSockets
+neonConfig.webSocketConstructor = ws;
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const db = drizzle(pool);
 
 async function seedAdmin() {
-  try {
-    console.log('Checking if admin user exists...');
-    
-    // Check if admin user already exists
-    const adminUsers = await db.select().from(users).where(eq(users.username, 'admin'));
-    
-    if (adminUsers.length > 0) {
-      console.log('Admin user already exists, skipping creation');
-      return;
-    }
-    
-    console.log('Creating admin user...');
-    
-    // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash('admin123', salt);
-    
-    // Insert admin user
-    const [newAdmin] = await db.insert(users).values({
+  console.log('Checking if admin user exists...');
+  
+  // Check if admin user already exists
+  const existingAdmin = await db.select()
+    .from(users)
+    .where(eq(users.username, 'admin'))
+    .execute();
+  
+  if (existingAdmin.length > 0) {
+    console.log('Admin user already exists');
+    await pool.end();
+    return;
+  }
+  
+  // Create admin user
+  console.log('Creating admin user...');
+  
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash('admin123', salt);
+  
+  // Insert admin user
+  await db.insert(users)
+    .values({
       username: 'admin',
       password: hashedPassword,
       role: 'admin'
-    }).returning();
-    
-    console.log('Admin user created successfully:', { id: newAdmin.id, username: newAdmin.username, role: newAdmin.role });
-  } catch (error) {
-    console.error('Error seeding admin user:', error);
-  } finally {
-    // Close the connection
-    process.exit(0);
-  }
+    })
+    .execute();
+  
+  console.log('Admin user created successfully!');
+  console.log('Username: admin');
+  console.log('Password: admin123');
+  
+  await pool.end();
 }
 
-// Run the seeding function
-seedAdmin();
+seedAdmin().catch(error => {
+  console.error('Error seeding admin user:', error);
+  process.exit(1);
+});
