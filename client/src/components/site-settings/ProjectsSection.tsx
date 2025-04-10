@@ -174,23 +174,46 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
           background: `linear-gradient(to bottom right, white, ${primaryColor}05)`
         }}
       >
-        {/* Project Image - Show if available and make clickable */}
-        {imageUrl && (
-          <Link href={route}>
-            <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100 shadow-inner relative group cursor-pointer">
-              <img 
-                src={imageUrl} 
-                alt={`${name} preview`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
-                <span className="text-white font-medium pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 px-4 py-1 rounded-full text-sm">
-                  View Demo
-                </span>
+        {/* Project Image - Show placeholder gradient background if image not available */}
+        <Link href={route}>
+          <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100 shadow-inner relative group cursor-pointer">
+            {imageUrl ? (
+              <>
+                <img 
+                  src={imageUrl} 
+                  alt={`${name} preview`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    // If image fails to load, replace with gradient background
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement?.classList.add('image-fallback');
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
+                  <span className="text-white font-medium pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 px-4 py-1 rounded-full text-sm">
+                    View Demo
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div 
+                className="w-full h-full flex items-center justify-center"
+                style={{ 
+                  background: `linear-gradient(135deg, ${primaryColor}40, ${primaryColor}90)`,
+                }}
+              >
+                <div className="text-white text-center p-4">
+                  <div className="text-3xl mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                  </div>
+                  <div className="font-medium">View Demo</div>
+                </div>
               </div>
-            </div>
-          </Link>
-        )}
+            )}
+          </div>
+        </Link>
         
         <div className="flex items-center mb-4">
           <Link href={route}>

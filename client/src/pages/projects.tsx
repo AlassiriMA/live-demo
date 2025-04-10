@@ -3,10 +3,14 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { ProjectsSection } from '@/components/site-settings/ProjectsSection';
 import { useSiteSettings } from '@/hooks/use-site-settings';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft } from 'lucide-react';
+import { useLocation } from 'wouter';
 
 export default function ProjectsPage() {
   const { settings } = useSiteSettings();
   const siteTitle = settings['site.title'] || 'Portfolio';
+  const [, setLocation] = useLocation();
   
   // Animation variants
   const containerVariants = {
@@ -38,6 +42,17 @@ export default function ProjectsPage() {
         animate="visible"
         variants={containerVariants}
       >
+        <motion.div variants={itemVariants} className="flex justify-start mb-8">
+          <Button 
+            onClick={() => setLocation('/')} 
+            variant="outline"
+            className="flex items-center"
+          >
+            <ChevronLeft className="mr-1 h-4 w-4" />
+            Back to Home
+          </Button>
+        </motion.div>
+        
         <motion.div variants={itemVariants} className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 font-heading">
             My Projects
