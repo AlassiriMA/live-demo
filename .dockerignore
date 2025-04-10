@@ -1,0 +1,60 @@
+# Git
+.git
+.gitignore
+
+# Node.js
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build outputs
+dist
+build
+client/dist
+server/dist
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment files
+.env
+.env.*
+!.env.production.sample
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Logs
+logs
+*.log
+
+# Other
+.DS_Store
+coverage
+.nyc_output
+drizzle
+
+# Documentation
+README.md
+DEPLOYMENT.md
+LICENSE
+
+# Test files
+**/*.test.js
+**/*.spec.js
+test
+tests
+
+# Temporary files
+tmp
+temp
+.tmp

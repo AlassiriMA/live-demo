@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://portfolio:portfolio@db:5432/portfolio
+      - JWT_SECRET=${JWT_SECRET}
+      - PORT=5000
+      - ENABLE_COMPRESSION=true
+      - ENABLE_RATE_LIMIT=true
+      - CORS_ORIGIN=${CORS_ORIGIN:-*}
+    volumes:
+      - portfolio_logs:/app/logs
+      - portfolio_uploads:/app/uploads
+    networks:
+      - portfolio_network
+
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=portfolio
+      - POSTGRES_PASSWORD=portfolio
+      - POSTGRES_DB=portfolio
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - portfolio_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portfolio"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/www:/var/www/html
+    depends_on:
+      - app
+    networks:
+      - portfolio_network
+
+volumes:
+  postgres_data:
+  portfolio_logs:
+  portfolio_uploads:
+
+networks:
+  portfolio_network:
+    driver: bridge
