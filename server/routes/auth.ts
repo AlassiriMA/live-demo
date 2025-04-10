@@ -3,6 +3,9 @@ import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { storage } from '../storage';
 import { generateToken, auth, AuthRequest, adminOnly } from '../middleware/auth';
+import { db } from '../db';
+import { users } from '@shared/schema';
+import { eq } from 'drizzle-orm';
 
 // Global dev mode flag - set to false for production
 const DEV_MODE = true;
@@ -90,8 +93,35 @@ router.post('/login', async (req: Request, res: Response) => {
     }
 
     // Check password
-    // For direct plain password comparison (temporary fix)
-    if (password !== user.password) {
+    // Handle both hashed passwords and plaintext passwords for backward compatibility
+    let passwordValid = false;
+    
+    // First check if the password is a bcrypt hash (starts with $2a$, $2b$, or $2y$)
+    if (user.password.match(/^\$2[aby]\$\d+\$/)) {
+      // It's a bcrypt hash, compare properly
+      passwordValid = await bcrypt.compare(password, user.password);
+    } else {
+      // It's a plaintext password, do direct comparison
+      // Note: This is for backward compatibility with existing accounts
+      passwordValid = password === user.password;
+      
+      // Optionally upgrade the plaintext password to a hashed one
+      if (passwordValid) {
+        // Upgrade to hashed password for future security
+        console.log(`Upgrading plaintext password to hashed for user: ${user.username}`);
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        
+        // Update the user's password in the database
+        await db.update(users)
+          .set({ password: hashedPassword })
+          .where(eq(users.id, user.id));
+        
+        console.log(`Password upgraded to secure hash for user: ${user.username}`);
+      }
+    }
+    
+    if (!passwordValid) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
