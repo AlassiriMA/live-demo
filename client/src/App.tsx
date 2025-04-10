@@ -37,6 +37,7 @@ import NewProjectPage from "@/pages/admin/projects/new";
 
 // Import auth provider
 import { AuthProvider } from "@/hooks/use-auth";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 function Router() {
   return (
@@ -82,6 +83,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <ScrollToTop />
         <Router />
         <Toaster />
       </AuthProvider>
