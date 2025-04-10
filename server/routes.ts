@@ -10,8 +10,24 @@ import {
 } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
+import cookieParser from 'cookie-parser';
+
+// Import route files
+import authRoutes from './routes/auth';
+import projectRoutes from './routes/projects';
+import mediaRoutes from './routes/media';
+import settingsRoutes from './routes/settings';
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Set up cookie parser for auth
+  app.use(cookieParser());
+  
+  // Set up CMS routes
+  app.use('/api/auth', authRoutes);
+  app.use('/api/cms/projects', projectRoutes);
+  app.use('/api/cms/media', mediaRoutes);
+  app.use('/api/cms/settings', settingsRoutes);
+  
   // Error handling middleware for Zod validation
   const handleZodError = (error: unknown, res: Response) => {
     if (error instanceof ZodError) {
