@@ -244,25 +244,6 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Skills Section with moving icons */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <SectionHeading
-              title="Technology Expertise"
-              subtitle="A glimpse at the diverse set of technologies I work with"
-              centered
-            />
-            <TechIconsGrid />
-          </motion.div>
-        </div>
-      </section>
-
       {/* Apps Section */}
       <section id="apps" className="py-20">
         <div className="container mx-auto px-4">
@@ -273,6 +254,20 @@ export default function Home() {
           />
 
           <ProjectsSection />
+        </div>
+      </section>
+      
+      {/* Skills Section with moving icons - moved after projects as requested */}
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <TechIconsGrid />
+          </motion.div>
         </div>
       </section>
 

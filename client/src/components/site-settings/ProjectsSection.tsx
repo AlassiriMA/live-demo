@@ -156,7 +156,13 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
   const description = project.description || (matchingApp?.description || "");
   const primaryColor = project.primaryColor || (matchingApp?.primaryColor || "#6366F1");
   const imageUrl = project.imageUrl || (matchingApp?.imageUrl || "");
-  const route = project.route || (matchingApp?.route || `/project/${project.slug}`);
+  const slug = project.slug || matchingApp?.id || `project-${index}`;
+  
+  // The detail route should always go to the project details page
+  const detailRoute = `/project/${slug}`;
+  
+  // The demo route is for the actual application
+  const demoRoute = project.route || (matchingApp?.route || `/project/${slug}`);
 
   return (
     <motion.div
@@ -175,7 +181,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         }}
       >
         {/* Project Image - Show placeholder gradient background if image not available */}
-        <Link href={route}>
+        <Link href={detailRoute}>
           <div className="mb-4 overflow-hidden rounded-lg h-40 bg-gray-100 shadow-inner relative group cursor-pointer">
             {imageUrl ? (
               <>
@@ -191,7 +197,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
                   <span className="text-white font-medium pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 px-4 py-1 rounded-full text-sm">
-                    View Demo
+                    View Details
                   </span>
                 </div>
               </>
@@ -208,7 +214,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                     </svg>
                   </div>
-                  <div className="font-medium">View Demo</div>
+                  <div className="font-medium">View Details</div>
                 </div>
               </div>
             )}
@@ -216,7 +222,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         </Link>
         
         <div className="flex items-center mb-4">
-          <Link href={route}>
+          <Link href={detailRoute}>
             <div 
               className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-white cursor-pointer transform transition-transform hover:scale-110 hover:shadow-md"
               style={{ backgroundColor: primaryColor }}
@@ -226,7 +232,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
               </svg>
             </div>
           </Link>
-          <Link href={route}>
+          <Link href={detailRoute}>
             <h3 className="font-heading text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors cursor-pointer">
               {name}
             </h3>
@@ -251,7 +257,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
           <div className="flex items-center space-x-3">
             {/* Details Link */}
             <Link 
-              href={route} 
+              href={detailRoute} 
               className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
             >
               Details
@@ -262,7 +268,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             
             {/* Live Demo Link */}
             <Link 
-              href={route} 
+              href={demoRoute} 
               className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md"
               style={{
                 backgroundColor: `${primaryColor}15`,
