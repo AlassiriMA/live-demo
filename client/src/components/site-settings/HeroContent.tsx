@@ -74,7 +74,7 @@ export function SiteAuthor() {
     return <Skeleton className="h-5 w-32" />;
   }
   
-  return <>{getSetting<string>(settings, "site.author", "Mohammad A. Alassiri")}</>;
+  return <>{getSetting<string>(settings, "site.author", "Mohammad Alassiri")}</>;
 }
 
 export function ContactEmail() {

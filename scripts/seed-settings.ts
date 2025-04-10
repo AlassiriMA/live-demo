@@ -62,7 +62,7 @@ async function seedSettings() {
     },
     {
       key: "site.author",
-      value: "Mohammad A. Alassiri",
+      value: "Mohammad Alassiri",
       category: "site-info",
       description: "Author name for the website"
     },
