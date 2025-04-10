@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import MobileMenu from "./MobileMenu";
 import { useSiteSettings, getSetting } from "@/hooks/use-site-settings";
 import { SiteAuthor } from "@/components/site-settings/HeroContent";
+import { NavigationLinks } from "@/components/site-settings/NavigationLinks";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,42 +29,7 @@ export default function Header() {
         </Link>
         
         <nav className="hidden md:flex items-center space-x-6">
-          <Link href="/" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-            Home
-          </Link>
-          {isAppPage ? (
-            <Link href="/#apps" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-              All Apps
-            </Link>
-          ) : (
-            <a href="#apps" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-              Apps
-            </a>
-          )}
-          <Link href="/skills" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-            Skills
-          </Link>
-          <Link href="/blog" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-            Blog
-          </Link>
-          {isAppPage ? (
-            <Link href="/#about" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-              About
-            </Link>
-          ) : (
-            <a href="#about" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-              About
-            </a>
-          )}
-          {isAppPage ? (
-            <Link href="/#contact" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-              Contact
-            </Link>
-          ) : (
-            <a href="#contact" className="nav-link text-gray-800 hover:text-gray-600 font-medium">
-              Contact
-            </a>
-          )}
+          <NavigationLinks isAppPage={isAppPage} />
         </nav>
         
         <button 
