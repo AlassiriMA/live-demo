@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#EC4899" offset="0%"></stop>
+            <stop stop-color="#BE185D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="card-gradient-1">
+            <stop stop-color="#FBCFE8" offset="0%"></stop>
+            <stop stop-color="#F9A8D4" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="card-gradient-2">
+            <stop stop-color="#DDD6FE" offset="0%"></stop>
+            <stop stop-color="#C4B5FD" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="card-gradient-3">
+            <stop stop-color="#BFDBFE" offset="0%"></stop>
+            <stop stop-color="#93C5FD" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-2.1%" y="-5.2%" width="104.1%" height="110.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FDF2F8" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="800" height="70"></rect>
+        <text font-family="Arial" font-size="26" font-weight="bold" fill="#FFFFFF" x="30" y="44">
+            Bella Beauty Salon
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="320" y="44">
+            Home
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#FFFFFF" x="390" y="44">
+            Services
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="480" y="44">
+            Book Now
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="570" y="44">
+            Gallery
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#FFFFFF" x="650" y="44">
+            Contact
+        </text>
+        
+        <!-- Main Content - Services -->
+        <text font-family="Arial" font-size="32" font-weight="bold" fill="#BE185D" x="270" y="110">
+            Our Beauty Services
+        </text>
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#6B7280" x="280" y="140">
+            Discover a world of beauty treatments designed for you
+        </text>
+        
+        <!-- Service Categories -->
+        <rect fill="#FFFFFF" x="50" y="170" width="700" height="60" rx="30" filter="url(#filter-1)"></rect>
+        
+        <rect fill="#FDF2F8" x="60" y="180" width="120" height="40" rx="20"></rect>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#BE185D" x="90" y="205">
+            All
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#374151" x="210" y="205">
+            Hair
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#374151" x="290" y="205">
+            Facial
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#374151" x="380" y="205">
+            Nails
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#374151" x="470" y="205">
+            Makeup
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#374151" x="570" y="205">
+            Massage
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="normal" fill="#374151" x="670" y="205">
+            Spa
+        </text>
+        
+        <!-- Service Cards Row 1 -->
+        <rect fill="#FFFFFF" x="50" y="250" width="225" height="225" rx="8" filter="url(#filter-1)"></rect>
+        <rect fill="url(#card-gradient-1)" x="50" y="250" width="225" height="125" rx="8 8 0 0"></rect>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF" x="70" y="315">
+            Hair Styling
+        </text>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="70" y="390">
+            Hair Styling
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="70" y="415">
+            From $75 • 60 minutes
+        </text>
+        <rect fill="#EC4899" x="170" y="435" width="85" height="25" rx="12.5"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="190" y="452">
+            Book
+        </text>
+        
+        <rect fill="#FFFFFF" x="290" y="250" width="225" height="225" rx="8" filter="url(#filter-1)"></rect>
+        <rect fill="url(#card-gradient-2)" x="290" y="250" width="225" height="125" rx="8 8 0 0"></rect>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF" x="310" y="315">
+            Facial
+        </text>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="310" y="390">
+            Signature Facial
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="310" y="415">
+            From $95 • 75 minutes
+        </text>
+        <rect fill="#EC4899" x="410" y="435" width="85" height="25" rx="12.5"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="430" y="452">
+            Book
+        </text>
+        
+        <rect fill="#FFFFFF" x="530" y="250" width="225" height="225" rx="8" filter="url(#filter-1)"></rect>
+        <rect fill="url(#card-gradient-3)" x="530" y="250" width="225" height="125" rx="8 8 0 0"></rect>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF" x="550" y="315">
+            Manicure
+        </text>
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="550" y="390">
+            Gel Manicure
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="550" y="415">
+            From $45 • 45 minutes
+        </text>
+        <rect fill="#EC4899" x="650" y="435" width="85" height="25" rx="12.5"></rect>
+        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="670" y="452">
+            Book
+        </text>
+        
+        <!-- Bottom CTA -->
+        <rect fill="#F9FAFB" x="0" y="500" width="800" height="50"></rect>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="240" y="530">
+            View all services or book your appointment today
+        </text>
+        <rect fill="#BE185D" x="580" y="510" width="150" height="35" rx="17.5"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="615" y="532">
+            Book Now
+        </text>
+    </g>
+</svg>

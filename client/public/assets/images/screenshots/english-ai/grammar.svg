@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#8B5CF6" offset="0%"></stop>
+            <stop stop-color="#7C3AED" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-3.4%" y="-19.2%" width="106.8%" height="138.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="800" height="60"></rect>
+        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="24" y="38">
+            English AI Tutor
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="320" y="38">
+            Conversation
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="430" y="38">
+            Lessons
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="510" y="38">
+            Vocabulary
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="610" y="38">
+            Grammar
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="700" y="38">
+            Profile
+        </text>
+        
+        <!-- Left Sidebar - Grammar Topics -->
+        <rect fill="#F3F4F6" x="0" y="60" width="200" height="440"></rect>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#374151" x="20" y="90">
+            Grammar Topics
+        </text>
+        
+        <!-- Search box -->
+        <rect fill="#FFFFFF" x="20" y="105" width="160" height="35" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#9CA3AF" x="35" y="127">
+            Search topics...
+        </text>
+        
+        <!-- Topic categories -->
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="20" y="165">
+            TENSES
+        </text>
+        
+        <rect fill="#EDE9FE" x="20" y="175" width="160" height="40" rx="6" stroke="#DDD6FE" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#7C3AED" x="35" y="200">
+            Past Tense
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="225" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="250">
+            Present Tense
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="275" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="300">
+            Future Tense
+        </text>
+        
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="20" y="340">
+            SENTENCE STRUCTURE
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="350" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="375">
+            Conditionals
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="400" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="425">
+            Passive Voice
+        </text>
+        
+        <!-- Main Content - Grammar Lesson -->
+        <rect fill="#FFFFFF" x="200" y="60" width="600" height="440"></rect>
+        
+        <!-- Lesson Header -->
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="230" y="100">
+            Past Tense
+        </text>
+        
+        <rect fill="#F3F4F6" x="230" y="115" width="100" height="25" rx="12.5"></rect>
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="248" y="132">
+            Intermediate
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="345" y="132">
+            Estimated time: 15 minutes
+        </text>
+        
+        <!-- Lesson Content -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="230" y="170">
+            Overview
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="230" y="195">
+            The past tense is used to describe actions that have already happened. In English, there are four main 
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="230" y="215">
+            past tense forms: Simple Past, Past Continuous, Past Perfect, and Past Perfect Continuous.
+        </text>
+        
+        <!-- Grammar Rules -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="230" y="255">
+            Simple Past Tense
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="230" y="280">
+            We use the simple past tense to talk about completed actions in the past.
+        </text>
+        
+        <g filter="url(#filter-3)" transform="translate(230, 295)">
+            <rect fill="#F9FAFB" x="0" y="0" width="540" height="65" rx="6"></rect>
+            <text font-family="Arial" font-size="14" font-weight="bold" fill="#111827" x="20" y="25">
+                Formula:
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="90" y="25">
+                Subject + Verb (past form) + Object
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="bold" fill="#111827" x="20" y="50">
+                Example:
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="90" y="50">
+                She visited her grandmother last weekend.
+            </text>
+        </g>
+        
+        <!-- Practice Section -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="230" y="385">
+            Practice
+        </text>
+        
+        <rect fill="#FFFFFF" x="230" y="400" width="540" height="80" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="medium" fill="#111827" x="250" y="425">
+            Complete the sentence with the correct past tense form:
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="250" y="450">
+            Yesterday, I _____________ (go) to the library to study.
+        </text>
+        
+        <!-- Answer Options -->
+        <rect fill="#FFFFFF" x="230" y="490" width="120" height="35" rx="17.5" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="272" y="513">
+            gone
+        </text>
+        
+        <rect fill="#FFFFFF" x="360" y="490" width="120" height="35" rx="17.5" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="400" y="513">
+            go
+        </text>
+        
+        <rect fill="#EDE9FE" x="490" y="490" width="120" height="35" rx="17.5" stroke="#7C3AED" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#7C3AED" x="525" y="513">
+            went
+        </text>
+        
+        <rect fill="#FFFFFF" x="620" y="490" width="120" height="35" rx="17.5" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="655" y="513">
+            going
+        </text>
+        
+        <!-- Navigation Controls -->
+        <rect fill="#FFFFFF" x="650" y="70" width="130" height="35" rx="17.5" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="675" y="93">
+            < Previous
+        </text>
+        
+        <rect fill="#7C3AED" x="650" y="115" width="130" height="35" rx="17.5"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="680" y="138">
+            Next >
+        </text>
+    </g>
+</svg>

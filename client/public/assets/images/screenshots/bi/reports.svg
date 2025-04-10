@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#14B8A6" offset="0%"></stop>
+            <stop stop-color="#0D9488" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#6366F1" offset="0%"></stop>
+            <stop stop-color="#4F46E5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#F97316" offset="0%"></stop>
+            <stop stop-color="#EA580C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Left Sidebar -->
+        <rect fill="#1E293B" x="0" y="0" width="200" height="500"></rect>
+        
+        <!-- Logo/Title -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="30" y="35">
+            BI Dashboard
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="85">
+            Dashboard
+        </text>
+        
+        <rect fill="#334155" x="20" y="105" width="160" height="40" rx="6"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="45" y="130">
+            Reports
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="175">
+            Analytics
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="215">
+            Data Sources
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="255">
+            Team
+        </text>
+        
+        <line x1="20" y1="290" x2="180" y2="290" stroke="#334155" stroke-width="1"></line>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="335">
+            Settings
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="375">
+            Help
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="455">
+            Logout
+        </text>
+        
+        <!-- Main Content -->
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#111827" x="230" y="35">
+            Custom Reports
+        </text>
+        
+        <!-- Action Buttons -->
+        <rect fill="#FFFFFF" x="230" y="55" width="550" height="50" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="#10B981" x="245" y="65" width="120" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="270" y="85">
+            New Report
+        </text>
+        
+        <rect fill="#F3F4F6" x="380" y="65" width="120" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="410" y="85">
+            Templates
+        </text>
+        
+        <rect fill="#F3F4F6" x="515" y="65" width="120" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="535" y="85">
+            Export All
+        </text>
+        
+        <rect fill="#F3F4F6" x="650" y="65" width="110" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="673" y="85">
+            Filter ▼
+        </text>
+        
+        <!-- Reports List -->
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="230" y="135">
+            Your Reports
+        </text>
+        
+        <!-- Report 1 -->
+        <rect fill="#FFFFFF" x="230" y="150" width="550" height="80" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="url(#linearGradient-1)" x="245" y="165" width="50" height="50" rx="4"></rect>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF" x="261" y="198">
+            R
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="310" y="180">
+            Quarterly Sales Analysis
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="310" y="205">
+            Updated 2 days ago • PDF, Excel
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="645" y="185">
+            Edit
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="685" y="185">
+            Share
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#EF4444" x="735" y="185">
+            Delete
+        </text>
+        
+        <!-- Report 2 -->
+        <rect fill="#FFFFFF" x="230" y="240" width="550" height="80" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="url(#linearGradient-2)" x="245" y="255" width="50" height="50" rx="4"></rect>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF" x="261" y="288">
+            R
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="310" y="270">
+            Customer Demographics
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="310" y="295">
+            Updated 5 days ago • PDF, Excel, PowerPoint
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="645" y="275">
+            Edit
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="685" y="275">
+            Share
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#EF4444" x="735" y="275">
+            Delete
+        </text>
+        
+        <!-- Report 3 -->
+        <rect fill="#FFFFFF" x="230" y="330" width="550" height="80" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="url(#linearGradient-3)" x="245" y="345" width="50" height="50" rx="4"></rect>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#FFFFFF" x="261" y="378">
+            R
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="310" y="360">
+            Supply Chain Efficiency
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="310" y="385">
+            Updated 1 week ago • PDF
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="645" y="365">
+            Edit
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="685" y="365">
+            Share
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#EF4444" x="735" y="365">
+            Delete
+        </text>
+        
+        <!-- Templates Section -->
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="230" y="440">
+            Popular Templates
+        </text>
+        
+        <rect fill="#FFFFFF" x="230" y="455" width="170" height="30" rx="15" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="260" y="475">
+            Sales Analysis
+        </text>
+        
+        <rect fill="#FFFFFF" x="410" y="455" width="170" height="30" rx="15" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="437" y="475">
+            Financial Report
+        </text>
+        
+        <rect fill="#FFFFFF" x="590" y="455" width="170" height="30" rx="15" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="618" y="475">
+            KPI Dashboard
+        </text>
+    </g>
+</svg>

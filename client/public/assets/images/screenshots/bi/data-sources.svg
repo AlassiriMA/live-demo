@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#1E293B" offset="0%"></stop>
+            <stop stop-color="#0F172A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="postgres-gradient">
+            <stop stop-color="#326690" offset="0%"></stop>
+            <stop stop-color="#254E70" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="mysql-gradient">
+            <stop stop-color="#00758F" offset="0%"></stop>
+            <stop stop-color="#005E73" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="excel-gradient">
+            <stop stop-color="#217346" offset="0%"></stop>
+            <stop stop-color="#1A5C38" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="api-gradient">
+            <stop stop-color="#F97316" offset="0%"></stop>
+            <stop stop-color="#EA580C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Left Sidebar -->
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="200" height="500"></rect>
+        
+        <!-- Logo/Title -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="30" y="35">
+            BI Dashboard
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="85">
+            Dashboard
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="125">
+            Reports
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="165">
+            Analytics
+        </text>
+        
+        <rect fill="#334155" x="20" y="185" width="160" height="40" rx="6"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="45" y="210">
+            Data Sources
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="255">
+            Team
+        </text>
+        
+        <line x1="20" y1="290" x2="180" y2="290" stroke="#334155" stroke-width="1"></line>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="335">
+            Settings
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="375">
+            Help
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="455">
+            Logout
+        </text>
+        
+        <!-- Main Content -->
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#111827" x="230" y="35">
+            Data Sources
+        </text>
+        
+        <!-- Action Buttons -->
+        <rect fill="#FFFFFF" x="230" y="55" width="550" height="50" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="#3B82F6" x="245" y="65" width="140" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="265" y="85">
+            Connect Database
+        </text>
+        
+        <rect fill="#F3F4F6" x="395" y="65" width="140" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="430" y="85">
+            Import File
+        </text>
+        
+        <rect fill="#F3F4F6" x="545" y="65" width="140" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="575" y="85">
+            API Sources
+        </text>
+        
+        <rect fill="#F3F4F6" x="695" y="65" width="70" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#374151" x="715" y="85">
+            ↻
+        </text>
+        
+        <!-- Connected Sources Section -->
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="230" y="135">
+            Connected Sources
+        </text>
+        
+        <!-- PostgreSQL Source -->
+        <rect fill="#FFFFFF" x="230" y="150" width="265" height="150" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="url(#postgres-gradient)" x="245" y="170" width="50" height="50" rx="25"></rect>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="258" y="200">
+            PG
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="310" y="180">
+            PostgreSQL Database
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="310" y="205">
+            Production Database
+        </text>
+        
+        <rect fill="#DCFCE7" x="310" y="220" width="80" height="24" rx="12"></rect>
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#059669" x="325" y="236">
+            Connected
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="245" y="265">
+            Last synced: 10 minutes ago
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#3B82F6" x="440" y="265">
+            View
+        </text>
+        
+        <!-- MySQL Source -->
+        <rect fill="#FFFFFF" x="515" y="150" width="265" height="150" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="url(#mysql-gradient)" x="530" y="170" width="50" height="50" rx="25"></rect>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="542" y="200">
+            MY
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="595" y="180">
+            MySQL Database
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="595" y="205">
+            Analytics Database
+        </text>
+        
+        <rect fill="#DCFCE7" x="595" y="220" width="80" height="24" rx="12"></rect>
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#059669" x="610" y="236">
+            Connected
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="530" y="265">
+            Last synced: 1 hour ago
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#3B82F6" x="725" y="265">
+            View
+        </text>
+        
+        <!-- Excel Source -->
+        <rect fill="#FFFFFF" x="230" y="315" width="265" height="150" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="url(#excel-gradient)" x="245" y="335" width="50" height="50" rx="25"></rect>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="258" y="365">
+            XL
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="310" y="345">
+            Excel File Import
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="310" y="370">
+            Q2 Financial Data
+        </text>
+        
+        <rect fill="#FEF3C7" x="310" y="385" width="100" height="24" rx="12"></rect>
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#D97706" x="325" y="401">
+            Needs Update
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="245" y="430">
+            Last updated: 2 weeks ago
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#3B82F6" x="440" y="430">
+            View
+        </text>
+        
+        <!-- API Source -->
+        <rect fill="#FFFFFF" x="515" y="315" width="265" height="150" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        
+        <rect fill="url(#api-gradient)" x="530" y="335" width="50" height="50" rx="25"></rect>
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#FFFFFF" x="542" y="365">
+            API
+        </text>
+        
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="595" y="345">
+            REST API Source
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="595" y="370">
+            Marketing Data API
+        </text>
+        
+        <rect fill="#DCFCE7" x="595" y="385" width="80" height="24" rx="12"></rect>
+        <text font-family="Arial" font-size="12" font-weight="medium" fill="#059669" x="610" y="401">
+            Connected
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="530" y="430">
+            Last synced: 30 minutes ago
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#3B82F6" x="725" y="430">
+            View
+        </text>
+    </g>
+</svg>

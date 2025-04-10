@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#8B5CF6" offset="0%"></stop>
+            <stop stop-color="#7C3AED" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#EDE9FE" offset="0%"></stop>
+            <stop stop-color="#DDD6FE" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-3.4%" y="-19.2%" width="106.8%" height="138.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Header -->
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="800" height="60"></rect>
+        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="24" y="38">
+            English AI Tutor
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="320" y="38">
+            Conversation
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="430" y="38">
+            Lessons
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="510" y="38">
+            Vocabulary
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="610" y="38">
+            Grammar
+        </text>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="700" y="38">
+            Profile
+        </text>
+        
+        <!-- Left Sidebar - Categories -->
+        <rect fill="#F3F4F6" x="0" y="60" width="200" height="440"></rect>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#374151" x="20" y="90">
+            Vocabulary Lists
+        </text>
+        
+        <!-- Category items -->
+        <rect fill="#FFFFFF" x="20" y="105" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="130">
+            All Words
+        </text>
+        
+        <rect fill="#EDE9FE" x="20" y="155" width="160" height="40" rx="6" stroke="#DDD6FE" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#111827" x="35" y="180">
+            Business English
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="205" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="230">
+            Travel Vocabulary
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="255" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="280">
+            Academic English
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="305" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="330">
+            Idioms & Phrases
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="355" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="380">
+            TOEFL Preparation
+        </text>
+        
+        <rect fill="#FFFFFF" x="20" y="405" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#7C3AED" x="35" y="430">
+            + Create New List
+        </text>
+        
+        <!-- Main Content - Vocabulary -->
+        <rect fill="#FFFFFF" x="200" y="60" width="600" height="440"></rect>
+        
+        <!-- Header -->
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="230" y="100">
+            Business English Vocabulary
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="230" y="130">
+            Master these 30 essential business terms
+        </text>
+        
+        <!-- Actions Bar -->
+        <rect fill="#F9FAFB" x="230" y="150" width="540" height="50" rx="6"></rect>
+        
+        <!-- Search bar -->
+        <rect fill="#FFFFFF" x="245" y="160" width="200" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#9CA3AF" x="260" y="180">
+            Search terms...
+        </text>
+        
+        <!-- Buttons -->
+        <rect fill="#FFFFFF" x="460" y="160" width="90" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="480" y="180">
+            Filter
+        </text>
+        
+        <rect fill="#FFFFFF" x="560" y="160" width="90" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="576" y="180">
+            Sort by
+        </text>
+        
+        <rect fill="#7C3AED" x="660" y="160" width="90" height="30" rx="4"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="675" y="180">
+            Practice
+        </text>
+        
+        <!-- Vocabulary Cards -->
+        <g filter="url(#filter-3)" transform="translate(230, 220)">
+            <rect fill="#FFFFFF" x="0" y="0" width="260" height="120" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+            <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="20" y="30">
+                Quarterly Report
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="20" y="55">
+                [kwor-ter-lee ri-pawrt]
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="85">
+                A financial document that reports on a company's 
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="105">
+                performance over a three-month period.
+            </text>
+        </g>
+        
+        <g filter="url(#filter-3)" transform="translate(510, 220)">
+            <rect fill="#FFFFFF" x="0" y="0" width="260" height="120" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+            <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="20" y="30">
+                Revenue
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="20" y="55">
+                [rev-uh-noo]
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="85">
+                The total amount of money generated by a company
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="105">
+                from its business activities.
+            </text>
+        </g>
+        
+        <g filter="url(#filter-3)" transform="translate(230, 360)">
+            <rect fill="#FFFFFF" x="0" y="0" width="260" height="120" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+            <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="20" y="30">
+                Stakeholder
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="20" y="55">
+                [steyk-hohl-der]
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="85">
+                A person or group with an interest in a business
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="105">
+                and can affect or be affected by its actions.
+            </text>
+        </g>
+        
+        <g filter="url(#filter-3)" transform="translate(510, 360)">
+            <rect fill="#FFFFFF" x="0" y="0" width="260" height="120" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+            <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="20" y="30">
+                Market Share
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="20" y="55">
+                [mahr-kit shair]
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="85">
+                The portion of a market controlled by a particular
+            </text>
+            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="105">
+                company or product.
+            </text>
+        </g>
+        
+        <!-- Pagination -->
+        <rect fill="#FFFFFF" x="350" y="500" width="100" height="0" rx="0"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="400" y="490">
+            1 / 8 pages
+        </text>
+    </g>
+</svg>

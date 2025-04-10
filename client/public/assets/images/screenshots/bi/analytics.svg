@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#1E293B" offset="0%"></stop>
+            <stop stop-color="#0F172A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="chart-gradient-1">
+            <stop stop-color="#10B981" offset="0%"></stop>
+            <stop stop-color="#34D399" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="chart-gradient-2">
+            <stop stop-color="#3B82F6" offset="0%"></stop>
+            <stop stop-color="#60A5FA" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="chart-gradient-3">
+            <stop stop-color="#F97316" offset="0%"></stop>
+            <stop stop-color="#FB923C" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="chart-gradient-4">
+            <stop stop-color="#8B5CF6" offset="0%"></stop>
+            <stop stop-color="#A78BFA" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
+        
+        <!-- Left Sidebar -->
+        <rect fill="url(#linearGradient-1)" x="0" y="0" width="200" height="500"></rect>
+        
+        <!-- Logo/Title -->
+        <text font-family="Arial" font-size="18" font-weight="bold" fill="#FFFFFF" x="30" y="35">
+            BI Dashboard
+        </text>
+        
+        <!-- Navigation -->
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="85">
+            Dashboard
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="125">
+            Reports
+        </text>
+        
+        <rect fill="#334155" x="20" y="145" width="160" height="40" rx="6"></rect>
+        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="45" y="170">
+            Analytics
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="215">
+            Data Sources
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="255">
+            Team
+        </text>
+        
+        <line x1="20" y1="290" x2="180" y2="290" stroke="#334155" stroke-width="1"></line>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="335">
+            Settings
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="375">
+            Help
+        </text>
+        
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#94A3B8" x="45" y="455">
+            Logout
+        </text>
+        
+        <!-- Main Content -->
+        <text font-family="Arial" font-size="20" font-weight="bold" fill="#111827" x="230" y="35">
+            Advanced Analytics
+        </text>
+        
+        <!-- Date Range Selector -->
+        <rect fill="#FFFFFF" x="615" y="25" width="165" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="630" y="45">
+            Last 12 Months ▼
+        </text>
+        
+        <!-- KPI Cards Row -->
+        <rect fill="#FFFFFF" x="230" y="65" width="170" height="90" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="245" y="90">
+            Revenue Growth
+        </text>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="245" y="125">
+            +12.7%
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="245" y="145">
+            ↑ 2.3% vs previous period
+        </text>
+        
+        <rect fill="#FFFFFF" x="420" y="65" width="170" height="90" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="435" y="90">
+            Customer Retention
+        </text>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="435" y="125">
+            88.5%
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="435" y="145">
+            ↑ 1.2% vs previous period
+        </text>
+        
+        <rect fill="#FFFFFF" x="610" y="65" width="170" height="90" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="625" y="90">
+            Market Share
+        </text>
+        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="625" y="125">
+            23.4%
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#10B981" x="625" y="145">
+            ↑ 0.8% vs previous period
+        </text>
+        
+        <!-- Main Charts Row -->
+        <!-- Revenue Breakdown Chart -->
+        <rect fill="#FFFFFF" x="230" y="170" width="360" height="230" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="245" y="195">
+            Revenue Breakdown by Region
+        </text>
+        
+        <!-- Pie Chart -->
+        <circle cx="400" cy="285" r="75" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"></circle>
+        
+        <!-- Pie chart segments -->
+        <path d="M400,285 L475,285 A75,75 0 0,1 438,352 Z" fill="url(#chart-gradient-1)"></path>
+        <path d="M400,285 L438,352 A75,75 0 0,1 346,339 Z" fill="url(#chart-gradient-2)"></path>
+        <path d="M400,285 L346,339 A75,75 0 0,1 355,222 Z" fill="url(#chart-gradient-3)"></path>
+        <path d="M400,285 L355,222 A75,75 0 0,1 432,222 Z" fill="url(#chart-gradient-4)"></path>
+        <path d="M400,285 L432,222 A75,75 0 0,1 475,285 Z" fill="#E5E7EB"></path>
+        
+        <!-- Chart Legend -->
+        <rect fill="url(#chart-gradient-1)" x="245" y="360" width="15" height="15" rx="2"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="270" y="372">
+            North America (35%)
+        </text>
+        
+        <rect fill="url(#chart-gradient-2)" x="245" y="385" width="15" height="15" rx="2"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="270" y="397">
+            Europe (25%)
+        </text>
+        
+        <rect fill="url(#chart-gradient-3)" x="400" y="360" width="15" height="15" rx="2"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="425" y="372">
+            Asia-Pacific (20%)
+        </text>
+        
+        <rect fill="url(#chart-gradient-4)" x="400" y="385" width="15" height="15" rx="2"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="425" y="397">
+            Latin America (15%)
+        </text>
+        
+        <!-- Segment Analysis Chart -->
+        <rect fill="#FFFFFF" x="610" y="170" width="170" height="230" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="625" y="195">
+            Segment Analysis
+        </text>
+        
+        <!-- Bar Chart -->
+        <rect fill="#F3F4F6" x="625" y="215" width="140" height="15" rx="2"></rect>
+        <rect fill="url(#chart-gradient-1)" x="625" y="215" width="112" height="15" rx="2"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="625" y="240">
+            Enterprise
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="730" y="240">
+            80%
+        </text>
+        
+        <rect fill="#F3F4F6" x="625" y="255" width="140" height="15" rx="2"></rect>
+        <rect fill="url(#chart-gradient-2)" x="625" y="255" width="98" height="15" rx="2"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="625" y="280">
+            Mid-Market
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="730" y="280">
+            70%
+        </text>
+        
+        <rect fill="#F3F4F6" x="625" y="295" width="140" height="15" rx="2"></rect>
+        <rect fill="url(#chart-gradient-3)" x="625" y="295" width="84" height="15" rx="2"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="625" y="320">
+            Small Business
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="730" y="320">
+            60%
+        </text>
+        
+        <rect fill="#F3F4F6" x="625" y="335" width="140" height="15" rx="2"></rect>
+        <rect fill="url(#chart-gradient-4)" x="625" y="335" width="70" height="15" rx="2"></rect>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="625" y="360">
+            Consumer
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="730" y="360">
+            50%
+        </text>
+        
+        <!-- Bottom Row - Insights Panel -->
+        <rect fill="#FFFFFF" x="230" y="415" width="550" height="70" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
+        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="245" y="440">
+            Key Insights
+        </text>
+        
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="245" y="465">
+            • North American market growth exceeds projections by 5.3%
+        </text>
+        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="425" y="465">
+            • Enterprise segment shows strongest retention rate at 93.2%
+        </text>
+    </g>
+</svg>
