@@ -343,16 +343,21 @@ export class DatabaseStorage implements IStorage {
 
   async deleteMediaItem(id: number): Promise<boolean> {
     const result = await db.delete(mediaItems).where(eq(mediaItems.id, id));
-    return result.rowCount > 0;
+    return !!result.rowCount && result.rowCount > 0;
   }
 
   // CMS - Activity Logs methods
-  async getActivityLogs(limit?: number): Promise<ActivityLog[]> {
-    let query = db.select().from(activityLogs).orderBy(desc(activityLogs.timestamp));
-    if (limit) {
-      query = query.limit(limit);
+  async getActivityLogs(limitCount?: number): Promise<ActivityLog[]> {
+    const query = db.select().from(activityLogs).orderBy(desc(activityLogs.timestamp));
+    
+    // Execute the query and then limit in JavaScript if needed
+    const results = await query;
+    
+    if (limitCount && limitCount > 0) {
+      return results.slice(0, limitCount);
     }
-    return await query;
+    
+    return results;
   }
 
   async createActivityLog(insertLog: InsertActivityLog): Promise<ActivityLog> {
