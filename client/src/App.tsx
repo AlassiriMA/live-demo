@@ -20,6 +20,7 @@ import Reddit from "@/pages/reddit";
 // Import additional pages
 import Skills from "@/pages/skills";
 import Projects from "@/pages/projects";
+import ProjectDetails from "@/pages/project-details";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog/[id]";
 import Sitemap from "@/pages/sitemap";
@@ -54,6 +55,7 @@ function Router() {
       {/* Portfolio information pages */}
       <Route path="/skills" component={Skills} />
       <Route path="/projects" component={Projects} />
+      <Route path="/project/:slug" component={ProjectDetails} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:id" component={BlogPost} />
       <Route path="/sitemap" component={Sitemap} />

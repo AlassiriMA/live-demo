@@ -279,22 +279,12 @@ export class DatabaseStorage implements IStorage {
 
   async getPublishedProjects(): Promise<Project[]> {
     try {
-      // Use raw SQL with specific column selection to avoid ORM mapping issues
+      // Use raw SQL without relying on ORM mappings
       const result = await db.execute(`
-        SELECT 
-          id, slug, name, description, style, 
-          primary_color, secondary_color, accent_color, 
-          image_url, tags, route, published, 
-          featured, sort_order, detailed_content, 
-          meta_title, meta_description, features, 
-          screenshots, status, created_by, updated_by, 
-          created_at, updated_at
-        FROM projects 
-        WHERE published = true 
-        ORDER BY created_at DESC
+        SELECT * FROM projects WHERE published = true ORDER BY created_at DESC
       `);
       
-      if (result.rows) {
+      if (result.rows && result.rows.length > 0) {
         // Convert field names from snake_case to camelCase
         return result.rows.map(row => ({
           id: row.id,
@@ -306,6 +296,7 @@ export class DatabaseStorage implements IStorage {
           secondaryColor: row.secondary_color,
           accentColor: row.accent_color,
           imageUrl: row.image_url,
+          categoryId: row.category_id,
           tags: row.tags,
           route: row.route,
           published: row.published,
@@ -326,6 +317,38 @@ export class DatabaseStorage implements IStorage {
       return [];
     } catch (error) {
       console.error("Error in getPublishedProjects:", error);
+      
+      // If we still get an error, use a more targeted approach with only essential fields
+      try {
+        const result = await db.execute(`
+          SELECT id, slug, name, description, 
+                 primary_color, secondary_color, accent_color, 
+                 image_url, tags, route, published, featured
+          FROM projects 
+          WHERE published = true 
+          ORDER BY created_at DESC
+        `);
+        
+        if (result.rows && result.rows.length > 0) {
+          return result.rows.map(row => ({
+            id: row.id,
+            slug: row.slug,
+            name: row.name,
+            description: row.description || "",
+            primaryColor: row.primary_color,
+            secondaryColor: row.secondary_color,
+            accentColor: row.accent_color,
+            imageUrl: row.image_url,
+            tags: row.tags,
+            route: row.route,
+            published: row.published === true,
+            featured: row.featured === true
+          })) as Project[];
+        }
+      } catch (fallbackError) {
+        console.error("Fallback query also failed:", fallbackError);
+      }
+      
       // Return empty array if all attempts fail
       return [];
     }
