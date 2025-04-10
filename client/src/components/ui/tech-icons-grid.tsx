@@ -1,5 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import gsap from 'gsap';
 
 // Import just the most common icons to avoid errors
 import {
@@ -20,6 +21,53 @@ interface TechIcon {
 }
 
 export default function TechIconsGrid() {
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+  
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  useEffect(() => {
+    const row1 = row1Ref.current;
+    const row2 = row2Ref.current;
+    
+    if (row1 && row2) {
+      // Create infinite animation for first row (left to right)
+      gsap.to(row1, {
+        x: "-50%",
+        duration: 40,
+        ease: "none", 
+        repeat: -1,
+        yoyo: false
+      });
+      
+      // Create infinite animation for second row (right to left)
+      gsap.to(row2, {
+        x: "0%",
+        duration: 30,
+        ease: "none", 
+        repeat: -1,
+        yoyo: false,
+        onStart: () => {
+          // Set initial position for the second row
+          gsap.set(row2, { x: "-50%" });
+        }
+      });
+    }
+
+    return () => {
+      gsap.killTweensOf(row1);
+      gsap.killTweensOf(row2);
+    };
+  }, []);
+
   const techIcons: TechIcon[] = [
     { icon: <SiJavascript size={30} />, name: 'JavaScript', color: '#F7DF1E' },
     { icon: <SiTypescript size={30} />, name: 'TypeScript', color: '#3178C6' },
@@ -65,53 +113,88 @@ export default function TechIconsGrid() {
     { icon: <SiFirebase size={30} />, name: 'Firebase', color: '#FFCA28' },
   ];
 
-  // Duplicate the array to have 100+ icons
-  const allIcons = [...techIcons, ...techIcons, ...techIcons];
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.03,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
+  // Double the array for row 1
+  const row1Icons = [...techIcons, ...techIcons];
+  // Reverse order for diversity in row 2 and double it
+  const row2Icons = [...techIcons.slice().reverse(), ...techIcons.slice().reverse()];
 
   return (
-    <div className="py-10">
-      <motion.div 
-        className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-10 gap-6"
-        variants={container}
-        initial="hidden"
-        animate="show"
+    <div className="py-10 overflow-hidden" ref={ref}>
+      <motion.h2 
+        className="text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600"
+        initial={{ opacity: 0, y: 20 }}
+        animate={controls}
+        variants={{
+          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+          hidden: { opacity: 0, y: 20 }
+        }}
       >
-        {allIcons.map((tech, index) => (
-          <motion.div 
-            key={`${tech.name}-${index}`}
-            className="flex flex-col items-center justify-center"
-            variants={item}
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
+        Technologies I Work With
+      </motion.h2>
+
+      {/* First row - moves left to right */}
+      <div className="relative mb-12 py-4">
+        <div 
+          ref={row1Ref} 
+          className="flex absolute whitespace-nowrap"
+          style={{ width: "200%" }}
+        >
+          {row1Icons.map((tech, index) => (
             <div 
-              className="w-14 h-14 rounded-full bg-white shadow-md flex items-center justify-center mb-2"
-              style={{ color: tech.color }}
+              key={`row1-${tech.name}-${index}`}
+              className="flex flex-col items-center justify-center px-5"
             >
-              {tech.icon}
+              <motion.div
+                whileHover={{ 
+                  scale: 1.2, 
+                  rotate: [0, -5, 5, -5, 0],
+                  transition: { duration: 0.5 }
+                }}
+                className="w-16 h-16 rounded-xl bg-white shadow-lg flex items-center justify-center mb-2
+                           hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-opacity-90"
+                style={{ color: tech.color }}
+              >
+                {tech.icon}
+              </motion.div>
+              <p className="text-xs text-center font-medium text-gray-700 dark:text-gray-300 w-20">
+                {tech.name}
+              </p>
             </div>
-            <p className="text-xs text-center font-medium text-gray-700 dark:text-gray-300 truncate w-20">
-              {tech.name}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Second row - moves right to left */}
+      <div className="relative py-4">
+        <div 
+          ref={row2Ref} 
+          className="flex absolute whitespace-nowrap"
+          style={{ width: "200%" }}
+        >
+          {row2Icons.map((tech, index) => (
+            <div 
+              key={`row2-${tech.name}-${index}`}
+              className="flex flex-col items-center justify-center px-5"
+            >
+              <motion.div
+                whileHover={{ 
+                  scale: 1.2, 
+                  rotate: [0, 5, -5, 5, 0],
+                  transition: { duration: 0.5 }
+                }}
+                className="w-16 h-16 rounded-xl bg-white shadow-lg flex items-center justify-center mb-2
+                           hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-opacity-90"
+                style={{ color: tech.color }}
+              >
+                {tech.icon}
+              </motion.div>
+              <p className="text-xs text-center font-medium text-gray-700 dark:text-gray-300 w-20">
+                {tech.name}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

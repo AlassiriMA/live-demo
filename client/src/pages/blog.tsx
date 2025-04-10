@@ -163,8 +163,10 @@ export default function Blog() {
                       <span>{post.readTime}</span>
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-3 text-gray-800 hover:text-indigo-600 transition-colors">
-                      <Link href={`/blog/${post.id}`}>{post.title}</Link>
+                    <h3 className="text-xl font-bold mb-3 text-gray-800">
+                      <Link href={`/blog/${post.id}`} className="hover:text-indigo-600 transition-colors">
+                        {post.title}
+                      </Link>
                     </h3>
                     
                     <p className="text-gray-600 mb-6 flex-grow">

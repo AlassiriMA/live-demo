@@ -15,6 +15,7 @@ import BI from "@/pages/bi";
 // Import additional pages
 import Skills from "@/pages/skills";
 import Blog from "@/pages/blog";
+import BlogPost from "@/pages/blog/[id]";
 
 // Import app detail pages
 import PosDetail from "@/pages/app-details/PosDetail";
@@ -37,6 +38,7 @@ function Router() {
       {/* Portfolio information pages */}
       <Route path="/skills" component={Skills} />
       <Route path="/blog" component={Blog} />
+      <Route path="/blog/:id" component={BlogPost} />
       
       {/* App detail routes */}
       <Route path="/app-details/pos" component={PosDetail} />

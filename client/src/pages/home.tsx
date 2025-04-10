@@ -49,14 +49,14 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight">
-                Smart Software<br />
-                <span className="text-[#6366F1]">Smart Solutions</span>
+                Welcome to My Journey<br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">in Tech and Creativity!</span>
               </h1>
-              <p className="text-lg text-gray-600 mb-8 max-w-lg">
-                Welcome to my portfolio! Over the past years, I've crafted full-stack solutions, from trading bots to e-commerce platforms, each tailored to solve specific business challenges.
+              <p className="text-lg text-gray-700 mb-6 max-w-lg">
+                I'm Mohammad, a passionate developer, tinkerer, and builder who loves bringing ideas to life with code. Whether it's creating a sleek e-commerce store or a cutting-edge trading bot, I'm always working on something new, and I'm excited to share it with you.
               </p>
               <p className="text-lg text-gray-600 mb-8 max-w-lg">
-                Below you'll find my 7 demo apps built with modern technologies, showcasing my expertise in software development, UI/UX design, and problem-solving.
+                Each of my projects is a journey — a chance to learn, grow, and experiment with new ideas. It's not just about writing clean code; it's about creating something meaningful that can make a difference.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#apps" className="inline-block bg-[#6366F1] hover:bg-[#4F46E5] text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300">
@@ -108,8 +108,8 @@ export default function Home() {
       <section id="apps" className="py-20">
         <div className="container mx-auto px-4">
           <SectionHeading 
-            title="Explore All Applications" 
-            subtitle="Each application showcases different UI styles, technologies, and business solutions."
+            title="Explore My Projects" 
+            subtitle="Each project is a story — showcasing the work I've done and what makes it unique."
             centered
           />
 
@@ -244,10 +244,10 @@ export default function Home() {
                     <h4 className="font-heading font-semibold text-lg text-gray-800">Mohammad Alassiri</h4>
                     <p className="text-gray-700 font-medium">Full-Stack Developer, Problem Solver, Entrepreneur</p>
                     <p className="text-gray-600 mt-3">
-                      I'm a passionate full-stack developer with a focus on creating real-world solutions. With experience in both the tech and business sectors, I strive to build impactful products that add value.
+                      For me, coding is like solving a giant puzzle — and I love every piece of it. It's about turning ideas into reality and using creativity to make things work. Each of these projects is a reflection of my drive to learn, explore, and create solutions that make life easier or more exciting.
                     </p>
                     <p className="text-gray-600 mt-2">
-                      My approach combines technical expertise with business acumen to create applications that solve real problems effectively and efficiently.
+                      It's all about pushing boundaries, learning along the way, and constantly evolving as a developer. When I'm building, I'm not just coding. I'm crafting experiences that matter.
                     </p>
                     <div className="mt-4 flex items-center space-x-3">
                       <a href="https://alassiri.nl" target="_blank" rel="noopener noreferrer" className="text-sm text-[#6366F1] hover:text-[#4F46E5] transition-colors inline-flex items-center">
@@ -274,20 +274,34 @@ export default function Home() {
       </section>
       
       {/* Contact Section */}
-      <section id="contact" className="py-20">
+      <section id="contact" className="py-20 bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Get In Touch
-            </h2>
-            <p className="text-gray-600">
-              Have questions about the portfolio or interested in working together? Reach out!
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                Let's Connect
+              </h2>
+              <p className="text-gray-700 max-w-2xl mx-auto">
+                Feel free to reach out if you'd like to collaborate, chat about a project, or just want to say hi. 
+                I'm always open to learning new things and collaborating on cool ideas.
+              </p>
+            </motion.div>
           </div>
           
-          <div className="max-w-3xl mx-auto">
+          <motion.div 
+            className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             <ContactForm />
-          </div>
+          </motion.div>
         </div>
       </section>
     </AppShell>

@@ -1,0 +1,64 @@
+Refined Landing Page Content:
+Hero Section:
+Headline:
+"Welcome to My Journey in Tech and Creativity!"
+
+Subheadline:
+"I'm Mohammad, a passionate developer, tinkerer, and builder who loves bringing ideas to life with code. Whether it’s creating a sleek e-commerce store or a cutting-edge trading bot, I’m always working on something new, and I’m excited to share it with you."
+
+CTA Button:
+"Let’s Dive In!" (Directs users to the demo apps section)
+
+About Me Section:
+"Hey there! 👋 I’m Mohammad. I’ve always been fascinated by technology and how it can be used to make life easier and more fun. Ever since I wrote my first line of code, I’ve been hooked. Now, I’m all about building creative solutions that solve real-world problems — from a point-of-sale system to high-performance trading bots."
+
+"Each of my projects is a journey — a chance to learn, grow, and experiment with new ideas. It’s not just about writing clean code for me; it’s about creating something meaningful that can make a difference."
+
+"On this site, you’ll find a showcase of projects that demonstrate my skills in tech, design, and problem-solving. I hope you find them inspiring or useful, whether you’re looking for something to help your business, or just curious about what I do."
+
+The Projects:
+Each project description should now feel like a story — showcasing the work you've done and what makes it unique. The projects will be ordered to highlight different technical stacks, designs, and the variety of challenges you've tackled.
+
+1. E-commerce for Greens and Fruits 🥬🍓
+"Imagine an eco-friendly, seamless way to shop for fresh produce online. This project is an eco-conscious e-commerce platform, where I combined my love for clean design and user experience. It’s more than just a shopping cart — it’s about making green living more accessible, with a fresh and modern interface that makes browsing fruits and veggies fun!"
+
+2. POS System for Bookstores 📚
+"A point-of-sale system that’s easy to use and reliable — exactly what bookstores need. I used neumorphism design to create a visually appealing interface while ensuring the backend is seamless. I wanted to blend functional tech with aesthetics, so the bookstore employees feel like they’re using a cutting-edge tool that’s intuitive and pleasant to interact with."
+
+3. Business Intelligence Dashboard 📊
+"Data doesn’t have to be boring. This project is a BI dashboard designed to make data visualization as engaging as it is useful. The goal was to turn complex business data into beautiful, actionable insights. Whether you're tracking sales, performance, or trends, this dashboard brings clarity to data with dynamic charts and customizable features."
+
+4. Statistical Arbitrage Trading Bot 📉💹
+"I built a statistical arbitrage trading bot to automate smart, data-driven trading strategies. It’s all about finding and exploiting inefficiencies in the market. Coding this bot was like solving a thrilling puzzle, combining data science, algorithmic trading, and machine learning to build something that learns and adapts."
+
+5. Triangular Arbitrage Trading Bot 🔄
+"Arbitrage is like a treasure hunt for inefficiencies in the financial market. I created this bot to take advantage of triangular arbitrage opportunities, where small discrepancies in currency exchange rates can lead to profits. It's one of my more technical projects, but it taught me a lot about real-time trading and multi-step financial analysis."
+
+6. DYDX Cointegrated Pairs Trading 📊
+"Here’s a fun fact: I built this bot to take advantage of pairs trading in the DeFi world using DYDX. It’s all about analyzing the relationship between two assets and profiting when their prices diverge or converge. It’s a bit more complex, but a rewarding project that helped me dive deeper into decentralized finance."
+
+7. Marketing & Social Media Management Dashboard 📱
+"This is the project where I combine my love for tech and social media. It’s a tool that streamlines the management of multiple social media accounts, allowing you to track campaigns, analyze performance, and create content all from one place. With a beautiful glassmorphism UI, it’s as fun to use as it is powerful."
+
+Why I Build What I Build (Personal Philosophy):
+"For me, coding is like solving a giant puzzle — and I love every piece of it. It’s about turning ideas into reality and using creativity to make things work. Each of these projects is a reflection of my drive to learn, explore, and create solutions that make life easier or more exciting. When I’m building, I’m not just coding. I’m crafting experiences that matter."
+
+"It’s all about pushing boundaries, learning along the way, and constantly evolving as a developer. If you’re passionate about tech, design, or just love the process of building something from scratch, I’d love to connect and share what I’ve learned!"
+
+Let’s Connect:
+"Feel free to reach out if you’d like to collaborate, chat about a project, or just want to say hi. I’m always open to learning new things and collaborating on cool ideas."
+
+CTA Button:
+"Let’s Connect!" (Links to your contact form or social media)
+
+Closing Thoughts (Human Touch):
+"Thanks for taking the time to explore my projects. I really enjoy sharing my work with others, and I hope these projects inspire you, challenge you, or maybe even help you in your own tech journey. As I continue to build and create, I’ll be sharing more updates here — so stay tuned!"
+
+Design Suggestions:
+Tone: Keep the tone warm, approachable, and inspiring. It’s not just about the projects, but about who you are and your journey.
+
+Layout: Use a clean and minimalist design, with whitespace to make each project stand out. Each project should have its own section with an animated image or GIF to showcase what it does.
+
+Colors: Soft, calming colors for the background, and vibrant accents to make CTA buttons and key project sections pop.
+
+Animations: Implement smooth scroll animations, hover effects on buttons, and subtle transitions between sections. You can use a GSAP (GreenSock Animation Platform) or Framer Motion for React to make interactions dynamic.
