@@ -1498,8 +1498,18 @@ export default function ProjectDetailsPage() {
                     },
                     {
                       src: "/assets/images/screenshots/dydx/orders.svg",
+                      alt: "Order Management",
+                      caption: "View and manage open and closed orders"
+                    },
+                    {
+                      src: "/assets/images/screenshots/dydx/portfolio.svg",
                       alt: "Portfolio Management",
                       caption: "Comprehensive portfolio and position tracking"
+                    },
+                    {
+                      src: "/assets/images/screenshots/dydx/analytics.svg",
+                      alt: "Performance Analytics",
+                      caption: "Detailed trading performance metrics and insights"
                     }
                   ]}
                   aspectRatio="wide"
