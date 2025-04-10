@@ -273,9 +273,14 @@ export default function AppCard({ app, index }: AppCardProps) {
             </span>
           ))}
         </div>
-        <Link href={app.route} className={buttonClass}>
-          Launch App
-        </Link>
+        <div className="flex gap-2">
+          <Link href={`/app-details/${app.id}`} className="inline-block w-1/2 text-center font-medium py-3 px-3 rounded-lg bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+            Learn More
+          </Link>
+          <Link href={app.route} className={`${buttonClass} w-1/2`}>
+            Launch App
+          </Link>
+        </div>
       </div>
     </>
   );

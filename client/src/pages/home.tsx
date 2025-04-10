@@ -53,7 +53,10 @@ export default function Home() {
                 <span className="text-[#6366F1]">Smart Solutions</span>
               </h1>
               <p className="text-lg text-gray-600 mb-8 max-w-lg">
-                A showcase of 7 live business applications — each with unique UI styles, smart architecture, and modern features.
+                Welcome to my portfolio! Over the past years, I've crafted full-stack solutions, from trading bots to e-commerce platforms, each tailored to solve specific business challenges.
+              </p>
+              <p className="text-lg text-gray-600 mb-8 max-w-lg">
+                Below you'll find my 7 demo apps built with modern technologies, showcasing my expertise in software development, UI/UX design, and problem-solving.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#apps" className="inline-block bg-[#6366F1] hover:bg-[#4F46E5] text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300">
@@ -229,24 +232,39 @@ export default function Home() {
               
               <div className="mt-8 p-6 bg-white rounded-xl shadow-sm border border-gray-200">
                 <h3 className="font-heading font-semibold text-xl text-gray-800 mb-4">
-                  Author
+                  About Me
                 </h3>
-                <div className="flex items-center">
-                  <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden mr-4">
+                <div className="flex flex-col md:flex-row md:items-center">
+                  <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden mr-4 mb-4 md:mb-0">
                     <div className="w-full h-full bg-gradient-to-br from-[#6366F1] to-[#EC4899] flex items-center justify-center text-white font-heading font-bold text-xl">
                       MA
                     </div>
                   </div>
                   <div>
                     <h4 className="font-heading font-semibold text-lg text-gray-800">Mohammad Alassiri</h4>
-                    <p className="text-gray-600">Smart software, smart solutions, crafted with care.</p>
-                    <a href="https://alassiri.nl" target="_blank" rel="noopener noreferrer" className="text-sm text-[#6366F1] hover:text-[#4F46E5] transition-colors inline-flex items-center mt-1">
-                      <span>alassiri.nl</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                      </svg>
-                    </a>
+                    <p className="text-gray-700 font-medium">Full-Stack Developer, Problem Solver, Entrepreneur</p>
+                    <p className="text-gray-600 mt-3">
+                      I'm a passionate full-stack developer with a focus on creating real-world solutions. With experience in both the tech and business sectors, I strive to build impactful products that add value.
+                    </p>
+                    <p className="text-gray-600 mt-2">
+                      My approach combines technical expertise with business acumen to create applications that solve real problems effectively and efficiently.
+                    </p>
+                    <div className="mt-4 flex items-center space-x-3">
+                      <a href="https://alassiri.nl" target="_blank" rel="noopener noreferrer" className="text-sm text-[#6366F1] hover:text-[#4F46E5] transition-colors inline-flex items-center">
+                        <span>Website</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                          <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                        </svg>
+                      </a>
+                      <a href="#contact" className="text-sm text-[#6366F1] hover:text-[#4F46E5] transition-colors inline-flex items-center">
+                        <span>Contact Me</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
