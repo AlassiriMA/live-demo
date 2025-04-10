@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#f8fafc" />
+  
+  <!-- Header -->
+  <rect width="800" height="60" fill="#ff4500" />
+  <text x="80" y="38" font-family="Arial" font-size="22" font-weight="bold" fill="white">Redditify</text>
+  
+  <!-- Search Bar -->
+  <rect x="220" y="15" width="300" height="30" rx="15" fill="white" />
+  <text x="245" y="35" font-family="Arial" font-size="14" fill="#94a3b8">Search...</text>
+  
+  <!-- User Menu -->
+  <circle cx="730" cy="30" r="20" fill="#ff7342" />
+  <text x="730" y="35" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">DM</text>
+  
+  <!-- Form Container -->
+  <rect x="150" y="90" width="500" height="390" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  
+  <!-- Form Title -->
+  <text x="180" y="130" font-family="Arial" font-size="24" font-weight="bold" fill="#1e293b">Create a Community</text>
+  <text x="180" y="160" font-family="Arial" font-size="14" fill="#64748b">Build your own space for discussion and content sharing</text>
+  
+  <!-- Name Input -->
+  <text x="180" y="200" font-family="Arial" font-size="16" font-weight="bold" fill="#334155">Community Name</text>
+  <rect x="180" y="210" width="440" height="40" rx="5" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <text x="190" y="235" font-family="Arial" font-size="14" fill="#64748b">r/</text>
+  <text x="210" y="235" font-family="Arial" font-size="14" fill="#1e293b">webdevprojects</text>
+  
+  <!-- Community Type -->
+  <text x="180" y="270" font-family="Arial" font-size="16" font-weight="bold" fill="#334155">Community Type</text>
+  
+  <!-- Public Option -->
+  <circle cx="195" cy="295" r="10" fill="#ff4500" stroke="#ff4500" stroke-width="2" />
+  <circle cx="195" cy="295" r="5" fill="white" />
+  <text x="215" y="300" font-family="Arial" font-size="14" fill="#1e293b">Public</text>
+  <text x="215" y="320" font-family="Arial" font-size="12" fill="#64748b">Anyone can view, post, and comment</text>
+  
+  <!-- Restricted Option -->
+  <circle cx="195" cy="345" r="10" fill="white" stroke="#cbd5e1" stroke-width="2" />
+  <text x="215" y="350" font-family="Arial" font-size="14" fill="#1e293b">Restricted</text>
+  <text x="215" y="370" font-family="Arial" font-size="12" fill="#64748b">Anyone can view, but only approved users can post</text>
+  
+  <!-- Private Option -->
+  <circle cx="195" cy="395" r="10" fill="white" stroke="#cbd5e1" stroke-width="2" />
+  <text x="215" y="400" font-family="Arial" font-size="14" fill="#1e293b">Private</text>
+  <text x="215" y="420" font-family="Arial" font-size="12" fill="#64748b">Only approved users can view and post</text>
+  
+  <!-- Submit Button -->
+  <rect x="180" y="440" width="200" height="40" rx="20" fill="#ff4500" />
+  <text x="280" y="465" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Create Community</text>
+  
+  <!-- Cancel Button -->
+  <rect x="390" y="440" width="100" height="40" rx="20" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <text x="440" y="465" font-family="Arial" font-size="16" font-weight="bold" fill="#64748b" text-anchor="middle">Cancel</text>
+</svg>

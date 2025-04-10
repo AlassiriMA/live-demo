@@ -1189,19 +1189,14 @@ export default function ProjectDetailsPage() {
                 <ImageGridGallery 
                   images={[
                     {
-                      src: "/assets/images/screenshots/reddit/feed.svg",
-                      alt: "Reddit Clone Feed",
+                      src: "/assets/images/screenshots/reddit/home.svg",
+                      alt: "Reddit Clone Home",
                       caption: "Community-driven content feed with voting"
                     },
                     {
-                      src: "/assets/images/screenshots/reddit/post-detail.svg",
-                      alt: "Post Detail View",
+                      src: "/assets/images/screenshots/reddit/thread.svg",
+                      alt: "Post Thread",
                       caption: "Nested comment system for discussions"
-                    },
-                    {
-                      src: "/assets/images/screenshots/reddit/submit.svg",
-                      alt: "Content Submission",
-                      caption: "Create and submit posts to communities"
                     },
                     {
                       src: "/assets/images/screenshots/reddit/profile.svg",
@@ -1209,13 +1204,13 @@ export default function ProjectDetailsPage() {
                       caption: "Profile with posting history and karma"
                     },
                     {
-                      src: "/assets/images/screenshots/reddit/comments.svg",
-                      alt: "Comment Thread",
-                      caption: "Threaded discussion with voting system"
+                      src: "/assets/images/screenshots/reddit/create.svg",
+                      alt: "Create Community",
+                      caption: "Build your own discussion forums"
                     }
                   ]}
                   aspectRatio="wide"
-                  columns={3}
+                  columns={2}
                   lightboxEnabled={true}
                 />
               )}

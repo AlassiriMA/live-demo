@@ -1,232 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#FF4500" offset="0%"></stop>
-            <stop stop-color="#EA580C" offset="100%"></stop>
-        </linearGradient>
-        <filter x="-1.6%" y="-3.4%" width="103.1%" height="106.9%" filterUnits="objectBoundingBox" id="filter-2">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
-            <feMerge>
-                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
-                <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-        </filter>
-    </defs>
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
-        
-        <!-- Header -->
-        <rect fill="#FFFFFF" x="0" y="0" width="800" height="60" stroke="#E5E7EB" stroke-width="1"></rect>
-        
-        <!-- Logo -->
-        <circle fill="url(#linearGradient-1)" cx="40" cy="30" r="20"></circle>
-        <text font-family="Arial" font-size="20" font-weight="bold" fill="#111827" x="70" y="38">
-            reddit clone
-        </text>
-        
-        <!-- Search Bar -->
-        <rect fill="#F3F4F6" x="230" y="15" width="300" height="30" rx="15"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#9CA3AF" x="250" y="34">
-            Search
-        </text>
-        
-        <!-- User Controls -->
-        <circle fill="#10B981" cx="680" cy="30" r="10"></circle>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#111827" x="700" y="35">
-            u/webdev922
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="780" y="35">
-            ▼
-        </text>
-        
-        <!-- Profile Header -->
-        <rect fill="#F3F4F6" x="0" y="60" width="800" height="120"></rect>
-        
-        <!-- Profile Info -->
-        <circle fill="#10B981" cx="150" cy="120" r="40" stroke="#FFFFFF" stroke-width="3"></circle>
-        <text font-family="Arial" font-size="32" font-weight="bold" fill="#10B981" x="142" y="132">
-            W
-        </text>
-        
-        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="210" y="110">
-            u/webdev922
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="210" y="130">
-            5,428 karma • 2 years on Reddit
-        </text>
-        
-        <rect fill="#FF4500" x="210" y="140" width="120" height="30" rx="15"></rect>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="245" y="161">
-            Follow
-        </text>
-        
-        <rect fill="#FFFFFF" x="340" y="140" width="120" height="30" rx="15" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="360" y="161">
-            Chat
-        </text>
-        
-        <!-- Profile Navigation -->
-        <rect fill="#FFFFFF" x="0" y="180" width="800" height="50" stroke="#E5E7EB" stroke-width="1"></rect>
-        
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FF4500" x="200" y="210">
-            POSTS
-        </text>
-        <rect fill="#FF4500" x="200" y="227" width="60" height="3" rx="1.5"></rect>
-        
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="280" y="210">
-            COMMENTS
-        </text>
-        
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="380" y="210">
-            ABOUT
-        </text>
-        
-        <!-- Sort Option -->
-        <rect fill="#F3F4F6" x="650" y="195" width="130" height="30" rx="15"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="670" y="215">
-            New ▼
-        </text>
-        
-        <!-- Post Item 1 -->
-        <rect fill="#FFFFFF" x="200" y="240" width="580" height="130" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        
-        <!-- Vote Controls -->
-        <rect fill="#F3F4F6" x="210" y="250" width="30" height="110" rx="4"></rect>
-        <text font-family="Arial" font-size="16" font-weight="normal" fill="#111827" x="219" y="275">
-            ▲
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FF4500" x="219" y="305">
-            642
-        </text>
-        <text font-family="Arial" font-size="16" font-weight="normal" fill="#111827" x="219" y="335">
-            ▼
-        </text>
-        
-        <!-- Post Content -->
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="250" y="270">
-            Just launched a new React library for state management
-        </text>
-        
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="250" y="290">
-            Posted to r/webdev • 3 hours ago
-        </text>
-        
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="250" y="320">
-            After months of development, I'm excited to share my new open-source React state...
-        </text>
-        
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="250" y="350">
-            💬 42 comments
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="340" y="350">
-            Share
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="380" y="350">
-            Save
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="420" y="350">
-            Hide
-        </text>
-        
-        <!-- Post Item 2 -->
-        <rect fill="#FFFFFF" x="200" y="380" width="580" height="130" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        
-        <!-- Vote Controls -->
-        <rect fill="#F3F4F6" x="210" y="390" width="30" height="110" rx="4"></rect>
-        <text font-family="Arial" font-size="16" font-weight="normal" fill="#111827" x="219" y="415">
-            ▲
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#111827" x="219" y="445">
-            128
-        </text>
-        <text font-family="Arial" font-size="16" font-weight="normal" fill="#111827" x="219" y="475">
-            ▼
-        </text>
-        
-        <!-- Post Content -->
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="250" y="410">
-            How to optimize React performance: My 5 top tips
-        </text>
-        
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="250" y="430">
-            Posted to r/reactjs • 2 days ago
-        </text>
-        
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="250" y="460">
-            After working on several large-scale React applications, I wanted to share some tips...
-        </text>
-        
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="250" y="490">
-            💬 27 comments
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="340" y="490">
-            Share
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="380" y="490">
-            Save
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="medium" fill="#6B7280" x="420" y="490">
-            Hide
-        </text>
-        
-        <!-- About User Sidebar -->
-        <rect fill="#FFFFFF" x="20" y="240" width="160" height="210" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="35" y="265">
-            About User
-        </text>
-        
-        <line x1="35" y1="280" x2="165" y2="280" stroke="#E5E7EB" stroke-width="1"></line>
-        
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="35" y="305">
-            Cake Day:
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="100" y="305">
-            May 8, 2021
-        </text>
-        
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="35" y="330">
-            Post Karma:
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="100" y="330">
-            3,754
-        </text>
-        
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="35" y="355">
-            Comment Karma:
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="125" y="355">
-            1,674
-        </text>
-        
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="35" y="380">
-            Trophies:
-        </text>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="90" y="380">
-            2
-        </text>
-        
-        <rect fill="#FF4500" x="35" y="405" width="120" height="30" rx="15"></rect>
-        <text font-family="Arial" font-size="12" font-weight="bold" fill="#FFFFFF" x="55" y="425">
-            Create Post
-        </text>
-        
-        <!-- Moderator Sidebar -->
-        <rect fill="#FFFFFF" x="20" y="460" width="160" height="100" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#111827" x="35" y="485">
-            Moderator Of
-        </text>
-        
-        <line x1="35" y1="500" x2="165" y2="500" stroke="#E5E7EB" stroke-width="1"></line>
-        
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="35" y="525">
-            r/ReactLibraries
-        </text>
-        
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#111827" x="35" y="545">
-            r/WebDevTips
-        </text>
-    </g>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#f8fafc" />
+  
+  <!-- Header -->
+  <rect width="800" height="60" fill="#ff4500" />
+  <text x="80" y="38" font-family="Arial" font-size="22" font-weight="bold" fill="white">Redditify</text>
+  
+  <!-- Search Bar -->
+  <rect x="220" y="15" width="300" height="30" rx="15" fill="white" />
+  <text x="245" y="35" font-family="Arial" font-size="14" fill="#94a3b8">Search...</text>
+  
+  <!-- User Menu -->
+  <circle cx="730" cy="30" r="20" fill="#ff7342" />
+  <text x="730" y="35" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">DM</text>
+  
+  <!-- Profile Banner -->
+  <rect x="100" y="80" width="600" height="100" rx="8" fill="#0ea5e9" />
+  
+  <!-- Profile Picture -->
+  <circle cx="150" cy="170" r="40" fill="#ff4500" stroke="white" stroke-width="4" />
+  <text x="150" y="180" font-family="Arial" font-size="24" font-weight="bold" fill="white" text-anchor="middle">DM</text>
+  
+  <!-- Username & Stats -->
+  <text x="230" y="150" font-family="Arial" font-size="24" font-weight="bold" fill="white">u/devmaster123</text>
+  <text x="230" y="180" font-family="Arial" font-size="14" fill="white">Member for 2 years • 15.2K Karma</text>
+  
+  <!-- Profile Container -->
+  <rect x="100" y="200" width="600" height="280" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  
+  <!-- Profile Navigation -->
+  <rect x="120" y="220" width="100" height="30" rx="15" fill="#ff4500" />
+  <text x="170" y="240" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Posts</text>
+  
+  <rect x="230" y="220" width="100" height="30" rx="15" fill="#f1f5f9" />
+  <text x="280" y="240" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">Comments</text>
+  
+  <rect x="340" y="220" width="100" height="30" rx="15" fill="#f1f5f9" />
+  <text x="390" y="240" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">Saved</text>
+  
+  <rect x="450" y="220" width="100" height="30" rx="15" fill="#f1f5f9" />
+  <text x="500" y="240" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle">Upvoted</text>
+  
+  <!-- Post Item 1 -->
+  <rect x="120" y="270" width="560" height="90" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
+  <text x="140" y="290" font-family="Arial" font-size="14" fill="#64748b">Posted to r/programming • 2 hours ago</text>
+  <text x="140" y="315" font-family="Arial" font-size="16" font-weight="bold" fill="#1e293b">Building a Full-Stack Application with React and Node.js</text>
+  <text x="140" y="340" font-family="Arial" font-size="14" fill="#64748b">321 upvotes • 128 comments</text>
+  
+  <!-- Post Item 2 -->
+  <rect x="120" y="370" width="560" height="90" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
+  <text x="140" y="390" font-family="Arial" font-size="14" fill="#64748b">Posted to r/reactjs • 3 days ago</text>
+  <text x="140" y="415" font-family="Arial" font-size="16" font-weight="bold" fill="#1e293b">How to optimize React component re-renders</text>
+  <text x="140" y="440" font-family="Arial" font-size="14" fill="#64748b">187 upvotes • 45 comments</text>
 </svg>
