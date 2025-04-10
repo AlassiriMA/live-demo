@@ -389,7 +389,7 @@ export class DatabaseStorage implements IStorage {
           featured: false, // Default value since this column doesn't exist in the database
           sortOrder: 0, // Default value since this column doesn't exist in the database
           detailedContent: row.detailed_content || '',
-          features: row.features || [],
+          features: typeof row.features === 'string' ? JSON.parse(row.features || '[]') : (row.features || []),
           screenshots: [], // Default value since this column doesn't exist in the database
           status: 'active', // Default value since this column doesn't exist in the database
           createdAt: row.created_at,

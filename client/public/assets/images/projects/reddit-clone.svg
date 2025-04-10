@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#FF4500" />
+  <g transform="translate(200, 100)">
+    <circle cx="200" cy="150" r="100" fill="white" />
+    
+    <path d="M145,170 C145,153 158,140 175,140 C192,140 205,153 205,170" stroke="#FF4500" stroke-width="6" fill="none" />
+    <path d="M195,170 C195,153 208,140 225,140 C242,140 255,153 255,170" stroke="#FF4500" stroke-width="6" fill="none" />
+    
+    <circle cx="175" cy="125" r="10" fill="#FF4500" />
+    <circle cx="225" cy="125" r="10" fill="#FF4500" />
+    
+    <path d="M175,195 C175,195 200,210 225,195" stroke="#FF4500" stroke-width="6" fill="none" />
+    
+    <path d="M300,110 Q320,120 320,150 L320,190 Q320,220 300,230 L300,110 Z" fill="white" />
+    <path d="M100,110 Q80,120 80,150 L80,190 Q80,220 100,230 L100,110 Z" fill="white" />
+    
+    <ellipse cx="200" cy="230" rx="120" ry="20" fill="white" />
+    
+    <ellipse cx="200" cy="80" rx="40" ry="30" fill="white" />
+    <circle cx="180" cy="70" r="5" fill="#FF4500" />
+    <circle cx="220" cy="70" r="5" fill="#FF4500" />
+    <path d="M185,85 Q200,100 215,85" stroke="#FF4500" stroke-width="3" fill="none" />
+  </g>
+  <text x="400" y="500" font-family="Arial" font-size="32" fill="white" text-anchor="middle">Reddit Clone</text>
+</svg>

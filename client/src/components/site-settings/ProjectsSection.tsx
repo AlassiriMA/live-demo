@@ -177,7 +177,8 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
         style={{ 
           borderTopColor: primaryColor, 
           borderTopWidth: '4px',
-          background: `linear-gradient(to bottom right, white, ${primaryColor}05)`
+          background: `linear-gradient(to bottom right, white, ${primaryColor}10)`,
+          boxShadow: `0 10px 25px -5px ${primaryColor}20`
         }}
       >
         {/* Project Image - Show placeholder gradient background if image not available */}
@@ -188,7 +189,10 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                 <img 
                   src={imageUrl} 
                   alt={`${name} preview`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-contain p-2 transition-all duration-500 group-hover:scale-105"
+                  style={{
+                    filter: 'drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07))'
+                  }}
                   onError={(e) => {
                     console.log("Image failed to load:", imageUrl);
                     // If image fails to load, replace with gradient background
@@ -196,13 +200,10 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                     e.currentTarget.parentElement?.classList.add('image-fallback');
                   }}
                 />
-                {/* Add a debugging message */}
-                <div className="absolute bottom-0 right-0 bg-black/70 text-white text-xs px-2 py-1 hidden">
-                  {imageUrl}
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
-                  <span className="text-white font-medium pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 px-4 py-1 rounded-full text-sm">
-                    View Details
+                {/* Remove debugging message */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center">
+                  <span className="text-white font-medium mb-6 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 backdrop-blur-sm px-5 py-2 rounded-full text-sm transform translate-y-4 group-hover:translate-y-0">
+                    View Project Details
                   </span>
                 </div>
               </>
@@ -263,7 +264,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             {/* Details Link */}
             <Link 
               href={detailRoute} 
-              className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+              className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md bg-blue-50 text-blue-600 hover:bg-blue-100 hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
             >
               Details
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -274,10 +275,11 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             {/* Live Demo Link */}
             <Link 
               href={demoRoute} 
-              className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md"
+              className="inline-flex items-center text-sm font-medium px-3 py-1.5 rounded-md shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
               style={{
                 backgroundColor: `${primaryColor}15`,
-                color: primaryColor
+                color: primaryColor,
+                boxShadow: `0 2px 4px ${primaryColor}20`
               }}
             >
               Demo
