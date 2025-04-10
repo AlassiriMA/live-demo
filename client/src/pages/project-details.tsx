@@ -389,12 +389,118 @@ export default function ProjectDetailsPage() {
                       src: "/assets/images/screenshots/pos/categories.svg",
                       alt: "Book Categories Management",
                       caption: "Organize inventory with customizable categories"
+                    },
+                    {
+                      src: "/assets/images/screenshots/pos/reports.svg",
+                      alt: "Sales Reports",
+                      caption: "Detailed reporting and business insights"
                     }
                   ]}
                   aspectRatio="wide"
-                  columns={2}
+                  columns={3}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* POS Bookstore Tech Stack */}
+              {(project.slug === 'pos-bookstore' || project.id === 1) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
+                          { name: 'Express', icon: 'SiExpress', type: 'backend', url: 'https://expressjs.com' },
+                          { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
+                          { name: 'Drizzle ORM', icon: 'SiPrisma', type: 'backend', url: 'https://orm.drizzle.team' },
+                          { name: 'Tailwind CSS', icon: 'SiTailwindcss', type: 'frontend', url: 'https://tailwindcss.com' },
+                          { name: 'Recharts', icon: 'SiD3Dotjs', type: 'frontend', url: 'https://recharts.org' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' },
+                          { name: 'Zod', icon: 'SiZotero', type: 'tool', url: 'https://zod.dev' },
+                          { name: 'JWT', icon: 'SiJsonwebtokens', type: 'tool', url: 'https://jwt.io' },
+                          { name: 'Socket.io', icon: 'SiSocketdotio', type: 'backend', url: 'https://socket.io' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">POS Core Features</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li><span className="font-medium">Real-time inventory management</span> with low stock alerts and automatic reordering</li>
+                          <li><span className="font-medium">Barcode scanning</span> integration for quick product lookup and checkout</li>
+                          <li><span className="font-medium">Multi-payment method</span> processing including credit cards, cash, and mobile payments</li>
+                          <li>Comprehensive <span className="font-medium">reporting dashboard</span> with sales analytics and trend visualization</li>
+                          <li><span className="font-medium">Customer database</span> with purchase history and loyalty program integration</li>
+                          <li><span className="font-medium">Role-based access control</span> for staff with different permission levels</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Bookstore-Specific Modules</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">ISBN Integration</h5>
+                          <p className="text-sm text-gray-700">Automated book data retrieval using ISBN lookup with publisher database integration.</p>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-md">
+                          <h5 className="font-medium text-green-700 mb-2">Genre Management</h5>
+                          <p className="text-sm text-gray-700">Hierarchical category system with nested genres and cross-referencing capabilities.</p>
+                        </div>
+                        <div className="bg-amber-50 p-4 rounded-md">
+                          <h5 className="font-medium text-amber-700 mb-2">Author Tracking</h5>
+                          <p className="text-sm text-gray-700">Author database with biographical information and associated titles for recommendations.</p>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-md">
+                          <h5 className="font-medium text-purple-700 mb-2">Special Orders</h5>
+                          <p className="text-sm text-gray-700">Customer special order system with publisher integration and email notifications.</p>
+                        </div>
+                        <div className="bg-rose-50 p-4 rounded-md">
+                          <h5 className="font-medium text-rose-700 mb-2">Events Calendar</h5>
+                          <p className="text-sm text-gray-700">Book readings, signings, and special event management with ticketing features.</p>
+                        </div>
+                        <div className="bg-teal-50 p-4 rounded-md">
+                          <h5 className="font-medium text-teal-700 mb-2">Used Book Trading</h5>
+                          <p className="text-sm text-gray-700">Buy-back system for used books with condition grading and dynamic pricing.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Architecture Highlights</h4>
+                      <div className="bg-indigo-50 p-4 rounded-md">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="font-medium text-indigo-900 mb-2">Backend Structure</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>RESTful API with comprehensive endpoints for all POS operations</li>
+                              <li>Transaction processing with ACID compliance for data integrity</li>
+                              <li>Real-time synchronization between multiple POS terminals</li>
+                              <li>Scheduled tasks for end-of-day reporting and backups</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="font-medium text-indigo-900 mb-2">Frontend Design</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>Responsive design optimized for both desktop and tablet interfaces</li>
+                              <li>Offline mode with transaction queueing during connectivity issues</li>
+                              <li>Dark mode for reduced eye strain during long shifts</li>
+                              <li>Keyboard shortcuts and touch-optimized controls for fast operation</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* BI Dashboard Screenshots */}
@@ -459,6 +565,88 @@ export default function ProjectDetailsPage() {
                 />
               )}
               
+              {/* English AI Tutor Tech Stack */}
+              {(project.slug === 'english-ai-tutor' || project.id === 8) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
+                          { name: 'Express', icon: 'SiExpress', type: 'backend', url: 'https://expressjs.com' },
+                          { name: 'MongoDB', icon: 'SiMongodb', type: 'database', url: 'https://www.mongodb.com' },
+                          { name: 'OpenAI API', icon: 'SiOpenai', type: 'tool', url: 'https://openai.com/api' },
+                          { name: 'Framer Motion', icon: 'SiFramer', type: 'frontend', url: 'https://www.framer.com/motion' },
+                          { name: 'TensorFlow.js', icon: 'SiTensorflow', type: 'tool', url: 'https://www.tensorflow.org/js' },
+                          { name: 'D3.js', icon: 'SiD3Dotjs', type: 'frontend', url: 'https://d3js.org' },
+                          { name: 'Firebase', icon: 'SiFirebase', type: 'tool', url: 'https://firebase.google.com' },
+                          { name: 'WebSpeech API', icon: 'SiGooglecloud', type: 'tool', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">AI Integration</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li>Integration with <span className="font-medium">OpenAI GPT-4</span> for natural language understanding and generation</li>
+                          <li>Custom fine-tuned model for <span className="font-medium">educational English language</span> training</li>
+                          <li>Voice recognition and speech synthesis using <span className="font-medium">WebSpeech API</span> for pronunciation practice</li>
+                          <li>Local <span className="font-medium">TensorFlow.js</span> models for offline pronunciation assessment</li>
+                          <li>Adaptive learning algorithms that personalize content based on student performance</li>
+                          <li>Sentiment analysis to gauge student confidence and adjust teaching approach</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Educational Features</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-emerald-50 p-4 rounded-md">
+                          <h5 className="font-medium text-emerald-700 mb-2">Conversation Practice</h5>
+                          <p className="text-sm text-gray-700">Adaptive AI conversations tailored to learner level with contextual corrections.</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">Grammar Analysis</h5>
+                          <p className="text-sm text-gray-700">Real-time grammar feedback with explanations and personalized exercises.</p>
+                        </div>
+                        <div className="bg-amber-50 p-4 rounded-md">
+                          <h5 className="font-medium text-amber-700 mb-2">Vocabulary Builder</h5>
+                          <p className="text-sm text-gray-700">Spaced repetition system with contextual examples and visual associations.</p>
+                        </div>
+                        <div className="bg-violet-50 p-4 rounded-md">
+                          <h5 className="font-medium text-violet-700 mb-2">Pronunciation Coaching</h5>
+                          <p className="text-sm text-gray-700">Audio analysis with visual feedback on pronunciation accuracy and intonation.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Learning Analytics</h4>
+                      <div className="bg-indigo-50 p-4 rounded-md">
+                        <p className="text-sm text-gray-700 mb-3">
+                          Comprehensive tracking and visualization of student progress with actionable insights:
+                        </p>
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li>Proficiency heat maps highlighting strengths and areas for improvement</li>
+                          <li>Error pattern recognition to identify recurring challenges</li>
+                          <li>Vocabulary retention metrics with optimal review scheduling</li>
+                          <li>Speaking confidence and fluency scoring with historical trends</li>
+                          <li>Learning pace analysis with personalized goal recommendations</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
               {/* Beauty Salon Screenshots */}
               {(project.slug === 'beauty-salon' || project.id === 9) && (
                 <ImageGridGallery 
@@ -488,6 +676,106 @@ export default function ProjectDetailsPage() {
                   columns={2}
                   lightboxEnabled={true}
                 />
+              )}
+              
+              {/* Beauty Salon Tech Stack */}
+              {(project.slug === 'beauty-salon' || project.id === 9) && (
+                <div className="bg-white rounded-lg shadow-sm p-6 mt-6">
+                  <h3 className="text-lg font-bold mb-4">Implementation Details</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-md mb-2">Technology Stack</h4>
+                      <TechStackGrid
+                        technologies={[
+                          { name: 'React', icon: 'SiReact', type: 'frontend', url: 'https://reactjs.org' },
+                          { name: 'TypeScript', icon: 'SiTypescript', type: 'language', url: 'https://www.typescriptlang.org' },
+                          { name: 'Node.js', icon: 'SiNodedotjs', type: 'backend', url: 'https://nodejs.org' },
+                          { name: 'Express', icon: 'SiExpress', type: 'backend', url: 'https://expressjs.com' },
+                          { name: 'PostgreSQL', icon: 'SiPostgresql', type: 'database', url: 'https://www.postgresql.org' },
+                          { name: 'Stripe', icon: 'SiStripe', type: 'tool', url: 'https://stripe.com' },
+                          { name: 'SendGrid', icon: 'SiMailgun', type: 'tool', url: 'https://sendgrid.com' },
+                          { name: 'Tailwind CSS', icon: 'SiTailwindcss', type: 'frontend', url: 'https://tailwindcss.com' },
+                          { name: 'Framer Motion', icon: 'SiFramer', type: 'frontend', url: 'https://www.framer.com/motion' },
+                          { name: 'Cloudinary', icon: 'SiCloudinary', type: 'tool', url: 'https://cloudinary.com' },
+                          { name: 'Docker', icon: 'SiDocker', type: 'devops', url: 'https://www.docker.com' }
+                        ]}
+                        grouped={true}
+                        showLabels={true}
+                        showLinks={true}
+                      />
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Booking System</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700">
+                          <li>Advanced scheduling system with <span className="font-medium">real-time availability</span> updates</li>
+                          <li>Staff-specific availability with customizable working hours and breaks</li>
+                          <li>Multi-service bookings with appropriate time blocking and dependencies</li>
+                          <li>Automated email and SMS reminders via <span className="font-medium">SendGrid</span> integration</li>
+                          <li>Secure payment processing with <span className="font-medium">Stripe</span> for deposits and full payments</li>
+                          <li>Cancellation and rescheduling with configurable policies and refund rules</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Client Features</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-rose-50 p-4 rounded-md">
+                          <h5 className="font-medium text-rose-700 mb-2">User Profiles</h5>
+                          <p className="text-sm text-gray-700">Personalized accounts with appointment history, favorite services, and stylists.</p>
+                        </div>
+                        <div className="bg-fuchsia-50 p-4 rounded-md">
+                          <h5 className="font-medium text-fuchsia-700 mb-2">Service Gallery</h5>
+                          <p className="text-sm text-gray-700">Image-rich catalog of services with pricing, duration, and detailed descriptions.</p>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-md">
+                          <h5 className="font-medium text-purple-700 mb-2">Virtual Consultations</h5>
+                          <p className="text-sm text-gray-700">Video consultations with stylists for pre-appointment planning and advice.</p>
+                        </div>
+                        <div className="bg-indigo-50 p-4 rounded-md">
+                          <h5 className="font-medium text-indigo-700 mb-2">Loyalty Program</h5>
+                          <p className="text-sm text-gray-700">Points system with rewards, referral bonuses, and tier-based benefits.</p>
+                        </div>
+                        <div className="bg-sky-50 p-4 rounded-md">
+                          <h5 className="font-medium text-sky-700 mb-2">Online Store</h5>
+                          <p className="text-sm text-gray-700">E-commerce platform for beauty products with stylist recommendations.</p>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-md">
+                          <h5 className="font-medium text-blue-700 mb-2">Review System</h5>
+                          <p className="text-sm text-gray-700">Verified customer reviews with photo uploads and stylist responses.</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                      <h4 className="font-medium text-md mb-2">Management Dashboard</h4>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="font-medium text-gray-900 mb-2">Stylist Management</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>Staff profiles and expertise tracking</li>
+                              <li>Performance metrics and client satisfaction</li>
+                              <li>Commission calculations and reporting</li>
+                              <li>Shift scheduling and availability management</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="font-medium text-gray-900 mb-2">Business Analytics</h5>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                              <li>Revenue tracking by service, stylist, and time period</li>
+                              <li>Client retention and acquisition metrics</li>
+                              <li>Inventory management and low-stock alerts</li>
+                              <li>Forecasting and trend analysis</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
               
               {/* Reddit Clone Screenshots */}
