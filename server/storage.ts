@@ -393,8 +393,8 @@ export class DatabaseStorage implements IStorage {
           detailedContent: row.detailed_content || null,
           features: row.features || [],
           screenshots: row.screenshots || [],
-          createdAt: row.created_at ? new Date(row.created_at) : new Date(),
-          updatedAt: row.updated_at ? new Date(row.updated_at) : new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
         };
         
         return rowToProject as unknown as Project;
