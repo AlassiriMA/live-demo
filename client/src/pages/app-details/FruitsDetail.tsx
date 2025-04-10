@@ -1,242 +1,240 @@
-import AppDetailLayout from "@/components/layout/AppDetailLayout";
+import AppShell from "@/components/layout/AppShell";
 import { apps } from "@/lib/app-data";
-import { Card } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 export default function FruitsDetail() {
   // Find the Fruits app from the apps array
-  const fruitsApp = apps.find(app => app.id === "fruits") || apps[1];
-  
+  const fruitsApp = apps.find(app => app.id === "fruits")!;
+
   return (
-    <AppDetailLayout app={fruitsApp}>
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="w-full justify-start mb-8">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="features">Features</TabsTrigger>
-              <TabsTrigger value="tech">Tech Stack</TabsTrigger>
-              <TabsTrigger value="challenges">Challenges</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="overview" className="space-y-6">
-              <div>
-                <h2 className="text-2xl font-bold mb-4">Fresh Fruits E-Commerce</h2>
-                <p className="text-gray-700 mb-4">
-                  The Fresh Fruits E-Commerce platform is a modern online store designed for small to medium-sized produce retailers who want to sell fresh fruits and vegetables online. With a vibrant, nature-inspired design, the platform creates an appealing shopping experience that highlights the freshness and quality of organic products.
-                </p>
-                <p className="text-gray-700 mb-4">
-                  This application addresses the growing demand for convenient access to fresh, locally-sourced produce through digital channels, enabling small businesses to compete with larger grocery delivery services.
-                </p>
+    <AppShell>
+      <section className="py-16 bg-gradient-to-b from-green-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-8">
+              <Link href="/#apps">
+                <Button variant="ghost" className="mb-6">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  Back to All Apps
+                </Button>
+              </Link>
+
+              <div className="flex flex-col md:flex-row gap-12 items-start">
+                <motion.div 
+                  className="md:w-1/2"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="bg-white rounded-xl overflow-hidden shadow-xl border border-gray-200">
+                    <img 
+                      src={fruitsApp.imageUrl} 
+                      alt={fruitsApp.name} 
+                      className="w-full h-64 object-cover" 
+                    />
+                    <div className="p-6" style={{ background: `linear-gradient(to right, ${fruitsApp.primaryColor}0A, ${fruitsApp.secondaryColor}0A)` }}>
+                      <div className="flex gap-2 mb-4">
+                        {fruitsApp.tags.map(tag => (
+                          <Badge key={tag} variant="outline">{tag}</Badge>
+                        ))}
+                      </div>
+                      <h1 className="text-3xl font-bold mb-2 text-gray-800">{fruitsApp.name}</h1>
+                      <p className="text-gray-600 mb-4">{fruitsApp.description}</p>
+                      <div className="flex gap-4">
+                        <Button 
+                          className="rounded-lg" 
+                          style={{ 
+                            backgroundColor: fruitsApp.primaryColor,
+                            borderColor: fruitsApp.primaryColor,
+                            color: "white" 
+                          }}
+                          asChild
+                        >
+                          <Link href={fruitsApp.route}>
+                            Try the Live Demo
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="md:w-1/2"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <h2 className="text-2xl font-bold mb-4 text-gray-800">About This Application</h2>
+                  <p className="text-gray-600 mb-6">
+                    Fruits & Greens is an eco-conscious e-commerce platform dedicated to connecting consumers directly with sustainable produce suppliers. The platform's design prioritizes an organic, clean aesthetic that reflects the natural, fresh products it showcases.
+                  </p>
+
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold mb-3 text-gray-800">Key Features</h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <div className="bg-green-100 rounded-full p-1 mt-1 mr-3">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-800">Sustainable Sourcing Details</h4>
+                          <p className="text-gray-600">Transparency in product origins with detailed sustainability metrics for each producer.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="bg-green-100 rounded-full p-1 mt-1 mr-3">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-800">Seasonal Product Highlights</h4>
+                          <p className="text-gray-600">Dynamic seasonal collections that promote local, in-season produce to reduce the carbon footprint.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="bg-green-100 rounded-full p-1 mt-1 mr-3">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-800">Eco-Friendly Packaging Options</h4>
+                          <p className="text-gray-600">Selection of packaging preferences with information on environmental impact for each option.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="bg-green-100 rounded-full p-1 mt-1 mr-3">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-800">Community-Supported Agriculture Integration</h4>
+                          <p className="text-gray-600">Options to subscribe to regular deliveries directly from local farms, supporting sustainable agriculture.</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-bold mb-3 text-gray-800">Technologies Used</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      <div className="bg-gray-100 rounded-lg p-3 text-center">
+                        <p className="font-medium text-gray-800">React</p>
+                      </div>
+                      <div className="bg-gray-100 rounded-lg p-3 text-center">
+                        <p className="font-medium text-gray-800">Stripe</p>
+                      </div>
+                      <div className="bg-gray-100 rounded-lg p-3 text-center">
+                        <p className="font-medium text-gray-800">SEO</p>
+                      </div>
+                      <div className="bg-gray-100 rounded-lg p-3 text-center">
+                        <p className="font-medium text-gray-800">PostgreSQL</p>
+                      </div>
+                      <div className="bg-gray-100 rounded-lg p-3 text-center">
+                        <p className="font-medium text-gray-800">Drizzle ORM</p>
+                      </div>
+                      <div className="bg-gray-100 rounded-lg p-3 text-center">
+                        <p className="font-medium text-gray-800">TanStack Query</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
+            </div>
+
+            <div className="bg-green-50 rounded-xl p-8 mt-12 border border-green-100">
+              <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">Implementation Details</h2>
               
-              <Card className="p-6 bg-gray-50">
-                <h3 className="text-xl font-bold mb-3">Business Impact</h3>
-                <p className="text-gray-700 mb-4">
-                  A specialized e-commerce platform for fresh produce can transform business operations by:
-                </p>
-                <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                  <li>Expanding customer reach beyond physical store limitations</li>
-                  <li>Increasing order volume and average order value</li>
-                  <li>Reducing food waste through better inventory management</li>
-                  <li>Building customer loyalty through convenient shopping experiences</li>
-                </ul>
-              </Card>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-200">
-                  <h3 className="text-xl font-bold mb-3">Target Users</h3>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                    <li>Small organic farms with direct-to-consumer sales</li>
-                    <li>Local fruit and vegetable shops</li>
-                    <li>Farmer's market vendors looking to expand online</li>
-                    <li>Health-conscious consumers seeking quality produce</li>
-                  </ul>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-800">Design Philosophy</h3>
+                  <p className="text-gray-600 mb-4">
+                    The Fruits & Greens application embraces a clean, organic design language that reflects the natural products it showcases. The interface uses soft curves, plenty of white space, and earth tones to create a calming shopping experience.
+                  </p>
+                  <p className="text-gray-600">
+                    The color palette is based on gentle greens that evoke freshness and sustainability while ensuring high readability and a connection to nature. Photography is given prominence to showcase the beauty of fresh produce.
+                  </p>
                 </div>
                 
-                <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-200">
-                  <h3 className="text-xl font-bold mb-3">Key Metrics</h3>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                    <li>Mobile-first shopping experience</li>
-                    <li>95% inventory accuracy rate</li>
-                    <li>Average checkout completion time under 2 minutes</li>
-                    <li>Seamless delivery scheduling options</li>
-                  </ul>
+                <div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-800">Technical Architecture</h3>
+                  <p className="text-gray-600 mb-4">
+                    The application follows a modern e-commerce architecture with React on the frontend and an Express API backend. It integrates Stripe for secure payment processing and implements SEO best practices for maximum visibility.
+                  </p>
+                  <p className="text-gray-600">
+                    The product catalog is stored in a PostgreSQL database with Drizzle ORM providing type-safe queries and efficient data retrieval. The application uses TanStack Query for state management and server synchronization.
+                  </p>
                 </div>
               </div>
-            </TabsContent>
-            
-            <TabsContent value="features" className="space-y-6">
-              <div>
-                <h2 className="text-2xl font-bold mb-4">Key Features</h2>
-                <p className="text-gray-700 mb-4">
-                  The Fresh Fruits E-Commerce platform includes features specifically designed for selling fresh produce online:
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="p-6">
-                  <div className="flex items-center mb-3">
-                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+              <div className="mt-8">
+                <h3 className="text-xl font-bold mb-3 text-gray-800">User Experience Highlights</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                  <div className="bg-white p-5 rounded-lg shadow-sm">
+                    <div className="text-green-600 mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold">Product Catalog</h3>
+                    <h4 className="font-bold text-gray-800 mb-2">Streamlined Checkout</h4>
+                    <p className="text-gray-600">One-page checkout process with smart defaults and address auto-completion for a frictionless purchase flow.</p>
                   </div>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                    <li>High-quality product imagery</li>
-                    <li>Detailed nutritional information</li>
-                    <li>Seasonal product highlighting</li>
-                    <li>Organic certification display</li>
-                  </ul>
-                </Card>
-                
-                <Card className="p-6">
-                  <div className="flex items-center mb-3">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <div className="bg-white p-5 rounded-lg shadow-sm">
+                    <div className="text-green-600 mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold">Seamless Checkout</h3>
+                    <h4 className="font-bold text-gray-800 mb-2">Smart Search</h4>
+                    <p className="text-gray-600">Intelligent search with filters for dietary preferences, seasonality, and sustainability metrics.</p>
                   </div>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                    <li>Multi-payment method support</li>
-                    <li>Address save and auto-fill</li>
-                    <li>Delivery time selection</li>
-                    <li>Order summary with freshness guarantee</li>
-                  </ul>
-                </Card>
-                
-                <Card className="p-6">
-                  <div className="flex items-center mb-3">
-                    <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="bg-white p-5 rounded-lg shadow-sm">
+                    <div className="text-green-600 mb-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold">Delivery Management</h3>
+                    <h4 className="font-bold text-gray-800 mb-2">Delivery Scheduling</h4>
+                    <p className="text-gray-600">Flexible delivery time slots with real-time availability and carbon-footprint reduction options.</p>
                   </div>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                    <li>Real-time delivery tracking</li>
-                    <li>Delivery window selection</li>
-                    <li>Special handling instructions</li>
-                    <li>Contactless delivery options</li>
-                  </ul>
-                </Card>
-                
-                <Card className="p-6">
-                  <div className="flex items-center mb-3">
-                    <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold">Order Management</h3>
-                  </div>
-                  <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                    <li>Order history and reordering</li>
-                    <li>Subscription and recurring orders</li>
-                    <li>Freshness feedback system</li>
-                    <li>Flexible order modification window</li>
-                  </ul>
-                </Card>
+                </div>
               </div>
-            </TabsContent>
-            
-            <TabsContent value="tech" className="space-y-6">
-              <div>
-                <h2 className="text-2xl font-bold mb-4">Technology Stack</h2>
-                <p className="text-gray-700 mb-4">
-                  The Fresh Fruits E-Commerce platform was built using modern technologies focused on performance and user experience:
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="p-6">
-                  <h3 className="text-xl font-bold mb-3">Frontend</h3>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                    <li><span className="font-medium">React</span> - For building the interactive UI</li>
-                    <li><span className="font-medium">TypeScript</span> - For type safety and maintainability</li>
-                    <li><span className="font-medium">TailwindCSS</span> - For custom, responsive design</li>
-                    <li><span className="font-medium">React Query</span> - For efficient data fetching</li>
-                    <li><span className="font-medium">Framer Motion</span> - For smooth animations</li>
-                  </ul>
-                </Card>
-                
-                <Card className="p-6">
-                  <h3 className="text-xl font-bold mb-3">Backend</h3>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                    <li><span className="font-medium">Express</span> - For RESTful API endpoints</li>
-                    <li><span className="font-medium">Node.js</span> - For server-side runtime</li>
-                    <li><span className="font-medium">PostgreSQL</span> - For data persistence</li>
-                    <li><span className="font-medium">Drizzle ORM</span> - For database operations</li>
-                    <li><span className="font-medium">Zod</span> - For data validation</li>
-                  </ul>
-                </Card>
-                
-                <Card className="p-6 md:col-span-2">
-                  <h3 className="text-xl font-bold mb-3">Key Technical Features</h3>
-                  <ul className="list-disc pl-5 space-y-2 text-gray-700">
-                    <li><span className="font-medium">Responsive Images</span> - Optimized for all device sizes</li>
-                    <li><span className="font-medium">Lazy Loading</span> - For improved performance</li>
-                    <li><span className="font-medium">PWA Capabilities</span> - For offline access</li>
-                    <li><span className="font-medium">Optimistic UI Updates</span> - For better user experience</li>
-                    <li><span className="font-medium">Real-time Inventory</span> - For accurate product availability</li>
-                  </ul>
-                </Card>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="challenges" className="space-y-6">
-              <div>
-                <h2 className="text-2xl font-bold mb-4">Challenges & Solutions</h2>
-                <p className="text-gray-700 mb-4">
-                  Building an e-commerce platform for fresh produce presented several unique challenges:
-                </p>
-              </div>
-              
-              <div className="space-y-6">
-                <Card className="p-6">
-                  <h3 className="text-xl font-bold mb-3">Product Freshness Representation</h3>
-                  <p className="text-gray-700 mb-2">
-                    <span className="font-medium">Challenge:</span> Conveying product freshness and quality accurately through digital means.
-                  </p>
-                  <p className="text-gray-700">
-                    <span className="font-medium">Solution:</span> Implemented high-quality photography standards with consistent lighting, developed a freshness rating system, and included harvest date information for all products.
-                  </p>
-                </Card>
-                
-                <Card className="p-6">
-                  <h3 className="text-xl font-bold mb-3">Inventory Fluctuation</h3>
-                  <p className="text-gray-700 mb-2">
-                    <span className="font-medium">Challenge:</span> Managing the rapidly changing inventory levels of seasonal and perishable items.
-                  </p>
-                  <p className="text-gray-700">
-                    <span className="font-medium">Solution:</span> Created a real-time inventory system with automated alerts for low stock, implemented dynamic pricing based on remaining shelf life, and developed a sophisticated forecasting algorithm for seasonal produce.
-                  </p>
-                </Card>
-                
-                <Card className="p-6">
-                  <h3 className="text-xl font-bold mb-3">Last-Mile Delivery Quality</h3>
-                  <p className="text-gray-700 mb-2">
-                    <span className="font-medium">Challenge:</span> Ensuring produce quality during the final delivery stage to customers.
-                  </p>
-                  <p className="text-gray-700">
-                    <span className="font-medium">Solution:</span> Designed a specialized packaging system with temperature control considerations, created delivery guidelines for handling produce, and implemented a customer feedback loop specific to product condition upon arrival.
-                  </p>
-                </Card>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </motion.div>
-      </div>
-    </AppDetailLayout>
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link href={fruitsApp.route}>
+                <Button 
+                  size="lg"
+                  className="rounded-lg"
+                  style={{ 
+                    backgroundColor: fruitsApp.primaryColor,
+                    borderColor: fruitsApp.primaryColor,
+                    color: "white" 
+                  }}
+                >
+                  Launch the Fruits & Greens Demo
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </AppShell>
   );
 }
