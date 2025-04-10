@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#f8fafc" />
+  
+  <!-- Header -->
+  <rect width="800" height="80" fill="#0f172a" />
+  <text x="40" y="50" font-family="Arial" font-size="28" font-weight="bold" fill="white">PrecisionMark Agency</text>
+  
+  <!-- Navigation -->
+  <text x="400" y="50" font-family="Arial" font-size="16" fill="white">Home</text>
+  <text x="470" y="50" font-family="Arial" font-size="16" fill="white">Services</text>
+  <text x="555" y="50" font-family="Arial" font-size="16" font-weight="bold" fill="#38bdf8">Portfolio</text>
+  <text x="650" y="50" font-family="Arial" font-size="16" fill="white">About</text>
+  <text x="720" y="50" font-family="Arial" font-size="16" fill="white">Contact</text>
+  
+  <!-- Page Title -->
+  <text x="400" y="120" font-family="Arial" font-size="34" font-weight="bold" fill="#0f172a" text-anchor="middle">Our Portfolio</text>
+  <text x="400" y="150" font-family="Arial" font-size="18" fill="#64748b" text-anchor="middle">Showcasing our successful client partnerships and marketing campaigns</text>
+  
+  <!-- Filter Tabs -->
+  <rect x="150" y="180" width="500" height="50" rx="25" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <rect x="160" y="190" width="80" height="30" rx="15" fill="#0ea5e9" />
+  <text x="200" y="210" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">All</text>
+  
+  <text x="280" y="210" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle" dominant-baseline="middle">E-Commerce</text>
+  <text x="380" y="210" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle" dominant-baseline="middle">Tech</text>
+  <text x="480" y="210" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle" dominant-baseline="middle">Healthcare</text>
+  <text x="580" y="210" font-family="Arial" font-size="14" fill="#64748b" text-anchor="middle" dominant-baseline="middle">Finance</text>
+  
+  <!-- Portfolio Grid -->
+  <!-- Row 1 -->
+  <rect x="40" y="250" width="230" height="170" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <rect x="40" y="250" width="230" height="120" fill="#0891b2" rx="8" />
+  <text x="60" y="390" font-family="Arial" font-size="16" font-weight="bold" fill="#0f172a">TechFusion Rebrand</text>
+  <text x="60" y="410" font-family="Arial" font-size="14" fill="#64748b">Brand Strategy, Digital Marketing</text>
+  
+  <rect x="285" y="250" width="230" height="170" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <rect x="285" y="250" width="230" height="120" fill="#7c3aed" rx="8" />
+  <text x="305" y="390" font-family="Arial" font-size="16" font-weight="bold" fill="#0f172a">HealthPartners Campaign</text>
+  <text x="305" y="410" font-family="Arial" font-size="14" fill="#64748b">SEO, Content Marketing</text>
+  
+  <rect x="530" y="250" width="230" height="170" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <rect x="530" y="250" width="230" height="120" fill="#0284c7" rx="8" />
+  <text x="550" y="390" font-family="Arial" font-size="16" font-weight="bold" fill="#0f172a">ShopEase Conversion</text>
+  <text x="550" y="410" font-family="Arial" font-size="14" fill="#64748b">PPC, CRO, Analytics</text>
+  
+  <!-- Row 2 -->
+  <rect x="40" y="440" width="230" height="40" rx="8" fill="#0ea5e9" />
+  <text x="155" y="465" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">View More</text>
+  
+  <rect x="285" y="440" width="230" height="40" rx="8" fill="#0ea5e9" />
+  <text x="400" y="465" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">View More</text>
+  
+  <rect x="530" y="440" width="230" height="40" rx="8" fill="#0ea5e9" />
+  <text x="645" y="465" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">View More</text>
+  
+  <!-- Case Study Stats -->
+  <circle cx="70" cy="310" r="20" fill="#f8fafc" opacity="0.8" />
+  <text x="70" y="310" font-family="Arial" font-size="12" font-weight="bold" fill="#0c4a6e" text-anchor="middle" dominant-baseline="middle">+127%</text>
+  <text x="70" y="330" font-family="Arial" font-size="10" fill="#f8fafc" text-anchor="middle" dominant-baseline="middle">Traffic</text>
+  
+  <circle cx="315" cy="310" r="20" fill="#f8fafc" opacity="0.8" />
+  <text x="315" y="310" font-family="Arial" font-size="12" font-weight="bold" fill="#5b21b6" text-anchor="middle" dominant-baseline="middle">+85%</text>
+  <text x="315" y="330" font-family="Arial" font-size="10" fill="#f8fafc" text-anchor="middle" dominant-baseline="middle">Leads</text>
+  
+  <circle cx="560" cy="310" r="20" fill="#f8fafc" opacity="0.8" />
+  <text x="560" y="310" font-family="Arial" font-size="12" font-weight="bold" fill="#0c4a6e" text-anchor="middle" dominant-baseline="middle">+43%</text>
+  <text x="560" y="330" font-family="Arial" font-size="10" fill="#f8fafc" text-anchor="middle" dominant-baseline="middle">Sales</text>
+</svg>
