@@ -53,8 +53,9 @@ const RichTextEditor = ({
   };
 
   // Execute a document command
-  const execCommand = (command: string, value: string | null = null) => {
-    document.execCommand(command, false, value);
+  const execCommand = (command: string, value?: string) => {
+    // @ts-ignore - document.execCommand has various strange signature requirements
+    document.execCommand(command, false, value || '');
     handleChange();
     editorRef.current?.focus();
   };
@@ -73,6 +74,7 @@ const RichTextEditor = ({
   const handleLink = () => {
     if (linkUrl && linkText) {
       const linkHtml = `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+      // @ts-ignore - document.execCommand has various strange signature requirements
       document.execCommand('insertHTML', false, linkHtml);
       setLinkUrl('');
       setLinkText('');
@@ -85,6 +87,7 @@ const RichTextEditor = ({
   const handleImage = () => {
     if (imageUrl) {
       const imageHtml = `<img src="${imageUrl}" alt="${imageAlt}" style="max-width: 100%;" />`;
+      // @ts-ignore - document.execCommand has various strange signature requirements
       document.execCommand('insertHTML', false, imageHtml);
       setImageUrl('');
       setImageAlt('');
@@ -175,7 +178,7 @@ const RichTextEditor = ({
           type="button"
           variant="ghost"
           size="sm"
-          onClick={() => handleFormat('formatBlock', 'blockquote')}
+          onClick={() => execCommand('formatBlock', 'blockquote')}
           title="Quote"
         >
           <Quote className="h-4 w-4" />

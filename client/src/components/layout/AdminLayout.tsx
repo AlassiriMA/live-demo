@@ -1,82 +1,112 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
-import { 
-  LayoutDashboard, 
-  FolderPlus, 
-  ImageIcon, 
-  Settings, 
-  Users, 
+import { useAuth } from '@/hooks/use-auth';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Button } from '@/components/ui/button';
+import {
+  LayoutDashboard,
+  LayoutGrid,
+  Image as ImageIcon,
+  FileText,
+  Settings,
   LogOut,
   Menu,
-  X
+  X,
 } from 'lucide-react';
-import { useAuth } from '@/hooks/use-auth';
-import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/components/ui/button';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface AdminLayoutProps {
   children: ReactNode;
 }
 
+interface NavigationItem {
+  href: string;
+  label: string;
+  icon: JSX.Element;
+}
+
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const { user, logout } = useAuth();
-  const { toast } = useToast();
-  const [, setLocation] = useLocation();
+  const [location] = useLocation();
   const isMobile = useIsMobile();
   const [isSidebarOpen, setIsSidebarOpen] = useState(!isMobile);
 
+  useEffect(() => {
+    // Close sidebar on mobile by default
+    if (isMobile) {
+      setIsSidebarOpen(false);
+    } else {
+      setIsSidebarOpen(true);
+    }
+  }, [isMobile]);
+
+  const handleLogout = async () => {
+    await logout();
+    // Redirect will be handled in the auth hook
+  };
+
+  // Navigation items
+  const navigationItems: NavigationItem[] = [
+    {
+      href: '/admin',
+      label: 'Dashboard',
+      icon: <LayoutDashboard className="mr-2 h-4 w-4" />,
+    },
+    {
+      href: '/admin/projects',
+      label: 'Projects',
+      icon: <LayoutGrid className="mr-2 h-4 w-4" />,
+    },
+    {
+      href: '/admin/media',
+      label: 'Media Library',
+      icon: <ImageIcon className="mr-2 h-4 w-4" />,
+    },
+    {
+      href: '/admin/blog',
+      label: 'Blog Posts',
+      icon: <FileText className="mr-2 h-4 w-4" />,
+    },
+    {
+      href: '/admin/settings',
+      label: 'Settings',
+      icon: <Settings className="mr-2 h-4 w-4" />,
+    },
+  ];
+
+  // If no user, we shouldn't render the layout
   if (!user) {
     return null;
   }
 
-  const handleLogout = async () => {
-    await logout();
-    toast({
-      title: 'Logged out',
-      description: 'You have been successfully logged out.',
-    });
-    setLocation('/admin/login');
-  };
-
-  const navigationItems = [
-    { icon: <LayoutDashboard className="mr-2 h-4 w-4" />, label: 'Dashboard', href: '/admin' },
-    { icon: <FolderPlus className="mr-2 h-4 w-4" />, label: 'Projects', href: '/admin/projects' },
-    { icon: <ImageIcon className="mr-2 h-4 w-4" />, label: 'Media', href: '/admin/media' },
-    { icon: <Users className="mr-2 h-4 w-4" />, label: 'Users', href: '/admin/users' },
-    { icon: <Settings className="mr-2 h-4 w-4" />, label: 'Settings', href: '/admin/settings' },
-  ];
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
-    <div className="min-h-screen bg-background flex">
-      {/* Mobile menu button */}
+    <div className="flex min-h-screen bg-background">
+      {/* Mobile sidebar toggle */}
       {isMobile && (
-        <Button 
-          variant="ghost" 
-          size="icon" 
+        <Button
+          variant="outline"
+          size="icon"
           className="fixed top-4 left-4 z-50"
-          onClick={toggleSidebar}
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
-          {isSidebarOpen ? <X /> : <Menu />}
+          {isSidebarOpen ? (
+            <X className="h-4 w-4" />
+          ) : (
+            <Menu className="h-4 w-4" />
+          )}
         </Button>
       )}
 
       {/* Sidebar */}
-      <div 
+      <div
         className={`
-          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-          ${isMobile ? 'fixed z-40 shadow-xl' : 'relative'}
-          transition-transform duration-300 ease-in-out
-          w-64 h-screen bg-card border-r border-border flex flex-col
+          fixed inset-y-0 left-0 z-40 flex w-64 flex-col bg-card shadow-lg transition-transform duration-300
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          ${isMobile ? 'lg:hidden' : 'lg:translate-x-0 lg:static lg:z-auto'}
         `}
       >
-        {/* Logo and title */}
-        <div className="p-6 border-b border-border">
-          <h1 className="text-xl font-bold">Admin Dashboard</h1>
+        {/* Logo */}
+        <div className="flex h-16 items-center border-b border-border px-4">
+          <span className="text-xl font-semibold">Admin Dashboard</span>
         </div>
 
         {/* Navigation */}
