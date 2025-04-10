@@ -79,10 +79,49 @@ export default {
             height: "0",
           },
         },
+        "shimmer": {
+          "0%": {
+            transform: "translateX(-100%)",
+          },
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+        "progress": {
+          "0%": {
+            width: "0%",
+          },
+          "50%": {
+            width: "70%",
+          },
+          "100%": {
+            width: "100%",
+          },
+        },
+        "skeleton-pulse": {
+          "0%, 100%": {
+            opacity: "0.5",
+          },
+          "50%": {
+            opacity: "0.8",
+          },
+        },
+        "fade-in-out": {
+          "0%, 100%": {
+            opacity: "0.3",
+          },
+          "50%": {
+            opacity: "0.6",
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "shimmer": "shimmer 2s infinite linear",
+        "progress": "progress 1.5s ease-in-out infinite",
+        "skeleton-pulse": "skeleton-pulse 1.5s ease-in-out infinite",
+        "fade-in-out": "fade-in-out 1.8s ease-in-out infinite",
       },
     },
   },

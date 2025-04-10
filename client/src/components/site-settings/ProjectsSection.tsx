@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { Project } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AnimatedSkeleton } from "@/components/ui/animated-skeleton";
 import { apps } from "@/lib/app-data";
 
 export function ProjectsSection() {
@@ -298,24 +299,98 @@ function ProjectsSkeletonGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
       {Array(6).fill(0).map((_, i) => (
-        <div key={i} className="bg-white rounded-xl shadow-md border border-gray-100 p-6">
+        <div 
+          key={i} 
+          className="bg-white rounded-xl shadow-md border border-gray-100 p-6 relative overflow-hidden"
+        >
+          {/* Wrapper with shimmer effect */}
+          <AnimatedSkeleton 
+            animation="combined" 
+            className="absolute inset-0"
+            delay={i * 0.1}
+            showProgress={true}
+          />
+          
+          {/* Image placeholder */}
+          <AnimatedSkeleton
+            size="custom"
+            animation="shimmer"
+            className="w-full h-40 rounded-lg mb-4"
+            delay={i * 0.15}
+          />
+          
+          {/* Title and icon area */}
           <div className="flex items-center mb-4">
-            <Skeleton className="w-12 h-12 rounded-lg mr-4" />
-            <Skeleton className="h-6 w-32" />
+            <AnimatedSkeleton
+              size="custom"
+              animation="pulse"
+              className="w-12 h-12 rounded-lg mr-4"
+              delay={i * 0.2}
+            />
+            <AnimatedSkeleton
+              size="md" 
+              width="8rem"
+              animation="pulse"
+              delay={i * 0.2}
+            />
           </div>
           
+          {/* Description lines */}
           <div className="mb-4">
-            <Skeleton className="h-4 w-full mb-2" />
-            <Skeleton className="h-4 w-full mb-2" />
-            <Skeleton className="h-4 w-3/4" />
+            <AnimatedSkeleton
+              size="sm"
+              fullWidth
+              className="mb-2"
+              animation="wave"
+              delay={i * 0.25}
+            />
+            <AnimatedSkeleton
+              size="sm"
+              fullWidth
+              className="mb-2"
+              animation="wave"
+              delay={i * 0.3}
+            />
+            <AnimatedSkeleton
+              size="sm"
+              width="75%"
+              animation="wave"
+              delay={i * 0.35}
+            />
           </div>
           
+          {/* Tags and buttons */}
           <div className="flex justify-between items-center">
             <div className="flex gap-2">
-              <Skeleton className="h-6 w-16 rounded-full" />
-              <Skeleton className="h-6 w-16 rounded-full" />
+              <AnimatedSkeleton
+                size="md"
+                rounded="full"
+                width="4rem"
+                animation="pulse"
+                delay={i * 0.4}
+              />
+              <AnimatedSkeleton
+                size="md"
+                rounded="full"
+                width="4rem"
+                animation="pulse"
+                delay={i * 0.45}
+              />
             </div>
-            <Skeleton className="h-6 w-20" />
+            <div className="flex space-x-2">
+              <AnimatedSkeleton
+                size="lg"
+                width="5rem"
+                animation="pulse"
+                delay={i * 0.5}
+              />
+              <AnimatedSkeleton
+                size="lg"
+                width="4rem"
+                animation="pulse"
+                delay={i * 0.55}
+              />
+            </div>
           </div>
         </div>
       ))}
