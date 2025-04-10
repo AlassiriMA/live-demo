@@ -1,198 +1,111 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="800px" height="500px" viewBox="0 0 800 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#8B5CF6" offset="0%"></stop>
-            <stop stop-color="#7C3AED" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-2">
-            <stop stop-color="#EDE9FE" offset="0%"></stop>
-            <stop stop-color="#DDD6FE" offset="100%"></stop>
-        </linearGradient>
-        <filter x="-3.4%" y="-19.2%" width="106.8%" height="138.5%" filterUnits="objectBoundingBox" id="filter-3">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
-            <feMerge>
-                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
-                <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-        </filter>
-    </defs>
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#F9FAFB" x="0" y="0" width="800" height="500"></rect>
-        
-        <!-- Header -->
-        <rect fill="url(#linearGradient-1)" x="0" y="0" width="800" height="60"></rect>
-        <text font-family="Arial" font-size="22" font-weight="bold" fill="#FFFFFF" x="24" y="38">
-            English AI Tutor
-        </text>
-        
-        <!-- Navigation -->
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="320" y="38">
-            Conversation
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="430" y="38">
-            Lessons
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#FFFFFF" x="510" y="38">
-            Vocabulary
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="610" y="38">
-            Grammar
-        </text>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#FFFFFF" x="700" y="38">
-            Profile
-        </text>
-        
-        <!-- Left Sidebar - Categories -->
-        <rect fill="#F3F4F6" x="0" y="60" width="200" height="440"></rect>
-        <text font-family="Arial" font-size="16" font-weight="bold" fill="#374151" x="20" y="90">
-            Vocabulary Lists
-        </text>
-        
-        <!-- Category items -->
-        <rect fill="#FFFFFF" x="20" y="105" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="130">
-            All Words
-        </text>
-        
-        <rect fill="#EDE9FE" x="20" y="155" width="160" height="40" rx="6" stroke="#DDD6FE" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="14" font-weight="bold" fill="#111827" x="35" y="180">
-            Business English
-        </text>
-        
-        <rect fill="#FFFFFF" x="20" y="205" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="230">
-            Travel Vocabulary
-        </text>
-        
-        <rect fill="#FFFFFF" x="20" y="255" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="280">
-            Academic English
-        </text>
-        
-        <rect fill="#FFFFFF" x="20" y="305" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="330">
-            Idioms & Phrases
-        </text>
-        
-        <rect fill="#FFFFFF" x="20" y="355" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#111827" x="35" y="380">
-            TOEFL Preparation
-        </text>
-        
-        <rect fill="#FFFFFF" x="20" y="405" width="160" height="40" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#7C3AED" x="35" y="430">
-            + Create New List
-        </text>
-        
-        <!-- Main Content - Vocabulary -->
-        <rect fill="#FFFFFF" x="200" y="60" width="600" height="440"></rect>
-        
-        <!-- Header -->
-        <text font-family="Arial" font-size="24" font-weight="bold" fill="#111827" x="230" y="100">
-            Business English Vocabulary
-        </text>
-        
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="230" y="130">
-            Master these 30 essential business terms
-        </text>
-        
-        <!-- Actions Bar -->
-        <rect fill="#F9FAFB" x="230" y="150" width="540" height="50" rx="6"></rect>
-        
-        <!-- Search bar -->
-        <rect fill="#FFFFFF" x="245" y="160" width="200" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#9CA3AF" x="260" y="180">
-            Search terms...
-        </text>
-        
-        <!-- Buttons -->
-        <rect fill="#FFFFFF" x="460" y="160" width="90" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="480" y="180">
-            Filter
-        </text>
-        
-        <rect fill="#FFFFFF" x="560" y="160" width="90" height="30" rx="4" stroke="#E5E7EB" stroke-width="1"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#6B7280" x="576" y="180">
-            Sort by
-        </text>
-        
-        <rect fill="#7C3AED" x="660" y="160" width="90" height="30" rx="4"></rect>
-        <text font-family="Arial" font-size="12" font-weight="normal" fill="#FFFFFF" x="675" y="180">
-            Practice
-        </text>
-        
-        <!-- Vocabulary Cards -->
-        <g filter="url(#filter-3)" transform="translate(230, 220)">
-            <rect fill="#FFFFFF" x="0" y="0" width="260" height="120" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-            <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="20" y="30">
-                Quarterly Report
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="20" y="55">
-                [kwor-ter-lee ri-pawrt]
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="85">
-                A financial document that reports on a company's 
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="105">
-                performance over a three-month period.
-            </text>
-        </g>
-        
-        <g filter="url(#filter-3)" transform="translate(510, 220)">
-            <rect fill="#FFFFFF" x="0" y="0" width="260" height="120" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-            <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="20" y="30">
-                Revenue
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="20" y="55">
-                [rev-uh-noo]
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="85">
-                The total amount of money generated by a company
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="105">
-                from its business activities.
-            </text>
-        </g>
-        
-        <g filter="url(#filter-3)" transform="translate(230, 360)">
-            <rect fill="#FFFFFF" x="0" y="0" width="260" height="120" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-            <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="20" y="30">
-                Stakeholder
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="20" y="55">
-                [steyk-hohl-der]
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="85">
-                A person or group with an interest in a business
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="105">
-                and can affect or be affected by its actions.
-            </text>
-        </g>
-        
-        <g filter="url(#filter-3)" transform="translate(510, 360)">
-            <rect fill="#FFFFFF" x="0" y="0" width="260" height="120" rx="6" stroke="#E5E7EB" stroke-width="1"></rect>
-            <text font-family="Arial" font-size="18" font-weight="bold" fill="#111827" x="20" y="30">
-                Market Share
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="20" y="55">
-                [mahr-kit shair]
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="85">
-                The portion of a market controlled by a particular
-            </text>
-            <text font-family="Arial" font-size="14" font-weight="normal" fill="#4B5563" x="20" y="105">
-                company or product.
-            </text>
-        </g>
-        
-        <!-- Pagination -->
-        <rect fill="#FFFFFF" x="350" y="500" width="100" height="0" rx="0"></rect>
-        <text font-family="Arial" font-size="14" font-weight="normal" fill="#6B7280" x="400" y="490">
-            1 / 8 pages
-        </text>
-    </g>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow1" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0003" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#F9FAFB" />
+  
+  <!-- Main Container -->
+  <rect x="50" y="30" width="700" height="540" rx="12" ry="12" fill="white" filter="url(#shadow1)" />
+  
+  <!-- Header Bar -->
+  <rect x="50" y="30" width="700" height="60" rx="12" ry="12" fill="url(#grad1)" />
+  <text x="400" y="67" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle" font-weight="bold">English AI Tutor - Vocabulary Builder</text>
+  
+  <!-- Tab Navigation -->
+  <rect x="70" y="110" width="660" height="40" rx="8" ry="8" fill="#F3F4F6" />
+  
+  <rect x="80" y="115" width="120" height="30" rx="6" ry="6" fill="#4F46E5" />
+  <text x="140" y="135" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">Vocabulary</text>
+  
+  <text x="260" y="135" font-family="Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">Grammar</text>
+  <text x="380" y="135" font-family="Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">Listening</text>
+  <text x="500" y="135" font-family="Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">Speaking</text>
+  <text x="620" y="135" font-family="Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">Writing</text>
+  
+  <!-- Content Area -->
+  <rect x="70" y="160" width="660" height="390" rx="8" ry="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" />
+  
+  <!-- Topic Selection -->
+  <rect x="90" y="180" width="200" height="30" rx="6" ry="6" fill="#F3F4F6" />
+  <text x="110" y="200" font-family="Arial, sans-serif" font-size="14" fill="#4B5563">Topic: Business English</text>
+  <text x="270" y="200" font-family="Arial, sans-serif" font-size="14" fill="#4B5563">▼</text>
+  
+  <!-- Proficiency Level Slider -->
+  <rect x="310" y="180" width="200" height="30" rx="6" ry="6" fill="#F3F4F6" />
+  <text x="330" y="200" font-family="Arial, sans-serif" font-size="14" fill="#4B5563">Level: Intermediate</text>
+  <text x="490" y="200" font-family="Arial, sans-serif" font-size="14" fill="#4B5563">▼</text>
+  
+  <!-- Start Button -->
+  <rect x="530" y="180" width="180" height="30" rx="6" ry="6" fill="#4F46E5" />
+  <text x="620" y="200" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">Start New Session</text>
+  
+  <!-- Vocabulary Cards -->
+  <g id="card1">
+    <rect x="90" y="230" width="300" height="140" rx="8" ry="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+    <text x="110" y="260" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#111827">facilitate</text>
+    <text x="240" y="260" font-family="Arial, sans-serif" font-size="14" fill="#6B7280">/ fəˈsɪlɪteɪt /</text>
+    <line x1="110" y1="270" x2="270" y2="270" stroke="#E5E7EB" stroke-width="1" />
+    <text x="110" y="290" font-family="Arial, sans-serif" font-size="14" fill="#4B5563">
+      <tspan x="110" y="290">verb: to make easier or less difficult;</tspan>
+      <tspan x="110" y="310">to help the progress of</tspan>
+    </text>
+    <text x="110" y="340" font-family="Arial, sans-serif" font-size="13" fill="#4F46E5" font-style="italic">
+      "The project manager facilitated the meeting."
+    </text>
+  </g>
+  
+  <g id="card2">
+    <rect x="410" y="230" width="300" height="140" rx="8" ry="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+    <text x="430" y="260" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#111827">stakeholder</text>
+    <text x="560" y="260" font-family="Arial, sans-serif" font-size="14" fill="#6B7280">/ ˈsteɪkˌhoʊldər /</text>
+    <line x1="430" y1="270" x2="590" y2="270" stroke="#E5E7EB" stroke-width="1" />
+    <text x="430" y="290" font-family="Arial, sans-serif" font-size="14" fill="#4B5563">
+      <tspan x="430" y="290">noun: a person with an interest or</tspan>
+      <tspan x="430" y="310">concern in something, especially a business</tspan>
+    </text>
+    <text x="430" y="340" font-family="Arial, sans-serif" font-size="13" fill="#4F46E5" font-style="italic">
+      "We need to consult all stakeholders."
+    </text>
+  </g>
+  
+  <g id="card3">
+    <rect x="90" y="390" width="300" height="140" rx="8" ry="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+    <text x="110" y="420" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#111827">implementation</text>
+    <text x="260" y="420" font-family="Arial, sans-serif" font-size="14" fill="#6B7280">/ ˌɪmplɪmɛnˈteɪʃən /</text>
+    <line x1="110" y1="430" x2="280" y2="430" stroke="#E5E7EB" stroke-width="1" />
+    <text x="110" y="450" font-family="Arial, sans-serif" font-size="14" fill="#4B5563">
+      <tspan x="110" y="450">noun: the process of putting a decision or</tspan>
+      <tspan x="110" y="470">plan into effect; execution</tspan>
+    </text>
+    <text x="110" y="500" font-family="Arial, sans-serif" font-size="13" fill="#4F46E5" font-style="italic">
+      "The implementation of the strategy was successful."
+    </text>
+  </g>
+  
+  <g id="card4">
+    <rect x="410" y="390" width="300" height="140" rx="8" ry="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
+    <text x="430" y="420" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#111827">leverage</text>
+    <text x="530" y="420" font-family="Arial, sans-serif" font-size="14" fill="#6B7280">/ ˈlɛvərɪdʒ /</text>
+    <line x1="430" y1="430" x2="550" y2="430" stroke="#E5E7EB" stroke-width="1" />
+    <text x="430" y="450" font-family="Arial, sans-serif" font-size="14" fill="#4B5563">
+      <tspan x="430" y="450">verb: to use something to maximum</tspan>
+      <tspan x="430" y="470">advantage</tspan>
+    </text>
+    <text x="430" y="500" font-family="Arial, sans-serif" font-size="13" fill="#4F46E5" font-style="italic">
+      "We can leverage our expertise in this area."
+    </text>
+  </g>
+  
+  <!-- Progress Bar -->
+  <rect x="70" y="550" width="660" height="10" rx="5" ry="5" fill="#F3F4F6" />
+  <rect x="70" y="550" width="330" height="10" rx="5" ry="5" fill="#4F46E5" />
+  <text x="400" y="580" font-family="Arial, sans-serif" font-size="14" fill="#6B7280" text-anchor="middle">12/24 Business Terms Completed</text>
 </svg>

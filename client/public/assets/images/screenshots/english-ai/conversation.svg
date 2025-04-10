@@ -1,57 +1,78 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="500" fill="#f8fafc" />
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow1" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0003" />
+    </filter>
+  </defs>
   
-  <!-- Header -->
-  <rect width="800" height="60" fill="#4f46e5" />
-  <text x="30" y="38" font-family="Arial" font-size="22" font-weight="bold" fill="white">English AI Tutor</text>
-  <circle cx="750" cy="30" r="20" fill="#818cf8" />
-  <text x="750" y="38" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">JD</text>
+  <!-- Background -->
+  <rect width="800" height="600" fill="#F9FAFB" />
   
-  <!-- Lesson Title -->
-  <rect x="0" y="60" width="800" height="50" fill="#ede9fe" />
-  <text x="30" y="92" font-family="Arial" font-size="18" font-weight="bold" fill="#5b21b6">Daily Conversations: At the Restaurant</text>
-  <text x="650" y="92" font-family="Arial" font-size="14" fill="#7c3aed">Lesson 3 of 7</text>
+  <!-- Chat Interface -->
+  <rect x="50" y="30" width="700" height="540" rx="12" ry="12" fill="white" filter="url(#shadow1)" />
   
-  <!-- Conversation Area -->
-  <rect x="30" y="130" width="740" height="290" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1" />
+  <!-- Header Bar -->
+  <rect x="50" y="30" width="700" height="60" rx="12" ry="12" fill="url(#grad1)" />
+  <text x="400" y="67" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle" font-weight="bold">AI English Tutor</text>
   
-  <!-- AI Assistant Message -->
-  <rect x="50" y="150" width="500" height="80" rx="10" fill="#ddd6fe" />
-  <circle cx="40" cy="160" r="15" fill="#7c3aed" />
-  <text x="40" y="165" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">AI</text>
-  <text x="70" y="175" font-family="Arial" font-size="15" fill="#5b21b6">Imagine you're at a restaurant. How would you ask the waiter</text>
-  <text x="70" y="195" font-family="Arial" font-size="15" fill="#5b21b6">for a menu and order a meal? Try to use the expressions we just</text>
-  <text x="70" y="215" font-family="Arial" font-size="15" fill="#5b21b6">learned.</text>
+  <!-- Chat Messages Area -->
+  <rect x="70" y="110" width="660" height="380" rx="8" ry="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" />
   
-  <!-- User Message -->
-  <rect x="250" y="250" width="500" height="60" rx="10" fill="#e2e8f0" />
-  <circle cx="760" cy="260" r="15" fill="#64748b" />
-  <text x="760" y="265" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">JD</text>
-  <text x="270" y="275" font-family="Arial" font-size="15" fill="#334155">Excuse me, could I please see the menu? Thank you.</text>
-  <text x="270" y="295" font-family="Arial" font-size="15" fill="#334155">I would like to order the grilled salmon, please.</text>
+  <!-- User Message 1 -->
+  <rect x="320" y="130" width="390" height="70" rx="8" ry="8" fill="#EBF8FF" stroke="#BEE3F8" stroke-width="1" />
+  <text x="340" y="155" font-family="Arial, sans-serif" font-size="14" fill="#2D3748">
+    <tspan x="340" y="155">Hi! I'd like to improve my English speaking skills.</tspan>
+    <tspan x="340" y="175">Can you help me practice for a job interview?</tspan>
+  </text>
+  <circle cx="660" y="180" r="16" fill="#4F46E5" />
+  <text x="660" y="185" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">You</text>
   
-  <!-- AI Assistant Message -->
-  <rect x="50" y="330" width="500" height="70" rx="10" fill="#ddd6fe" />
-  <circle cx="40" cy="340" r="15" fill="#7c3aed" />
-  <text x="40" y="345" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">AI</text>
-  <text x="70" y="355" font-family="Arial" font-size="15" fill="#5b21b6">Great job! You used polite expressions correctly. You could also add:</text>
-  <text x="70" y="375" font-family="Arial" font-size="15" fill="#5b21b6">"Could you recommend a wine that pairs well with salmon?"</text>
-  <text x="70" y="395" font-family="Arial" font-size="15" fill="#5b21b6">Would you like to try that?</text>
+  <!-- AI Message 1 -->
+  <rect x="90" y="220" width="390" height="90" rx="8" ry="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1" />
+  <text x="110" y="245" font-family="Arial, sans-serif" font-size="14" fill="#2D3748">
+    <tspan x="110" y="245">Hello! I'd be happy to help you practice for a job</tspan>
+    <tspan x="110" y="265">interview. Let's start with some common questions.</tspan>
+    <tspan x="110" y="285">Could you tell me about your work experience?</tspan>
+  </text>
+  <circle cx="140" y="190" r="16" fill="#7C3AED" />
+  <text x="140" y="195" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">AI</text>
+  
+  <!-- User Message 2 -->
+  <rect x="320" y="330" width="390" height="90" rx="8" ry="8" fill="#EBF8FF" stroke="#BEE3F8" stroke-width="1" />
+  <text x="340" y="355" font-family="Arial, sans-serif" font-size="14" fill="#2D3748">
+    <tspan x="340" y="355">I have worked for 3 years as software engineer at</tspan>
+    <tspan x="340" y="375">a small company. I developed mobile applications</tspan>
+    <tspan x="340" y="395">and led a team of 2 other developers.</tspan>
+  </text>
+  <circle cx="660" y="400" r="16" fill="#4F46E5" />
+  <text x="660" y="405" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">You</text>
+  
+  <!-- Feedback Area -->
+  <rect x="70" y="510" width="660" height="40" rx="8" ry="8" fill="#FEFCE8" stroke="#FEF08A" stroke-width="1" />
+  <text x="90" y="535" font-family="Arial, sans-serif" font-size="13" fill="#854D0E" font-style="italic">
+    Grammar feedback: Consider using "as a software engineer" instead of "as software engineer"
+  </text>
   
   <!-- Input Area -->
-  <rect x="30" y="440" width="740" height="40" rx="20" fill="white" stroke="#e2e8f0" stroke-width="1" />
-  <text x="50" y="465" font-family="Arial" font-size="14" fill="#94a3b8">Type your response here...</text>
-  <circle cx="740" cy="460" r="15" fill="#4f46e5" />
-  <path d="M 735 460 L 745 460 M 740 455 L 740 465" stroke="white" stroke-width="2" />
-  
-  <!-- Control Buttons -->
-  <rect x="30" y="390" width="120" height="30" rx="15" fill="#4f46e5" />
-  <text x="90" y="410" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Hint</text>
-  
-  <rect x="160" y="390" width="120" height="30" rx="15" fill="#e2e8f0" />
-  <text x="220" y="410" font-family="Arial" font-size="12" fill="#334155" text-anchor="middle">Pronunciation</text>
-  
-  <rect x="290" y="390" width="120" height="30" rx="15" fill="#e2e8f0" />
-  <text x="350" y="410" font-family="Arial" font-size="12" fill="#334155" text-anchor="middle">Translation</text>
+  <rect x="70" y="510" width="660" height="40" rx="8" ry="8" fill="white" stroke="#E5E7EB" stroke-width="1" />
+  <text x="400" y="535" font-family="Arial, sans-serif" font-size="14" fill="#9CA3AF" text-anchor="middle">Type your message here...</text>
+
+  <!-- AI Features -->
+  <g id="features" transform="translate(70, 560)">
+    <rect x="0" y="0" width="100" height="24" rx="12" ry="12" fill="#F3E8FF" stroke="#E9D5FF" stroke-width="1" />
+    <text x="50" y="16" font-family="Arial, sans-serif" font-size="12" fill="#6B21A8" text-anchor="middle">Grammar</text>
+    
+    <rect x="110" y="0" width="100" height="24" rx="12" ry="12" fill="#F3E8FF" stroke="#E9D5FF" stroke-width="1" />
+    <text x="160" y="16" font-family="Arial, sans-serif" font-size="12" fill="#6B21A8" text-anchor="middle">Vocabulary</text>
+    
+    <rect x="220" y="0" width="100" height="24" rx="12" ry="12" fill="#F3E8FF" stroke="#E9D5FF" stroke-width="1" />
+    <text x="270" y="16" font-family="Arial, sans-serif" font-size="12" fill="#6B21A8" text-anchor="middle">Pronunciation</text>
+    
+    <rect x="330" y="0" width="140" height="24" rx="12" ry="12" fill="#F3E8FF" stroke="#E9D5FF" stroke-width="1" />
+    <text x="400" y="16" font-family="Arial, sans-serif" font-size="12" fill="#6B21A8" text-anchor="middle">Cultural Context</text>
+  </g>
 </svg>
