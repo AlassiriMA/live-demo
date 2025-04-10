@@ -20,9 +20,9 @@ interface TechIcon {
   color: string;
 }
 
-export default function TechIconsGrid() {
+const TechIconsGrid: React.FC = () => {
   const controls = useAnimation();
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
   
   const row1Ref = useRef<HTMLDivElement>(null);
