@@ -13,6 +13,30 @@ export type AppInfo = {
 
 export const apps: AppInfo[] = [
   {
+    id: "english-ai",
+    name: "English AI Teacher",
+    description: "Interactive AI-powered platform for learning English with personalized lessons and real-time feedback.",
+    style: "Futuristic",
+    primaryColor: "#14B8A6",
+    secondaryColor: "#5EEAD4",
+    accentColor: "#0D9488",
+    imageUrl: "https://images.unsplash.com/photo-1605711285791-0219e80e43a3",
+    tags: ["AI", "Education", "Interactive"],
+    route: "/english-ai"
+  },
+  {
+    id: "beauty",
+    name: "Glow & Style",
+    description: "Premium hair and beauty center website with appointment booking and personalized treatment plans.",
+    style: "Elegant",
+    primaryColor: "#F472B6",
+    secondaryColor: "#FB7185",
+    accentColor: "#E11D48",
+    imageUrl: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937",
+    tags: ["Booking", "Services", "Gallery"],
+    route: "/beauty"
+  },
+  {
     id: "pos",
     name: "POS for Bookstores",
     description: "An elegant, intuitive POS system tailored for bookstores with barcode workflows and offline resilience.",
@@ -23,6 +47,18 @@ export const apps: AppInfo[] = [
     imageUrl: "https://images.unsplash.com/photo-1507842217343-583bb7270b66",
     tags: ["React", "TailwindCSS", "TypeScript"],
     route: "/pos"
+  },
+  {
+    id: "reddit",
+    name: "ThreadVerse",
+    description: "Community-driven content sharing platform with upvoting system, user profiles, and nested comments.",
+    style: "Social",
+    primaryColor: "#F97316",
+    secondaryColor: "#FB923C",
+    accentColor: "#EA580C",
+    imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7",
+    tags: ["Community", "Posts", "Threads"],
+    route: "/reddit"
   },
   {
     id: "fruits",
@@ -49,18 +85,6 @@ export const apps: AppInfo[] = [
     route: "/marketing"
   },
   {
-    id: "statarb",
-    name: "StatArb Bot",
-    description: "A smart bot simulating mean-reverting strategies using z-score models and live data.",
-    style: "Terminal",
-    primaryColor: "#10B981",
-    secondaryColor: "#34D399",
-    accentColor: "#059669",
-    imageUrl: "",
-    tags: ["Trading", "Charts", "Algorithm"],
-    route: "/statarb"
-  },
-  {
     id: "triarb",
     name: "TriArb Bot",
     description: "A high-frequency simulated trading bot that detects profit edges in triangle cycles.",
@@ -83,6 +107,18 @@ export const apps: AppInfo[] = [
     imageUrl: "",
     tags: ["Cointegration", "Z-scores", "L2"],
     route: "/dydx"
+  },
+  {
+    id: "statarb",
+    name: "StatArb Bot",
+    description: "A smart bot simulating mean-reverting strategies using z-score models and live data.",
+    style: "Terminal",
+    primaryColor: "#10B981",
+    secondaryColor: "#34D399",
+    accentColor: "#059669",
+    imageUrl: "",
+    tags: ["Trading", "Charts", "Algorithm"],
+    route: "/statarb"
   },
   {
     id: "bi",

@@ -12,6 +12,11 @@ import TriArb from "@/pages/triarb";
 import DYDX from "@/pages/dydx";
 import BI from "@/pages/bi";
 
+// Import additional demo pages
+import EnglishAI from "@/pages/english-ai";
+import Beauty from "@/pages/beauty";
+import Reddit from "@/pages/reddit";
+
 // Import additional pages
 import Skills from "@/pages/skills";
 import Blog from "@/pages/blog";
@@ -46,6 +51,9 @@ function Router() {
       <Route path="/triarb" component={TriArb} />
       <Route path="/dydx" component={DYDX} />
       <Route path="/bi" component={BI} />
+      <Route path="/english-ai" component={EnglishAI} />
+      <Route path="/beauty" component={Beauty} />
+      <Route path="/reddit" component={Reddit} />
       
       {/* Portfolio information pages */}
       <Route path="/skills" component={Skills} />
