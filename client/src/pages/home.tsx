@@ -50,194 +50,311 @@ export default function Home() {
 
   return (
     <AppShell>
-      {/* Enhanced Hero Section with better visual and animations */}
-      <section className="py-24 bg-gradient-to-br from-indigo-50 via-white to-indigo-50 overflow-hidden relative">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-indigo-100 opacity-50"></div>
-          <div className="absolute top-1/3 -left-12 w-64 h-64 rounded-full bg-purple-100 opacity-40"></div>
-          <div className="absolute bottom-0 right-1/3 w-48 h-48 rounded-full bg-blue-100 opacity-30"></div>
+      {/* Modern Hero Section with enhanced visuals and animations */}
+      <section className="py-24 md:pt-32 md:pb-28 overflow-hidden relative">
+        {/* Background layer with gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-indigo-50 z-0"></div>
+        
+        {/* Background pattern */}
+        <div 
+          className="absolute inset-0 z-0 opacity-[0.03]" 
+          style={{ 
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          }}
+        ></div>
+        
+        {/* Accent colors and blobs */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          {/* Top right color accent */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-primary/30 to-indigo-100 opacity-30 blur-3xl"></div>
           
-          {/* Animated gradient circles */}
+          {/* Bottom left color accent */}
+          <div className="absolute bottom-0 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-purple-100 to-blue-100/50 opacity-30 blur-3xl"></div>
+          
+          {/* Animated orbs */}
           <motion.div 
-            className="absolute -bottom-10 -left-10 w-72 h-72 rounded-full bg-gradient-to-r from-indigo-200 to-indigo-300 opacity-20 blur-xl"
+            className="absolute -bottom-32 left-1/4 w-80 h-80 rounded-full bg-gradient-to-r from-indigo-200/30 to-purple-200/30 opacity-30 blur-3xl"
             animate={{ 
-              scale: [1, 1.1, 1],
-              rotate: [0, 10, 0]
+              y: [0, -15, 0],
+              scale: [1, 1.05, 1],
             }}
             transition={{ 
-              duration: 15,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          ></motion.div>
-          <motion.div 
-            className="absolute top-20 right-10 w-64 h-64 rounded-full bg-gradient-to-r from-purple-200 to-indigo-200 opacity-20 blur-xl"
-            animate={{ 
-              scale: [1, 1.15, 1],
-              rotate: [0, -10, 0]
-            }}
-            transition={{ 
-              duration: 12,
+              duration: 8,
               repeat: Infinity,
               repeatType: "reverse",
-              delay: 2
+              ease: "easeInOut"
+            }}
+          ></motion.div>
+          
+          <motion.div 
+            className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-blue-200/20 to-indigo-200/20 opacity-30 blur-3xl"
+            animate={{ 
+              y: [0, 20, 0],
+              scale: [1, 1.08, 1],
+            }}
+            transition={{ 
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut",
+              delay: 1
             }}
           ></motion.div>
         </div>
         
+        {/* Main content */}
         <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <motion.div 
-              className="md:w-1/2 mb-16 md:mb-0"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+          <div className="flex flex-col lg:flex-row items-center justify-between">
+            {/* Left content column */}
+            <div className="lg:w-1/2 mb-16 lg:mb-0 lg:pr-10">
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-100 shadow-sm mb-6">
+                  <span className="w-2.5 h-2.5 rounded-full bg-primary mr-2"></span>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                    Full-Stack Developer
+                  </span>
+                </div>
+              </motion.div>
+              
+              {/* Main title */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.1 }}
               >
-                <span className="px-4 py-1 rounded-full text-sm font-semibold bg-indigo-100 text-indigo-700 inline-block mb-4">
-                  Full-Stack Developer
-                </span>
+                <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 relative">
+                    <HeroTitle />
+                    
+                    {/* Underline decoration */}
+                    <motion.svg
+                      className="absolute left-0 -bottom-2 w-full h-3 text-indigo-200 opacity-80"
+                      viewBox="0 0 358 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 1 }}
+                      transition={{ duration: 1, delay: 0.5, ease: "easeInOut" }}
+                    >
+                      <path
+                        d="M2 8C50.6667 3.33333 299.4 -3.8 356 8"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                      />
+                    </motion.svg>
+                  </span>
+                </h1>
               </motion.div>
               
-              <motion.h1 
-                className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight"
+              {/* Subtitle */}
+              <motion.div 
+                className="text-lg md:text-xl text-gray-700 mb-6 max-w-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-                  <HeroTitle />
-                </span>
-              </motion.h1>
+                <HeroSubtitle />
+              </motion.div>
               
+              {/* Description */}
               <motion.div 
-                className="text-lg md:text-xl text-gray-700 mb-6 max-w-lg"
+                className="text-base text-gray-600 mb-8 max-w-xl leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <HeroSubtitle />
+                <AboutContent />
               </motion.div>
               
+              {/* Action buttons with enhanced design */}
               <motion.div 
-                className="text-lg text-gray-600 mb-8 max-w-lg"
+                className="flex flex-wrap gap-5 mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <AboutContent />
-              </motion.div>
-              
-              <motion.div 
-                className="flex flex-wrap gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-              >
                 <a 
                   href="#apps" 
-                  className="inline-block bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-semibold py-3 px-8 rounded-lg shadow-xl hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1"
+                  className="relative inline-flex items-center justify-center overflow-hidden group"
                 >
-                  <HeroCtaText />
+                  <div className="absolute inset-0 w-full h-full -mt-1 rounded-lg bg-gradient-to-br from-primary to-indigo-600 opacity-80 group-hover:opacity-100 blur-sm transition-all duration-500 group-hover:blur"></div>
+                  <span 
+                    className="relative inline-flex items-center gap-2 bg-white dark:bg-gray-900 text-primary border border-indigo-200 hover:border-indigo-300 font-semibold py-3 px-8 rounded-lg shadow-xl hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <HeroCtaText />
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform duration-300 transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </span>
                 </a>
+                
                 <a 
-                  href="#about-me" 
-                  className="inline-block bg-white hover:bg-gray-50 text-indigo-700 font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl border border-indigo-100 transition-all duration-300 transform hover:-translate-y-1"
+                  href="#about" 
+                  className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-primary font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl border border-gray-200 transition-all duration-300 transform hover:-translate-y-1"
                 >
                   Learn More
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-70" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                  </svg>
                 </a>
               </motion.div>
               
-              {/* Social proof indicators */}
+              {/* Enhanced stats/metrics bar */}
               <motion.div 
-                className="mt-10 flex items-center space-x-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
+                className="flex flex-wrap gap-8 mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <div className="flex flex-col">
-                  <span className="text-2xl font-bold text-indigo-700">10+</span>
-                  <span className="text-sm text-gray-600">Projects</span>
+                <div className="flex items-center gap-3 rounded-xl bg-white/80 backdrop-blur-sm p-3 shadow-sm border border-gray-100">
+                  <div className="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-gray-800">10+</div>
+                    <div className="text-sm text-gray-500">Live Projects</div>
+                  </div>
                 </div>
-                <div className="h-10 w-px bg-gray-200"></div>
-                <div className="flex flex-col">
-                  <span className="text-2xl font-bold text-indigo-700">15+</span>
-                  <span className="text-sm text-gray-600">Technologies</span>
+                
+                <div className="flex items-center gap-3 rounded-xl bg-white/80 backdrop-blur-sm p-3 shadow-sm border border-gray-100">
+                  <div className="w-12 h-12 rounded-lg bg-purple-50 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-gray-800">15+</div>
+                    <div className="text-sm text-gray-500">Technologies</div>
+                  </div>
                 </div>
-                <div className="h-10 w-px bg-gray-200"></div>
-                <div className="flex flex-col">
-                  <span className="text-2xl font-bold text-indigo-700">Full-Stack</span>
-                  <span className="text-sm text-gray-600">Development</span>
+                
+                <div className="flex items-center gap-3 rounded-xl bg-white/80 backdrop-blur-sm p-3 shadow-sm border border-gray-100">
+                  <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-gray-800">Full-Stack</div>
+                    <div className="text-sm text-gray-500">Development</div>
+                  </div>
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
             
             {/* Right column with project cards showcase */}
             <motion.div 
-              className="md:w-1/2 relative"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              className="lg:w-1/2 relative"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
+              {/* 3D-like stacked cards effect */}
               <div className="relative">
-                {/* Main grid of project cards */}
-                <div className="grid grid-cols-2 gap-4 md:gap-6">
-                  {apps.slice(0, 4).map((app, index) => (
-                    <Link key={index} href={`/project/${app.id}`}>
-                      <motion.div 
-                        className="app-card h-48 rounded-xl shadow-xl group relative overflow-hidden"
-                        style={{ 
-                          transform: `rotate(${index % 2 === 0 ? 2 : -2}deg)`,
-                          borderTopWidth: '4px', 
-                          borderTopColor: app.primaryColor || '#6366F1',
-                          background: `linear-gradient(to bottom right, white, ${app.primaryColor || '#6366F1'}15)`
-                        }}
-                        whileHover={{ 
-                          y: -10, 
-                          rotate: index % 2 === 0 ? 4 : -4,
-                          transition: { type: "spring", stiffness: 300 }
-                        }}
-                      >
-                        {/* Image overlay with fading gradient */}
-                        {app.imageUrl && (
-                          <div className="absolute inset-0 w-full h-full">
-                            <img 
-                              src={app.imageUrl} 
-                              alt={app.name}
-                              className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent"></div>
-                          </div>
-                        )}
-                        
-                        {/* Content overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
-                          <h3 className="text-lg font-semibold text-gray-800 mb-1">{app.name}</h3>
-                          <div className="flex gap-2 mb-2">
-                            {app.tags.slice(0, 2).map((tag, idx) => (
-                              <span 
-                                key={idx} 
-                                className="text-xs px-2 py-1 rounded-full text-white font-medium"
-                                style={{ backgroundColor: app.primaryColor || '#6366F1' }}
+                {/* Card stack with perspective */}
+                <div className="perspective-1000">
+                  <div className="grid grid-cols-2 gap-6">
+                    {apps.slice(0, 4).map((app, index) => (
+                      <Link key={index} href={`/project/${app.id}`}>
+                        <motion.div 
+                          className="relative h-56 rounded-2xl shadow-xl overflow-hidden bg-white group cursor-pointer transform-gpu"
+                          style={{ 
+                            transformStyle: 'preserve-3d',
+                            transform: `rotate${index % 2 ? 'X' : 'Y'}(${index % 2 ? 3 : -3}deg) rotate(${index % 2 ? 1 : -1}deg)`
+                          }}
+                          whileHover={{ 
+                            scale: 1.05,
+                            rotate: 0,
+                            rotateX: 0,
+                            rotateY: 0,
+                            z: 30,
+                            transition: { duration: 0.5, type: "spring", stiffness: 300 }
+                          }}
+                        >
+                          {/* Top colored bar */}
+                          <div 
+                            className="absolute top-0 inset-x-0 h-1.5 z-20"
+                            style={{ 
+                              background: `linear-gradient(to right, ${app.primaryColor || '#6366F1'}, ${app.secondaryColor || '#818cf8'})`
+                            }}
+                          />
+                          
+                          {/* Card background and image */}
+                          <div className="absolute inset-0 overflow-hidden">
+                            {app.imageUrl ? (
+                              <>
+                                <img 
+                                  src={app.imageUrl} 
+                                  alt={app.name}
+                                  className="w-full h-full object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 transition-opacity group-hover:opacity-80"></div>
+                              </>
+                            ) : (
+                              <div 
+                                className="absolute inset-0 w-full h-full flex items-center justify-center"
+                                style={{ 
+                                  background: `linear-gradient(135deg, ${app.primaryColor || '#6366F1'}40, ${app.secondaryColor || '#818cf8'}90)`,
+                                }}
                               >
-                                {tag}
-                              </span>
-                            ))}
+                                <svg 
+                                  className="h-16 w-16 text-white/60" 
+                                  fill="none" 
+                                  viewBox="0 0 24 24" 
+                                  stroke="currentColor"
+                                >
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                              </div>
+                            )}
                           </div>
-                        </div>
-                      </motion.div>
-                    </Link>
-                  ))}
+                          
+                          {/* Text content */}
+                          <div className="absolute inset-0 p-5 z-10 flex flex-col justify-end">
+                            <div className="transform transition-transform duration-300 group-hover:translate-y-0 translate-y-4">
+                              <h3 className="text-xl font-bold font-heading text-white mb-1 drop-shadow-sm">
+                                {app.name}
+                              </h3>
+                              <div className="h-0.5 w-12 bg-primary mb-3 transform origin-left scale-0 transition-all duration-300 group-hover:scale-100"></div>
+                              <div className="flex gap-2 mb-3 opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                                {app.tags.slice(0, 2).map((tag, idx) => (
+                                  <span 
+                                    key={idx} 
+                                    className="text-xs px-2 py-1 rounded-full text-white font-medium backdrop-blur-md"
+                                    style={{ 
+                                      backgroundColor: `${app.primaryColor || '#6366F1'}80`,
+                                      backdropFilter: 'blur(4px)'
+                                    }}
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                              <div className="flex items-center gap-1 text-sm text-white/80 opacity-0 transform translate-y-2 transition-all duration-300 delay-75 group-hover:opacity-100 group-hover:translate-y-0">
+                                <span>View Project</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
                 
                 {/* Decorative elements */}
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-indigo-100 rounded-full opacity-80 z-0 blur-md"></div>
-                <div className="absolute -top-6 -left-6 w-20 h-20 bg-purple-200 rounded-full opacity-60 z-0 blur-md"></div>
+                <div className="absolute -bottom-10 right-0 w-40 h-40 bg-gradient-to-tl from-indigo-100 to-transparent opacity-70 z-0 blur-3xl rounded-full"></div>
+                <div className="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-br from-purple-100 to-transparent opacity-70 z-0 blur-3xl rounded-full"></div>
               </div>
             </motion.div>
           </div>
