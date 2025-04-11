@@ -37,8 +37,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use('/api/chatbot', chatbotRoutes); // Chatbot API for marketing site
   app.use('/api/chat', chatRoutes); // Customer service chat API
   
-  // Health check endpoint for monitoring
-  app.get('/health', async (_req, res) => {
+  // Health check endpoints for monitoring
+  app.get('/api/health', async (_req, res) => {
     const healthcheck = {
       uptime: process.uptime(),
       message: 'OK',
@@ -66,6 +66,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       healthcheck.message = error instanceof Error ? error.message : 'Error';
       res.status(503).json(healthcheck);
     }
+  });
+  
+  // Simple OK response for basic health checking
+  app.get('/health', (_req, res) => {
+    res.status(200).send('ok');
   });
   
   // Error handling middleware for Zod validation

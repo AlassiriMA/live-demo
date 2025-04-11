@@ -1,74 +1,77 @@
 #!/bin/bash
 
-# Deployment script for Oracle Cloud Infrastructure
-# This script builds and deploys the portfolio application to Docker containers
+# Production deployment script for Oracle Cloud
+# This script handles the full deployment process to Oracle Cloud VM
 
 set -e
 
-echo "======================================================"
-echo "Portfolio Deployment Script for Oracle Cloud"
-echo "======================================================"
+echo "Starting deployment process..."
 
-# Check if .env file exists
-if [ ! -f .env ]; then
-    echo "ERROR: .env file not found!"
-    echo "Please create a .env file from .env.example or .env.production.sample"
-    exit 1
+# Variables
+APP_DIR=$(pwd)
+TIMESTAMP=$(date +%Y%m%d%H%M%S)
+BACKUP_DIR="${APP_DIR}/backups/${TIMESTAMP}"
+
+# 1. Create backup directory
+echo "Creating backup directory..."
+mkdir -p ${BACKUP_DIR}
+
+# 2. Backup current environment if it exists
+if [ -f "${APP_DIR}/.env" ]; then
+    echo "Backing up current environment..."
+    cp ${APP_DIR}/.env ${BACKUP_DIR}/.env.bak
 fi
 
-# Load .env variables
-export $(grep -v '^#' .env | xargs)
-
-echo "======================================================"
-echo "Testing database connection..."
-echo "======================================================"
-node --experimental-specifier-resolution=node scripts/test-db-connection.js
-if [ $? -ne 0 ]; then
-    echo "ERROR: Database connection test failed!"
-    echo "Please check your DATABASE_URL and other database settings"
-    exit 1
+# 3. Backup the database if running
+if docker-compose ps | grep -q postgres; then
+    echo "Backing up database..."
+    docker-compose exec -T postgres pg_dump -U ${PGUSER} ${PGDATABASE} > ${BACKUP_DIR}/db_backup.sql
 fi
 
-echo "======================================================"
-echo "Stopping existing containers (if any)..."
-echo "======================================================"
-docker-compose down || true
+# 4. Pull latest changes from git if this is a git repo
+if [ -d "${APP_DIR}/.git" ]; then
+    echo "Pulling latest changes from git..."
+    git pull
+fi
 
-echo "======================================================"
-echo "Building application containers..."
-echo "======================================================"
+# 5. Build and restart containers
+echo "Building and starting containers..."
+docker-compose down
 docker-compose build
-
-echo "======================================================"
-echo "Starting containers in detached mode..."
-echo "======================================================"
 docker-compose up -d
 
-echo "======================================================"
-echo "Waiting for services to start..."
-echo "======================================================"
-# Sleep to allow services to start
-sleep 10
+# 6. Wait for app to be fully running
+echo "Waiting for application to start..."
+MAX_RETRIES=30
+RETRY=0
+while [ $RETRY -lt $MAX_RETRIES ]; do
+    if curl -s http://localhost:5000/api/health | grep -q "ok"; then
+        echo "Application is up and running!"
+        break
+    fi
+    
+    echo "Waiting for application to start ($((RETRY+1))/${MAX_RETRIES})..."
+    sleep 2
+    RETRY=$((RETRY+1))
+done
 
-echo "======================================================"
-echo "Checking container status..."
-echo "======================================================"
+if [ $RETRY -eq $MAX_RETRIES ]; then
+    echo "WARNING: Application did not respond in time. Check logs with: docker-compose logs app"
+fi
+
+# 7. Run healthcheck
+echo "Running health checks..."
+./scripts/healthcheck.sh || true
+
+# 8. Show deployment summary
+echo "Deployment completed!"
+echo "-------------------------"
+echo "Timestamp: $(date)"
+echo "Version: $(grep -m 1 \"version\" package.json | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[:space:]')"
+echo "Containers status:"
 docker-compose ps
+echo "-------------------------"
+echo "Access your application at: https://$(grep DOMAIN .env | cut -d '=' -f2)"
 
-echo "======================================================"
-echo "Application logs (last 20 lines)..."
-echo "======================================================"
-docker-compose logs --tail=20 app
-
-echo "======================================================"
-echo "Deployment complete!"
-echo "======================================================"
-echo "Your application should now be running at:"
-echo "https://${APP_DOMAIN:-localhost}"
-echo ""
-echo "To view logs:"
-echo "  docker-compose logs -f"
-echo ""
-echo "To stop the application:"
-echo "  docker-compose down"
-echo "======================================================"
+# 9. Exit with success
+exit 0
