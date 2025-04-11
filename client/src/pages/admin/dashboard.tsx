@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { FadeInSection } from '@/components/performance';
+import AuthCheck from '@/components/auth/AuthCheck';
 
 /**
  * Admin Dashboard with overview of site content and quick actions
@@ -34,23 +35,7 @@ const Dashboard = () => {
     enabled: !!user,
   });
 
-  // Redirect if not logged in
-  useEffect(() => {
-    if (!authLoading && !user) {
-      window.location.href = '/auth';
-    }
-  }, [user, authLoading]);
-
-  if (authLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  // If not logged in, don't render dashboard
-  if (!user) return null;
+  // Auth check is now handled by AuthCheck component
   
   const projects = projectsData?.projects || [];
   const publishedProjects = projects.filter((p: any) => p.status === 'published');
@@ -373,4 +358,11 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+// Wrap Dashboard component with AuthCheck for protected access
+const ProtectedDashboard = () => (
+  <AuthCheck requiredRole="admin">
+    <Dashboard />
+  </AuthCheck>
+);
+
+export default ProtectedDashboard;
