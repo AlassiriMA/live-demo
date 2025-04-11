@@ -34,10 +34,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await apiRequest('/api/auth/me', {
-          method: 'GET',
-          credentials: 'include',
-        }) as AuthResponse;
+        const response = await apiRequest('GET', '/api/auth/me') as AuthResponse;
         
         if (response.success && response.user) {
           setUser(response.user);

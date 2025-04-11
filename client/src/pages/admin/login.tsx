@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,15 +27,22 @@ import { Loader2 } from 'lucide-react';
 
 // Validation schema
 const loginSchema = z.object({
-  username: z.string().min(3, 'Username must be at least 3 characters'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  username: z.string().min(1, 'Username is required'),
+  password: z.string().min(1, 'Password is required'),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function AdminLogin() {
-  const { login, isLoading, error, clearError } = useAuth();
+  const { user, login, isLoading, error, clearError } = useAuth();
   const [, navigate] = useLocation();
+  
+  // Redirect to dashboard if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate('/admin');
+    }
+  }, [user, navigate]);
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
