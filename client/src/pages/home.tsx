@@ -386,7 +386,20 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <h2 className="text-3xl font-bold mb-3">My Technology Stack</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              The modern tools and frameworks I use to build robust, scalable, and performant applications.
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             viewport={{ once: true }}
           >
             <TechIconsGrid />
@@ -830,10 +843,8 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Services Section */}
-      <div id="services-section">
-        <ServicesSection />
-      </div>
+      {/* Services Section - Direct implementation */}
+      <ServicesSection />
 
       {/* About Me and Contact Section (Combined in one row) */}
       <section id="about-me" className="py-16 bg-gradient-to-br from-gray-50 to-white">
