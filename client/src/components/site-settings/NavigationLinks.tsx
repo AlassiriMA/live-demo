@@ -47,7 +47,6 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
       { text: "Marketing", url: "/marketing" },
       { text: "Projects", url: "/projects" },
       { text: "Skills", url: "/skills" },
-      { text: "Blog", url: "/blog" },
       { text: "About", url: "#about", isAnchor: true },
       { text: "Contact", url: "#contact", isAnchor: true }
     ]);
