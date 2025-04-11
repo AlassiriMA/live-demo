@@ -202,7 +202,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                 <img 
                   src={imageUrl} 
                   alt={`${name} preview`}
-                  className={`w-full h-full transition-all duration-700 group-hover:scale-110 group-hover:saturate-[1.15] ${imageUrl.endsWith('.svg') ? 'object-contain bg-gradient-to-br from-gray-50 to-gray-100 p-2' : 'object-cover'}`}
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:saturate-[1.15]"
                   onError={(e) => {
                     console.log("Image failed to load:", imageUrl);
                     e.currentTarget.style.display = 'none';
@@ -210,9 +210,9 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                   }}
                 />
                 <div 
-                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4"
+                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/10 opacity-70 group-hover:opacity-90 transition-all duration-300 flex items-end p-4"
                 >
-                  <span className="text-white font-medium px-4 py-2 rounded-full text-sm bg-black/50 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform translate-y-2 group-hover:translate-y-0">
+                  <span className="text-white font-medium px-4 py-2 rounded-full text-sm bg-black/50 backdrop-blur-md opacity-70 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100">
                     View Project Details
                   </span>
                 </div>
