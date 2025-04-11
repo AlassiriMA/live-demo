@@ -1,9 +1,16 @@
-/* Import Google Fonts */
+/* Import Google Fonts - with display=swap for better loading performance */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Preload critical assets */
+@layer base {
+  .js-focus-visible :focus:not(.focus-visible) {
+    outline: none;
+  }
+}
 
 /* Markdown Content Styling */
 .markdown-content {
