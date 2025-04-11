@@ -13,7 +13,7 @@ import {
   activityLogs, type ActivityLog, type InsertActivityLog,
   siteSettings, type SiteSetting, type InsertSiteSetting
 } from "@shared/schema";
-import { db, pool } from "./db";
+import { db, pool, retryDb } from "./db";
 import { eq } from "drizzle-orm";
 import { desc } from "drizzle-orm";
 
@@ -274,84 +274,86 @@ export class DatabaseStorage implements IStorage {
 
   // CMS - Projects methods
   async getAllProjects(): Promise<Project[]> {
-    return await db.select().from(projects).orderBy(desc(projects.createdAt));
+    return await retryDb(() => db.select().from(projects).orderBy(desc(projects.createdAt)));
   }
 
   async getPublishedProjects(): Promise<Project[]> {
-    try {
-      // Use raw SQL without relying on ORM mappings
-      const result = await db.execute(`
-        SELECT * FROM projects WHERE published = true ORDER BY created_at DESC
-      `);
-      
-      if (result.rows && result.rows.length > 0) {
-        // Convert field names from snake_case to camelCase
-        return result.rows.map(row => ({
-          id: row.id,
-          slug: row.slug,
-          name: row.name,
-          description: row.description,
-          style: row.style,
-          primaryColor: row.primary_color,
-          secondaryColor: row.secondary_color,
-          accentColor: row.accent_color,
-          imageUrl: row.image_url,
-          categoryId: row.category_id,
-          tags: row.tags,
-          route: row.route,
-          published: row.published,
-          featured: row.featured,
-          sortOrder: row.sort_order,
-          detailedContent: row.detailed_content,
-          metaTitle: row.meta_title,
-          metaDescription: row.meta_description,
-          features: row.features,
-          screenshots: row.screenshots,
-          status: row.status,
-          createdBy: row.created_by,
-          updatedBy: row.updated_by,
-          createdAt: row.created_at,
-          updatedAt: row.updated_at
-        })) as Project[];
-      }
-      return [];
-    } catch (error) {
-      console.error("Error in getPublishedProjects:", error);
-      
-      // If we still get an error, use a more targeted approach with only essential fields
+    return await retryDb(async () => {
       try {
+        // Use raw SQL without relying on ORM mappings
         const result = await db.execute(`
-          SELECT id, slug, name, description, 
-                 primary_color, secondary_color, accent_color, 
-                 image_url, tags, route, published, featured
-          FROM projects 
-          WHERE published = true 
-          ORDER BY created_at DESC
+          SELECT * FROM projects WHERE published = true ORDER BY created_at DESC
         `);
         
         if (result.rows && result.rows.length > 0) {
+          // Convert field names from snake_case to camelCase
           return result.rows.map(row => ({
             id: row.id,
             slug: row.slug,
             name: row.name,
-            description: row.description || "",
+            description: row.description,
+            style: row.style,
             primaryColor: row.primary_color,
             secondaryColor: row.secondary_color,
             accentColor: row.accent_color,
             imageUrl: row.image_url,
+            categoryId: row.category_id,
             tags: row.tags,
             route: row.route,
-            published: row.published === true,
-            featured: row.featured === true
+            published: row.published,
+            featured: row.featured,
+            sortOrder: row.sort_order,
+            detailedContent: row.detailed_content,
+            metaTitle: row.meta_title,
+            metaDescription: row.meta_description,
+            features: row.features,
+            screenshots: row.screenshots,
+            status: row.status,
+            createdBy: row.created_by,
+            updatedBy: row.updated_by,
+            createdAt: row.created_at,
+            updatedAt: row.updated_at
           })) as Project[];
         }
-      } catch (fallbackError) {
-        console.error("Fallback query also failed:", fallbackError);
+        return [];
+      } catch (error) {
+        console.error("Error in getPublishedProjects:", error);
+        
+        // If we still get an error, use a more targeted approach with only essential fields
+        try {
+          const result = await db.execute(`
+            SELECT id, slug, name, description, 
+                   primary_color, secondary_color, accent_color, 
+                   image_url, tags, route, published, featured
+            FROM projects 
+            WHERE published = true 
+            ORDER BY created_at DESC
+          `);
+          
+          if (result.rows && result.rows.length > 0) {
+            return result.rows.map(row => ({
+              id: row.id,
+              slug: row.slug,
+              name: row.name,
+              description: row.description || "",
+              primaryColor: row.primary_color,
+              secondaryColor: row.secondary_color,
+              accentColor: row.accent_color,
+              imageUrl: row.image_url,
+              tags: row.tags,
+              route: row.route,
+              published: row.published === true,
+              featured: row.featured === true
+            })) as Project[];
+          }
+        } catch (fallbackError) {
+          console.error("Fallback query also failed:", fallbackError);
+        }
+        
+        // Return empty array if all attempts fail
+        return [];
       }
-      
-      // Return empty array if all attempts fail
-      return [];
-    }
+    });
   }
 
   async getProjectById(id: number): Promise<Project | undefined> {
@@ -360,50 +362,54 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getProjectBySlug(slug: string): Promise<Project | undefined> {
-    try {
-      // Use raw SQL to avoid ORM field mapping issues with 'featured' column
-      const result = await db.execute(
-        `SELECT id, slug, name, description, style, primary_color, secondary_color, 
-        accent_color, image_url, tags, route, published, 
-        detailed_content, features, 
-        created_at, updated_at
-        FROM projects WHERE slug = '${slug}' LIMIT 1`
-      );
-      
-      if (result.rows && result.rows.length > 0) {
-        const row = result.rows[0];
-        // Convert field names from snake_case to camelCase
-        // Convert the row to a properly typed Project object
-        // Properly cast values to match schema exactly
-        const rowToProject = {
-          id: Number(row.id),
-          slug: String(row.slug),
-          name: String(row.name),
-          description: String(row.description),
-          style: row.style || null,
-          primaryColor: row.primary_color || null,
-          secondaryColor: row.secondary_color || null,
-          accentColor: row.accent_color || null,
-          imageUrl: row.image_url || null,
-          tags: row.tags || [],
-          route: String(row.route || ''),
-          published: Boolean(row.published),
-          featured: Boolean(row.featured || false),
-          sortOrder: Number(row.sort_order || 0),
-          detailedContent: row.detailed_content || null,
-          features: row.features || [],
-          screenshots: row.screenshots || [],
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
+    return await retryDb(async () => {
+      try {
+        // Use raw SQL to avoid ORM field mapping issues with 'featured' column
+        // Use parameterized query to prevent SQL injection
+        const result = await db.execute(
+          `SELECT id, slug, name, description, style, primary_color, secondary_color, 
+          accent_color, image_url, tags, route, published, 
+          detailed_content, features, 
+          created_at, updated_at
+          FROM projects WHERE slug = $1 LIMIT 1`, 
+          [slug]
+        );
         
-        return rowToProject as unknown as Project;
+        if (result.rows && result.rows.length > 0) {
+          const row = result.rows[0];
+          // Convert field names from snake_case to camelCase
+          // Convert the row to a properly typed Project object
+          // Properly cast values to match schema exactly
+          const rowToProject = {
+            id: Number(row.id),
+            slug: String(row.slug),
+            name: String(row.name),
+            description: String(row.description),
+            style: row.style || null,
+            primaryColor: row.primary_color || null,
+            secondaryColor: row.secondary_color || null,
+            accentColor: row.accent_color || null,
+            imageUrl: row.image_url || null,
+            tags: row.tags || [],
+            route: String(row.route || ''),
+            published: Boolean(row.published),
+            featured: Boolean(row.featured || false),
+            sortOrder: Number(row.sort_order || 0),
+            detailedContent: row.detailed_content || null,
+            features: row.features || [],
+            screenshots: row.screenshots || [],
+            createdAt: new Date(row.created_at),
+            updatedAt: new Date(row.updated_at || row.created_at),
+          };
+          
+          return rowToProject as unknown as Project;
+        }
+        return undefined;
+      } catch (error) {
+        console.error("Error in getProjectBySlug:", error);
+        throw error;
       }
-      return undefined;
-    } catch (error) {
-      console.error("Error in getProjectBySlug:", error);
-      throw error;
-    }
+    });
   }
 
   async createProject(insertProject: InsertProject): Promise<Project> {
