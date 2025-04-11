@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { apps } from "@/lib/app-data";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { ServicesSection } from "@/components/services/ServicesSection";
 import { 
   HeroTitle, 
   HeroSubtitle, 
@@ -829,6 +830,11 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Services Section */}
+      <div id="services-section">
+        <ServicesSection />
+      </div>
+
       {/* About Me and Contact Section (Combined in one row) */}
       <section id="about-me" className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
