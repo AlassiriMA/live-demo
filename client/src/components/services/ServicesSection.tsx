@@ -16,13 +16,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, ico
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="bg-card rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
+      whileHover={{ 
+        y: -5,
+        boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)"
+      }}
+      className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm transition-all duration-300 h-full"
     >
-      <div className={`w-12 h-12 rounded-lg ${iconColor} flex items-center justify-center mb-4`}>
+      <div className={`w-12 h-12 rounded-xl ${iconColor} flex items-center justify-center mb-5 transform -rotate-3`}>
         {icon}
       </div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-muted-foreground">{description}</p>
+      <h3 className="text-lg font-semibold mb-3">{title}</h3>
+      <p className="text-sm text-gray-600">{description}</p>
     </motion.div>
   );
 };
@@ -80,7 +84,7 @@ export function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-16 bg-muted/30">
+    <section id="services" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -89,8 +93,13 @@ export function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-3">Services I Offer</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-50 border border-blue-200 shadow-sm mb-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+              Professional Services
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">Services I Offer</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
             Professional expertise across multiple domains to bring your digital vision to life with precision and excellence.
           </p>
         </motion.div>
@@ -110,7 +119,7 @@ export function ServicesSection() {
         >
           <a 
             href="#contact" 
-            className="inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-full font-medium transition-colors"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1"
           >
             Discuss Your Project
           </a>
