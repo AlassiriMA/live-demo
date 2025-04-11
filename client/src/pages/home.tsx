@@ -389,120 +389,287 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Marketing Section */}
+      {/* Digital Marketing & Online Presence Services Section */}
       <section className="py-20 bg-gradient-to-r from-pink-50 to-purple-50 relative overflow-hidden">
         {/* Background elements */}
         <div className="absolute -top-20 left-0 w-64 h-64 rounded-full bg-gradient-to-br from-pink-200 to-pink-300 opacity-20 filter blur-3xl"></div>
         <div className="absolute bottom-20 right-0 w-96 h-96 rounded-full bg-gradient-to-br from-purple-200 to-purple-300 opacity-20 filter blur-3xl"></div>
         
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center">
+          {/* Section header */}
+          <div className="text-center mb-14">
             <motion.div 
-              className="lg:w-1/2 mb-10 lg:mb-0"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-                Transform Your Business<br />
-                <span className="text-[#EC4899]">With Digital Marketing</span>
-              </h2>
-              <p className="text-lg text-gray-700 mb-8 max-w-lg">
-                Experience our AI-powered marketing platform with data-driven strategies, engaging content, and conversion-focused campaigns.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/marketing">
-                  <a className="bg-[#EC4899] hover:bg-[#DB2777] text-white px-8 py-6 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center">
-                    Explore Marketing Platform
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </a>
-                </Link>
+              <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-200 shadow-sm mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                </svg>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600">
+                  Personal Services
+                </span>
               </div>
-              
-              <div className="mt-10 grid grid-cols-2 gap-4">
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <span className="font-medium">Advanced Analytics</span>
+            </motion.div>
+            <motion.h2 
+              className="text-3xl md:text-5xl font-bold mb-4 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              Digital Marketing & <span className="text-[#EC4899]">Online Presence</span> Services
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-gray-700 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Elevate your brand's digital footprint with personalized marketing strategies tailored to your unique goals.
+            </motion.p>
+          </div>
+
+          {/* Services grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* Service 1 */}
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="h-2.5 bg-gradient-to-r from-pink-500 to-pink-600"></div>
+              <div className="p-6">
+                <div className="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  </div>
-                  <span className="font-medium">AI Chatbot</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <span className="font-medium">Email Campaigns</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                    </svg>
-                  </div>
-                  <span className="font-medium">SEO Optimization</span>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">SEO & Ranking</h3>
+                <p className="text-gray-600 mb-4">Boost visibility with strategic optimization that puts you at the top of search results.</p>
+                <div className="flex items-center text-[#EC4899] font-medium">
+                  <span>Learn more</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </div>
               </div>
             </motion.div>
             
-            <motion.div
-              className="lg:w-1/2"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+            {/* Service 2 */}
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="glass-bg p-8 rounded-3xl shadow-lg">
-                <div className="relative h-64 mb-4 overflow-hidden rounded-xl">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#EC4899]/20 to-purple-500/20 backdrop-blur-sm rounded-xl -z-10"></div>
-                  <div className="flex items-center justify-center h-full">
-                    <div className="text-center">
-                      <div className="w-16 h-16 mx-auto bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">AI-Powered Chatbot</h3>
-                      <p className="text-gray-700">Chat with our intelligent marketing assistant for instant insights and service information.</p>
-                    </div>
-                  </div>
+              <div className="h-2.5 bg-gradient-to-r from-purple-500 to-purple-600"></div>
+              <div className="p-6">
+                <div className="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-medium text-gray-800">Lead Generation</span>
-                      <div className="text-[#EC4899] font-bold">+43%</div>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div className="bg-[#EC4899] h-2 rounded-full w-5/12"></div>
-                    </div>
-                  </div>
-                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-medium text-gray-800">Conversion Rate</span>
-                      <div className="text-[#EC4899] font-bold">24.5%</div>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div className="bg-[#EC4899] h-2 rounded-full w-1/4"></div>
-                    </div>
-                  </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">Content Marketing</h3>
+                <p className="text-gray-600 mb-4">Engaging content that tells your story and resonates with your target audience.</p>
+                <div className="flex items-center text-purple-600 font-medium">
+                  <span>Learn more</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Service 3 */}
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="h-2.5 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+              <div className="p-6">
+                <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">Social Media Growth</h3>
+                <p className="text-gray-600 mb-4">Strategic engagement that builds communities and drives meaningful connections.</p>
+                <div className="flex items-center text-blue-600 font-medium">
+                  <span>Learn more</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Service 4 */}
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="h-2.5 bg-gradient-to-r from-[#EC4899] to-[#D53F8C]"></div>
+              <div className="p-6">
+                <div className="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">AI Chatbot Assistant</h3>
+                <p className="text-gray-600 mb-4">24/7 intelligent support that engages visitors and converts prospects into customers.</p>
+                <div className="flex items-center text-[#EC4899] font-medium">
+                  <span>Learn more</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Service 5 */}
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="h-2.5 bg-gradient-to-r from-green-500 to-green-600"></div>
+              <div className="p-6">
+                <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">Analytics & Insights</h3>
+                <p className="text-gray-600 mb-4">Data-driven decisions with comprehensive metrics that track performance and growth.</p>
+                <div className="flex items-center text-green-600 font-medium">
+                  <span>Learn more</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Service 6 */}
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="h-2.5 bg-gradient-to-r from-amber-500 to-amber-600"></div>
+              <div className="p-6">
+                <div className="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">Email Marketing</h3>
+                <p className="text-gray-600 mb-4">Targeted campaigns that nurture leads and drive conversions with personalized messaging.</p>
+                <div className="flex items-center text-amber-600 font-medium">
+                  <span>Learn more</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Service 7 */}
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="h-2.5 bg-gradient-to-r from-red-500 to-red-600"></div>
+              <div className="p-6">
+                <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">Video Marketing</h3>
+                <p className="text-gray-600 mb-4">Compelling video content that increases engagement and builds deeper brand connections.</p>
+                <div className="flex items-center text-red-600 font-medium">
+                  <span>Learn more</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Service 8 */}
+            <motion.div 
+              className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="h-2.5 bg-gradient-to-r from-indigo-500 to-indigo-600"></div>
+              <div className="p-6">
+                <div className="w-14 h-14 rounded-full bg-indigo-100 flex items-center justify-center mb-5 transform group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-gray-800">Conversion Optimization</h3>
+                <p className="text-gray-600 mb-4">Fine-tuned funnels that transform visitors into loyal customers and grow revenue.</p>
+                <div className="flex items-center text-indigo-600 font-medium">
+                  <span>Learn more</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </div>
               </div>
             </motion.div>
           </div>
+          
+          {/* CTA Section */}
+          <motion.div 
+            className="text-center mt-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
+              Let's talk about boosting your online presence.
+            </h3>
+            <Link href="/marketing" className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-[#EC4899] to-purple-600 text-white font-medium shadow-lg hover:shadow-pink-500/30 transition-all duration-300 transform hover:-translate-y-1">
+              Explore Marketing Solutions
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
