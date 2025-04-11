@@ -156,7 +156,7 @@ export default function Marketing() {
               </p>
             </div>
             
-            <TestimonialsCarousel testimonials={testimonials} />
+            <TestimonialsCarousel testimonials={testimonials as any as Testimonial[]} />
           </div>
         </section>
         
