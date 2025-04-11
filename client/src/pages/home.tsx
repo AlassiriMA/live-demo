@@ -686,13 +686,16 @@ export default function Home() {
                 This comprehensive portfolio showcases 10 professional live demo applications spanning fintech, retail, education, marketing, beauty, social media, and analytics. Each application features modern UI/UX, real database connections, and full-stack functionality.
               </p>
               <div className="p-6 border border-gray-200 rounded-xl bg-white shadow-sm">
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
+                <div className="flex flex-col mb-4">
+                  <div className="flex items-center mb-2">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center mr-3">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      </svg>
+                    </div>
+                    <h3 className="font-heading font-bold text-2xl text-gray-800">Tech Stack</h3>
                   </div>
-                  <h3 className="font-heading font-bold text-xl text-gray-800">Tech Stack</h3>
+                  <p className="text-gray-600 ml-1 mt-1 text-sm">Modern technologies powering this portfolio</p>
                 </div>
                 <ul className="space-y-2">
                   <li className="flex items-center text-gray-700">

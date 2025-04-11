@@ -8,10 +8,20 @@ import Chatbot from "./components/Chatbot";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 
+// Import the testimonial interface directly from the component
+interface Testimonial {
+  id: number;
+  name: string;
+  company: string;
+  content: string;
+  imageUrl?: string;
+  rating: number;
+}
+
 export default function Marketing() {
   const [chatbotOpen, setChatbotOpen] = useState(false);
 
-  const { data: testimonials = [] } = useQuery({
+  const { data: testimonials = [] } = useQuery<Testimonial[]>({
     queryKey: ["/api/marketing/testimonials"],
   });
 

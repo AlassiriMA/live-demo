@@ -156,7 +156,15 @@ export default function ServicesSection() {
               <Card className="glass-bg h-full hover:shadow-lg transition-shadow overflow-hidden">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <div className={`w-12 h-12 bg-${service.color}-100 rounded-lg flex items-center justify-center mr-4`}>
+                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center mr-4 ${
+                      service.color === 'pink' ? 'bg-pink-100' :
+                      service.color === 'purple' ? 'bg-purple-100' :
+                      service.color === 'blue' ? 'bg-blue-100' :
+                      service.color === 'green' ? 'bg-green-100' :
+                      service.color === 'amber' ? 'bg-amber-100' :
+                      service.color === 'red' ? 'bg-red-100' :
+                      service.color === 'indigo' ? 'bg-indigo-100' : 'bg-gray-100'
+                    }`}>
                       {service.icon}
                     </div>
                     <h3 className="font-heading font-bold text-xl text-gray-900">{service.title}</h3>
@@ -168,7 +176,15 @@ export default function ServicesSection() {
                     {service.metrics.map((metric, idx) => (
                       <div key={idx} className="bg-white/50 backdrop-blur-sm rounded-lg p-3">
                         <div className="text-sm text-gray-600">{metric.label}</div>
-                        <div className={`text-lg font-bold text-${service.color}-600`}>{metric.value}</div>
+                        <div className={`text-lg font-bold ${
+                          service.color === 'pink' ? 'text-pink-600' :
+                          service.color === 'purple' ? 'text-purple-600' :
+                          service.color === 'blue' ? 'text-blue-600' :
+                          service.color === 'green' ? 'text-green-600' :
+                          service.color === 'amber' ? 'text-amber-600' :
+                          service.color === 'red' ? 'text-red-600' :
+                          service.color === 'indigo' ? 'text-indigo-600' : 'text-gray-600'
+                        }`}>{metric.value}</div>
                       </div>
                     ))}
                   </div>
