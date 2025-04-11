@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { SeoMetaTags } from '@/components/site-settings/SeoMetaTags';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from "./lib/queryClient";
+import { logPageLoadMetrics } from "./lib/performanceUtils";
 
 // Register service worker for production builds only
 if ('serviceWorker' in navigator && import.meta.env.PROD) {
@@ -28,6 +29,9 @@ if (import.meta.env.DEV) {
     window.React = React;
   });
 }
+
+// Log performance metrics
+logPageLoadMetrics();
 
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
