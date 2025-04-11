@@ -75,8 +75,22 @@ export default function AppCard({ app, index }: AppCardProps) {
     if (app.id === "statarb") {
       return (
         <div className="h-48 bg-gray-900 relative overflow-hidden">
-          <div className="absolute inset-0 terminal-bg">
-            <div className="font-mono text-xs p-4 text-green-400">
+          <div className="absolute inset-0 flex items-center justify-center">
+            {/* Direct SVG component instead of loading from file */}
+            <svg width="100%" height="100%" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="500" height="300" fill="#18181B" />
+              <line x1="50" y1="250" x2="450" y2="250" stroke="#52525B" strokeWidth="1" />
+              <line x1="50" y1="50" x2="50" y2="250" stroke="#52525B" strokeWidth="1" />
+              <path d="M50,180 L75,170 L100,160 L125,170 L150,150 L175,140 L200,150 L225,130 L250,120 L275,130 L300,110 L325,100 L350,110 L375,90 L400,80 L425,100 L450,90" fill="none" stroke="#2563EB" strokeWidth="2" />
+              <path d="M50,190 L75,175 L100,180 L125,165 L150,170 L175,155 L200,160 L225,145 L250,150 L275,135 L300,140 L325,120 L350,130 L375,115 L400,120 L425,105 L450,110" fill="none" stroke="#EC4899" strokeWidth="2" />
+              <text x="250" y="10" fontFamily="Arial" fontSize="16" fill="white" textAnchor="middle" fontWeight="bold">Statistical Arbitrage</text>
+              <rect x="380" y="20" width="15" height="15" fill="#2563EB" />
+              <text x="405" y="32" fontFamily="Arial" fontSize="12" fill="#E4E4E7" textAnchor="start">Stock A</text>
+              <rect x="380" y="40" width="15" height="15" fill="#EC4899" />
+              <text x="405" y="52" fontFamily="Arial" fontSize="12" fill="#E4E4E7" textAnchor="start">Stock B</text>
+            </svg>
+            
+            <div className="absolute top-0 left-0 font-mono text-xs p-4 text-green-400">
               <div className="flex items-center mb-2">
                 <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
