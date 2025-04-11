@@ -89,33 +89,68 @@ A comprehensive full-stack portfolio application showcasing 10 interactive demos
 ### Production Deployment on Oracle Cloud
 
 1. Set up your Oracle Cloud VM instance
-   - Create a VM with Ubuntu/CentOS
-   - Open ports 80, 443, and 5000 in the security list
+   - Create a VM with Ubuntu 22.04 (minimum 2 OCPUs, 4GB RAM)
+   - Open ports 80, 443, 22 (SSH), and 5000 in the security list
 
-2. Install Docker and Docker Compose on your VM
-
-3. Clone the repository and set up environment variables:
+2. Initialize the server environment:
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
-   cd portfolio
-   cp .env.example .env
-   # Edit the .env file with production values
+   # SSH into your Oracle Cloud VM
+   ssh opc@your-vm-ip-address -i your-private-key.pem
+   
+   # Clone the repository 
+   git clone https://github.com/yourusername/portfolio.git /opt/portfolio
+   cd /opt/portfolio
+   
+   # Run the server setup script (installs Docker, NGINX, etc.)
+   sudo ./scripts/setup-server.sh
    ```
 
-4. Create SSL certificates (or use Let's Encrypt):
+3. Set up SSL certificates with Let's Encrypt:
    ```bash
-   mkdir -p nginx/ssl
-   # Place your SSL certificates in this directory
-   # For Let's Encrypt:
-   # certbot certonly --standalone -d yourdomain.com -d www.yourdomain.com
+   # Make sure your domain is pointing to your Oracle Cloud VM
+   sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
+   
+   # Copy certificates to nginx folder
+   sudo mkdir -p /opt/portfolio/nginx/ssl
+   sudo cp /etc/letsencrypt/live/yourdomain.com/fullchain.pem /opt/portfolio/nginx/ssl/server.crt
+   sudo cp /etc/letsencrypt/live/yourdomain.com/privkey.pem /opt/portfolio/nginx/ssl/server.key
+   sudo chown -R $USER:$USER /opt/portfolio/nginx/ssl
    ```
 
-5. Build and start the containers:
+4. Configure environment variables:
    ```bash
-   docker-compose up -d
+   cp .env.production.sample .env
+   
+   # Edit the .env file with your production values
+   nano .env
+   
+   # Be sure to set secure values for:
+   # - DATABASE_URL (with your actual database credentials)
+   # - JWT_SECRET (generate a secure random string)
+   # - SESSION_SECRET (generate a different secure random string)
+   # - APP_DOMAIN (set to your actual domain name)
+   # - OPENAI_API_KEY (if using the chatbot feature)
+   ```
+
+5. Deploy the application:
+   ```bash
+   # Run the automated deployment script
+   ./scripts/deploy.sh
    ```
 
 6. Your application should now be running at your domain with HTTPS enabled
+
+7. Monitor the application:
+   ```bash
+   # View container status
+   docker-compose ps
+   
+   # View application logs
+   docker-compose logs -f app
+   
+   # Restart if needed
+   docker-compose restart app
+   ```
 
 ### Database Migration and Seeding
 
