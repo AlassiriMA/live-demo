@@ -29,11 +29,7 @@ const Sitemap = () => {
                   <span>Skills</span>
                 </Link>
               </li>
-              <li>
-                <Link href="/blog" className="text-foreground/80 hover:text-primary transition-colors flex items-center">
-                  <span>Blog</span>
-                </Link>
-              </li>
+              {/* Blog link removed */}
               <li>
                 <Link href="/contact" className="text-foreground/80 hover:text-primary transition-colors flex items-center">
                   <span>Contact</span>

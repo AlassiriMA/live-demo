@@ -61,11 +61,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       label: 'Media Library',
       icon: <ImageIcon className="mr-2 h-4 w-4" />,
     },
-    {
-      href: '/admin/blog',
-      label: 'Blog Posts',
-      icon: <FileText className="mr-2 h-4 w-4" />,
-    },
+    /* Blog navigation removed */
     {
       href: '/admin/settings',
       label: 'Settings',

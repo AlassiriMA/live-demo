@@ -65,13 +65,7 @@ export default function AdminDashboard() {
       href: '/admin/media',
       count: '12'
     },
-    {
-      title: 'Blog Posts',
-      icon: <FileText className="h-6 w-6 text-primary" />,
-      description: 'Manage your blog content',
-      href: '/admin/blog',
-      count: '4'
-    },
+    /* Blog card removed */
     {
       title: 'Settings',
       icon: <Settings className="h-6 w-6 text-primary" />,
@@ -186,14 +180,7 @@ export default function AdminDashboard() {
                 <Image className="mr-2 h-4 w-4" />
                 Upload Media
               </Button>
-              <Button 
-                className="w-full justify-start" 
-                variant="outline"
-                onClick={() => navigate('/admin/blog/new')}
-              >
-                <FileText className="mr-2 h-4 w-4" />
-                Create Blog Post
-              </Button>
+              {/* Blog action removed */}
               <Button 
                 className="w-full justify-start" 
                 variant="outline"
