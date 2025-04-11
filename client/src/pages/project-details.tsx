@@ -370,7 +370,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {(project.slug === 'dydx-trading' || project.slug === 'dydx-interface') && (
+                  {project.slug === 'dydx-interface' && (
                     <img 
                       src="/assets/images/screenshots/dydx/trading.svg" 
                       alt={`${project.name} trading interface`}
@@ -378,7 +378,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'english-ai-tutor' && (
+                  {project.slug === 'english-ai' && (
                     <img 
                       src="/assets/images/screenshots/english-ai/conversation.svg" 
                       alt={`${project.name} conversation interface`}
@@ -404,8 +404,8 @@ export default function ProjectDetailsPage() {
                   
                   {/* Fallback to project.imageUrl if no specific screenshot is available */}
                   {!['pos-bookstore', 'fruit-store', 'marketing-agency', 'bi-dashboard', 
-                     'statistical-arbitrage', 'triangular-arbitrage', 'dydx-trading', 'dydx-interface',
-                     'english-ai-tutor', 'beauty-salon', 'reddit-clone'].includes(project.slug || '') && project.imageUrl && (
+                     'statistical-arbitrage', 'triangular-arbitrage', 'dydx-interface',
+                     'english-ai', 'beauty-salon', 'reddit-clone'].includes(project.slug || '') && project.imageUrl && (
                     <img 
                       src={project.imageUrl} 
                       alt={`${project.name} preview`}
@@ -415,7 +415,7 @@ export default function ProjectDetailsPage() {
                 </div>
                 
                 {/* English AI Tutor Screenshots */}
-                {(project.slug === 'english-ai-tutor' || project.id === 8) && (
+                {(project.slug === 'english-ai' || project.id === 8) && (
                   <ImageGridGallery 
                     images={[
                       {
