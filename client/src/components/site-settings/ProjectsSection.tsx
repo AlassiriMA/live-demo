@@ -6,6 +6,7 @@ import { Project } from "@shared/schema";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AnimatedSkeleton } from "@/components/ui/animated-skeleton";
 import { apps } from "@/lib/app-data";
+import { getProjectImage } from "@/lib/project-images";
 
 export function ProjectsSection() {
   // Define simplified Project type for display purposes only

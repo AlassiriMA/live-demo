@@ -1,0 +1,117 @@
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+    <linearGradient id="arrowGradientUSD" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="arrowGradientBTC" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#F97316" />
+    </linearGradient>
+    <linearGradient id="arrowGradientETH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="500" height="300" fill="url(#bgGradient)" />
+  
+  <!-- Grid lines for visual reference -->
+  <line x1="50" y1="50" x2="450" y2="50" stroke="#475569" stroke-width="0.5" stroke-dasharray="4 4" />
+  <line x1="50" y1="150" x2="450" y2="150" stroke="#475569" stroke-width="0.5" stroke-dasharray="4 4" />
+  <line x1="50" y1="250" x2="450" y2="250" stroke="#475569" stroke-width="0.5" stroke-dasharray="4 4" />
+  
+  <line x1="150" y1="30" x2="150" y2="270" stroke="#475569" stroke-width="0.5" stroke-dasharray="4 4" />
+  <line x1="250" y1="30" x2="250" y2="270" stroke="#475569" stroke-width="0.5" stroke-dasharray="4 4" />
+  <line x1="350" y1="30" x2="350" y2="270" stroke="#475569" stroke-width="0.5" stroke-dasharray="4 4" />
+  
+  <!-- Triangular arbitrage diagram -->
+  
+  <!-- USD node -->
+  <circle cx="250" cy="80" r="35" fill="#0F172A" stroke="#22C55E" stroke-width="2" />
+  <text x="250" y="85" font-family="Arial" font-size="20" fill="#22C55E" text-anchor="middle" font-weight="bold">USD</text>
+  
+  <!-- BTC node -->
+  <circle cx="150" cy="200" r="35" fill="#0F172A" stroke="#F59E0B" stroke-width="2" />
+  <text x="150" y="205" font-family="Arial" font-size="20" fill="#F59E0B" text-anchor="middle" font-weight="bold">BTC</text>
+  
+  <!-- ETH node -->
+  <circle cx="350" cy="200" r="35" fill="#0F172A" stroke="#6366F1" stroke-width="2" />
+  <text x="350" y="205" font-family="Arial" font-size="20" fill="#6366F1" text-anchor="middle" font-weight="bold">ETH</text>
+  
+  <!-- Directional arrows of the triangle -->
+  <!-- USD to BTC arrow -->
+  <line x1="225" y1="105" x2="175" y2="175" stroke="url(#arrowGradientUSD)" stroke-width="3" />
+  <polygon points="175,175 183,167 170,160" fill="url(#arrowGradientUSD)" />
+  <text x="180" y="135" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Buy BTC</text>
+  <text x="180" y="150" font-family="Arial" font-size="10" fill="#10B981" font-weight="bold" text-anchor="middle">$30,150.75</text>
+  
+  <!-- BTC to ETH arrow -->
+  <line x1="185" y1="200" x2="315" y2="200" stroke="url(#arrowGradientBTC)" stroke-width="3" />
+  <polygon points="315,200 305,193 305,207" fill="url(#arrowGradientBTC)" />
+  <text x="250" y="185" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Trade BTC for ETH</text>
+  <text x="250" y="200" font-family="Arial" font-size="10" fill="#F59E0B" font-weight="bold" text-anchor="middle">15.42 ETH/BTC</text>
+  
+  <!-- ETH to USD arrow -->
+  <line x1="325" y1="175" x2="275" y2="105" stroke="url(#arrowGradientETH)" stroke-width="3" />
+  <polygon points="275,105 272,118 285,112" fill="url(#arrowGradientETH)" />
+  <text x="320" y="135" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Sell ETH</text>
+  <text x="320" y="150" font-family="Arial" font-size="10" fill="#6366F1" font-weight="bold" text-anchor="middle">$1,965.30</text>
+  
+  <!-- Profit indicator -->
+  <rect x="200" y="25" width="100" height="30" rx="15" fill="#22C55E" opacity="0.2" />
+  <text x="250" y="45" font-family="Arial" font-size="12" fill="#22C55E" text-anchor="middle" font-weight="bold">Profit: +0.47%</text>
+  
+  <!-- Live data dashboard -->
+  <rect x="100" y="250" width="300" height="40" rx="5" fill="#0F172A" />
+  
+  <!-- Dashboard indicators -->
+  <circle cx="120" cy="270" r="10" fill="#22C55E" opacity="0.3" />
+  <circle cx="120" cy="270" r="5" fill="#22C55E" />
+  <text x="140" y="275" font-family="Arial" font-size="10" fill="white">Opportunities Found: 8</text>
+  
+  <circle cx="250" cy="270" r="10" fill="#F59E0B" opacity="0.3" />
+  <circle cx="250" cy="270" r="5" fill="#F59E0B" />
+  <text x="270" y="275" font-family="Arial" font-size="10" fill="white">Active Trades: 2</text>
+  
+  <circle cx="380" cy="270" r="10" fill="#6366F1" opacity="0.3" />
+  <circle cx="380" cy="270" r="5" fill="#6366F1" />
+  <text x="400" y="275" font-family="Arial" font-size="10" fill="white">Profit Today: $123.45</text>
+  
+  <!-- Exchange rate box -->
+  <rect x="400" y="130" width="80" height="70" rx="5" fill="#0F172A" />
+  <text x="440" y="145" font-family="Arial" font-size="8" fill="#94A3B8" text-anchor="middle">EXCHANGE RATES</text>
+  <line x1="410" y1="150" x2="470" y2="150" stroke="#475569" stroke-width="1" />
+  <text x="415" y="165" font-family="Arial" font-size="8" fill="#22C55E">BTC/USD</text>
+  <text x="475" y="165" font-family="Arial" font-size="8" fill="white" text-anchor="end">30,150.75</text>
+  <text x="415" y="180" font-family="Arial" font-size="8" fill="#6366F1">ETH/USD</text>
+  <text x="475" y="180" font-family="Arial" font-size="8" fill="white" text-anchor="end">1,965.30</text>
+  <text x="415" y="195" font-family="Arial" font-size="8" fill="#F59E0B">ETH/BTC</text>
+  <text x="475" y="195" font-family="Arial" font-size="8" fill="white" text-anchor="end">0.0647</text>
+  
+  <!-- Animation effect dots -->
+  <circle cx="215" y1="120" r="3" fill="white" filter="url(#glow)" opacity="0.7" />
+  <circle cx="200" y1="150" r="3" fill="white" filter="url(#glow)" opacity="0.5" />
+  <circle cx="185" y1="180" r="3" fill="white" filter="url(#glow)" opacity="0.3" />
+  
+  <circle cx="215" y1="200" r="3" fill="white" filter="url(#glow)" opacity="0.7" />
+  <circle cx="250" y1="200" r="3" fill="white" filter="url(#glow)" opacity="0.5" />
+  <circle cx="285" y1="200" r="3" fill="white" filter="url(#glow)" opacity="0.3" />
+  
+  <circle cx="315" y1="180" r="3" fill="white" filter="url(#glow)" opacity="0.7" />
+  <circle cx="300" y1="150" r="3" fill="white" filter="url(#glow)" opacity="0.5" />
+  <circle cx="285" y1="120" r="3" fill="white" filter="url(#glow)" opacity="0.3" />
+  
+  <!-- Title -->
+  <text x="250" y="20" font-family="Arial" font-size="14" fill="white" text-anchor="middle" font-weight="bold">Triangular Arbitrage Scanner</text>
+</svg>
