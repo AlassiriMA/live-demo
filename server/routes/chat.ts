@@ -3,6 +3,11 @@ import OpenAI from 'openai';
 import { z, ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 
+// For production deployment - environment variable check
+if (process.env.NODE_ENV === 'production' && !process.env.OPENAI_API_KEY) {
+  console.warn('Warning: OPENAI_API_KEY is not set. Customer service chatbot will use fallback mode.');
+}
+
 const router = Router();
 
 // Validate the chat message schema
@@ -71,7 +76,47 @@ function getResponse(userMessage: string): string {
   return predefinedResponses.default;
 }
 
-// Customer service chat endpoint with local processing (no API call)
+// Conditional OpenAI client initialization
+let openai: OpenAI | null = null;
+if (process.env.OPENAI_API_KEY) {
+  try {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY
+    });
+    console.log('OpenAI client initialized successfully');
+  } catch (error) {
+    console.error('Failed to initialize OpenAI client:', error);
+    openai = null;
+  }
+}
+
+// Customer service training context
+const systemPrompt = `
+You are a customer service assistant for a professional portfolio website showcasing various web applications.
+Your name is "Portfolio Assistant".
+
+The portfolio includes the following applications:
+1. POS System (Bookstore): A point-of-sale system for bookstores with inventory management
+2. Fruit Store: An e-commerce platform for ordering fresh fruits
+3. Marketing Agency: A website for a digital marketing agency with AI chatbot assistance
+4. Business Intelligence Dashboard: Interactive data visualization and analytics
+5. Statistical Arbitrage Tool: Trading tool for statistical arbitrage strategies
+6. Triangular Arbitrage Scanner: Tool for detecting cryptocurrency arbitrage opportunities
+7. dYdX Trading Interface: Interface for trading on the dYdX decentralized exchange
+8. English AI Tutor: AI-powered English language teaching assistant
+9. Beauty & Hair Salon: Website for a beauty salon with appointment booking
+10. ThreadVerse (Reddit Clone): Social media platform similar to Reddit
+
+Information about the developer:
+- Location: Amsterdam, Netherlands
+- Email: me@alassiri.nl
+- Phone: +316 10979730
+- Primary skills: React, TypeScript, Node.js, Express, PostgreSQL, AI integration
+
+Keep your responses concise (under 100 words) unless detailed information is specifically requested.
+`;
+
+// Customer service chat endpoint - tries OpenAI first, falls back to local processing if unavailable
 router.post('/customer-service', async (req, res) => {
   try {
     const validation = chatMessageSchema.safeParse(req.body);
@@ -86,12 +131,47 @@ router.post('/customer-service', async (req, res) => {
 
     const { messages } = validation.data;
     
-    // Get the last user message
+    // Try to use OpenAI if available
+    if (openai && process.env.NODE_ENV === 'production') {
+      try {
+        console.log('Using OpenAI for chat response');
+        
+        // Prepend system message to provide context
+        const typedMessages = [
+          { role: 'system' as const, content: systemPrompt },
+          ...messages.map(msg => ({
+            role: msg.role as 'user' | 'assistant',
+            content: msg.content
+          }))
+        ];
+        
+        // Call OpenAI API
+        const response = await openai.chat.completions.create({
+          model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024
+          messages: typedMessages,
+          temperature: 0.7,
+          max_tokens: 500
+        });
+
+        const assistantMessage = response.choices[0].message.content;
+
+        return res.json({
+          success: true,
+          message: assistantMessage
+        });
+      } catch (error) {
+        console.warn('OpenAI API error, falling back to local responses:', error);
+        // Continue with fallback method
+      }
+    }
+    
+    // Fallback to local processing
+    console.log('Using local responses for chat');
     const lastUserMessage = messages
       .filter(msg => msg.role === 'user')
       .pop()?.content || '';
     
-    // Generate response using the local function instead of OpenAI API
+    // Generate response using the local function
     const assistantMessage = getResponse(lastUserMessage);
     
     // Add a slight delay to simulate "thinking" (250-750ms)
