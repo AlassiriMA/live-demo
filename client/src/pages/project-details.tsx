@@ -322,7 +322,7 @@ export default function ProjectDetailsPage() {
                 
                 {/* Main Project Screenshot - featured screenshot from each project */}
                 <div className="mb-6 rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
-                  {project.slug === 'pos-bookstore' && (
+                  {project.slug === 'pos' && (
                     <img 
                       src="/assets/images/screenshots/pos/inventory.svg" 
                       alt={`${project.name} inventory management`}
@@ -330,7 +330,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'fruit-store' && (
+                  {project.slug === 'fruits' && (
                     <img 
                       src="/assets/images/screenshots/fruit/product-catalog.svg" 
                       alt={`${project.name} product catalog`}
@@ -403,9 +403,9 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {/* Fallback to project.imageUrl if no specific screenshot is available */}
-                  {!['pos-bookstore', 'fruit-store', 'marketing-agency', 'bi-dashboard', 
-                     'statistical-arbitrage', 'triangular-arbitrage', 'dydx-interface',
-                     'english-ai', 'beauty-salon', 'reddit-clone'].includes(project.slug || '') && project.imageUrl && (
+                  {!['pos', 'fruits', 'marketing', 'bi', 
+                     'statarb', 'triarb', 'dydx',
+                     'english-ai', 'beauty', 'reddit'].includes(project.slug || '') && project.imageUrl && (
                     <img 
                       src={project.imageUrl} 
                       alt={`${project.name} preview`}
