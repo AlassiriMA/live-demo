@@ -10,6 +10,7 @@ interface ImageWithFallbackProps {
   height?: number;
   sizes?: string;
   priority?: boolean;
+  onLoad?: () => void;
 }
 
 /**
@@ -18,6 +19,7 @@ interface ImageWithFallbackProps {
  * - Uses lazy loading by default (but allows priority loading)
  * - Supports width, height, and sizes attributes for performance
  * - Uses loading="eager" for above-the-fold images when priority=true
+ * - Supports onLoad callback for parent components
  */
 function ImageWithFallback({
   src,
@@ -29,6 +31,7 @@ function ImageWithFallback({
   height,
   sizes = "100vw",
   priority = false,
+  onLoad,
 }: ImageWithFallbackProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
@@ -50,6 +53,10 @@ function ImageWithFallback({
   
   const handleLoad = () => {
     setIsLoaded(true);
+    // Call parent's onLoad callback if provided
+    if (onLoad) {
+      onLoad();
+    }
   };
 
   return (
@@ -110,5 +117,6 @@ function useImageExists(url: string): boolean {
   return exists;
 }
 
+// Export the improved hooks for external use
 export { useImageExists };
 export default ImageWithFallback;
