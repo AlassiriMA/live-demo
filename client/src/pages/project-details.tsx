@@ -338,7 +338,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'marketing-agency' && (
+                  {project.slug === 'marketing' && (
                     <img 
                       src="/assets/images/screenshots/marketing/services.svg" 
                       alt={`${project.name} services page`}
@@ -346,7 +346,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'bi-dashboard' && (
+                  {project.slug === 'bi' && (
                     <img 
                       src="/assets/images/screenshots/bi/dashboard.svg" 
                       alt={`${project.name} dashboard`}
@@ -354,7 +354,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'statistical-arbitrage' && (
+                  {project.slug === 'statarb' && (
                     <img 
                       src="/assets/images/screenshots/statarb/dashboard.svg" 
                       alt={`${project.name} dashboard`}
@@ -362,7 +362,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'triangular-arbitrage' && (
+                  {project.slug === 'triarb' && (
                     <img 
                       src="/assets/images/screenshots/triarb/scanner.svg" 
                       alt={`${project.name} opportunity scanner`}
@@ -370,7 +370,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'dydx-interface' && (
+                  {project.slug === 'dydx' && (
                     <img 
                       src="/assets/images/screenshots/dydx/trading.svg" 
                       alt={`${project.name} trading interface`}
@@ -386,7 +386,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'beauty-salon' && (
+                  {project.slug === 'beauty' && (
                     <img 
                       src="/assets/images/screenshots/beauty/services.svg" 
                       alt={`${project.name} services page`}
@@ -394,7 +394,7 @@ export default function ProjectDetailsPage() {
                     />
                   )}
                   
-                  {project.slug === 'reddit-clone' && (
+                  {project.slug === 'reddit' && (
                     <img 
                       src="/assets/images/screenshots/reddit/home.svg" 
                       alt={`${project.name} home page`}
@@ -436,7 +436,7 @@ export default function ProjectDetailsPage() {
                 )}
 
                 {/* StatArb Screenshots */}
-                {(project.slug === 'statistical-arbitrage' || project.id === 5) && (
+                {(project.slug === 'statarb' || project.id === 5) && (
                   <ImageGridGallery 
                     images={[
                       {
@@ -467,7 +467,7 @@ export default function ProjectDetailsPage() {
                 )}
                 
                 {/* Fruit Store Screenshots */}
-                {(project.slug === 'fruit-store' || project.id === 2) && (
+                {(project.slug === 'fruits' || project.id === 2) && (
                   <ImageGridGallery 
                     images={[
                       {
