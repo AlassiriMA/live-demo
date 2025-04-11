@@ -22,15 +22,27 @@ import {
   PlusCircle
 } from 'lucide-react';
 
+// Define ActivityLog interface to fix type issues
+interface ActivityLog {
+  id: number;
+  userId: number;
+  username: string;
+  actionType: 'create' | 'update' | 'delete' | 'login';
+  resourceType: string;
+  resourceId?: number;
+  description: string;
+  createdAt: string;
+}
+
 export default function AdminDashboard() {
   const { user, isLoading } = useAuth();
   const [, navigate] = useLocation();
 
   // Get activity logs
   const { 
-    data: activityLogs = [], 
+    data: activityLogs = [] as ActivityLog[], 
     isLoading: isLoadingLogs 
-  } = useQuery({
+  } = useQuery<ActivityLog[]>({
     queryKey: ['/api/cms/logs'],
     enabled: !!user
   });
@@ -125,7 +137,7 @@ export default function AdminDashboard() {
                 <p>Loading activity logs...</p>
               ) : activityLogs.length > 0 ? (
                 <div className="space-y-4">
-                  {activityLogs.slice(0, 5).map((log: any) => (
+                  {activityLogs.slice(0, 5).map((log: ActivityLog) => (
                     <div key={log.id} className="flex items-start gap-2 pb-3 border-b last:border-0">
                       <div className="rounded-full bg-primary/10 p-2">
                         {log.actionType === 'create' ? (

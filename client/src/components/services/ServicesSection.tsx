@@ -117,12 +117,17 @@ export function ServicesSection() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <a 
-            href="#contact" 
-            className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1"
+          <button
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
           >
             Discuss Your Project
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>
