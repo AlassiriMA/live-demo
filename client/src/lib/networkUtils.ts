@@ -1,134 +1,173 @@
 /**
- * Utility functions for optimizing network performance
+ * Network-related utilities to help adapt to different connection types and speeds
  */
-
-type NetworkQuality = 'slow-2g' | '2g' | '3g' | '4g' | 'unknown';
 
 /**
- * Get the current network connection quality
- * @returns The estimated network quality
+ * Connection speed categories
  */
-export function getNetworkQuality(): NetworkQuality {
-  if (typeof navigator === 'undefined') return 'unknown';
-  
-  // Use the Network Information API if available
-  const connection = (navigator as any).connection || 
-                     (navigator as any).mozConnection || 
-                     (navigator as any).webkitConnection;
-  
-  if (connection && connection.effectiveType) {
-    return connection.effectiveType as NetworkQuality;
-  }
-  
-  // Fallback: try to estimate based on navigator.onLine
-  if (navigator.onLine === false) {
-    return 'slow-2g'; // Assume worst case if offline
-  }
-  
-  return 'unknown';
+export enum ConnectionSpeed {
+  SLOW = 'slow',
+  MEDIUM = 'medium',
+  FAST = 'fast',
+  UNKNOWN = 'unknown'
 }
 
 /**
- * Check if the current connection is considered "fast"
- * @returns True if the connection is 4g or better
+ * Get the effective connection type if available
+ * @returns The connection type or null if not available
  */
-export function hasFastConnection(): boolean {
-  const quality = getNetworkQuality();
-  return quality === '4g' || quality === 'unknown';
-}
-
-/**
- * Check if the current connection is metered
- * @returns True if the connection is metered, false if unmetered, null if unknown
- */
-export function isConnectionMetered(): boolean | null {
-  if (typeof navigator === 'undefined') return null;
-  
-  const connection = (navigator as any).connection || 
-                     (navigator as any).mozConnection || 
-                     (navigator as any).webkitConnection;
-                     
-  if (connection && connection.saveData !== undefined) {
-    return connection.saveData === true;
+export function getConnectionType(): string | null {
+  if (
+    typeof navigator !== 'undefined' && 
+    'connection' in navigator && 
+    navigator.connection && 
+    typeof navigator.connection === 'object' &&
+    'effectiveType' in navigator.connection
+  ) {
+    return (navigator.connection as any).effectiveType;
   }
   
   return null;
 }
 
 /**
- * Throttle bandwidth-intensive operations based on connection quality
- * @param operation The operation to perform
- * @param lowQualityFallback Optional fallback for low-quality connections
+ * Check if the user has a fast network connection
+ * @returns true if the connection is fast, false otherwise
  */
-export function adaptToNetworkQuality<T>(
-  operation: () => T,
-  lowQualityFallback?: () => T
-): T {
-  const quality = getNetworkQuality();
-  const isSaveDataEnabled = isConnectionMetered() === true;
+export function hasFastConnection(): boolean {
+  const connectionType = getConnectionType();
   
-  // Use fallback for slow connections or when save-data is enabled
-  if (
-    (quality === 'slow-2g' || quality === '2g' || quality === '3g' || isSaveDataEnabled) &&
-    lowQualityFallback !== undefined
-  ) {
-    return lowQualityFallback();
+  // 4g is considered fast
+  if (connectionType === '4g') {
+    return true;
   }
   
-  return operation();
+  // If we can't determine the connection, default to true to provide the best user experience
+  if (!connectionType) {
+    return true;
+  }
+  
+  return false;
 }
 
 /**
- * Get optimized image quality based on network conditions
- * @param defaultQuality The default image quality (0-100)
- * @returns Optimized quality value
+ * Get the connection speed category
+ * @returns The connection speed category
  */
-export function getAdaptiveImageQuality(defaultQuality: number = 85): number {
-  const quality = getNetworkQuality();
-  const isSaveDataEnabled = isConnectionMetered() === true;
+export function getConnectionSpeed(): ConnectionSpeed {
+  const connectionType = getConnectionType();
   
-  if (isSaveDataEnabled) {
-    return Math.min(defaultQuality, 60); // Aggressive reduction for save-data
+  if (!connectionType) {
+    return ConnectionSpeed.UNKNOWN;
   }
   
-  // Adjust quality based on connection speed
-  switch (quality) {
+  switch (connectionType) {
     case 'slow-2g':
-      return Math.min(defaultQuality, 30);
     case '2g':
-      return Math.min(defaultQuality, 50);
+      return ConnectionSpeed.SLOW;
     case '3g':
-      return Math.min(defaultQuality, 70);
+      return ConnectionSpeed.MEDIUM;
+    case '4g':
+      return ConnectionSpeed.FAST;
+    default:
+      return ConnectionSpeed.UNKNOWN;
+  }
+}
+
+/**
+ * Get adaptive image quality based on network connection
+ * @param defaultQuality The default quality to use if connection can't be determined
+ * @returns A quality value between 0 and 100
+ */
+export function getAdaptiveImageQuality(defaultQuality: number = 85): number {
+  const connectionSpeed = getConnectionSpeed();
+  
+  switch (connectionSpeed) {
+    case ConnectionSpeed.SLOW:
+      return 50; // Low quality for slow connections
+    case ConnectionSpeed.MEDIUM:
+      return 70; // Medium quality for medium connections
+    case ConnectionSpeed.FAST:
+      return 100; // High quality for fast connections
     default:
       return defaultQuality;
   }
 }
 
 /**
- * Monitor for network status changes and execute callbacks
- * @param onOnline Callback when network comes online
- * @param onOffline Callback when network goes offline
+ * Check if the network is currently available
+ * @returns true if online, false if offline
+ */
+export function isNetworkAvailable(): boolean {
+  return typeof navigator !== 'undefined' ? navigator.onLine : true;
+}
+
+/**
+ * Watch for network status changes
+ * @param onlineCallback Function to call when network becomes available
+ * @param offlineCallback Function to call when network becomes unavailable
  * @returns Cleanup function to remove event listeners
  */
 export function watchNetworkStatus(
-  onOnline?: () => void,
-  onOffline?: () => void
+  onlineCallback: () => void,
+  offlineCallback: () => void
 ): () => void {
-  if (typeof window === 'undefined') return () => {};
+  if (typeof window === 'undefined') {
+    return () => {}; // No cleanup needed in non-browser environment
+  }
   
-  const handleOnline = () => {
-    if (onOnline) onOnline();
-  };
-  
-  const handleOffline = () => {
-    if (onOffline) onOffline();
-  };
-  
-  window.addEventListener('online', handleOnline);
-  window.addEventListener('offline', handleOffline);
+  window.addEventListener('online', onlineCallback);
+  window.addEventListener('offline', offlineCallback);
   
   return () => {
-    window.removeEventListener('online', handleOnline);
-    window.removeEventListener('offline', handleOffline);
+    window.removeEventListener('online', onlineCallback);
+    window.removeEventListener('offline', offlineCallback);
   };
 }
+
+/**
+ * Retry a failed network request with exponential backoff
+ * @param fetchFunc The fetch function to retry
+ * @param retries Maximum number of retries
+ * @param baseDelay Base delay in milliseconds between retries
+ * @returns Promise that resolves with the fetch result
+ */
+export async function retryFetch<T>(
+  fetchFunc: () => Promise<T>,
+  retries: number = 3,
+  baseDelay: number = 300
+): Promise<T> {
+  let lastError: Error | null = null;
+  
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await fetchFunc();
+    } catch (error) {
+      lastError = error as Error;
+      
+      if (attempt < retries) {
+        // Calculate exponential backoff delay
+        const delay = baseDelay * Math.pow(2, attempt);
+        
+        // Add some jitter to prevent multiple clients from retrying at the same time
+        const jitter = Math.random() * 100;
+        
+        // Wait before retrying
+        await new Promise(resolve => setTimeout(resolve, delay + jitter));
+      }
+    }
+  }
+  
+  // If we exhaust all retries, throw the last error
+  throw lastError;
+}
+
+export default {
+  getConnectionType,
+  hasFastConnection,
+  getConnectionSpeed,
+  getAdaptiveImageQuality,
+  isNetworkAvailable,
+  watchNetworkStatus,
+  retryFetch
+};

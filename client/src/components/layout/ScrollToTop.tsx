@@ -1,109 +1,76 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
-import { ArrowUp } from 'lucide-react';
-import { debounce } from '@/lib/performanceUtils';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronUp } from 'lucide-react';
+import { throttle } from '@/lib/performanceUtils';
 import useViewport from '@/hooks/useViewport';
 
 /**
- * Enhanced ScrollToTop component that:
- * - Automatically scrolls to the top when route changes
- * - Shows a back-to-top button on long pages
- * - Is optimized for mobile devices
- * - Uses smooth scrolling with fallbacks for Safari
- * - Only renders when needed
+ * A component that scrolls the page to the top when
+ * - The route changes
+ * - The user clicks the scroll-to-top button
+ * 
+ * Performance optimized with:
+ * - Throttled scroll event handling
+ * - Hardware-accelerated animations
+ * - Responsive design for all device sizes
+ * - Auto-hiding when not needed
  */
-export default function ScrollToTop() {
+const ScrollToTop = () => {
   const [location] = useLocation();
   const [showButton, setShowButton] = useState(false);
   const { isMobile } = useViewport();
   
   // Scroll to top when route changes
   useEffect(() => {
-    // Use requestAnimationFrame for smoother scrolling
-    window.requestAnimationFrame(() => {
-      const supportsNativeSmoothScroll = 'scrollBehavior' in document.documentElement.style;
-      
-      if (supportsNativeSmoothScroll) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        // Fallback for browsers that don't support smooth scrolling
-        window.scrollTo(0, 0);
-      }
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [location]);
   
-  // Show button when scrolled down
+  // Show button when user scrolls down
   useEffect(() => {
-    // Determine when to show the back-to-top button
-    const handleScroll = debounce(() => {
-      const scrollPosition = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      
-      // Show button when scrolled down 40% of viewport height
-      setShowButton(scrollPosition > viewportHeight * 0.4);
-    }, 100);
+    // Use throttle for better performance
+    const handleScroll = throttle(() => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setShowButton(scrollTop > 300);
+    }, 200);
     
     window.addEventListener('scroll', handleScroll);
-    
-    // Run once on mount to set initial state
-    handleScroll();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
   
-  // Scroll to top handler
+  // Function to scroll to top
   const scrollToTop = () => {
-    const supportsNativeSmoothScroll = 'scrollBehavior' in document.documentElement.style;
-    
-    if (supportsNativeSmoothScroll) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      // Fallback smooth scroll implementation
-      const duration = 500; // ms
-      const start = window.scrollY;
-      const startTime = performance.now();
-      
-      const animateScroll = (timestamp: number) => {
-        const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        // Use easeInOutQuad easing function
-        const easeProgress = progress < 0.5
-          ? 2 * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-          
-        window.scrollTo(0, start * (1 - easeProgress));
-        
-        if (progress < 1) {
-          window.requestAnimationFrame(animateScroll);
-        }
-      };
-      
-      window.requestAnimationFrame(animateScroll);
-    }
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
   
-  // Only render button on non-mobile or when specifically enabled on mobile
-  if (!showButton) {
-    return null;
-  }
+  // Adjust size and position for mobile
+  const buttonSize = isMobile ? 'h-10 w-10' : 'h-12 w-12';
+  const buttonPosition = isMobile ? 'bottom-4 right-4' : 'bottom-8 right-8';
   
-  // Render the back-to-top button
   return (
-    <button
-      onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 p-3 bg-primary text-white rounded-full shadow-lg transition-all duration-300 hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-      style={{
-        opacity: showButton ? 1 : 0,
-        transform: showButton ? 'scale(1)' : 'scale(0.8)',
-        // Position differently on mobile
-        bottom: isMobile ? '80px' : '24px',
-        right: isMobile ? '16px' : '24px',
-      }}
-      aria-label="Scroll to top"
-    >
-      <ArrowUp size={20} />
-    </button>
+    <AnimatePresence>
+      {showButton && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.5 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={scrollToTop}
+          className={`fixed ${buttonPosition} ${buttonSize} rounded-full bg-primary text-white shadow-lg flex items-center justify-center z-50 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-transform will-change-transform`}
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className={isMobile ? 'h-5 w-5' : 'h-6 w-6'} />
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
-}
+};
+
+export default ScrollToTop;

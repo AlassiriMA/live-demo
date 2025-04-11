@@ -1,161 +1,181 @@
 /**
- * Utility functions to improve JavaScript execution performance
+ * Collection of performance utilities for optimizing the application
+ * Includes functions for:
+ * - Debouncing and throttling
+ * - Resource loading prioritization
+ * - Performance metrics
+ * - DOM operation batching
  */
 
 /**
- * A debounce function that limits how often a function can be called
- * @param func The function to debounce
- * @param wait Wait time in milliseconds
- * @param immediate Whether to call the function immediately
+ * Debounce a function to limit how often it can be called
+ * @param fn The function to debounce
+ * @param delay Milliseconds to wait before executing
+ * @returns Debounced function
  */
 export function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number = 100,
-  immediate: boolean = false
+  fn: T,
+  delay: number
 ): (...args: Parameters<T>) => void {
-  let timeout: ReturnType<typeof setTimeout> | null = null;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
   
-  return function(this: any, ...args: Parameters<T>): void {
-    const context = this;
-    
-    const later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    
-    const callNow = immediate && !timeout;
-    
-    if (timeout) {
-      clearTimeout(timeout);
+  return function(...args: Parameters<T>) {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
     }
     
-    timeout = setTimeout(later, wait);
-    
-    if (callNow) {
-      func.apply(context, args);
-    }
+    timeoutId = setTimeout(() => {
+      fn(...args);
+      timeoutId = null;
+    }, delay);
   };
 }
 
 /**
- * A throttle function that ensures a function is called at most once per specified period
- * @param func The function to throttle
- * @param limit Limit in milliseconds
+ * Throttle a function to execute at most once per specified time period
+ * @param fn The function to throttle
+ * @param limit Milliseconds to wait between executions
+ * @returns Throttled function
  */
 export function throttle<T extends (...args: any[]) => any>(
-  func: T, 
-  limit: number = 100
+  fn: T,
+  limit: number
 ): (...args: Parameters<T>) => void {
-  let inThrottle: boolean = false;
-  let lastFunc: ReturnType<typeof setTimeout>;
-  let lastRan: number;
+  let inThrottle = false;
+  let lastArgs: Parameters<T> | null = null;
   
-  return function(this: any, ...args: Parameters<T>): void {
-    const context = this;
-    
+  return function(...args: Parameters<T>) {
     if (!inThrottle) {
-      func.apply(context, args);
-      lastRan = Date.now();
+      fn(...args);
       inThrottle = true;
       
       setTimeout(() => {
         inThrottle = false;
+        if (lastArgs) {
+          const currentArgs = lastArgs;
+          lastArgs = null;
+          fn(...currentArgs);
+        }
       }, limit);
     } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(() => {
-        if (Date.now() - lastRan >= limit) {
-          func.apply(context, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
+      lastArgs = args;
     }
   };
 }
 
 /**
- * Group multiple DOM operations to minimize layout thrashing
- * @param callback Function containing DOM read/write operations
+ * Batch multiple DOM operations to be processed in the next animation frame
+ * @param callback Function containing DOM operations to batch
  */
-export function batchDomOperations(callback: () => void): void {
-  // Request animation frame for smoothness
-  window.requestAnimationFrame(() => {
-    const startTime = performance.now();
-    
-    // Call the function containing DOM operations
-    callback();
-    
-    // Log performance in development
-    if (import.meta.env.DEV) {
-      const duration = performance.now() - startTime;
-      if (duration > 16.67) { // More than one frame (60fps)
-        console.warn(`DOM operation took ${duration.toFixed(2)}ms, which may cause jank`);
-      }
-    }
-  });
-}
-
-/**
- * Run non-critical code when the browser is idle
- * @param callback Function to run during idle time
- * @param timeout Maximum time to wait before forcing execution
- */
-export function runWhenIdle(callback: () => void, timeout: number = 2000): void {
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(
-      () => {
-        callback();
-      },
-      { timeout }
-    );
+export function batchDOMUpdates(callback: () => void): void {
+  if (typeof requestAnimationFrame !== 'undefined') {
+    requestAnimationFrame(() => {
+      callback();
+    });
   } else {
-    // Fallback for browsers without requestIdleCallback
-    setTimeout(callback, 1);
+    // Fallback for environments without requestAnimationFrame
+    setTimeout(callback, 0);
   }
 }
 
 /**
- * Preconnect to origins early to speed up future requests
- * @param origins Array of origins to preconnect to
- */
-export function preconnectToOrigins(origins: string[]): void {
-  if (!origins || !origins.length) return;
-  
-  origins.forEach(origin => {
-    const link = document.createElement('link');
-    link.rel = 'preconnect';
-    link.href = origin;
-    link.crossOrigin = 'anonymous';
-    document.head.appendChild(link);
-    
-    // Also add DNS prefetch as a fallback
-    const dnsLink = document.createElement('link');
-    dnsLink.rel = 'dns-prefetch';
-    dnsLink.href = origin;
-    document.head.appendChild(dnsLink);
-  });
-}
-
-/**
- * Measure execution time of a function
+ * Measure the execution time of a function
  * @param fn Function to measure
- * @param label Label for the console output
+ * @param name Optional name for logging
+ * @returns Function with same signature as fn that measures execution time
  */
 export function measurePerformance<T extends (...args: any[]) => any>(
   fn: T,
-  label: string
+  name = 'Function'
 ): (...args: Parameters<T>) => ReturnType<T> {
-  return function(this: any, ...args: Parameters<T>): ReturnType<T> {
+  return function(...args: Parameters<T>): ReturnType<T> {
     const start = performance.now();
-    const result = fn.apply(this, args);
+    const result = fn(...args);
     const end = performance.now();
-    const duration = end - start;
     
-    // Only log in development
-    if (import.meta.env.DEV) {
-      console.log(`${label} took ${duration.toFixed(2)}ms`);
-    }
+    // Log timing information
+    console.debug(`${name} executed in ${(end - start).toFixed(2)}ms`);
     
     return result;
   };
 }
+
+/**
+ * Get page load metrics
+ * @returns Object containing various page load metrics
+ */
+export function getPageLoadMetrics() {
+  if (typeof window === 'undefined' || !window.performance) {
+    return { pageLoadTime: 0 };
+  }
+  
+  const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+  const paintMetrics = performance.getEntriesByType('paint');
+  
+  // Find specific paint metrics
+  const firstPaint = paintMetrics.find(metric => metric.name === 'first-paint');
+  const firstContentfulPaint = paintMetrics.find(metric => metric.name === 'first-contentful-paint');
+  
+  return {
+    pageLoadTime: navigation ? navigation.loadEventEnd - navigation.startTime : 0,
+    domInteractive: navigation ? navigation.domInteractive - navigation.startTime : 0,
+    domContentLoaded: navigation ? navigation.domContentLoadedEventEnd - navigation.startTime : 0,
+    firstPaint: firstPaint ? firstPaint.startTime : 0,
+    firstContentfulPaint: firstContentfulPaint ? firstContentfulPaint.startTime : 0
+  };
+}
+
+/**
+ * Log page load metrics to console for development
+ */
+export function logPageLoadMetrics(): void {
+  if (typeof window === 'undefined' || !window.performance) return;
+  
+  // Wait for all resources to finish loading
+  window.addEventListener('load', () => {
+    // Give a small delay to ensure metrics are ready
+    setTimeout(() => {
+      const metrics = getPageLoadMetrics();
+      console.log(`Page load time: ${Math.round(metrics.pageLoadTime)}ms`);
+      
+      // Log detailed metrics in development
+      if (process.env.NODE_ENV === 'development') {
+        console.debug('Performance metrics:', {
+          domInteractive: `${Math.round(metrics.domInteractive || 0)}ms`,
+          domContentLoaded: `${Math.round(metrics.domContentLoaded || 0)}ms`,
+          firstPaint: `${Math.round(metrics.firstPaint || 0)}ms`,
+          firstContentfulPaint: `${Math.round(metrics.firstContentfulPaint || 0)}ms`
+        });
+      }
+    }, 100);
+  });
+}
+
+/**
+ * Queue a function to run when the browser is idle
+ * @param callback Function to run during idle time
+ * @param options Options for idle callback
+ */
+export function runWhenIdle(
+  callback: () => void,
+  options: { timeout?: number } = {}
+): void {
+  if (typeof window === 'undefined') return;
+  
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(callback, options);
+  } else {
+    // Fallback for browsers that don't support requestIdleCallback
+    setTimeout(callback, options.timeout || 1);
+  }
+}
+
+export default {
+  debounce,
+  throttle,
+  batchDOMUpdates,
+  measurePerformance,
+  getPageLoadMetrics,
+  logPageLoadMetrics,
+  runWhenIdle
+};

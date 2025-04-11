@@ -1,83 +1,93 @@
-import { useRef, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 
 interface FadeInSectionProps {
   children: ReactNode;
-  className?: string;
-  delay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right' | 'none';
-  duration?: number;
   threshold?: number;
+  delay?: number;
+  duration?: number;
+  className?: string;
+  direction?: 'up' | 'down' | 'left' | 'right' | 'none';
+  distance?: number;
   rootMargin?: string;
   once?: boolean;
-  as?: React.ElementType;
+  style?: React.CSSProperties;
 }
 
 /**
- * A component that fades in its children when they enter the viewport
- * Uses IntersectionObserver for performance
+ * A component that fades in its children when scrolled into view
+ * For performance optimization, animations only trigger when the component enters the viewport
  */
-export function FadeInSection({
+const FadeInSection = ({
   children,
-  className = '',
-  delay = 0,
-  direction = 'up',
-  duration = 0.5,
   threshold = 0.1,
+  delay = 0,
+  duration = 0.6,
+  className = '',
+  direction = 'up',
+  distance = 30,
   rootMargin = '0px',
   once = true,
-  as: Component = 'div'
-}: FadeInSectionProps) {
-  const [ref, isIntersecting] = useIntersectionObserver({
+  style,
+}: FadeInSectionProps) => {
+  // Use intersection observer to detect when component is in viewport
+  const [ref, isInView] = useIntersectionObserver({
     threshold,
     rootMargin,
-    once
+    once,
   });
   
-  // Determine which direction the animation should come from
-  const directionOffset = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { y: 0, x: 40 },
-    right: { y: 0, x: -40 },
-    none: { y: 0, x: 0 }
-  };
+  // Determine initial position based on direction
+  let initialPosition = {};
+  switch (direction) {
+    case 'up':
+      initialPosition = { y: distance };
+      break;
+    case 'down':
+      initialPosition = { y: -distance };
+      break;
+    case 'left':
+      initialPosition = { x: distance };
+      break;
+    case 'right':
+      initialPosition = { x: -distance };
+      break;
+    case 'none':
+    default:
+      initialPosition = {}; // No movement, just fade
+  }
   
   // Animation variants
   const variants = {
     hidden: {
       opacity: 0,
-      y: directionOffset[direction].y,
-      x: directionOffset[direction].x
+      ...initialPosition,
     },
     visible: {
       opacity: 1,
-      y: 0,
       x: 0,
+      y: 0,
       transition: {
         duration,
         delay,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
+        ease: [0.22, 1, 0.36, 1], // Custom easing for natural feel
+      },
+    },
   };
-
+  
   return (
     <motion.div
-      ref={ref}
-      className={className}
+      ref={ref as React.RefObject<HTMLDivElement>}
       initial="hidden"
-      animate={isIntersecting ? 'visible' : 'hidden'}
+      animate={isInView ? 'visible' : 'hidden'}
       variants={variants}
+      className={className}
+      style={style}
     >
-      {typeof Component === 'string' ? (
-        <Component className={className}>{children}</Component>
-      ) : (
-        <Component>{children}</Component>
-      )}
+      {children}
     </motion.div>
   );
-}
+};
 
 export default FadeInSection;

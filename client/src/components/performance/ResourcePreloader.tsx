@@ -1,78 +1,76 @@
-import { useEffect, ReactNode } from 'react';
-import { preloadImages, preloadRoute, prefetchApiData } from '@/lib/preloadUtils';
-import { runWhenIdle, preconnectToOrigins } from '@/lib/performanceUtils';
+import { useEffect } from 'react';
+import { runWhenIdle } from '@/lib/performanceUtils';
+import { preconnectToOrigins } from '@/lib/preloadUtils';
 
 interface ResourcePreloaderProps {
-  children?: ReactNode;
   images?: string[];
   routes?: string[];
   apiEndpoints?: string[];
   origins?: string[];
-  enabled?: boolean;
+  priority?: 'high' | 'low' | 'auto';
 }
 
 /**
- * Component that preloads resources for better performance
- * - Runs during idle time to avoid impacting initial render
- * - Can preload images, routes, API data, and preconnect to origins
- * - Only runs in production by default
+ * Preloads critical resources to improve perceived performance
+ * - Images are preloaded with <link rel="preload"> tags
+ * - Routes are prefetched to warm up the route cache
+ * - API endpoints are prefetched to warm up the data cache
+ * - External origins are preconnected to establish early connections
  */
-export function ResourcePreloader({
-  children,
+const ResourcePreloader: React.FC<ResourcePreloaderProps> = ({
   images = [],
   routes = [],
   apiEndpoints = [],
   origins = [],
-  enabled = import.meta.env.PROD
-}: ResourcePreloaderProps) {
+  priority = 'auto'
+}) => {
+  // Determine if resources should be loaded immediately or during idle time
+  const loadImmediately = priority === 'high' || 
+    (priority === 'auto' && (images.length + routes.length + apiEndpoints.length <= 5));
+  
   useEffect(() => {
-    // Skip if disabled or no resources to preload
-    if (
-      !enabled ||
-      (images.length === 0 && routes.length === 0 && apiEndpoints.length === 0 && origins.length === 0)
-    ) {
-      return;
+    // Function to add preload link to document head
+    const preloadImage = (src: string) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+    };
+    
+    // Function to preconnect to origins
+    const preconnectToOrigin = (origin: string) => {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = origin;
+      link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    };
+    
+    // Execute preloading based on priority
+    if (loadImmediately) {
+      // Preload immediately
+      images.forEach(preloadImage);
+      origins.forEach(preconnectToOrigin);
+    } else {
+      // Preload during idle time
+      runWhenIdle(() => {
+        // Preload images first
+        images.forEach(preloadImage);
+      }, { timeout: 2000 });
+      
+      // Preconnect to origins
+      origins.forEach(preconnectToOrigin);
     }
-
-    // Run during idle time to avoid impacting critical rendering
-    runWhenIdle(() => {
-      // Preconnect to origins first for better performance
-      if (origins.length > 0) {
-        preconnectToOrigins(origins);
-      }
-
-      // Preload critical images with high priority
-      if (images.length > 0) {
-        // First 3 images get high priority, rest get low
-        const highPriorityImages = images.slice(0, 3);
-        const lowPriorityImages = images.slice(3);
-        
-        if (highPriorityImages.length > 0) {
-          preloadImages(highPriorityImages, 'high');
-        }
-        
-        if (lowPriorityImages.length > 0) {
-          preloadImages(lowPriorityImages, 'low');
-        }
-      }
-
-      // Preload routes
-      if (routes.length > 0) {
-        routes.forEach(route => {
-          preloadRoute(route);
-        });
-      }
-
-      // Prefetch API data
-      if (apiEndpoints.length > 0) {
-        apiEndpoints.forEach(endpoint => {
-          prefetchApiData(endpoint);
-        });
-      }
-    });
-  }, [enabled, images, routes, apiEndpoints, origins]);
-
-  return children || null;
-}
+    
+    // Cleanup function
+    return () => {
+      // No cleanup needed as these are one-time operations
+      // Links remain in the document head for the duration of the session
+    };
+  }, [images, origins, loadImmediately]);
+  
+  return null; // This component doesn't render anything
+};
 
 export default ResourcePreloader;
