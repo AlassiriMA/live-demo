@@ -33,6 +33,10 @@ const Privacy = lazy(() => import("@/pages/privacy"));
 const PosDetail = lazy(() => import("@/pages/app-details/PosDetail"));
 const FruitsDetail = lazy(() => import("@/pages/app-details/FruitsDetail"));
 
+// Admin pages
+const AdminLogin = lazy(() => import("@/pages/admin/login"));
+const AdminDashboard = lazy(() => import("@/pages/admin/dashboard"));
+
 // Enhanced loading spinner with fade-in animation
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -120,6 +124,11 @@ function Router() {
         {/* App detail routes */}
         <Route path="/app-details/pos" component={PosDetail} />
         <Route path="/app-details/fruits" component={FruitsDetail} />
+        
+        {/* Admin routes */}
+        <Route path="/auth" component={AdminLogin} />
+        <Route path="/admin" component={AdminDashboard} />
+        <Route path="/admin/dashboard" component={AdminDashboard} />
 
         <Route component={NotFound} />
       </Switch>
