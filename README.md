@@ -60,6 +60,68 @@ A comprehensive full-stack portfolio application showcasing 10 interactive demos
 - PostgreSQL (or use the containerized version)
 - Git
 
+### Docker Deployment (Recommended)
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/portfolio.git
+   cd portfolio
+   ```
+
+2. Create an environment file from the sample:
+   ```bash
+   cp .env.production.sample .env
+   # Edit the .env file with your configuration
+   ```
+
+3. Build and start the containers:
+   ```bash
+   # Build the Docker images
+   docker-compose build
+
+   # Start the services in detached mode
+   docker-compose up -d
+   ```
+
+4. Access your application:
+   - Web app: http://your-server-ip (proxied through NGINX)
+   - Direct port: http://your-server-ip:5000
+
+5. Monitor and manage the deployment:
+   ```bash
+   # Check container status
+   docker-compose ps
+
+   # View logs from all containers
+   docker-compose logs
+
+   # View logs from a specific container
+   docker-compose logs app
+   docker-compose logs postgres
+   docker-compose logs nginx
+
+   # Restart a specific service
+   docker-compose restart app
+
+   # Stop all services
+   docker-compose down
+
+   # Stop and remove volumes (will delete database data)
+   docker-compose down -v
+   ```
+
+6. Database Management:
+   ```bash
+   # Connect to the database container
+   docker-compose exec postgres psql -U <PGUSER> -d <PGDATABASE>
+
+   # Backup the database
+   docker-compose exec postgres pg_dump -U <PGUSER> <PGDATABASE> > backup.sql
+
+   # Restore the database
+   cat backup.sql | docker-compose exec -T postgres psql -U <PGUSER> <PGDATABASE>
+   ```
+
 ### Local Development
 
 1. Clone the repository:

@@ -38,6 +38,29 @@ fi
 echo "Running database migrations..."
 npm run db:push
 
+# Check if we need to seed the database (only on first run)
+if [ "$SEED_DATABASE" = "true" ]; then
+    echo "Seeding database with initial data..."
+    # Seed users first
+    node scripts/seed-admin.js
+    
+    # Seed categories
+    node scripts/seed-project-categories.js
+    node scripts/seed-book-categories.js
+    
+    # Seed main content
+    node scripts/seed-projects.js
+    node scripts/seed-settings.js
+    
+    # Mark seeding as complete
+    echo "Database seeding completed!"
+fi
+
+# Optimize for production
+echo "Optimizing application for production..."
+# Clear unnecessary files
+rm -rf .git .github .vscode
+
 # Start the application
 echo "Starting application..."
 exec node dist/index.js
