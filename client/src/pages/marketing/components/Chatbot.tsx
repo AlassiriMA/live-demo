@@ -150,7 +150,7 @@ export default function Chatbot({ onClose }: ChatbotProps) {
   // Handle input keypress (Enter)
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      handleSendMessage();
+      void handleSendMessage();
     }
   };
   
@@ -226,7 +226,7 @@ export default function Chatbot({ onClose }: ChatbotProps) {
               className="flex-1 focus:ring-[#EC4899] focus:border-[#EC4899]"
             />
             <Button 
-              onClick={handleSendMessage} 
+              onClick={() => void handleSendMessage()} 
               className="bg-[#EC4899] hover:bg-[#DB2777] text-white px-4"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
