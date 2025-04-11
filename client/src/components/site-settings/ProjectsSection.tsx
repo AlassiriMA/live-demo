@@ -161,8 +161,10 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
   const primaryColor = project.primaryColor || (matchingApp?.primaryColor || "#6366F1");
   const secondaryColor = project.secondaryColor || (matchingApp?.secondaryColor || "#4F46E5");
   const accentColor = project.accentColor || (matchingApp?.accentColor || "#818cf8");
-  const imageUrl = project.imageUrl || (matchingApp?.imageUrl || "");
   const slug = project.slug || matchingApp?.id || `project-${index}`;
+  
+  // Try to get the SVG image first, then fall back to the URL in the project or app data
+  const imageUrl = getProjectImage(slug, project.imageUrl || (matchingApp?.imageUrl || ""));
   
   // The detail route should always go to the project details page
   const detailRoute = `/project/${slug}`;
@@ -200,7 +202,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                 <img 
                   src={imageUrl} 
                   alt={`${name} preview`}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:saturate-[1.15]"
+                  className={`w-full h-full transition-all duration-700 group-hover:scale-110 group-hover:saturate-[1.15] ${imageUrl.endsWith('.svg') ? 'object-contain bg-gradient-to-br from-gray-50 to-gray-100 p-2' : 'object-cover'}`}
                   onError={(e) => {
                     console.log("Image failed to load:", imageUrl);
                     e.currentTarget.style.display = 'none';
