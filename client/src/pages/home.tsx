@@ -19,6 +19,7 @@ import {
   ContactAddress
 } from "@/components/site-settings/HeroContent";
 import { ProjectsSection } from "@/components/site-settings/ProjectsSection";
+import { CustomerServiceBot } from "@/components/chat/CustomerServiceBot";
 
 export default function Home() {
   // Add smooth scrolling for anchor links
@@ -51,6 +52,9 @@ export default function Home() {
 
   return (
     <AppShell>
+      {/* Customer Service AI Bot */}
+      <CustomerServiceBot />
+      
       {/* Modern Hero Section with enhanced visuals and animations */}
       <section className="py-24 md:pt-32 md:pb-28 overflow-hidden relative">
         {/* Background layer with gradient */}

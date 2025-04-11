@@ -80,10 +80,19 @@ router.post('/customer-service', async (req, res) => {
       ...messages
     ];
 
+    // Properly type the messages for OpenAI API
+    const typedMessages = [
+      { role: 'system' as const, content: systemPrompt },
+      ...messages.map(msg => ({
+        role: msg.role as 'user' | 'assistant',
+        content: msg.content
+      }))
+    ];
+    
     // Call OpenAI API
     const response = await openai.chat.completions.create({
-      model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
-      messages: fullMessages,
+      model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024
+      messages: typedMessages,
       temperature: 0.7,
       max_tokens: 500
     });
