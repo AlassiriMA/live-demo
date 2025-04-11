@@ -62,52 +62,86 @@ export default function Chatbot({ onClose }: ChatbotProps) {
   }, [messages]);
   
   // Handle sending a message
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!input.trim()) return;
     
-    const newMessage: Message = {
+    const userMessage: Message = {
       id: Date.now().toString(),
       sender: "user",
       text: input,
       timestamp: new Date(),
     };
     
-    setMessages((prev) => [...prev, newMessage]);
+    setMessages((prev) => [...prev, userMessage]);
+    const userInput = input;
     setInput("");
     
-    // Simulate bot typing with a slight delay
-    setTimeout(() => {
-      const botResponse = getBotResponse(input.toLowerCase());
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        sender: "bot",
-        text: botResponse,
-        timestamp: new Date(),
-      };
+    // Add typing indicator
+    const typingId = 'typing-' + Date.now();
+    setMessages((prev) => [...prev, {
+      id: typingId,
+      sender: "bot",
+      text: "Thinking...",
+      timestamp: new Date(),
+    }]);
+    
+    try {
+      // Get response from the AI
+      const aiResponse = await getBotResponse(userInput.toLowerCase());
       
-      setMessages((prev) => [...prev, botMessage]);
-    }, 1000);
+      // Remove typing indicator and add bot response
+      setMessages((prev) => {
+        const filtered = prev.filter(msg => msg.id !== typingId);
+        return [...filtered, {
+          id: Date.now().toString(),
+          sender: "bot",
+          text: aiResponse,
+          timestamp: new Date(),
+        }];
+      });
+    } catch (error) {
+      console.error('Error getting response:', error);
+      
+      // Remove typing indicator and add fallback response
+      setMessages((prev) => {
+        const filtered = prev.filter(msg => msg.id !== typingId);
+        return [...filtered, {
+          id: Date.now().toString(),
+          sender: "bot",
+          text: getRandomResponse("default"),
+          timestamp: new Date(),
+        }];
+      });
+    }
   };
   
-  // Get a bot response based on user input
-  const getBotResponse = (userInput: string): string => {
-    // Check for various keywords
-    if (userInput.includes("price") || userInput.includes("cost") || userInput.includes("package")) {
-      return getRandomResponse("pricing");
-    } else if (userInput.includes("seo") || userInput.includes("search") || userInput.includes("ranking")) {
-      return getRandomResponse("seo");
-    } else if (userInput.includes("social") || userInput.includes("facebook") || userInput.includes("instagram")) {
-      return getRandomResponse("social");
-    } else if (userInput.includes("email") || userInput.includes("newsletter")) {
-      return getRandomResponse("email");
-    } else if (userInput.includes("hi") || userInput.includes("hello") || userInput.includes("hey")) {
-      return getRandomResponse("hello");
-    } else {
+  // Get a bot response using AI via API
+  const getBotResponse = async (userInput: string): Promise<string> => {
+    try {
+      // Call the API
+      const response = await fetch('/api/chatbot/message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userInput }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        console.error('Chatbot API error:', data);
+        return getRandomResponse("default");
+      }
+      
+      return data.message;
+    } catch (error) {
+      console.error('Chatbot API request failed:', error);
       return getRandomResponse("default");
     }
   };
   
-  // Get a random response from the category
+  // Get a random response from the category (used as fallback)
   const getRandomResponse = (category: string): string => {
     const responses = botResponses[category] || botResponses.default;
     return responses[Math.floor(Math.random() * responses.length)];
