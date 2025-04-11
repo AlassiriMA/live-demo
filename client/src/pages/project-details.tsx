@@ -434,6 +434,47 @@ export default function ProjectDetailsPage() {
                     lightboxEnabled={true}
                   />
                 )}
+                
+                {/* Beauty & Hair Salon Screenshots */}
+                {(project.slug === 'beauty' || project.id === 9) && (
+                  <ImageGridGallery 
+                    images={[
+                      {
+                        src: "/assets/images/screenshots/beauty/services.svg",
+                        alt: "Beauty Services",
+                        caption: "Browse our comprehensive range of beauty services"
+                      },
+                      {
+                        src: "/assets/images/screenshots/beauty/booking.svg",
+                        alt: "Appointment Booking",
+                        caption: "Easy appointment scheduling with real-time availability"
+                      },
+                      {
+                        src: "/assets/images/screenshots/beauty/stylists.svg",
+                        alt: "Our Stylists",
+                        caption: "Meet our experienced team of beauty professionals"
+                      },
+                      {
+                        src: "/assets/images/screenshots/beauty/gallery.svg",
+                        alt: "Before & After Gallery",
+                        caption: "Showcase of our transformative beauty treatments"
+                      },
+                      {
+                        src: "/assets/images/screenshots/beauty/treatments.svg",
+                        alt: "Treatment Details",
+                        caption: "Detailed information about our specialized treatments"
+                      },
+                      {
+                        src: "/assets/images/screenshots/beauty/store.svg",
+                        alt: "Product Store",
+                        caption: "Shop our curated selection of premium beauty products"
+                      }
+                    ]}
+                    aspectRatio="wide"
+                    columns={3}
+                    lightboxEnabled={true}
+                  />
+                )}
 
                 {/* StatArb Screenshots */}
                 {(project.slug === 'statarb' || project.id === 5) && (
@@ -493,6 +534,57 @@ export default function ProjectDetailsPage() {
                     ]}
                     aspectRatio="wide"
                     columns={2}
+                    lightboxEnabled={true}
+                  />
+                )}
+                
+                {/* Reddit Clone Screenshots */}
+                {(project.slug === 'reddit' || project.id === 10) && (
+                  <ImageGridGallery 
+                    images={[
+                      {
+                        src: "/assets/images/screenshots/reddit/home.svg",
+                        alt: "ThreadVerse Home Feed",
+                        caption: "Personalized home feed with trending content"
+                      },
+                      {
+                        src: "/assets/images/screenshots/reddit/feed.svg",
+                        alt: "Community Feed",
+                        caption: "Topic-based community content stream"
+                      },
+                      {
+                        src: "/assets/images/screenshots/reddit/post-detail.svg",
+                        alt: "Post Detail View",
+                        caption: "Detailed post view with nested comment threads"
+                      },
+                      {
+                        src: "/assets/images/screenshots/reddit/comments.svg",
+                        alt: "Comment System",
+                        caption: "Rich comment system with voting and awards"
+                      },
+                      {
+                        src: "/assets/images/screenshots/reddit/create.svg",
+                        alt: "Create Post",
+                        caption: "Multi-format content creation experience"
+                      },
+                      {
+                        src: "/assets/images/screenshots/reddit/profile.svg",
+                        alt: "User Profile",
+                        caption: "Customizable user profiles with activity history"
+                      },
+                      {
+                        src: "/assets/images/screenshots/reddit/thread.svg",
+                        alt: "Thread View",
+                        caption: "Focused thread view for deep conversations"
+                      },
+                      {
+                        src: "/assets/images/screenshots/reddit/submit.svg",
+                        alt: "Content Submission",
+                        caption: "Advanced content submission with formatting tools"
+                      }
+                    ]}
+                    aspectRatio="wide"
+                    columns={3}
                     lightboxEnabled={true}
                   />
                 )}
