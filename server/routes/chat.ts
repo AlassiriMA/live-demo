@@ -13,53 +13,65 @@ const chatMessageSchema = z.object({
   }))
 });
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+// Pre-defined responses for common queries
+const predefinedResponses = {
+  greeting: "Hello! I'm Portfolio Assistant. How can I help you with our portfolio services today?",
+  projects: "Our portfolio showcases 10 diverse projects including a POS System, Fruit Store, Marketing Agency, BI Dashboard, and several financial tools. Would you like more details about any specific project?",
+  services: "We offer web development, backend development, UI/UX design, AI integration, mobile development, code consultation, digital innovation, and security audits. Each service is tailored to meet your specific needs.",
+  skills: "Our developer specializes in React, TypeScript, Node.js, Express, PostgreSQL, and AI integration. The portfolio demonstrates expertise in full-stack development with a focus on modern, scalable solutions.",
+  contact: "You can reach our developer at me@alassiri.nl or call +316 10979730. We're based in Amsterdam, Netherlands and always open to discussing new projects and opportunities.",
+  default: "Thank you for your message. I'd be happy to provide more information about our portfolio, projects, or services. Could you please be more specific about what you're looking for?"
+};
 
-// Customer service training context
-const systemPrompt = `
-You are a customer service assistant for a professional portfolio website showcasing various web applications.
-Your name is "Portfolio Assistant".
+// Keyword matching function
+function getResponse(userMessage: string): string {
+  const message = userMessage.toLowerCase();
+  
+  if (message.includes('hello') || message.includes('hi') || message.includes('hey') || message.match(/^(good|afternoon|morning|evening)/)) {
+    return predefinedResponses.greeting;
+  } 
+  
+  if (message.includes('project') || message.includes('portfolio') || message.includes('showcase') || message.includes('demo')) {
+    return predefinedResponses.projects;
+  }
+  
+  if (message.includes('service') || message.includes('offer') || message.includes('provide') || message.includes('do you')) {
+    return predefinedResponses.services;
+  }
+  
+  if (message.includes('skill') || message.includes('tech') || message.includes('technology') || message.includes('experience') || message.includes('expertise')) {
+    return predefinedResponses.skills;
+  }
+  
+  if (message.includes('contact') || message.includes('email') || message.includes('phone') || message.includes('call') || message.includes('reach')) {
+    return predefinedResponses.contact;
+  }
+  
+  // Project-specific responses
+  if (message.includes('pos') || message.includes('bookstore')) {
+    return "Our POS System for bookstores features inventory management, sales tracking, and customer management. It's built with React, Express, and PostgreSQL, demonstrating practical retail software implementation.";
+  }
+  
+  if (message.includes('fruit') || message.includes('store') || message.includes('ecommerce')) {
+    return "The Fruit Store is an e-commerce platform offering fresh fruits with real-time inventory, secure checkout, and order tracking. It showcases modern e-commerce development practices.";
+  }
+  
+  if (message.includes('market') || message.includes('agency')) {
+    return "Our Marketing Agency website features service showcases, lead generation forms, and an AI chatbot assistant to engage visitors. It demonstrates effective digital presence creation.";
+  }
+  
+  if (message.includes('bi') || message.includes('dashboard') || message.includes('intelligence')) {
+    return "The Business Intelligence Dashboard offers interactive data visualization and analytics tools. It demonstrates data processing and visualization capabilities for informed business decisions.";
+  }
+  
+  if (message.includes('english') || message.includes('tutor') || message.includes('ai') || message.includes('language')) {
+    return "The English AI Tutor provides personalized language learning with speech recognition, grammar correction, and vocabulary building. It showcases practical AI application in education.";
+  }
+  
+  return predefinedResponses.default;
+}
 
-The portfolio includes the following applications:
-1. POS System (Bookstore): A point-of-sale system for bookstores with inventory management
-2. Fruit Store: An e-commerce platform for ordering fresh fruits
-3. Marketing Agency: A website for a digital marketing agency with AI chatbot assistance
-4. Business Intelligence Dashboard: Interactive data visualization and analytics
-5. Statistical Arbitrage Tool: Trading tool for statistical arbitrage strategies
-6. Triangular Arbitrage Scanner: Tool for detecting cryptocurrency arbitrage opportunities
-7. dYdX Trading Interface: Interface for trading on the dYdX decentralized exchange
-8. English AI Tutor: AI-powered English language teaching assistant
-9. Beauty & Hair Salon: Website for a beauty salon with appointment booking
-10. ThreadVerse (Reddit Clone): Social media platform similar to Reddit
-
-Your goal is to:
-- Provide helpful information about the portfolio and its applications
-- Answer questions about the developer's skills and expertise
-- Assist with inquiries about potential collaborations or job opportunities
-- Direct users to the appropriate application based on their needs
-- Be friendly, professional, and concise in your responses
-
-Information about the developer:
-- Name: Developer (not specified further for privacy)
-- Location: Amsterdam, Netherlands
-- Email: me@alassiri.nl
-- Phone: +316 10979730
-- GitHub: https://github.com/developerProfile
-- Primary skills: React, TypeScript, Node.js, Express, PostgreSQL, AI integration
-
-DO NOT:
-- Make up information not provided above
-- Share personal opinions or biased views
-- Provide technical support for issues unrelated to the portfolio
-- Engage in discussions about sensitive topics
-
-Keep your responses concise (under 100 words) unless detailed information is specifically requested.
-`;
-
-// Customer service chat endpoint
+// Customer service chat endpoint with local processing (no API call)
 router.post('/customer-service', async (req, res) => {
   try {
     const validation = chatMessageSchema.safeParse(req.body);
@@ -73,36 +85,22 @@ router.post('/customer-service', async (req, res) => {
     }
 
     const { messages } = validation.data;
-
-    // Prepend system message to provide context
-    const fullMessages = [
-      { role: 'system', content: systemPrompt },
-      ...messages
-    ];
-
-    // Properly type the messages for OpenAI API
-    const typedMessages = [
-      { role: 'system' as const, content: systemPrompt },
-      ...messages.map(msg => ({
-        role: msg.role as 'user' | 'assistant',
-        content: msg.content
-      }))
-    ];
     
-    // Call OpenAI API
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o", // the newest OpenAI model is "gpt-4o" which was released May 13, 2024
-      messages: typedMessages,
-      temperature: 0.7,
-      max_tokens: 500
-    });
-
-    const assistantMessage = response.choices[0].message.content;
-
-    res.json({
-      success: true,
-      message: assistantMessage
-    });
+    // Get the last user message
+    const lastUserMessage = messages
+      .filter(msg => msg.role === 'user')
+      .pop()?.content || '';
+    
+    // Generate response using the local function instead of OpenAI API
+    const assistantMessage = getResponse(lastUserMessage);
+    
+    // Add a slight delay to simulate "thinking" (250-750ms)
+    setTimeout(() => {
+      res.json({
+        success: true,
+        message: assistantMessage
+      });
+    }, Math.random() * 500 + 250);
   } catch (error) {
     console.error('Error in customer service chat:', error);
     res.status(500).json({
