@@ -15,6 +15,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { ImageGridGallery } from '@/components/ui/image-grid-gallery';
 import { TechStackGrid } from '@/components/ui/tech-stack-grid';
+import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import AppShell from "@/components/layout/AppShell";
 
 export default function ProjectDetailsPage() {
@@ -323,7 +324,7 @@ export default function ProjectDetailsPage() {
                 {/* Main Project Screenshot - featured screenshot from each project */}
                 <div className="mb-6 rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
                   {project.slug === 'pos' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/pos/inventory.svg" 
                       alt={`${project.name} inventory management`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -331,7 +332,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'fruits' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/fruit/product-catalog.svg" 
                       alt={`${project.name} product catalog`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -339,7 +340,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'marketing' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/marketing/services.svg" 
                       alt={`${project.name} services page`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -347,7 +348,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'bi' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/bi/dashboard.svg" 
                       alt={`${project.name} dashboard`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -355,7 +356,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'statarb' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/statarb/dashboard.svg" 
                       alt={`${project.name} dashboard`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -363,7 +364,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'triarb' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/triarb/scanner.svg" 
                       alt={`${project.name} opportunity scanner`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -371,7 +372,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'dydx' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/dydx/trading.svg" 
                       alt={`${project.name} trading interface`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -379,7 +380,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'english-ai' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/english-ai/conversation.svg" 
                       alt={`${project.name} conversation interface`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -387,7 +388,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'beauty' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/beauty/services.svg" 
                       alt={`${project.name} services page`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -395,7 +396,7 @@ export default function ProjectDetailsPage() {
                   )}
                   
                   {project.slug === 'reddit' && (
-                    <img 
+                    <ImageWithFallback 
                       src="/assets/images/screenshots/reddit/home.svg" 
                       alt={`${project.name} home page`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -406,7 +407,7 @@ export default function ProjectDetailsPage() {
                   {!['pos', 'fruits', 'marketing', 'bi', 
                      'statarb', 'triarb', 'dydx',
                      'english-ai', 'beauty', 'reddit'].includes(project.slug || '') && project.imageUrl && (
-                    <img 
+                    <ImageWithFallback 
                       src={project.imageUrl} 
                       alt={`${project.name} preview`}
                       className="w-full h-auto object-cover rounded-lg"
@@ -499,6 +500,37 @@ export default function ProjectDetailsPage() {
                         src: "/assets/images/screenshots/statarb/settings.svg",
                         alt: "Strategy Configuration",
                         caption: "Customizable parameters for trading strategies"
+                      }
+                    ]}
+                    aspectRatio="wide"
+                    columns={2}
+                    lightboxEnabled={true}
+                  />
+                )}
+                
+                {/* TriArb Screenshots */}
+                {(project.slug === 'triarb' || project.id === 6) && (
+                  <ImageGridGallery 
+                    images={[
+                      {
+                        src: "/assets/images/screenshots/triarb/scanner.svg",
+                        alt: "Triangular Arbitrage Scanner",
+                        caption: "Real-time opportunity detection across exchanges"
+                      },
+                      {
+                        src: "/assets/images/screenshots/triarb/execution.svg",
+                        alt: "Trade Execution Interface",
+                        caption: "Automated execution of arbitrage opportunities"
+                      },
+                      {
+                        src: "/assets/images/screenshots/triarb/history.svg",
+                        alt: "Trade History",
+                        caption: "Historical performance and completed trades"
+                      },
+                      {
+                        src: "/assets/images/screenshots/triarb/analysis.svg",
+                        alt: "Market Analysis",
+                        caption: "Cross-exchange price differential analysis"
                       }
                     ]}
                     aspectRatio="wide"
