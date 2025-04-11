@@ -178,15 +178,12 @@ export default function Marketing() {
                 className="glass-bg rounded-xl overflow-hidden shadow-md"
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <div className="h-48 bg-gray-100 relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#EC4899]/20 to-purple-500/20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-white/80 backdrop-blur-sm p-3 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  </div>
+                <div className="h-48 bg-gray-100 relative overflow-hidden">
+                  <img 
+                    src="/images/case-studies/tech-growth.svg" 
+                    alt="TechWave Startup Success" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="font-heading font-bold text-xl text-gray-900 mb-2">TechWave Startup</h3>
@@ -203,15 +200,12 @@ export default function Marketing() {
                 className="glass-bg rounded-xl overflow-hidden shadow-md"
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <div className="h-48 bg-gray-100 relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#EC4899]/20 to-purple-500/20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-white/80 backdrop-blur-sm p-3 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  </div>
+                <div className="h-48 bg-gray-100 relative overflow-hidden">
+                  <img 
+                    src="/images/case-studies/email-campaign.svg" 
+                    alt="GreenEco Products Email Campaign" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="font-heading font-bold text-xl text-gray-900 mb-2">GreenEco Products</h3>
@@ -228,15 +222,12 @@ export default function Marketing() {
                 className="glass-bg rounded-xl overflow-hidden shadow-md"
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <div className="h-48 bg-gray-100 relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#EC4899]/20 to-purple-500/20"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-white/80 backdrop-blur-sm p-3 rounded-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-                      </svg>
-                    </div>
-                  </div>
+                <div className="h-48 bg-gray-100 relative overflow-hidden">
+                  <img 
+                    src="/images/case-studies/fitness-growth.svg" 
+                    alt="FitLife Gym Chain Success" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="font-heading font-bold text-xl text-gray-900 mb-2">FitLife Gym Chain</h3>

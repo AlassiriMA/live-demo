@@ -1,0 +1,62 @@
+<svg width="400" height="192" viewBox="0 0 400 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <rect width="400" height="192" rx="8" fill="url(#paint0_linear)" />
+  
+  <!-- Email campaign elements -->
+  <rect x="50" y="50" width="150" height="100" rx="8" fill="#ffffff" />
+  
+  <!-- Email header -->
+  <rect x="60" y="60" width="130" height="20" rx="4" fill="#22C55E" fill-opacity="0.2" />
+  <circle cx="70" cy="70" r="5" fill="#22C55E" />
+  
+  <!-- Email content lines -->
+  <rect x="60" y="90" width="130" height="5" rx="2.5" fill="#F3F4F6" />
+  <rect x="60" y="105" width="130" height="5" rx="2.5" fill="#F3F4F6" />
+  <rect x="60" y="120" width="100" height="5" rx="2.5" fill="#F3F4F6" />
+  
+  <!-- Send button -->
+  <rect x="60" y="135" width="60" height="10" rx="5" fill="#22C55E" />
+  <rect x="75" y="137.5" width="30" height="5" rx="2.5" fill="#ffffff" />
+  
+  <!-- Conversion funnel -->
+  <path d="M240 50L320 50L300 80L260 80L240 50Z" fill="#EC4899" fill-opacity="0.8" />
+  <path d="M260 85L300 85L285 115L275 115L260 85Z" fill="#EC4899" fill-opacity="0.9" />
+  <path d="M275 120L285 120L280 140L275 120Z" fill="#EC4899" />
+  
+  <!-- Conversion numbers/icons -->
+  <circle cx="280" cy="65" r="10" fill="#ffffff" />
+  <text x="280" y="69" font-family="Arial" font-size="12" text-anchor="middle" fill="#EC4899">1K</text>
+  
+  <circle cx="280" cy="100" r="10" fill="#ffffff" />
+  <text x="280" y="104" font-family="Arial" font-size="12" text-anchor="middle" fill="#EC4899">28%</text>
+  
+  <circle cx="280" cy="130" r="10" fill="#ffffff" />
+  <path d="M275 130l3 3 7-7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Analytics elements -->
+  <rect x="330" y="50" width="50" height="100" rx="4" fill="#ffffff" fill-opacity="0.9" />
+  
+  <!-- Analytics chart bars -->
+  <rect x="340" y="60" width="10" height="10" rx="2" fill="#EC4899" />
+  <rect x="360" y="60" width="10" height="10" rx="2" fill="#22C55E" />
+  
+  <rect x="340" y="80" width="10" height="60" rx="2" fill="#EC4899" fill-opacity="0.2" />
+  <rect x="340" y="110" width="10" height="30" rx="2" fill="#EC4899" />
+  
+  <rect x="360" y="80" width="10" height="60" rx="2" fill="#22C55E" fill-opacity="0.2" />
+  <rect x="360" y="90" width="10" height="50" rx="2" fill="#22C55E" />
+  
+  <!-- Growth indicators -->
+  <path d="M200 150l15-25 15 10 15-35" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 5" />
+  <circle cx="200" cy="150" r="5" fill="#ffffff" />
+  <circle cx="215" cy="125" r="5" fill="#ffffff" />
+  <circle cx="230" cy="135" r="5" fill="#ffffff" />
+  <circle cx="245" cy="100" r="5" fill="#22C55E" />
+  
+  <defs>
+    <linearGradient id="paint0_linear" x1="0" y1="0" x2="400" y2="192" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22C55E" />
+      <stop offset="1" stop-color="#0EA5E9" />
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,86 @@
+<svg width="400" height="192" viewBox="0 0 400 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <rect width="400" height="192" rx="8" fill="url(#paint0_linear)" />
+  
+  <!-- Main fitness icon background -->
+  <circle cx="125" cy="90" r="50" fill="#ffffff" fill-opacity="0.9" />
+  
+  <!-- Dumbbell icon -->
+  <rect x="100" y="85" width="50" height="10" rx="5" fill="#6D28D9" />
+  <circle cx="90" cy="90" r="10" fill="#6D28D9" />
+  <circle cx="160" cy="90" r="10" fill="#6D28D9" />
+  <rect x="80" y="85" width="10" height="10" rx="2" fill="#6D28D9" />
+  <rect x="160" y="85" width="10" height="10" rx="2" fill="#6D28D9" />
+  
+  <!-- Growth chart -->
+  <path d="M220 140 L220 80 Q220 75, 225 75 L365 75 Q370 75, 370 80 L370 140 Z" fill="#ffffff" fill-opacity="0.9" />
+  
+  <!-- Chart grid lines (vertical) -->
+  <line x1="250" y1="80" x2="250" y2="140" stroke="#E5E7EB" stroke-width="1" />
+  <line x1="280" y1="80" x2="280" y2="140" stroke="#E5E7EB" stroke-width="1" />
+  <line x1="310" y1="80" x2="310" y2="140" stroke="#E5E7EB" stroke-width="1" />
+  <line x1="340" y1="80" x2="340" y2="140" stroke="#E5E7EB" stroke-width="1" />
+  
+  <!-- Chart grid lines (horizontal) -->
+  <line x1="220" y1="95" x2="370" y2="95" stroke="#E5E7EB" stroke-width="1" />
+  <line x1="220" y1="110" x2="370" y2="110" stroke="#E5E7EB" stroke-width="1" />
+  <line x1="220" y1="125" x2="370" y2="125" stroke="#E5E7EB" stroke-width="1" />
+  
+  <!-- Chart bars -->
+  <rect x="235" y="125" width="15" height="15" rx="2" fill="#6D28D9" fill-opacity="0.4" />
+  <rect x="265" y="115" width="15" height="25" rx="2" fill="#6D28D9" fill-opacity="0.6" />
+  <rect x="295" y="100" width="15" height="40" rx="2" fill="#6D28D9" fill-opacity="0.8" />
+  <rect x="325" y="85" width="15" height="55" rx="2" fill="#6D28D9" />
+  
+  <!-- Growth line -->
+  <path d="M243 125 L273 115 L303 100 L333 85" stroke="#EC4899" stroke-width="2" stroke-linecap="round" />
+  <circle cx="243" cy="125" r="3" fill="#EC4899" />
+  <circle cx="273" cy="115" r="3" fill="#EC4899" />
+  <circle cx="303" cy="100" r="3" fill="#EC4899" />
+  <circle cx="333" cy="85" r="3" fill="#EC4899" />
+  
+  <!-- Results indicators -->
+  <circle cx="210" cy="40" r="15" fill="#ffffff" />
+  <text x="210" y="45" font-family="Arial" font-size="14" text-anchor="middle" fill="#6D28D9" font-weight="bold">+45%</text>
+  
+  <!-- Device showing app/website -->
+  <rect x="50" y="20" width="70" height="40" rx="5" fill="#ffffff" />
+  <rect x="55" y="25" width="60" height="25" rx="2" fill="#6D28D9" fill-opacity="0.2" />
+  <rect x="60" y="30" width="20" height="5" rx="2.5" fill="#6D28D9" fill-opacity="0.6" />
+  <rect x="60" y="40" width="40" height="5" rx="2.5" fill="#6D28D9" fill-opacity="0.6" />
+  
+  <!-- People / User icons -->
+  <circle cx="40" cy="150" r="10" fill="#ffffff" />
+  <path d="M40 147 a5 5 0 1 0 0 -10 a5 5 0 0 0 0 10 z" fill="#6D28D9" />
+  <path d="M47 160 v-5 c0 -3 -3 -5 -7 -5 s-7 2 -7 5 v5 z" fill="#6D28D9" />
+  
+  <circle cx="70" cy="150" r="10" fill="#ffffff" />
+  <path d="M70 147 a5 5 0 1 0 0 -10 a5 5 0 0 0 0 10 z" fill="#EC4899" />
+  <path d="M77 160 v-5 c0 -3 -3 -5 -7 -5 s-7 2 -7 5 v5 z" fill="#EC4899" />
+  
+  <circle cx="100" cy="150" r="10" fill="#ffffff" />
+  <path d="M100 147 a5 5 0 1 0 0 -10 a5 5 0 0 0 0 10 z" fill="#6D28D9" />
+  <path d="M107 160 v-5 c0 -3 -3 -5 -7 -5 s-7 2 -7 5 v5 z" fill="#6D28D9" />
+  
+  <circle cx="130" cy="150" r="10" fill="#ffffff" />
+  <path d="M130 147 a5 5 0 1 0 0 -10 a5 5 0 0 0 0 10 z" fill="#EC4899" />
+  <path d="M137 160 v-5 c0 -3 -3 -5 -7 -5 s-7 2 -7 5 v5 z" fill="#EC4899" />
+  
+  <circle cx="160" cy="150" r="10" fill="#ffffff" />
+  <path d="M160 147 a5 5 0 1 0 0 -10 a5 5 0 0 0 0 10 z" fill="#6D28D9" />
+  <path d="M167 160 v-5 c0 -3 -3 -5 -7 -5 s-7 2 -7 5 v5 z" fill="#6D28D9" />
+  
+  <!-- Ad campaign graphics -->
+  <rect x="260" y="20" width="80" height="40" rx="5" fill="#ffffff" fill-opacity="0.8" />
+  <rect x="265" y="25" width="40" height="5" rx="2.5" fill="#6D28D9" />
+  <rect x="265" y="35" width="70" height="5" rx="2.5" fill="#E5E7EB" />
+  <rect x="265" y="45" width="30" height="10" rx="5" fill="#EC4899" />
+  <text x="280" y="53" font-family="Arial" font-size="8" text-anchor="middle" fill="#ffffff">JOIN</text>
+  
+  <defs>
+    <linearGradient id="paint0_linear" x1="0" y1="0" x2="400" y2="192" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9333EA" />
+      <stop offset="1" stop-color="#6D28D9" />
+    </linearGradient>
+  </defs>
+</svg>
