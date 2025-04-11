@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function Marketing() {
   const [chatbotOpen, setChatbotOpen] = useState(false);
 
-  const { data: testimonials = [] } = useQuery<Testimonial[]>({
+  const { data: testimonials = [] } = useQuery({
     queryKey: ["/api/marketing/testimonials"],
   });
 
