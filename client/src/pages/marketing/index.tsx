@@ -57,14 +57,30 @@ export default function Marketing() {
                 <div className="flex flex-wrap gap-4">
                   <Button 
                     className="bg-[#EC4899] hover:bg-[#DB2777] text-white px-8 py-6 rounded-full shadow-md hover:shadow-lg transition-all"
-                    onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => {
+                      const contactSection = document.getElementById('contact-section');
+                      if (contactSection) {
+                        window.scrollTo({
+                          top: contactSection.offsetTop,
+                          behavior: 'smooth'
+                        });
+                      }
+                    }}
                   >
                     Get Started
                   </Button>
                   <Button 
                     variant="outline" 
                     className="bg-white/50 backdrop-blur-sm border-purple-200 text-gray-800 px-8 py-6 rounded-full hover:bg-white/70 transition-all"
-                    onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => {
+                      const servicesSection = document.getElementById('services-section');
+                      if (servicesSection) {
+                        window.scrollTo({
+                          top: servicesSection.offsetTop,
+                          behavior: 'smooth'
+                        });
+                      }
+                    }}
                   >
                     Our Services
                   </Button>
