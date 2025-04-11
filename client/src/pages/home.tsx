@@ -4,6 +4,7 @@ import SectionHeading from "@/components/ui/section-heading";
 import AppCard from "@/components/ui/app-card";
 import ContactForm from "@/components/ui/contact-form";
 import TechIconsGrid from "@/components/ui/tech-icons-grid";
+import { Button } from "@/components/ui/button";
 import { apps } from "@/lib/app-data";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -385,6 +386,123 @@ export default function Home() {
           >
             <TechIconsGrid />
           </motion.div>
+        </div>
+      </section>
+
+      {/* Marketing Section */}
+      <section className="py-20 bg-gradient-to-r from-pink-50 to-purple-50 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute -top-20 left-0 w-64 h-64 rounded-full bg-gradient-to-br from-pink-200 to-pink-300 opacity-20 filter blur-3xl"></div>
+        <div className="absolute bottom-20 right-0 w-96 h-96 rounded-full bg-gradient-to-br from-purple-200 to-purple-300 opacity-20 filter blur-3xl"></div>
+        
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center">
+            <motion.div 
+              className="lg:w-1/2 mb-10 lg:mb-0"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                Transform Your Business<br />
+                <span className="text-[#EC4899]">With Digital Marketing</span>
+              </h2>
+              <p className="text-lg text-gray-700 mb-8 max-w-lg">
+                Experience our AI-powered marketing platform with data-driven strategies, engaging content, and conversion-focused campaigns.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/marketing">
+                  <a className="bg-[#EC4899] hover:bg-[#DB2777] text-white px-8 py-6 rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center">
+                    Explore Marketing Platform
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </Link>
+              </div>
+              
+              <div className="mt-10 grid grid-cols-2 gap-4">
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <span className="font-medium">Advanced Analytics</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                  </div>
+                  <span className="font-medium">AI Chatbot</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <span className="font-medium">Email Campaigns</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                    </svg>
+                  </div>
+                  <span className="font-medium">SEO Optimization</span>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              className="lg:w-1/2"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <div className="glass-bg p-8 rounded-3xl shadow-lg">
+                <div className="relative h-64 mb-4 overflow-hidden rounded-xl">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#EC4899]/20 to-purple-500/20 backdrop-blur-sm rounded-xl -z-10"></div>
+                  <div className="flex items-center justify-center h-full">
+                    <div className="text-center">
+                      <div className="w-16 h-16 mx-auto bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#EC4899]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">AI-Powered Chatbot</h3>
+                      <p className="text-gray-700">Chat with our intelligent marketing assistant for instant insights and service information.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium text-gray-800">Lead Generation</span>
+                      <div className="text-[#EC4899] font-bold">+43%</div>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-[#EC4899] h-2 rounded-full w-5/12"></div>
+                    </div>
+                  </div>
+                  <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl shadow-sm">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium text-gray-800">Conversion Rate</span>
+                      <div className="text-[#EC4899] font-bold">24.5%</div>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-[#EC4899] h-2 rounded-full w-1/4"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
