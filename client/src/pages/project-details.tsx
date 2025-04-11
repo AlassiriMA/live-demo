@@ -589,6 +589,346 @@ export default function ProjectDetailsPage() {
                   />
                 )}
               </motion.div>
+              
+              {/* Technology Stack Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="bg-white rounded-xl p-6 shadow-sm mb-8"
+              >
+                <h2 className="text-2xl font-bold mb-4">Technology Stack</h2>
+                {project.slug === 'pos' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "PostgreSQL", icon: "SiPostgresql", type: "database" },
+                      { name: "Drizzle ORM", icon: "SiPrisma", type: "backend" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'fruits' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "PostgreSQL", icon: "SiPostgresql", type: "database" },
+                      { name: "Framer Motion", icon: "SiFramer", type: "frontend" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'marketing' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "OpenAI API", icon: "SiOpenai", type: "backend" },
+                      { name: "PostgreSQL", icon: "SiPostgresql", type: "database" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'bi' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Recharts", icon: "SiD3Dotjs", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "PostgreSQL", icon: "SiPostgresql", type: "database" },
+                      { name: "Drizzle ORM", icon: "SiPrisma", type: "backend" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'statarb' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "WebSockets", icon: "SiSocketdotio", type: "backend" },
+                      { name: "Recharts", icon: "SiD3Dotjs", type: "frontend" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'triarb' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "WebSockets", icon: "SiSocketdotio", type: "backend" },
+                      { name: "PostgreSQL", icon: "SiPostgresql", type: "database" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'dydx' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "Drizzle ORM", icon: "SiPrisma", type: "backend" },
+                      { name: "Web3.js", icon: "SiEthereum", type: "backend" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'english-ai' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "OpenAI API", icon: "SiOpenai", type: "backend" },
+                      { name: "PostgreSQL", icon: "SiPostgresql", type: "database" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'beauty' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "PostgreSQL", icon: "SiPostgresql", type: "database" },
+                      { name: "Framer Motion", icon: "SiFramer", type: "frontend" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+                
+                {project.slug === 'reddit' && (
+                  <TechStackGrid 
+                    technologies={[
+                      { name: "React", icon: "SiReact", type: "frontend" },
+                      { name: "TypeScript", icon: "SiTypescript", type: "language" },
+                      { name: "Tailwind CSS", icon: "SiTailwindcss", type: "frontend" },
+                      { name: "Express", icon: "SiExpress", type: "backend" },
+                      { name: "PostgreSQL", icon: "SiPostgresql", type: "database" },
+                      { name: "JWT Auth", icon: "SiJsonwebtokens", type: "backend" }
+                    ]}
+                    grouped={true}
+                    showLabels={true}
+                    size="medium"
+                  />
+                )}
+              </motion.div>
+              
+              {/* Implementation Details Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="bg-white rounded-xl p-6 shadow-sm mb-8"
+              >
+                <h2 className="text-2xl font-bold mb-4">Implementation Details</h2>
+                <div className="prose max-w-none">
+                  {project.slug === 'pos' && (
+                    <div className="space-y-4">
+                      <p>
+                        This Point of Sale (POS) system for bookstores provides comprehensive inventory management, sales tracking, and reporting functionality. It's built with scalability in mind to support businesses of all sizes.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>Real-time inventory management with automatic stock updates</li>
+                        <li>Barcode scanning for quick product lookup via ISBN</li>
+                        <li>Secure transaction processing with receipt generation</li>
+                        <li>Advanced reporting and analytics dashboard</li>
+                        <li>User authentication with role-based access controls</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'fruits' && (
+                    <div className="space-y-4">
+                      <p>
+                        This fruit e-commerce store showcases responsive design principles with a focus on user experience. The implementation prioritizes performance and accessibility.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>Responsive product catalog with filtering and sorting options</li>
+                        <li>Shopping cart with persistent state management</li>
+                        <li>Checkout process with form validation</li>
+                        <li>Order management system with status tracking</li>
+                        <li>Customer account management</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'marketing' && (
+                    <div className="space-y-4">
+                      <p>
+                        This marketing agency website integrates modern AI technologies to provide an enhanced user experience. The implementation focuses on engagement and lead generation.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>AI-powered chatbot for instant visitor assistance</li>
+                        <li>Dynamic testimonials carousel with star ratings</li>
+                        <li>Animated service cards with interactive hover effects</li>
+                        <li>Lead capture forms with validation and database storage</li>
+                        <li>Real-time metrics display showing agency performance</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'bi' && (
+                    <div className="space-y-4">
+                      <p>
+                        This Business Intelligence dashboard presents complex data in an intuitive and actionable format. The implementation emphasizes data visualization and analysis capabilities.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>Interactive charts and graphs with real-time data updates</li>
+                        <li>Customizable dashboard layouts with drag-and-drop widgets</li>
+                        <li>Advanced filtering and data segmentation tools</li>
+                        <li>Export functionality for reports in multiple formats</li>
+                        <li>Data trend analysis with predictive insights</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'statarb' && (
+                    <div className="space-y-4">
+                      <p>
+                        This Statistical Arbitrage tool uses advanced algorithms to identify trading opportunities. The implementation focuses on real-time data processing and visualization.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>Real-time market data integration via WebSockets</li>
+                        <li>Statistical analysis of price correlations between security pairs</li>
+                        <li>Interactive charts with technical indicators</li>
+                        <li>Strategy backtesting module with performance metrics</li>
+                        <li>Automated pair selection based on cointegration tests</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'triarb' && (
+                    <div className="space-y-4">
+                      <p>
+                        This Triangular Arbitrage scanner identifies price discrepancies across cryptocurrency exchanges. The implementation prioritizes speed and accuracy for real-time trading opportunities.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>Multi-exchange API integration with rate limiting management</li>
+                        <li>High-performance calculation engine for rapid opportunity detection</li>
+                        <li>Real-time opportunity visualization with profit calculation</li>
+                        <li>Configurable filters for minimum profit threshold and risk parameters</li>
+                        <li>Historical opportunity logging and analysis</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'dydx' && (
+                    <div className="space-y-4">
+                      <p>
+                        This dYdX trading interface provides a professional trading experience for decentralized finance. The implementation focuses on security and performance.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>Secure wallet connection with multiple provider options</li>
+                        <li>Advanced order types including limit, stop, and trailing stop orders</li>
+                        <li>Customizable trading view with technical analysis tools</li>
+                        <li>Portfolio management with position tracking</li>
+                        <li>Risk management tools including liquidation price calculations</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'english-ai' && (
+                    <div className="space-y-4">
+                      <p>
+                        This English AI tutoring application uses natural language processing to help users improve their language skills. The implementation emphasizes conversational interactions and personalized learning.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>AI-powered conversation practice with contextual feedback</li>
+                        <li>Grammar and vocabulary assessment tools</li>
+                        <li>Personalized learning path based on user progress</li>
+                        <li>Interactive pronunciation exercises with voice recognition</li>
+                        <li>Progress tracking and performance analytics</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'beauty' && (
+                    <div className="space-y-4">
+                      <p>
+                        This Beauty & Hair Salon website combines elegant design with practical functionality. The implementation focuses on showcasing services and streamlining appointment booking.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>Interactive service catalog with detailed descriptions</li>
+                        <li>Online appointment booking system with availability checking</li>
+                        <li>Staff profiles with expertise and availability</li>
+                        <li>Customer testimonials and before/after gallery</li>
+                        <li>Integrated contact form with service inquiry options</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {project.slug === 'reddit' && (
+                    <div className="space-y-4">
+                      <p>
+                        This Reddit-style content platform enables community-driven discussions and content sharing. The implementation prioritizes user engagement and content discovery.
+                      </p>
+                      <h3>Key Implementation Features:</h3>
+                      <ul>
+                        <li>Community creation and management tools</li>
+                        <li>Content submission with rich text formatting</li>
+                        <li>Voting system with real-time score updates</li>
+                        <li>Nested comment threads with collapse/expand functionality</li>
+                        <li>User profile pages with activity history</li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
             </div>
             
             {/* Sidebar column */}
