@@ -5,7 +5,7 @@ import { ProjectsSection } from '@/components/site-settings/ProjectsSection';
 import { useSiteSettings } from '@/hooks/use-site-settings';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft } from 'lucide-react';
-import { useLocation } from 'wouter';
+import { useLocation, Link } from 'wouter';
 
 export default function ProjectsPage() {
   const { settings } = useSiteSettings();
