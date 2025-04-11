@@ -357,8 +357,10 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getProjectById(id: number): Promise<Project | undefined> {
-    const [project] = await db.select().from(projects).where(eq(projects.id, id));
-    return project || undefined;
+    return await retryDb(async () => {
+      const [project] = await db.select().from(projects).where(eq(projects.id, id));
+      return project || undefined;
+    });
   }
 
   async getProjectBySlug(slug: string): Promise<Project | undefined> {
@@ -380,76 +382,94 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createProject(insertProject: InsertProject): Promise<Project> {
-    const [project] = await db
-      .insert(projects)
-      .values({
-        ...insertProject,
-        updatedAt: new Date()
-      })
-      .returning();
-    return project;
+    return await retryDb(async () => {
+      const [project] = await db
+        .insert(projects)
+        .values({
+          ...insertProject,
+          updatedAt: new Date()
+        })
+        .returning();
+      return project;
+    });
   }
 
   async updateProject(id: number, projectUpdate: UpdateProject): Promise<Project | undefined> {
-    const [updatedProject] = await db
-      .update(projects)
-      .set({
-        ...projectUpdate,
-        updatedAt: new Date()
-      })
-      .where(eq(projects.id, id))
-      .returning();
-    return updatedProject || undefined;
+    return await retryDb(async () => {
+      const [updatedProject] = await db
+        .update(projects)
+        .set({
+          ...projectUpdate,
+          updatedAt: new Date()
+        })
+        .where(eq(projects.id, id))
+        .returning();
+      return updatedProject || undefined;
+    });
   }
 
   async deleteProject(id: number): Promise<boolean> {
-    const result = await db.delete(projects).where(eq(projects.id, id));
-    return !!result.rowCount && result.rowCount > 0;
+    return await retryDb(async () => {
+      const result = await db.delete(projects).where(eq(projects.id, id));
+      return !!result.rowCount && result.rowCount > 0;
+    });
   }
 
   // CMS - Media Library methods
   async getAllMediaItems(): Promise<MediaItem[]> {
-    return await db.select().from(mediaItems).orderBy(desc(mediaItems.uploadedAt));
+    return await retryDb(() => 
+      db.select().from(mediaItems).orderBy(desc(mediaItems.uploadedAt))
+    );
   }
 
   async getMediaItemById(id: number): Promise<MediaItem | undefined> {
-    const [mediaItem] = await db.select().from(mediaItems).where(eq(mediaItems.id, id));
-    return mediaItem || undefined;
+    return await retryDb(async () => {
+      const [mediaItem] = await db.select().from(mediaItems).where(eq(mediaItems.id, id));
+      return mediaItem || undefined;
+    });
   }
 
   async createMediaItem(insertMediaItem: InsertMediaItem): Promise<MediaItem> {
-    const [mediaItem] = await db
-      .insert(mediaItems)
-      .values(insertMediaItem)
-      .returning();
-    return mediaItem;
+    return await retryDb(async () => {
+      const [mediaItem] = await db
+        .insert(mediaItems)
+        .values(insertMediaItem)
+        .returning();
+      return mediaItem;
+    });
   }
 
   async deleteMediaItem(id: number): Promise<boolean> {
-    const result = await db.delete(mediaItems).where(eq(mediaItems.id, id));
-    return !!result.rowCount && result.rowCount > 0;
+    return await retryDb(async () => {
+      const result = await db.delete(mediaItems).where(eq(mediaItems.id, id));
+      return !!result.rowCount && result.rowCount > 0;
+    });
   }
 
   // CMS - Activity Logs methods
   async getActivityLogs(limitCount?: number): Promise<ActivityLog[]> {
-    const query = db.select().from(activityLogs).orderBy(desc(activityLogs.timestamp));
-    
-    // Execute the query and then limit in JavaScript if needed
-    const results = await query;
-    
-    if (limitCount && limitCount > 0) {
-      return results.slice(0, limitCount);
-    }
-    
-    return results;
+    return await retryDb(async () => {
+      const query = db.select().from(activityLogs).orderBy(desc(activityLogs.timestamp));
+      
+      // Execute the query and then limit in JavaScript if needed
+      const results = await query;
+      
+      if (limitCount && limitCount > 0) {
+        return results.slice(0, limitCount);
+      }
+      
+      return results;
+    });
   }
 
   async createActivityLog(insertLog: InsertActivityLog): Promise<ActivityLog> {
-    const [log] = await db
-      .insert(activityLogs)
-      .values(insertLog)
-      .returning();
-    return log;
+    return await retryDb(async () => {
+      const [log] = await db
+        .insert(activityLogs)
+        .values(insertLog)
+        .returning();
+      return log;
+    });
   }
 
   // CMS - Settings methods
@@ -490,19 +510,24 @@ export class DatabaseStorage implements IStorage {
         return updatedSetting;
       } else {
         // Create new setting
-        const [newSetting] = await db
-          .insert(siteSettings)
-          .values({
+        try {
+          // For safety, create with minimal required fields
+          const insertData = {
             key: key,
             value: value,
-            category: 'custom', // Default category for new settings
-            description: '', // Default empty description
-            updatedBy: userId,
-            createdAt: new Date(),
-            updatedAt: new Date()
-          })
-          .returning();
-        return newSetting;
+            category: 'custom', 
+            description: '',
+            updatedBy: userId
+          };
+          const [newSetting] = await db
+            .insert(siteSettings)
+            .values(insertData)
+            .returning();
+          return newSetting;
+        } catch (error) {
+          console.error(`Failed to create new setting '${key}':`, error);
+          throw new Error(`Failed to create setting: ${error instanceof Error ? error.message : String(error)}`);
+        }
       }
     });
   }

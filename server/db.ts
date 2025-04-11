@@ -13,12 +13,14 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// Create connection pool with optimized settings
+// Create connection pool with optimized settings for production use
 export const pool = new Pool({ 
   connectionString: process.env.DATABASE_URL,
   max: 20, // Maximum number of clients in the pool
   idleTimeoutMillis: 30000, // How long a client is allowed to remain idle before being closed
   connectionTimeoutMillis: 5000, // Maximum time to wait for connection
+  keepAlive: true, // Keep connections alive with TCP keepalive probes
+  keepAliveInitialDelayMillis: 60000, // Delay before sending keepalive probes
 });
 
 // Initialize Drizzle ORM with schema

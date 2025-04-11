@@ -47,12 +47,23 @@ export async function cleanupSessions(): Promise<void> {
     const client = await pool.connect();
     try {
       // Delete expired sessions
-      await client.query(`DELETE FROM user_sessions WHERE expire < NOW()`);
-      console.log('Session cleanup completed');
+      const result = await client.query(`DELETE FROM user_sessions WHERE expire < NOW()`);
+      console.log(`Session cleanup completed: ${result.rowCount || 0} expired sessions removed`);
     } finally {
       client.release();
     }
   } catch (error) {
     console.error('Session cleanup error:', error);
+    
+    // Retry after a delay if this was a connection issue
+    if (error instanceof Error && 
+        (error.message.includes('connection') || error.message.includes('timeout'))) {
+      console.log('Will retry session cleanup in 30 seconds');
+      setTimeout(cleanupSessions, 30000);
+    }
   }
 }
+
+// Schedule regular session cleanup
+const SESSION_CLEANUP_INTERVAL = 12 * 60 * 60 * 1000; // Every 12 hours
+setInterval(cleanupSessions, SESSION_CLEANUP_INTERVAL);
