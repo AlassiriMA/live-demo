@@ -21,6 +21,7 @@ import {
 } from "@/components/site-settings/HeroContent";
 import { ProjectsSection } from "@/components/site-settings/ProjectsSection";
 import { CustomerServiceBot } from "@/components/chat/CustomerServiceBot";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 
 export default function Home() {
   // Add smooth scrolling for anchor links
@@ -297,9 +298,10 @@ export default function Home() {
                           <div className="absolute inset-0 overflow-hidden">
                             {app.imageUrl ? (
                               <>
-                                <img 
+                                <ImageWithFallback
                                   src={app.imageUrl} 
                                   alt={app.name}
+                                  fallbackSrc="/assets/images/fallback-image.svg"
                                   className="w-full h-full object-cover opacity-90 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 transition-opacity group-hover:opacity-80"></div>

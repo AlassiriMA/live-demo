@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { AppInfo } from "@/lib/app-data";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 
 interface AppCardProps {
   app: AppInfo;
@@ -162,9 +163,10 @@ export default function AppCard({ app, index }: AppCardProps) {
       return (
         <div className="h-48 bg-gray-200 relative overflow-hidden">
           {app.imageUrl && (
-            <img 
+            <ImageWithFallback
               src={app.imageUrl} 
               alt="Business Intelligence Dashboard"
+              fallbackSrc="/assets/images/fallback-image.svg"
               className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
             />
           )}
@@ -198,9 +200,10 @@ export default function AppCard({ app, index }: AppCardProps) {
       return (
         <div className="h-48 bg-gray-200 relative overflow-hidden">
           {app.imageUrl && (
-            <img 
+            <ImageWithFallback
               src={app.imageUrl} 
               alt={app.name}
+              fallbackSrc="/assets/images/fallback-image.svg"
               className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
             />
           )}
