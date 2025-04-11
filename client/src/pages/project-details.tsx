@@ -415,6 +415,47 @@ export default function ProjectDetailsPage() {
                   )}
                 </div>
                 
+                {/* POS System Screenshots */}
+                {(project.slug === 'pos' || project.id === 1) && (
+                  <ImageGridGallery 
+                    images={[
+                      {
+                        src: "/assets/images/screenshots/pos/sales-dashboard.svg",
+                        alt: "POS Dashboard",
+                        caption: "Sales dashboard with real-time analytics"
+                      },
+                      {
+                        src: "/assets/images/screenshots/pos/inventory.svg",
+                        alt: "Inventory Management",
+                        caption: "Book inventory with categorization and search"
+                      },
+                      {
+                        src: "/assets/images/screenshots/pos/transaction.svg",
+                        alt: "Transaction Processing",
+                        caption: "Fast and efficient checkout process"
+                      },
+                      {
+                        src: "/assets/images/screenshots/pos/categories.svg",
+                        alt: "Book Categories",
+                        caption: "Organize inventory by customizable categories"
+                      },
+                      {
+                        src: "/assets/images/screenshots/pos/checkout.svg",
+                        alt: "Customer Checkout",
+                        caption: "Customer-focused checkout interface"
+                      },
+                      {
+                        src: "/assets/images/screenshots/pos/reports.svg",
+                        alt: "Sales Reports",
+                        caption: "Comprehensive sales analytics and reporting"
+                      }
+                    ]}
+                    aspectRatio="wide"
+                    columns={3}
+                    lightboxEnabled={true}
+                  />
+                )}
+                
                 {/* English AI Tutor Screenshots */}
                 {(project.slug === 'english-ai' || project.id === 8) && (
                   <ImageGridGallery 
