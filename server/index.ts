@@ -31,12 +31,12 @@ if (process.env.NODE_ENV === 'production') {
       }
     }
   }));
-  
+
   // Enable compression
   if (process.env.ENABLE_COMPRESSION === 'true') {
     app.use(compression());
   }
-  
+
   // Enable rate limiting
   if (process.env.ENABLE_RATE_LIMIT === 'true') {
     const apiLimiter = rateLimit({
@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === 'production') {
     });
     app.use('/api/', apiLimiter);
   }
-  
+
   // CORS configuration
   const corsOptions = {
     origin: process.env.CORS_ORIGIN || '*',
