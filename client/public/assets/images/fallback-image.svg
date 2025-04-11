@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f5f7ff" />
+  <g transform="translate(400, 300)">
+    <rect x="-150" y="-100" width="300" height="200" rx="20" ry="20" fill="#e2e8f0" />
+    <path d="M-60,-40 L60,-40 L60,40 L-60,40 Z" fill="#cbd5e1" />
+    <circle cx="0" cy="0" r="20" fill="#94a3b8" />
+    <path d="M-40,-70 L40,-70 L0,-30 Z" fill="#94a3b8" />
+    <text x="0" y="90" text-anchor="middle" font-family="Arial" font-size="24" fill="#64748b">Image not available</text>
+  </g>
+  <g transform="translate(150, 150)">
+    <circle cx="0" cy="0" r="50" fill="#e2e8f080" />
+  </g>
+  <g transform="translate(650, 450)">
+    <circle cx="0" cy="0" r="70" fill="#e2e8f080" />
+  </g>
+  <path d="M0,200 C100,150 200,250 300,200 C400,150 500,250 600,200 C700,150 800,250 800,200" stroke="#e2e8f080" stroke-width="5" fill="none" />
+  <path d="M0,400 C100,350 200,450 300,400 C400,350 500,450 600,400 C700,350 800,450 800,400" stroke="#e2e8f080" stroke-width="5" fill="none" />
+</svg>
