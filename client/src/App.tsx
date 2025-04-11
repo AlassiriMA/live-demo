@@ -21,8 +21,7 @@ import Reddit from "@/pages/reddit";
 import Skills from "@/pages/skills";
 import Projects from "@/pages/projects";
 import ProjectDetails from "@/pages/project-details";
-import Blog from "@/pages/blog";
-import BlogPost from "@/pages/blog/[id]";
+// Blog functionality removed
 import Sitemap from "@/pages/sitemap";
 import Terms from "@/pages/terms";
 import Privacy from "@/pages/privacy";
@@ -56,8 +55,7 @@ function Router() {
       <Route path="/skills" component={Skills} />
       <Route path="/projects" component={Projects} />
       <Route path="/project/:slug" component={ProjectDetails} />
-      <Route path="/blog" component={Blog} />
-      <Route path="/blog/:id" component={BlogPost} />
+      {/* Blog routes removed */}
       <Route path="/sitemap" component={Sitemap} />
       <Route path="/terms" component={Terms} />
       <Route path="/privacy" component={Privacy} />
