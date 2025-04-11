@@ -6,25 +6,39 @@ interface ImageWithFallbackProps {
   fallbackSrc?: string;
   className?: string;
   style?: React.CSSProperties;
+  width?: number;
+  height?: number;
+  sizes?: string;
+  priority?: boolean;
 }
 
 /**
- * Image component that handles loading failures with a fallback image
+ * Enhanced image component that:
+ * - Handles loading failures with a fallback image
+ * - Uses lazy loading by default (but allows priority loading)
+ * - Supports width, height, and sizes attributes for performance
+ * - Uses loading="eager" for above-the-fold images when priority=true
  */
-export const ImageWithFallback = ({
+function ImageWithFallback({
   src,
   alt,
-  fallbackSrc = "/assets/images/fallback-image.jpg",
+  fallbackSrc = "/assets/images/fallback-image.svg",
   className = "",
   style = {},
-}: ImageWithFallbackProps) => {
+  width,
+  height,
+  sizes = "100vw",
+  priority = false,
+}: ImageWithFallbackProps) {
   const [imgSrc, setImgSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Reset state if src prop changes
   useEffect(() => {
     setImgSrc(src);
     setHasError(false);
+    setIsLoaded(false);
   }, [src]);
 
   const handleError = () => {
@@ -33,23 +47,38 @@ export const ImageWithFallback = ({
       setHasError(true);
     }
   };
+  
+  const handleLoad = () => {
+    setIsLoaded(true);
+  };
 
   return (
-    <img
-      src={imgSrc}
-      alt={alt}
-      onError={handleError}
-      className={className}
-      style={style}
-      loading="lazy"
-    />
+    <div className={`relative ${className}`} style={style}>
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse rounded" />
+      )}
+      <img
+        src={imgSrc}
+        alt={alt}
+        onError={handleError}
+        onLoad={handleLoad}
+        className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+        style={style}
+        width={width}
+        height={height}
+        sizes={sizes}
+        loading={priority ? "eager" : "lazy"}
+        decoding={priority ? "sync" : "async"}
+      />
+    </div>
   );
-};
+}
 
 /**
  * Hook to check if an image exists at the given URL
+ * Uses AbortController to cancel pending requests when component unmounts
  */
-export const useImageExists = (url: string): boolean => {
+function useImageExists(url: string): boolean {
   const [exists, setExists] = useState(true);
 
   useEffect(() => {
@@ -58,18 +87,28 @@ export const useImageExists = (url: string): boolean => {
       return;
     }
 
-    const img = new Image();
-    img.onload = () => setExists(true);
-    img.onerror = () => setExists(false);
-    img.src = url;
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch(url, { method: 'HEAD', signal })
+      .then(response => {
+        if (response.ok) {
+          setExists(true);
+        } else {
+          setExists(false);
+        }
+      })
+      .catch(() => {
+        setExists(false);
+      });
 
     return () => {
-      img.onload = null;
-      img.onerror = null;
+      controller.abort();
     };
   }, [url]);
 
   return exists;
-};
+}
 
+export { useImageExists };
 export default ImageWithFallback;
