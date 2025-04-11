@@ -20,6 +20,7 @@ import projectRoutes from './routes/projects';
 import mediaRoutes from './routes/media';
 import settingsRoutes from './routes/settings';
 import chatbotRoutes from './routes/chatbot';
+import chatRoutes from './routes/chat';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Set up cookie parser for auth
@@ -34,6 +35,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use('/api/cms/media', mediaRoutes);
   app.use('/api/settings', settingsRoutes); // Direct route for better accessibility
   app.use('/api/chatbot', chatbotRoutes); // Chatbot API for marketing site
+  app.use('/api/chat', chatRoutes); // Customer service chat API
   
   // Health check endpoint for monitoring
   app.get('/health', async (_req, res) => {
