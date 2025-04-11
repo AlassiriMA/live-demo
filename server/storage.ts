@@ -364,47 +364,14 @@ export class DatabaseStorage implements IStorage {
   async getProjectBySlug(slug: string): Promise<Project | undefined> {
     return await retryDb(async () => {
       try {
-        // Use raw SQL to avoid ORM field mapping issues with 'featured' column
-        // Use parameterized query to prevent SQL injection
-        const result = await db.execute(
-          `SELECT id, slug, name, description, style, primary_color, secondary_color, 
-          accent_color, image_url, tags, route, published, 
-          detailed_content, features, 
-          created_at, updated_at
-          FROM projects WHERE slug = $1 LIMIT 1`, 
-          [slug]
-        );
-        
-        if (result.rows && result.rows.length > 0) {
-          const row = result.rows[0];
-          // Convert field names from snake_case to camelCase
-          // Convert the row to a properly typed Project object
-          // Properly cast values to match schema exactly
-          const rowToProject = {
-            id: Number(row.id),
-            slug: String(row.slug),
-            name: String(row.name),
-            description: String(row.description),
-            style: row.style || null,
-            primaryColor: row.primary_color || null,
-            secondaryColor: row.secondary_color || null,
-            accentColor: row.accent_color || null,
-            imageUrl: row.image_url || null,
-            tags: row.tags || [],
-            route: String(row.route || ''),
-            published: Boolean(row.published),
-            featured: Boolean(row.featured || false),
-            sortOrder: Number(row.sort_order || 0),
-            detailedContent: row.detailed_content || null,
-            features: row.features || [],
-            screenshots: row.screenshots || [],
-            createdAt: new Date(row.created_at),
-            updatedAt: new Date(row.updated_at || row.created_at),
-          };
+        // Use Drizzle's query builder for better type safety and parameterization
+        const [project] = await db
+          .select()
+          .from(projects)
+          .where(eq(projects.slug, slug))
+          .limit(1);
           
-          return rowToProject as unknown as Project;
-        }
-        return undefined;
+        return project || undefined;
       } catch (error) {
         console.error("Error in getProjectBySlug:", error);
         throw error;
@@ -487,46 +454,57 @@ export class DatabaseStorage implements IStorage {
 
   // CMS - Settings methods
   async getAllSettings(): Promise<SiteSetting[]> {
-    return await db.select().from(siteSettings);
+    return await retryDb(() => db.select().from(siteSettings));
   }
 
   async getSettingsByCategory(category: string): Promise<SiteSetting[]> {
-    return await db
-      .select()
-      .from(siteSettings)
-      .where(eq(siteSettings.category, category));
+    return await retryDb(() => 
+      db.select()
+        .from(siteSettings)
+        .where(eq(siteSettings.category, category))
+    );
   }
 
   async getSettingByKey(key: string): Promise<SiteSetting | undefined> {
-    const [setting] = await db.select().from(siteSettings).where(eq(siteSettings.key, key));
-    return setting || undefined;
+    return await retryDb(async () => {
+      const [setting] = await db.select().from(siteSettings).where(eq(siteSettings.key, key));
+      return setting || undefined;
+    });
   }
 
   async updateSetting(key: string, value: any, userId: number): Promise<SiteSetting | undefined> {
-    const existingSetting = await this.getSettingByKey(key);
-    
-    if (existingSetting) {
-      const [updatedSetting] = await db
-        .update(siteSettings)
-        .set({
-          value: value,
-          updatedBy: userId,
-          updatedAt: new Date()
-        })
-        .where(eq(siteSettings.key, key))
-        .returning();
-      return updatedSetting;
-    } else {
-      const [newSetting] = await db
-        .insert(siteSettings)
-        .values({
-          key: key,
-          value: value,
-          updatedBy: userId
-        })
-        .returning();
-      return newSetting;
-    }
+    return await retryDb(async () => {
+      const existingSetting = await this.getSettingByKey(key);
+      
+      if (existingSetting) {
+        // Update existing setting
+        const [updatedSetting] = await db
+          .update(siteSettings)
+          .set({
+            value: value,
+            updatedBy: userId,
+            updatedAt: new Date()
+          })
+          .where(eq(siteSettings.key, key))
+          .returning();
+        return updatedSetting;
+      } else {
+        // Create new setting
+        const [newSetting] = await db
+          .insert(siteSettings)
+          .values({
+            key: key,
+            value: value,
+            category: 'custom', // Default category for new settings
+            description: '', // Default empty description
+            updatedBy: userId,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          })
+          .returning();
+        return newSetting;
+      }
+    });
   }
 }
 
