@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#111827" />
+  
+  <!-- Grid lines -->
+  <g stroke="#374151" stroke-width="1">
+    <line x1="100" y1="100" x2="100" y2="500" />
+    <line x1="100" y1="500" x2="700" y2="500" />
+    
+    <!-- Horizontal grid lines -->
+    <line x1="100" y1="140" x2="700" y2="140" stroke-dasharray="4 4" />
+    <line x1="100" y1="180" x2="700" y2="180" stroke-dasharray="4 4" />
+    <line x1="100" y1="220" x2="700" y2="220" stroke-dasharray="4 4" />
+    <line x1="100" y1="260" x2="700" y2="260" stroke-dasharray="4 4" />
+    <line x1="100" y1="300" x2="700" y2="300" stroke-dasharray="4 4" />
+    <line x1="100" y1="340" x2="700" y2="340" stroke-dasharray="4 4" />
+    <line x1="100" y1="380" x2="700" y2="380" stroke-dasharray="4 4" />
+    <line x1="100" y1="420" x2="700" y2="420" stroke-dasharray="4 4" />
+    <line x1="100" y1="460" x2="700" y2="460" stroke-dasharray="4 4" />
+    
+    <!-- Vertical grid lines -->
+    <line x1="160" y1="100" x2="160" y2="500" stroke-dasharray="4 4" />
+    <line x1="220" y1="100" x2="220" y2="500" stroke-dasharray="4 4" />
+    <line x1="280" y1="100" x2="280" y2="500" stroke-dasharray="4 4" />
+    <line x1="340" y1="100" x2="340" y2="500" stroke-dasharray="4 4" />
+    <line x1="400" y1="100" x2="400" y2="500" stroke-dasharray="4 4" />
+    <line x1="460" y1="100" x2="460" y2="500" stroke-dasharray="4 4" />
+    <line x1="520" y1="100" x2="520" y2="500" stroke-dasharray="4 4" />
+    <line x1="580" y1="100" x2="580" y2="500" stroke-dasharray="4 4" />
+    <line x1="640" y1="100" x2="640" y2="500" stroke-dasharray="4 4" />
+    <line x1="700" y1="100" x2="700" y2="500" stroke-dasharray="4 4" />
+  </g>
+  
+  <!-- Stock A Line -->
+  <path d="M100,350 L160,330 L220,360 L280,340 L340,300 L400,250 L460,210 L520,240 L580,180 L640,210 L700,170" 
+        fill="none" stroke="#3B82F6" stroke-width="3" />
+  
+  <!-- Stock B Line -->
+  <path d="M100,330 L160,350 L220,380 L280,350 L340,320 L400,290 L460,230 L520,280 L580,230 L640,260 L700,210" 
+        fill="none" stroke="#EC4899" stroke-width="3" />
+  
+  <!-- Z-Score Line -->
+  <path d="M100,300 L160,310 L220,320 L280,310 L340,290 L400,270 L460,220 L520,260 L580,210 L640,240 L700,190" 
+        fill="none" stroke="#10B981" stroke-width="2" stroke-dasharray="6 3" />
+  
+  <!-- Title -->
+  <text x="400" y="60" font-family="Arial" font-size="24" fill="#F9FAFB" text-anchor="middle" font-weight="bold">Statistical Arbitrage Dashboard</text>
+  
+  <!-- Legend -->
+  <g transform="translate(550, 150)">
+    <rect width="140" height="90" fill="#1F2937" rx="5" />
+    
+    <!-- Stock A Legend -->
+    <line x1="10" y1="20" x2="30" y2="20" stroke="#3B82F6" stroke-width="3" />
+    <text x="40" y="24" font-family="Arial" font-size="12" fill="#F9FAFB">Stock A (AAPL)</text>
+    
+    <!-- Stock B Legend -->
+    <line x1="10" y1="45" x2="30" y2="45" stroke="#EC4899" stroke-width="3" />
+    <text x="40" y="49" font-family="Arial" font-size="12" fill="#F9FAFB">Stock B (MSFT)</text>
+    
+    <!-- Z-Score Legend -->
+    <line x1="10" y1="70" x2="30" y2="70" stroke="#10B981" stroke-width="2" stroke-dasharray="6 3" />
+    <text x="40" y="74" font-family="Arial" font-size="12" fill="#F9FAFB">Z-Score</text>
+  </g>
+  
+  <!-- Indicators -->
+  <g transform="translate(130, 150)">
+    <rect width="200" height="120" fill="#1F2937" rx="5" />
+    <text x="10" y="20" font-family="Arial" font-size="14" fill="#F9FAFB" font-weight="bold">Pair Statistics</text>
+    
+    <text x="10" y="45" font-family="Arial" font-size="12" fill="#F9FAFB">Correlation: 0.87</text>
+    <text x="10" y="65" font-family="Arial" font-size="12" fill="#F9FAFB">Z-Score: 2.34</text>
+    <text x="10" y="85" font-family="Arial" font-size="12" fill="#F9FAFB">Half-Life: 3.2 days</text>
+    <text x="10" y="105" font-family="Arial" font-size="12" fill="#10B981" font-weight="bold">Signal: LONG/SHORT</text>
+  </g>
+  
+  <!-- Terminal Section -->
+  <g transform="translate(130, 530)">
+    <rect width="540" height="50" fill="#111111" rx="3" />
+    <text x="10" y="20" font-family="Courier New" font-size="12" fill="#10B981">$ ./run_strategy.py --pair=AAPL/MSFT --allocation=20000 --threshold=2.0</text>
+    <text x="10" y="38" font-family="Courier New" font-size="12" fill="#10B981">Starting trading algorithm... [Press Ctrl+C to exit]</text>
+  </g>
+  
+  <!-- Axis Labels -->
+  <text x="400" y="525" font-family="Arial" font-size="12" fill="#D1D5DB" text-anchor="middle">Time</text>
+  <text x="80" y="300" font-family="Arial" font-size="12" fill="#D1D5DB" text-anchor="middle" transform="rotate(-90, 80, 300)">Price</text>
+</svg>

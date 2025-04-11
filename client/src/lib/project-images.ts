@@ -4,7 +4,7 @@ export const projectImageMap: Record<string, string> = {
   "fruits": "/images/projects/fruit-store.svg",
   "marketing": "/images/projects/marketing-agency.svg",
   "bi": "/images/projects/bi-dashboard.svg", 
-  "statarb": "/images/projects/statarb-new.svg",
+  "statarb": "/images/projects/statarb-fixed.svg",
   "triarb": "/images/projects/triarb.svg",
   "dydx": "/images/projects/dydx-trading.svg",
   "english-ai": "/images/projects/english-ai.svg",
