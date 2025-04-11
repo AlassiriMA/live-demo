@@ -121,8 +121,9 @@ export function ImageGridGallery({
                   lightboxEnabled ? 'cursor-pointer' : ''
                 }`}
                 onError={(e) => {
+                  console.warn(`Failed to load image: ${image.src}`);
                   e.currentTarget.src = '/assets/images/placeholder-image.svg';
-                  e.currentTarget.alt = 'Image unavailable';
+                  e.currentTarget.alt = image.alt + ' (unavailable)';
                 }}
               />
               {lightboxEnabled && (
@@ -178,6 +179,11 @@ export function ImageGridGallery({
                 alt={images[currentImageIndex]?.alt}
                 className="max-h-[85vh] max-w-full object-contain rounded-lg"
                 onClick={(e) => e.stopPropagation()}
+                onError={(e) => {
+                  console.warn(`Failed to load lightbox image: ${images[currentImageIndex]?.src}`);
+                  e.currentTarget.src = '/assets/images/placeholder-image.svg';
+                  e.currentTarget.alt = (images[currentImageIndex]?.alt || 'Image') + ' (unavailable)';
+                }}
               />
 
               {images.length > 1 && (
