@@ -127,6 +127,7 @@ function Router() {
         
         {/* Admin routes */}
         <Route path="/auth" component={AdminLogin} />
+        <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin" component={AdminDashboard} />
         <Route path="/admin/dashboard" component={AdminDashboard} />
 

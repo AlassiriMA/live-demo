@@ -25,7 +25,7 @@ const Dashboard = () => {
   
   // Fetch media data
   const { data: mediaData, isLoading: mediaLoading } = useQuery({
-    queryKey: ['/api/media'],
+    queryKey: ['/api/cms/media'],
     enabled: !!user,
   });
   

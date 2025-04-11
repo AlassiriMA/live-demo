@@ -18,7 +18,7 @@ export function AuthCheck({ children, requiredRole }: AuthCheckProps) {
   useEffect(() => {
     if (!isLoading && !user) {
       // Redirect to login if not authenticated
-      navigate('/auth');
+      navigate('/admin/login');
     } else if (!isLoading && user && requiredRole && user.role !== requiredRole) {
       // Redirect to homepage if authenticated but doesn't have required role
       navigate('/');
