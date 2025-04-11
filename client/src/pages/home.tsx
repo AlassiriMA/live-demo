@@ -685,48 +685,60 @@ export default function Home() {
               <p className="text-gray-600 mb-6">
                 This comprehensive portfolio showcases 10 professional live demo applications spanning fintech, retail, education, marketing, beauty, social media, and analytics. Each application features modern UI/UX, real database connections, and full-stack functionality.
               </p>
-              <div className="p-6 border border-gray-200 rounded-xl bg-white shadow-sm">
+              <div className="p-6 border border-gray-200 rounded-xl bg-gradient-to-br from-white to-indigo-50/30 shadow-md">
                 <div className="flex flex-col mb-4">
-                  <div className="flex items-center mb-2">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-700 flex items-center justify-center mr-4 shadow-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                       </svg>
                     </div>
-                    <h3 className="font-heading font-bold text-2xl text-gray-800">Tech Stack</h3>
+                    <div>
+                      <h3 className="font-heading font-bold text-2xl text-gray-800 mb-1">Tech Stack</h3>
+                      <p className="text-gray-600 text-sm">Modern technologies powering this portfolio</p>
+                    </div>
                   </div>
-                  <p className="text-gray-600 ml-1 mt-1 text-sm">Modern technologies powering this portfolio</p>
                 </div>
-                <ul className="space-y-2">
-                  <li className="flex items-center text-gray-700">
-                    <svg className="h-5 w-5 mr-2 text-[#6366F1]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    React + TypeScript + TailwindCSS
+                <ul className="space-y-3">
+                  <li className="flex items-center p-2 rounded-lg hover:bg-white/80 transition-colors duration-200 group">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center mr-3 group-hover:bg-indigo-200 transition-colors duration-200">
+                      <svg className="h-5 w-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="font-medium text-gray-800 group-hover:text-indigo-700 transition-colors duration-200">React + TypeScript + TailwindCSS</span>
                   </li>
-                  <li className="flex items-center text-gray-700">
-                    <svg className="h-5 w-5 mr-2 text-[#22C55E]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Express + PostgreSQL + Drizzle ORM
+                  <li className="flex items-center p-2 rounded-lg hover:bg-white/80 transition-colors duration-200 group">
+                    <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-200">
+                      <svg className="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="font-medium text-gray-800 group-hover:text-green-700 transition-colors duration-200">Express + PostgreSQL + Drizzle ORM</span>
                   </li>
-                  <li className="flex items-center text-gray-700">
-                    <svg className="h-5 w-5 mr-2 text-[#EC4899]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Docker + NGINX + CI/CD Pipeline
+                  <li className="flex items-center p-2 rounded-lg hover:bg-white/80 transition-colors duration-200 group">
+                    <div className="w-8 h-8 rounded-lg bg-pink-100 flex items-center justify-center mr-3 group-hover:bg-pink-200 transition-colors duration-200">
+                      <svg className="h-5 w-5 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="font-medium text-gray-800 group-hover:text-pink-700 transition-colors duration-200">Docker + NGINX + CI/CD Pipeline</span>
                   </li>
-                  <li className="flex items-center text-gray-700">
-                    <svg className="h-5 w-5 mr-2 text-[#10B981]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Framer Motion + Shadcn/UI + GSAP
+                  <li className="flex items-center p-2 rounded-lg hover:bg-white/80 transition-colors duration-200 group">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center mr-3 group-hover:bg-emerald-200 transition-colors duration-200">
+                      <svg className="h-5 w-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="font-medium text-gray-800 group-hover:text-emerald-700 transition-colors duration-200">Framer Motion + Shadcn/UI + GSAP</span>
                   </li>
-                  <li className="flex items-center text-gray-700">
-                    <svg className="h-5 w-5 mr-2 text-[#0EA5E9]" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    JWT Authentication + Content Management
+                  <li className="flex items-center p-2 rounded-lg hover:bg-white/80 transition-colors duration-200 group">
+                    <div className="w-8 h-8 rounded-lg bg-sky-100 flex items-center justify-center mr-3 group-hover:bg-sky-200 transition-colors duration-200">
+                      <svg className="h-5 w-5 text-sky-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="font-medium text-gray-800 group-hover:text-sky-700 transition-colors duration-200">JWT Authentication + Content Management</span>
                   </li>
                 </ul>
               </div>
