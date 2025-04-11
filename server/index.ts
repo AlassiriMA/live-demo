@@ -3,14 +3,10 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 // Import security packages
-let helmet, compression, rateLimit, cors;
-// Only import in production to avoid issues in development
-if (process.env.NODE_ENV === 'production') {
-  helmet = require('helmet');
-  compression = require('compression');
-  rateLimit = require('express-rate-limit');
-  cors = require('cors');
-}
+import helmet from 'helmet';
+import compression from 'compression';
+import rateLimit from 'express-rate-limit';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
