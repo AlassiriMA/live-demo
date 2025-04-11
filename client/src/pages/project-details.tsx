@@ -518,6 +518,37 @@ export default function ProjectDetailsPage() {
                   />
                 )}
 
+                {/* dYdX Trading Interface Screenshots */}
+                {(project.slug === 'dydx' || project.id === 7) && (
+                  <ImageGridGallery 
+                    images={[
+                      {
+                        src: "/assets/images/screenshots/dydx/trading.svg",
+                        alt: "Trading Interface",
+                        caption: "Advanced trading interface with order books and charts"
+                      },
+                      {
+                        src: "/assets/images/screenshots/dydx/orders.svg",
+                        alt: "Order Management",
+                        caption: "Track and manage open and historical orders"
+                      },
+                      {
+                        src: "/assets/images/screenshots/dydx/portfolio.svg",
+                        alt: "Portfolio Overview",
+                        caption: "Real-time portfolio balance and position tracking"
+                      },
+                      {
+                        src: "/assets/images/screenshots/dydx/analytics.svg",
+                        alt: "Trade Analytics",
+                        caption: "Performance metrics and trading analytics"
+                      }
+                    ]}
+                    aspectRatio="wide"
+                    columns={2}
+                    lightboxEnabled={true}
+                  />
+                )}
+                
                 {/* StatArb Screenshots */}
                 {(project.slug === 'statarb' || project.id === 5) && (
                   <ImageGridGallery 
@@ -607,6 +638,63 @@ export default function ProjectDetailsPage() {
                     ]}
                     aspectRatio="wide"
                     columns={2}
+                    lightboxEnabled={true}
+                  />
+                )}
+                
+                {/* BI Dashboard Screenshots */}
+                {(project.slug === 'bi' || project.id === 4) && (
+                  <ImageGridGallery 
+                    images={[
+                      {
+                        src: "/assets/images/screenshots/bi/dashboard.svg",
+                        alt: "BI Dashboard",
+                        caption: "Main dashboard with key performance indicators"
+                      },
+                      {
+                        src: "/assets/images/screenshots/bi/analytics.svg",
+                        alt: "Data Analytics",
+                        caption: "Advanced analytics with interactive visualizations"
+                      },
+                      {
+                        src: "/assets/images/screenshots/bi/reports.svg",
+                        alt: "Custom Reports",
+                        caption: "Customizable reporting with export options"
+                      },
+                      {
+                        src: "/assets/images/screenshots/bi/data-sources.svg",
+                        alt: "Data Sources",
+                        caption: "Configure and manage multiple data sources"
+                      }
+                    ]}
+                    aspectRatio="wide"
+                    columns={2}
+                    lightboxEnabled={true}
+                  />
+                )}
+                
+                {/* Marketing Agency Screenshots */}
+                {(project.slug === 'marketing' || project.id === 3) && (
+                  <ImageGridGallery 
+                    images={[
+                      {
+                        src: "/assets/images/screenshots/marketing/services.svg",
+                        alt: "Marketing Services",
+                        caption: "Comprehensive marketing services with detailed descriptions"
+                      },
+                      {
+                        src: "/assets/images/screenshots/marketing/portfolio.svg",
+                        alt: "Marketing Portfolio",
+                        caption: "Case studies and portfolio of successful marketing campaigns"
+                      },
+                      {
+                        src: "/assets/images/screenshots/marketing/chatbot.svg",
+                        alt: "AI Chatbot",
+                        caption: "Interactive AI-powered marketing assistant"
+                      }
+                    ]}
+                    aspectRatio="wide"
+                    columns={3}
                     lightboxEnabled={true}
                   />
                 )}
