@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function Marketing() {
   const [chatbotOpen, setChatbotOpen] = useState(false);
 
-  const { data: testimonials = [] } = useQuery({
+  const { data: testimonials = [] } = useQuery<Testimonial[]>({
     queryKey: ["/api/marketing/testimonials"],
   });
 
@@ -38,11 +38,11 @@ export default function Marketing() {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Grow Your Business<br />
-                  <span className="text-[#EC4899]">With Digital Marketing</span>
+                  Digital Marketing & <br />
+                  <span className="text-[#EC4899]">Online Presence Services</span>
                 </h1>
                 <p className="text-lg text-gray-700 mb-8 max-w-lg">
-                  Transform your brand's online presence with data-driven strategies, engaging content, and conversion-focused campaigns.
+                  Elevate your brand's digital footprint with personalized marketing strategies tailored to your unique goals.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="bg-[#EC4899] hover:bg-[#DB2777] text-white px-8 py-6 rounded-full shadow-md hover:shadow-lg transition-all">
