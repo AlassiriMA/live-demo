@@ -111,6 +111,12 @@ export default function Footer() {
                       Download CV
                     </a>
                   </li>
+                  <li>
+                    <Link href="/admin" className="text-gray-600 hover:text-primary transition-colors duration-300 group flex items-center">
+                      <span className="absolute w-0 h-0.5 bg-primary group-hover:w-4 transition-all duration-300 opacity-0 group-hover:opacity-100 mr-0 group-hover:mr-2"></span>
+                      <span className="group-hover:translate-x-5 transition-transform duration-300">Admin Dashboard</span>
+                    </Link>
+                  </li>
                 </>
               )}
             </ul>
@@ -201,6 +207,7 @@ export default function Footer() {
             <a href="/terms" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Terms & Conditions</a>
             <a href="/privacy" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Privacy Policy</a>
             <a href="/sitemap" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Sitemap</a>
+            <a href="/admin" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Dashboard</a>
           </div>
         </div>
       </div>
