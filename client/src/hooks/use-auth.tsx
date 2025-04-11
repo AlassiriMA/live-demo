@@ -58,14 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null);
 
     try {
-      const response = await apiRequest('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-        credentials: 'include',
-      }) as AuthResponse;
+      const response = await apiRequest('POST', '/api/auth/login', { username, password }) as AuthResponse;
 
       if (response.success && response.user) {
         setUser(response.user);
@@ -88,10 +81,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     
     try {
-      await apiRequest('/api/auth/logout', {
-        method: 'POST',
-        credentials: 'include',
-      });
+      await apiRequest('POST', '/api/auth/logout');
       
       setUser(null);
       localStorage.removeItem('token');

@@ -207,7 +207,6 @@ export default function Footer() {
             <a href="/terms" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Terms & Conditions</a>
             <a href="/privacy" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Privacy Policy</a>
             <a href="/sitemap" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Sitemap</a>
-            <a href="/admin" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Dashboard</a>
           </div>
         </div>
       </div>

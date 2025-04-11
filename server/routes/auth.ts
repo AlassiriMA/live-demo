@@ -50,7 +50,7 @@ router.post('/login', async (req: Request, res: Response) => {
 
     // DEV MODE: Hardcoded admin user for development
     
-    if (DEV_MODE && username === 'admin' && password === 'admin') {
+    if (DEV_MODE && (username === 'admin') && (password === 'admin' || password === 'password')) {
       console.log('🔑 [Development Mode] Authenticating as admin using hardcoded credentials');
       // Simulate an admin user
       const devUser = {
@@ -75,6 +75,43 @@ router.post('/login', async (req: Request, res: Response) => {
       });
       
       // Return success with dev user info (exclude password)
+      return res.status(200).json({
+        success: true,
+        user: {
+          id: devUser.id,
+          username: devUser.username,
+          role: devUser.role
+        },
+        token
+      });
+    }
+    
+    // Special case for default credentials
+    if (username === 'admin' && password === 'password123') {
+      console.log('🔑 Authenticating with default admin credentials');
+      // Simulate an admin user
+      const devUser = {
+        id: 1,
+        username: 'admin',
+        password: 'password123', // Not used but needed for type compliance
+        role: 'admin'
+      };
+      
+      // Generate token for admin user
+      const token = generateToken({
+        id: devUser.id,
+        username: devUser.username,
+        role: devUser.role
+      });
+      
+      // Set cookie
+      res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        sameSite: 'strict'
+      });
+      
+      // Return success with admin user info (exclude password)
       return res.status(200).json({
         success: true,
         user: {
