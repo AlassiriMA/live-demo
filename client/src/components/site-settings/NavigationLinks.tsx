@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { useSiteSettings, getSetting } from "@/hooks/use-site-settings";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface NavLink {
   text: string;
@@ -18,6 +19,7 @@ interface NavigationLinksProps {
 export function NavigationLinks({ isAppPage = false, isMobile = false, onItemClick }: NavigationLinksProps) {
   const { settings, isLoading } = useSiteSettings("navigation");
   const [navLinks, setNavLinks] = useState<NavLink[]>([]);
+  const { t } = useLanguage();
   
   useEffect(() => {
     if (!isLoading) {
@@ -42,13 +44,13 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
   // Set up default navigation links as a fallback
   const setDefaultLinks = () => {
     setNavLinks([
-      { text: "Home", url: "/" },
+      { text: t('nav.home'), url: "/" },
       { text: "Apps", url: "#apps", isAnchor: true },
       { text: "Marketing", url: "/marketing" },
-      { text: "Projects", url: "/projects" },
-      { text: "Skills", url: "/skills" },
+      { text: t('nav.projects'), url: "/projects" },
+      { text: t('nav.skills'), url: "/skills" },
       { text: "About", url: "#about", isAnchor: true },
-      { text: "Contact", url: "#contact", isAnchor: true }
+      { text: t('nav.contact'), url: "#contact", isAnchor: true }
     ]);
   };
 

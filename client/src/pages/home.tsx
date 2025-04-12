@@ -9,6 +9,7 @@ import { apps } from "@/lib/app-data";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ServicesSection } from "@/components/services/ServicesSection";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   HeroTitle, 
   HeroSubtitle, 

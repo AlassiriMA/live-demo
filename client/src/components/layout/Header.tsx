@@ -4,10 +4,13 @@ import MobileMenu from "./MobileMenu";
 import { useSiteSettings, getSetting } from "@/hooks/use-site-settings";
 import { SiteAuthor } from "@/components/site-settings/HeroContent";
 import { NavigationLinks } from "@/components/site-settings/NavigationLinks";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
+  const { t } = useLanguage();
 
   // Determine if we're on the main page or an app page
   const isAppPage = location !== "/" && location !== "/not-found";
@@ -39,17 +42,25 @@ export default function Header() {
         
         <nav className="hidden md:flex md:items-center md:space-x-7 header-nav">
           <NavigationLinks isAppPage={isAppPage} />
+          <div className="flex items-center ml-3">
+            <LanguageSwitcher />
+          </div>
         </nav>
         
-        <button 
-          className="md:hidden text-white p-2 hover:bg-white/10 rounded-full transition-colors duration-200" 
-          onClick={toggleMobileMenu}
-          aria-label="Toggle mobile menu"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+        <div className="flex items-center">
+          <div className="md:hidden mr-2">
+            <LanguageSwitcher />
+          </div>
+          <button 
+            className="md:hidden text-white p-2 hover:bg-white/10 rounded-full transition-colors duration-200" 
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
       </div>
       
       <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} isAppPage={isAppPage} />
