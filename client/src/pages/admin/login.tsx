@@ -38,7 +38,31 @@ export default function AdminLogin() {
   const [, navigate] = useLocation();
   const [adminMessage, setAdminMessage] = useState<string | null>(null);
   
-  // Redirect to dashboard if already logged in
+  // Check if we already have a user in localStorage on mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    const hasToken = !!localStorage.getItem('token');
+    
+    if (storedUser && hasToken) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        console.log('Found existing user in localStorage:', parsedUser);
+        
+        // If already on login page but have stored credentials, show message
+        setAdminMessage('Found existing session. Redirecting to dashboard...');
+        
+        // Delayed navigation to dashboard
+        setTimeout(() => {
+          console.log('Navigating to dashboard with stored credentials');
+          navigate('/admin/dashboard');
+        }, 1000);
+      } catch (e) {
+        console.error('Error parsing stored user:', e);
+      }
+    }
+  }, [navigate]);
+  
+  // Redirect to dashboard if login succeeds
   useEffect(() => {
     if (user) {
       console.log('User authenticated in useEffect:', user);
@@ -50,15 +74,23 @@ export default function AdminLogin() {
         console.log('Navigating to dashboard with user:', user);
         
         // First ensure localStorage has the user info as backup
+        // Using constants to avoid typos and ensure consistency
         localStorage.setItem('currentUser', JSON.stringify({
           id: user.id,
           username: user.username,
           role: user.role
         }));
         
-        // Then navigate to admin dashboard
-        navigate('/admin');
-      }, 1500);
+        // Force event dispatch to notify any components listening for auth changes
+        window.dispatchEvent(new Event('auth:refresh'));
+        
+        // Use a longer timeout for production to ensure proper state propagation
+        setTimeout(() => {
+          // Then navigate to admin dashboard
+          console.log('Final navigation to dashboard');
+          navigate('/admin/dashboard');
+        }, 500);
+      }, 1000);
     }
   }, [user, navigate]);
 

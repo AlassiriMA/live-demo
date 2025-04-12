@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
 import { apiRequest } from '@/lib/queryClient';
 
 interface AuthUser {
@@ -21,7 +21,12 @@ interface AuthContextType {
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   clearError: () => void;
+  refreshAuth: () => Promise<void>;
 }
+
+const AUTH_STORAGE_KEY = 'currentUser';
+const TOKEN_STORAGE_KEY = 'token';
+const MAX_RETRY_COUNT = 3;
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -30,52 +35,86 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Check if user is already logged in
-  useEffect(() => {
-    const checkAuthStatus = async () => {
-      try {
-        // Check for token in localStorage as a fallback
-        const token = localStorage.getItem('token');
-        const headers: Record<string, string> = {};
-        
-        // If token exists in localStorage, add it to headers
-        if (token) {
-          headers['Authorization'] = `Bearer ${token}`;
-        }
-        
-        // Try server authentication first
+  // Enhanced auth check with retry logic and better localStorage support
+  const checkAuthStatus = useCallback(async (retryCount = 0) => {
+    try {
+      // First priority: Check localStorage for existing user
+      const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
+      const token = localStorage.getItem(TOKEN_STORAGE_KEY);
+      const headers: Record<string, string> = {};
+      
+      // Initialize with cached user data immediately
+      if (storedUser) {
         try {
-          const response = await apiRequest('GET', '/api/auth/me', undefined, headers) as AuthResponse;
-          
-          if (response.success && response.user) {
-            console.log('Server auth successful:', response.user);
-            setUser(response.user);
-            return; // Exit early if server auth works
-          }
-        } catch (serverAuthError) {
-          console.log('Server auth failed, trying localStorage fallback');
-        }
-        
-        // Fallback to localStorage user if server auth fails
-        // This is critical for production where cookies may not work as expected
-        const storedUser = localStorage.getItem('currentUser');
-        if (storedUser) {
           const parsedUser = JSON.parse(storedUser);
-          console.log('Using localStorage user fallback:', parsedUser);
-          setUser(parsedUser);
-        } else {
-          console.log('No stored user found in localStorage');
+          setUser(parsedUser); // Set user from localStorage immediately
+          console.log('Initial auth state set from localStorage:', parsedUser);
+        } catch (parseError) {
+          // Invalid JSON in localStorage, clear it
+          localStorage.removeItem(AUTH_STORAGE_KEY);
         }
-      } catch (error) {
-        // User is not logged in, no need to show error
-        console.log('User not authenticated');
-      } finally {
-        setIsLoading(false);
       }
-    };
-
-    checkAuthStatus();
+      
+      // If token exists, add it to headers for server auth
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      
+      // Try server authentication second
+      try {
+        console.log('Attempting server auth...');
+        const response = await apiRequest('GET', '/api/auth/me', undefined, { 
+          headers,
+          cache: 'no-cache',  // Ensure fresh response
+          credentials: 'include' // Include cookies
+        }) as AuthResponse;
+        
+        if (response.success && response.user) {
+          console.log('Server auth successful, updating state:', response.user);
+          setUser(response.user);
+          
+          // Update localStorage with latest user data
+          localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(response.user));
+          return; // Exit early if server auth works
+        }
+      } catch (serverAuthError) {
+        console.log('Server auth failed:', serverAuthError);
+        
+        // If we have a token but server auth failed, and we have a stored user,
+        // we'll continue using the localStorage user from above
+        if (token && storedUser) {
+          console.log('Using existing localStorage auth with token');
+        } else if (retryCount < MAX_RETRY_COUNT) {
+          // Retry with exponential backoff
+          const delay = Math.pow(2, retryCount) * 500;
+          console.log(`Retrying auth check in ${delay}ms (attempt ${retryCount + 1}/${MAX_RETRY_COUNT})`);
+          
+          setTimeout(() => {
+            checkAuthStatus(retryCount + 1);
+          }, delay);
+          return;
+        } else {
+          console.log('Auth check failed after maximum retries');
+        }
+      }
+    } catch (error) {
+      console.log('Auth check error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
+
+  // Check auth status on component mount and when auth events occur
+  useEffect(() => {
+    checkAuthStatus();
+    
+    // Set up listener for auth events
+    window.addEventListener('auth:refresh', () => checkAuthStatus());
+    
+    return () => {
+      window.removeEventListener('auth:refresh', () => checkAuthStatus());
+    };
+  }, [checkAuthStatus]);
 
   const login = async (username: string, password: string) => {
     setIsLoading(true);
@@ -141,6 +180,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const clearError = () => {
     setError(null);
   };
+  
+  // Add refresh auth function that can be called manually
+  const refreshAuth = async () => {
+    console.log('Manual auth refresh requested');
+    await checkAuthStatus();
+    window.dispatchEvent(new Event('auth:refresh'));
+  };
 
   return (
     <AuthContext.Provider
@@ -151,6 +197,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         login,
         logout,
         clearError,
+        refreshAuth
       }}
     >
       {children}
