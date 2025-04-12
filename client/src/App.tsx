@@ -136,37 +136,51 @@ function Router() {
         {/* Protected admin routes that require authentication */}
         <Route path="/admin" component={() => 
           <Suspense fallback={<PageLoader />}>
-            <AdminDashboard />
+            <AuthCheck requiredRole="admin">
+              <AdminDashboard />
+            </AuthCheck>
           </Suspense>
         } />
         <Route path="/admin/dashboard" component={() => 
           <Suspense fallback={<PageLoader />}>
-            <AdminDashboard />
+            <AuthCheck requiredRole="admin">
+              <AdminDashboard />
+            </AuthCheck>
           </Suspense>
         } />
         <Route path="/admin/projects/new" component={() => 
           <Suspense fallback={<PageLoader />}>
-            <ProjectForm />
+            <AuthCheck requiredRole="admin">
+              <ProjectForm />
+            </AuthCheck>
           </Suspense>
         } />
         <Route path="/admin/projects/edit/:id" component={() => 
           <Suspense fallback={<PageLoader />}>
-            <ProjectForm />
+            <AuthCheck requiredRole="admin">
+              <ProjectForm />
+            </AuthCheck>
           </Suspense>
         } />
         <Route path="/admin/settings" component={() => 
           <Suspense fallback={<PageLoader />}>
-            <SettingsForm />
+            <AuthCheck requiredRole="admin">
+              <SettingsForm />
+            </AuthCheck>
           </Suspense>
         } />
         <Route path="/admin/settings/:category" component={() => 
           <Suspense fallback={<PageLoader />}>
-            <SettingsForm />
+            <AuthCheck requiredRole="admin">
+              <SettingsForm />
+            </AuthCheck>
           </Suspense>
         } />
         <Route path="/admin/media" component={() => 
           <Suspense fallback={<PageLoader />}>
-            <MediaLibrary />
+            <AuthCheck requiredRole="admin">
+              <MediaLibrary />
+            </AuthCheck>
           </Suspense>
         } />
 

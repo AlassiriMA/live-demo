@@ -1,0 +1,184 @@
+/* Production-only CSS overrides */
+/* This file contains critical styles for production environment */
+
+/* Core Typography */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #1f2937;
+  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Fix for glassmorphism in cards */
+.glass-bg {
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Fix for neumorphic elements */
+.neu-bg {
+  background-color: #f0f0f3;
+}
+
+.dark-pos .neu-bg {
+  background-color: #1f2937;
+}
+
+.neu-button {
+  border-radius: 0.5rem;
+  background-color: #f0f0f3;
+  box-shadow: 8px 8px 16px #d1d1d1, -8px -8px 16px #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+
+.dark-pos .neu-button {
+  background-color: #1f2937;
+  box-shadow: 5px 5px 10px #0f172a, -5px -5px 10px #334155;
+}
+
+.neu-button:hover {
+  box-shadow: 12px 12px 24px #d1d1d1, -12px -12px 24px #ffffff;
+}
+
+.dark-pos .neu-button:hover {
+  box-shadow: 8px 8px 16px #0f172a, -8px -8px 16px #334155;
+}
+
+.neu-button:active {
+  box-shadow: inset 5px 5px 10px #d1d1d1, inset -5px -5px 10px #ffffff;
+}
+
+.dark-pos .neu-button:active {
+  box-shadow: inset 3px 3px 6px #0f172a, inset -3px -3px 6px #334155;
+}
+
+.neu-input {
+  border-radius: 0.5rem;
+  background-color: #f0f0f3;
+  box-shadow: inset 2px 2px 5px #d1d1d1, inset -2px -2px 5px #ffffff;
+  padding: 0.5rem 1rem;
+  outline: none;
+}
+
+.dark-pos .neu-input {
+  background-color: #374151;
+  box-shadow: inset 2px 2px 5px #0f172a, inset -2px -2px 5px #334155;
+  color: #ffffff;
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-subtle {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.1; }
+}
+
+/* Cyberpunk grid style */
+.cyber-grid {
+  background-color: #0f172a;
+  background-image: linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Terminal style */
+.terminal-bg {
+  background-color: #1a1a1a;
+  color: #33ff33;
+  font-family: monospace;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* TradingView style */
+.trading-view-bg {
+  background-color: #131722;
+  color: #d1d4dc;
+}
+
+/* Mesh gradient background */
+.mesh-bg {
+  background-color: hsla(235, 86%, 65%, 0.8);
+  background-image: 
+    radial-gradient(at 40% 20%, hsla(235, 86%, 65%, 1) 0, transparent 50%), 
+    radial-gradient(at 80% 0%, hsla(246, 86%, 65%, 0.7) 0, transparent 50%), 
+    radial-gradient(at 0% 50%, hsla(224, 86%, 65%, 0.7) 0, transparent 50%), 
+    radial-gradient(at 80% 50%, hsla(258, 86%, 65%, 0.5) 0, transparent 50%), 
+    radial-gradient(at 0% 100%, hsla(235, 86%, 65%, 0.4) 0, transparent 50%);
+}
+
+/* Fix for gradient buttons */
+.btn-primary {
+  background-color: #6366f1;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+/* Project card image styling */
+.project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+}
+
+/* App Card hover effect */
+.app-card {
+  transition: all 0.3s;
+}
+
+.app-card:hover {
+  transform: translateY(-8px);
+}
