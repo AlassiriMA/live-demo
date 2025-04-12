@@ -250,8 +250,8 @@ export default function ProjectDetailsPage() {
                     </div>
                   ) : (
                     <p className="text-gray-600">
-                      This project provides a comprehensive demonstration of key concepts and technologies.
-                      Explore the live demo to see it in action!
+                      {t('projects.defaultDescription') || 
+                        "This project provides a comprehensive demonstration of key concepts and technologies. Explore the live demo to see it in action!"}
                     </p>
                   )}
                 </div>

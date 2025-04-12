@@ -107,6 +107,40 @@ const translationData: TranslationDict = {
     nl: 'Geen beschrijving beschikbaar',
   },
   
+  // Project Details
+  'projects.notFound': {
+    en: 'Project Not Found',
+    nl: 'Project Niet Gevonden',
+  },
+  'projects.doesNotExist': {
+    en: 'The project you\'re looking for doesn\'t exist or may have been moved.',
+    nl: 'Het project dat je zoekt bestaat niet of is mogelijk verplaatst.',
+  },
+  'projects.backToProjects': {
+    en: 'Back to Projects',
+    nl: 'Terug naar Projecten',
+  },
+  'projects.liveDemo': {
+    en: 'Live Demo',
+    nl: 'Live Demo',
+  },
+  'projects.overview': {
+    en: 'Overview',
+    nl: 'Overzicht',
+  },
+  'projects.keyFeatures': {
+    en: 'Key Features',
+    nl: 'Belangrijkste Functies',
+  },
+  'projects.appScreenshots': {
+    en: 'App Screenshots',
+    nl: 'App Schermafbeeldingen',
+  },
+  'projects.defaultDescription': {
+    en: 'This project provides a comprehensive demonstration of key concepts and technologies. Explore the live demo to see it in action!',
+    nl: 'Dit project biedt een uitgebreide demonstratie van belangrijke concepten en technologieën. Bekijk de live demo om het in actie te zien!',
+  },
+  
   // Skills
   'skills.title': {
     en: 'Skills & Expertise',
