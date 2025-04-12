@@ -39,33 +39,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Enhanced auth check with retry logic and better localStorage support
   const checkAuthStatus = useCallback(async (retryCount = 0) => {
     try {
-      // First priority: Check localStorage for existing user
-      const storedUser = localStorage.getItem(AUTH_STORAGE_KEY);
-      const token = localStorage.getItem(TOKEN_STORAGE_KEY);
-      const headers: Record<string, string> = {};
+      // First priority: Get user from enhanced auth utilities
+      const storedUserObj = getStoredUser();
+      const token = getStoredToken();
       
-      // Initialize with cached user data immediately
-      if (storedUser) {
-        try {
-          const parsedUser = JSON.parse(storedUser);
-          setUser(parsedUser); // Set user from localStorage immediately
-          console.log('Initial auth state set from localStorage:', parsedUser);
-        } catch (parseError) {
-          // Invalid JSON in localStorage, clear it
-          localStorage.removeItem(AUTH_STORAGE_KEY);
-        }
+      // Initialize with cached user data immediately for better UX
+      if (storedUserObj) {
+        setUser(storedUserObj);
+        console.log('Initial auth state set from localStorage:', storedUserObj);
       }
       
-      // If token exists, add it to headers for server auth
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
-      }
-      
-      // Try server authentication second
+      // Try server authentication for most up-to-date data
       try {
         console.log('Attempting server auth...');
         const response = await apiRequest('GET', '/api/auth/me', undefined, { 
-          headers,
           cache: 'no-cache',  // Ensure fresh response
           credentials: 'include' // Include cookies
         }) as AuthResponse;
@@ -74,16 +61,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           console.log('Server auth successful, updating state:', response.user);
           setUser(response.user);
           
-          // Update localStorage with latest user data
-          localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(response.user));
+          // Update localStorage with latest user data using our auth utilities
+          if (token) {
+            storeAuthData(response.user, token);
+          } else if (response.token) {
+            storeAuthData(response.user, response.token);
+          }
           return; // Exit early if server auth works
         }
       } catch (serverAuthError) {
         console.log('Server auth failed:', serverAuthError);
         
         // If we have a token but server auth failed, and we have a stored user,
-        // we'll continue using the localStorage user from above
-        if (token && storedUser) {
+        // we'll continue using the stored user from above
+        if (token && storedUserObj) {
           console.log('Using existing localStorage auth with token');
         } else if (retryCount < MAX_RETRY_COUNT) {
           // Retry with exponential backoff
@@ -129,15 +120,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(response.user);
         console.log('Login successful, user set:', response.user);
         
-        // Store token and user in localStorage for production environment
+        // Store auth data using our improved utility
         if (response.token) {
-          localStorage.setItem('token', response.token);
-          console.log('Token stored in localStorage');
+          storeAuthData(response.user, response.token);
+          console.log('Auth data stored using unified system');
+        } else {
+          // Create a temporary token if none was provided
+          const tempToken = `temp-token-${Date.now()}`;
+          storeAuthData(response.user, tempToken);
+          console.log('Auth data stored with temporary token');
         }
-        
-        // Store the user object for fallback authentication
-        localStorage.setItem('currentUser', JSON.stringify(response.user));
-        console.log('User object stored in localStorage');
         
         // Force refresh token header for subsequent requests
         window.dispatchEvent(new Event('auth:login'));
@@ -161,18 +153,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       await apiRequest('POST', '/api/auth/logout');
       
-      // Clear all auth state
+      // Clear all auth state using our unified utility
       setUser(null);
-      localStorage.removeItem('token');
-      localStorage.removeItem('currentUser');
+      clearAuthData();
       console.log('User logged out, all auth data cleared');
     } catch (err) {
       console.error('Logout error:', err);
       
       // Even if server logout fails, clear local state
       setUser(null);
-      localStorage.removeItem('token');
-      localStorage.removeItem('currentUser');
+      clearAuthData();
     } finally {
       setIsLoading(false);
     }
