@@ -94,6 +94,22 @@ const translationData: TranslationDict = {
     en: 'A collection of my work and accomplishments',
     nl: 'Een verzameling van mijn werk en prestaties',
   },
+  'projects.pageDescription': {
+    en: 'Explore the full collection of applications and projects I\'ve built, showcasing my technical skills and creative problem-solving.',
+    nl: 'Ontdek de volledige collectie van applicaties en projecten die ik heb gemaakt, met een showcase van mijn technische vaardigheden en creatieve probleemoplossing.',
+  },
+  'projects.collaborationTitle': {
+    en: 'Interested in working together?',
+    nl: 'Interesse in samenwerking?',
+  },
+  'projects.collaborationText': {
+    en: 'I\'m always open to discussing new projects and opportunities. If you have a project in mind, let\'s talk about how we can bring it to life.',
+    nl: 'Ik sta altijd open voor het bespreken van nieuwe projecten en mogelijkheden. Als je een project in gedachten hebt, laten we dan praten over hoe we het tot leven kunnen brengen.',
+  },
+  'projects.getInTouch': {
+    en: 'Get in Touch',
+    nl: 'Neem Contact Op',
+  },
   'project.viewDetails': {
     en: 'View Details',
     nl: 'Bekijk Details',
@@ -315,6 +331,10 @@ const translationData: TranslationDict = {
   'ui.viewAll': {
     en: 'View All',
     nl: 'Bekijk Alles',
+  },
+  'ui.backToHome': {
+    en: 'Back to Home',
+    nl: 'Terug naar Home',
   },
   
   // Admin
