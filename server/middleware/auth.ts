@@ -30,20 +30,7 @@ export const generateToken = (user: { id: number; username: string; role: string
 };
 
 export const auth = async (req: AuthRequest, res: Response, next: NextFunction) => {
-  // DEVELOPMENT MODE: Auto-authenticate as admin for development purposes
-  // This is a safer approach that works in both development and production
-  const DEV_MODE = process.env.NODE_ENV !== 'production';
-  
-  if (DEV_MODE && process.env.REPLIT_ENVIRONMENT !== 'production') {
-    console.log('🔑 [Development Mode] Auto-authenticating as admin');
-    // Create a development admin user
-    req.user = {
-      id: 9999, // Development user ID
-      username: 'dev-admin',
-      role: 'admin'
-    };
-    return next();
-  }
+  // Production mode - no auto-authentication
 
   try {
     // Get token from various sources with fallbacks
