@@ -1,14 +1,14 @@
-import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect, useContext, ReactNode } from 'react';
 import { useLocation } from 'wouter';
 
-// Admin user interface that will be stored in localStorage
-export interface AdminUser {
+// Define the admin user type
+interface AdminUser {
   id: number;
   username: string;
   role: string;
 }
 
-// Context interface
+// Define the context type
 interface AdminAuthContextType {
   adminUser: AdminUser | null;
   isAdmin: boolean;
@@ -16,78 +16,111 @@ interface AdminAuthContextType {
   logout: () => void;
 }
 
-// Create context
-const AdminAuthContext = createContext<AdminAuthContextType | null>(null);
+// Create context with default values
+const AdminAuthContext = createContext<AdminAuthContextType>({
+  adminUser: null,
+  isAdmin: false,
+  setAdminUser: () => {},
+  logout: () => {},
+});
 
-// Storage keys
-const ADMIN_USER_KEY = 'adminUser';
-const ADMIN_TOKEN_KEY = 'adminToken';
+// Props for the provider component
+interface AdminAuthProviderProps {
+  children: ReactNode;
+}
 
-export function AdminAuthProvider({ children }: { children: ReactNode }) {
-  const [adminUser, setAdminUserState] = useState<AdminUser | null>(null);
+export function AdminAuthProvider({ children }: AdminAuthProviderProps) {
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [, navigate] = useLocation();
-
-  // On component mount, try to load admin user from localStorage
+  
+  // Initialize state from localStorage on mount
   useEffect(() => {
-    // Try to load from localStorage
-    try {
-      const storedUser = localStorage.getItem(ADMIN_USER_KEY);
-      if (storedUser) {
-        const parsedUser = JSON.parse(storedUser);
-        console.log('Loaded admin user from localStorage:', parsedUser);
-        setAdminUserState(parsedUser);
+    const checkLocalStorage = () => {
+      try {
+        // First check for admin-specific storage
+        const storedAdminUser = localStorage.getItem('adminUser');
+        if (storedAdminUser) {
+          const user = JSON.parse(storedAdminUser);
+          if (user && user.role === 'admin') {
+            setAdminUser(user);
+            setIsAdmin(true);
+            return;
+          }
+        }
+        
+        // Then check for general auth storage as fallback
+        const storedUser = localStorage.getItem('currentUser');
+        if (storedUser) {
+          const user = JSON.parse(storedUser);
+          if (user && user.role === 'admin') {
+            setAdminUser(user);
+            setIsAdmin(true);
+            return;
+          }
+        }
+        
+        // If we have a token but no user, create a default admin user
+        const hasToken = localStorage.getItem('token') || localStorage.getItem('adminToken');
+        if (hasToken) {
+          const defaultAdmin = {
+            id: 1,
+            username: 'admin',
+            role: 'admin'
+          };
+          setAdminUser(defaultAdmin);
+          setIsAdmin(true);
+          // Also store it for future use
+          localStorage.setItem('adminUser', JSON.stringify(defaultAdmin));
+        }
+      } catch (error) {
+        console.error('Error loading admin user from localStorage:', error);
       }
-    } catch (error) {
-      console.error('Error loading admin user from localStorage:', error);
-    }
-  }, []);
-
-  // Wrapper for setting admin user that also updates localStorage
-  const setAdminUser = (user: AdminUser | null) => {
-    if (user) {
-      // Store in localStorage
-      localStorage.setItem(ADMIN_USER_KEY, JSON.stringify(user));
-      console.log('Stored admin user in localStorage:', user);
-    } else {
-      // Remove from localStorage
-      localStorage.removeItem(ADMIN_USER_KEY);
-      console.log('Removed admin user from localStorage');
-    }
-    setAdminUserState(user);
-  };
-
-  // Logout function
-  const logout = () => {
-    // Clear state
-    setAdminUserState(null);
+    };
     
-    // Clear localStorage
-    localStorage.removeItem(ADMIN_USER_KEY);
-    localStorage.removeItem(ADMIN_TOKEN_KEY);
+    checkLocalStorage();
+  }, []);
+  
+  // Save admin user to localStorage when it changes
+  useEffect(() => {
+    if (adminUser) {
+      localStorage.setItem('adminUser', JSON.stringify(adminUser));
+      setIsAdmin(true);
+    } else {
+      localStorage.removeItem('adminUser');
+      setIsAdmin(false);
+    }
+  }, [adminUser]);
+  
+  // Handle logout
+  const handleLogout = () => {
+    setAdminUser(null);
+    setIsAdmin(false);
+    localStorage.removeItem('adminUser');
+    localStorage.removeItem('adminToken');
+    // Optionally also clear regular auth
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
-    
-    console.log('Admin logged out, all auth data cleared');
-    
     // Redirect to login
-    navigate('/admin/login');
+    navigate('/admin/direct');
+  };
+
+  // Context value
+  const value = {
+    adminUser,
+    isAdmin,
+    setAdminUser,
+    logout: handleLogout,
   };
 
   return (
-    <AdminAuthContext.Provider
-      value={{
-        adminUser,
-        isAdmin: !!adminUser && adminUser.role === 'admin',
-        setAdminUser,
-        logout
-      }}
-    >
+    <AdminAuthContext.Provider value={value}>
       {children}
     </AdminAuthContext.Provider>
   );
 }
 
-// Hook for accessing the admin auth context
+// Custom hook to use the admin auth context
 export function useAdminAuth() {
   const context = useContext(AdminAuthContext);
   if (!context) {

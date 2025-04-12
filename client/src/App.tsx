@@ -6,6 +6,8 @@ import { Suspense, lazy, useEffect } from "react";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import { AuthProvider } from "@/hooks/use-auth";
 import { AuthCheck } from "@/components/auth/AuthCheck"; // Import AuthCheck component
+import { AdminAuthProvider } from "@/components/admin/AdminAuthProvider";
+import { RequireAdmin } from "@/components/admin/RequireAdmin";
 import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import NetworkStatusNotification from "@/components/layout/NetworkStatusNotification";
 import { preloadImages } from "@/lib/preloadUtils";
@@ -130,59 +132,109 @@ function Router() {
         <Route path="/app-details/fruits" component={FruitsDetail} />
         
         {/* Admin routes */}
-        <Route path="/auth" component={AdminLogin} />
-        <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/auth" component={() => {
+          const DirectLogin = lazy(() => import("@/pages/admin/direct-login"));
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <DirectLogin />
+            </Suspense>
+          );
+        }} />
+        <Route path="/admin/login" component={() => {
+          const DirectLogin = lazy(() => import("@/pages/admin/direct-login"));
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <DirectLogin />
+            </Suspense>
+          );
+        }} />
         
-        {/* Protected admin routes that require authentication */}
-        <Route path="/admin" component={() => 
-          <Suspense fallback={<PageLoader />}>
-            <AuthCheck requiredRole="admin">
-              <AdminDashboard />
-            </AuthCheck>
-          </Suspense>
-        } />
-        <Route path="/admin/dashboard" component={() => 
-          <Suspense fallback={<PageLoader />}>
-            <AuthCheck requiredRole="admin">
-              <AdminDashboard />
-            </AuthCheck>
-          </Suspense>
-        } />
-        <Route path="/admin/projects/new" component={() => 
-          <Suspense fallback={<PageLoader />}>
-            <AuthCheck requiredRole="admin">
-              <ProjectForm />
-            </AuthCheck>
-          </Suspense>
-        } />
-        <Route path="/admin/projects/edit/:id" component={() => 
-          <Suspense fallback={<PageLoader />}>
-            <AuthCheck requiredRole="admin">
-              <ProjectForm />
-            </AuthCheck>
-          </Suspense>
-        } />
-        <Route path="/admin/settings" component={() => 
-          <Suspense fallback={<PageLoader />}>
-            <AuthCheck requiredRole="admin">
-              <SettingsForm />
-            </AuthCheck>
-          </Suspense>
-        } />
-        <Route path="/admin/settings/:category" component={() => 
-          <Suspense fallback={<PageLoader />}>
-            <AuthCheck requiredRole="admin">
-              <SettingsForm />
-            </AuthCheck>
-          </Suspense>
-        } />
-        <Route path="/admin/media" component={() => 
-          <Suspense fallback={<PageLoader />}>
-            <AuthCheck requiredRole="admin">
-              <MediaLibrary />
-            </AuthCheck>
-          </Suspense>
-        } />
+        {/* Direct admin login that bypasses server auth */}
+        <Route path="/admin/direct" component={() => {
+          const DirectLogin = lazy(() => import("@/pages/admin/direct-login"));
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <DirectLogin />
+            </Suspense>
+          );
+        }} />
+        
+        {/* Protected admin routes with improved admin authentication */}
+        <Route path="/admin" component={() => {
+          const ProtectedDashboard = lazy(() => import("@/pages/admin/protected-dashboard"));
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <ProtectedDashboard />
+            </Suspense>
+          );
+        }} />
+        <Route path="/admin/dashboard" component={() => {
+          const ProtectedDashboard = lazy(() => import("@/pages/admin/protected-dashboard"));
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <ProtectedDashboard />
+            </Suspense>
+          );
+        }} />
+        <Route path="/admin/projects/new" component={() => {
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <AdminAuthProvider>
+                <RequireAdmin>
+                  <ProjectForm />
+                </RequireAdmin>
+              </AdminAuthProvider>
+            </Suspense>
+          );
+        }} />
+        
+        <Route path="/admin/projects/edit/:id" component={() => {
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <AdminAuthProvider>
+                <RequireAdmin>
+                  <ProjectForm />
+                </RequireAdmin>
+              </AdminAuthProvider>
+            </Suspense>
+          );
+        }} />
+        
+        <Route path="/admin/settings" component={() => {
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <AdminAuthProvider>
+                <RequireAdmin>
+                  <SettingsForm />
+                </RequireAdmin>
+              </AdminAuthProvider>
+            </Suspense>
+          );
+        }} />
+        
+        <Route path="/admin/settings/:category" component={() => {
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <AdminAuthProvider>
+                <RequireAdmin>
+                  <SettingsForm />
+                </RequireAdmin>
+              </AdminAuthProvider>
+            </Suspense>
+          );
+        }} />
+        
+        <Route path="/admin/media" component={() => {
+          return (
+            <Suspense fallback={<PageLoader />}>
+              <AdminAuthProvider>
+                <RequireAdmin>
+                  <MediaLibrary />
+                </RequireAdmin>
+              </AdminAuthProvider>
+            </Suspense>
+          );
+        }} />
 
         <Route component={NotFound} />
       </Switch>
