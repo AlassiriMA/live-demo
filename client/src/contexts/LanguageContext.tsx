@@ -60,6 +60,10 @@ export const translations: TranslationDict = {
     en: 'My Skills',
     nl: 'Mijn Vaardigheden',
   },
+  'home.skills.subtitle': {
+    en: 'The modern tools and frameworks I use to build robust, scalable, and performant applications.',
+    nl: 'De moderne tools en frameworks die ik gebruik om robuuste, schaalbare en performante applicaties te bouwen.',
+  },
   'home.contact.title': {
     en: 'Get In Touch',
     nl: 'Neem Contact Op',

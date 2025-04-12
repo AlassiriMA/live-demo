@@ -25,6 +25,8 @@ import { CustomerServiceBot } from "@/components/chat/CustomerServiceBot";
 import ImageWithFallback from "@/components/ui/ImageWithFallback";
 
 export default function Home() {
+  const { t } = useLanguage();
+  
   // Add smooth scrolling for anchor links
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
@@ -206,7 +208,7 @@ export default function Home() {
                   href="#about" 
                   className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-primary font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl border border-gray-200 transition-all duration-300 transform hover:-translate-y-1"
                 >
-                  Learn More
+                  {t('ui.readMore')}
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-70" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                   </svg>
@@ -374,7 +376,7 @@ export default function Home() {
       <section id="apps" className="py-20">
         <div className="container mx-auto px-4">
           <SectionHeading 
-            title="Explore My Projects" 
+            title={t('home.projects.title')} 
             subtitle="Each project is a story — showcasing the work I've done and what makes it unique."
             centered
           />
@@ -393,9 +395,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl font-bold mb-3">My Technology Stack</h2>
+            <h2 className="text-3xl font-bold mb-3">{t('home.skills.title')}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              The modern tools and frameworks I use to build robust, scalable, and performant applications.
+              {t('home.skills.subtitle')}
             </p>
           </motion.div>
           
