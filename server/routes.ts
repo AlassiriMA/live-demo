@@ -243,8 +243,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/marketing/leads', async (req, res) => {
     try {
       const leadData = insertLeadSchema.parse(req.body);
+      
+      // Save lead to database
       const lead = await storage.createLead(leadData);
-      res.status(201).json(lead);
+      
+      // Send email notification
+      try {
+        // Import email service dynamically to avoid circular dependencies
+        const { sendEmail } = await import('./services/email');
+        
+        // Send email notification in the background (don't await)
+        sendEmail({
+          name: leadData.name,
+          email: leadData.email,
+          subject: leadData.source ? `New Lead from ${leadData.source}` : 'New Website Lead',
+          message: leadData.message || 'No message provided',
+          phone: leadData.phone,
+          source: leadData.source
+        }).catch(error => {
+          // Log email error but don't fail the request
+          console.error('Error sending notification email:', error);
+        });
+        
+        console.log('Email notification triggered for new lead');
+      } catch (emailError) {
+        // Log email errors but don't fail the request
+        console.error('Failed to send email notification:', emailError);
+      }
+      
+      // Return success response
+      res.status(201).json({
+        success: true,
+        lead,
+        message: 'Lead saved successfully'
+      });
     } catch (error) {
       handleZodError(error, res);
     }

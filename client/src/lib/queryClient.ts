@@ -35,13 +35,24 @@ export async function apiRequest<T = any>(
 ): Promise<T> {
   const isGet = method.toUpperCase() === 'GET';
   
+  // Get token from localStorage for auth header
+  const token = localStorage.getItem('token');
+  
+  // Prepare headers with auth token if available
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    ...(options?.headers || {}),
+  };
+  
+  // Add Authorization header if token exists
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  
   // Configure request with sensible defaults
   const requestOptions: RequestInit = {
     method: method.toUpperCase(),
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options?.headers || {}),
-    },
+    headers,
     credentials: "include",
     ...options,
   };
