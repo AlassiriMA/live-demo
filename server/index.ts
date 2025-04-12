@@ -21,11 +21,17 @@ if (process.env.NODE_ENV === 'production') {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
         styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-        imgSrc: ["'self'", 'data:', 'blob:'],
+        imgSrc: ["'self'", 'data:', 'blob:', 'https://*.replit.app', 'https://*.alassiri.nl'],
         fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-        connectSrc: ["'self'", 'https://api.etherscan.io']
+        connectSrc: ["'self'", 'https://api.etherscan.io', 'https://api.openai.com', 'https://app.improvmx.com'],
+        frameSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
       }
-    }
+    },
+    crossOriginEmbedderPolicy: false, // Allow loading resources from different origins
+    crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
   }));
   
   // Enable compression
