@@ -41,13 +41,24 @@ export default function AdminLogin() {
   // Redirect to dashboard if already logged in
   useEffect(() => {
     if (user) {
-      console.log('User authenticated:', user);
+      console.log('User authenticated in useEffect:', user);
       setAdminMessage('Login successful! Redirecting to admin dashboard...');
       
-      // Short delay before redirect to show success message
+      // Add a longer delay before redirect to ensure state is propagated
+      // This is critical for production environment
       setTimeout(() => {
+        console.log('Navigating to dashboard with user:', user);
+        
+        // First ensure localStorage has the user info as backup
+        localStorage.setItem('currentUser', JSON.stringify({
+          id: user.id,
+          username: user.username,
+          role: user.role
+        }));
+        
+        // Then navigate to admin dashboard
         navigate('/admin');
-      }, 1000);
+      }, 1500);
     }
   }, [user, navigate]);
 
@@ -62,9 +73,10 @@ export default function AdminLogin() {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       await login(data.username, data.password);
-      // After successful login, manually navigate to admin dashboard
-      // This ensures it works in both development and production
-      navigate('/admin');
+      console.log('Login submission complete, user state:', user);
+      
+      // Set success message but don't navigate yet - the useEffect will handle it
+      setAdminMessage('Login successful! Preparing admin dashboard...');
     } catch (error) {
       console.error('Login error:', error);
       // Error handling is done in the login function

@@ -43,10 +43,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           headers['Authorization'] = `Bearer ${token}`;
         }
         
-        const response = await apiRequest('GET', '/api/auth/me', undefined, headers) as AuthResponse;
+        // Try server authentication first
+        try {
+          const response = await apiRequest('GET', '/api/auth/me', undefined, headers) as AuthResponse;
+          
+          if (response.success && response.user) {
+            console.log('Server auth successful:', response.user);
+            setUser(response.user);
+            return; // Exit early if server auth works
+          }
+        } catch (serverAuthError) {
+          console.log('Server auth failed, trying localStorage fallback');
+        }
         
-        if (response.success && response.user) {
-          setUser(response.user);
+        // Fallback to localStorage user if server auth fails
+        // This is critical for production where cookies may not work as expected
+        const storedUser = localStorage.getItem('currentUser');
+        if (storedUser) {
+          const parsedUser = JSON.parse(storedUser);
+          console.log('Using localStorage user fallback:', parsedUser);
+          setUser(parsedUser);
+        } else {
+          console.log('No stored user found in localStorage');
         }
       } catch (error) {
         // User is not logged in, no need to show error
@@ -67,11 +85,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const response = await apiRequest('POST', '/api/auth/login', { username, password }) as AuthResponse;
 
       if (response.success && response.user) {
+        // Ensure user is set in state
         setUser(response.user);
-        // Store token in localStorage for non-cookie fallback (optional)
+        console.log('Login successful, user set:', response.user);
+        
+        // Store token in localStorage for non-cookie fallback
         if (response.token) {
           localStorage.setItem('token', response.token);
+          console.log('Token stored in localStorage');
         }
+        
+        // Force a slight delay to ensure state update before any navigation
+        await new Promise(resolve => setTimeout(resolve, 300));
       } else {
         setError(response.message || 'Failed to login');
       }
@@ -89,10 +114,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       await apiRequest('POST', '/api/auth/logout');
       
+      // Clear all auth state
       setUser(null);
       localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+      console.log('User logged out, all auth data cleared');
     } catch (err) {
       console.error('Logout error:', err);
+      
+      // Even if server logout fails, clear local state
+      setUser(null);
+      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
     } finally {
       setIsLoading(false);
     }
