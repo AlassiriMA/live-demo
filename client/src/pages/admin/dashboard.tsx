@@ -67,7 +67,7 @@ const Dashboard = () => {
               <Link href="/admin/projects/new">New Project</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="/admin/media/upload">Upload Media</Link>
+              <Link href="/admin/media">Upload Media</Link>
             </Button>
           </div>
         </div>
@@ -170,14 +170,14 @@ const Dashboard = () => {
                 </Button>
                 
                 <Button asChild variant="outline" className="h-auto py-4 px-6 flex flex-col items-center justify-center">
-                  <Link href="/admin/media/upload">
+                  <Link href="/admin/media">
                     <Image className="h-6 w-6 mb-2" />
                     <span>Upload Media</span>
                   </Link>
                 </Button>
                 
                 <Button asChild variant="outline" className="h-auto py-4 px-6 flex flex-col items-center justify-center">
-                  <Link href="/admin/settings/edit">
+                  <Link href="/admin/settings">
                     <Settings className="h-6 w-6 mb-2" />
                     <span>Edit Site Settings</span>
                   </Link>
@@ -260,7 +260,7 @@ const Dashboard = () => {
             
             <div className="flex justify-end mb-4">
               <Button asChild>
-                <Link href="/admin/media/upload">Upload Media</Link>
+                <Link href="/admin/media">Upload Media</Link>
               </Button>
             </div>
             
@@ -293,7 +293,7 @@ const Dashboard = () => {
                 <h3 className="text-lg font-medium text-gray-900">No media items</h3>
                 <p className="mt-1 text-sm text-gray-500">Upload images and other media files</p>
                 <Button asChild className="mt-4">
-                  <Link href="/admin/media/upload">Upload Media</Link>
+                  <Link href="/admin/media">Upload Media</Link>
                 </Button>
               </div>
             )}
