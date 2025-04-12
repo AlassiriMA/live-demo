@@ -132,11 +132,13 @@ router.post('/upload', auth, adminOnly, upload.single('file'), async (req: AuthR
     const relativePath = `/uploads/${req.file.filename}`;
     
     // Create media item in database
+    const fileSize = req.file.size || 0; // Ensure size is never null
+    
     const mediaItem = await dbStorage.createMediaItem({
       filename: req.file.originalname,
       fileType: req.file.mimetype,
       url: relativePath,
-      size: req.file.size,
+      fileSize: fileSize,
       uploadedBy: req.user!.id
     });
 
@@ -149,7 +151,7 @@ router.post('/upload', auth, adminOnly, upload.single('file'), async (req: AuthR
       details: { 
         filename: mediaItem.filename, 
         fileType: mediaItem.fileType,
-        size: mediaItem.size
+        fileSize: mediaItem.fileSize
       }
     });
 
