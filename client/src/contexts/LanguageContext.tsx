@@ -138,21 +138,61 @@ const translationData: TranslationDict = {
     en: 'Name',
     nl: 'Naam',
   },
+  'contact.namePlaceholder': {
+    en: 'Your name',
+    nl: 'Uw naam',
+  },
   'contact.email': {
     en: 'Email',
     nl: 'E-mail',
+  },
+  'contact.emailPlaceholder': {
+    en: 'Your email',
+    nl: 'Uw e-mailadres',
+  },
+  'contact.subject': {
+    en: 'Subject',
+    nl: 'Onderwerp',
+  },
+  'contact.subjectPlaceholder': {
+    en: 'Your subject',
+    nl: 'Uw onderwerp',
   },
   'contact.message': {
     en: 'Message',
     nl: 'Bericht',
   },
+  'contact.messagePlaceholder': {
+    en: 'Your message',
+    nl: 'Uw bericht',
+  },
   'contact.submit': {
     en: 'Send Message',
     nl: 'Verstuur Bericht',
   },
-  'contact.success': {
-    en: 'Message sent successfully!',
-    nl: 'Bericht succesvol verzonden!',
+  'contact.sending': {
+    en: 'Sending...',
+    nl: 'Verzenden...',
+  },
+  'contact.successTitle': {
+    en: 'Message Sent!',
+    nl: 'Bericht Verzonden!',
+  },
+  'contact.successMessage': {
+    en: 'Thank you for your message. We\'ll get back to you soon.',
+    nl: 'Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.',
+  },
+  'contact.sendAnother': {
+    en: 'Send Another Message',
+    nl: 'Stuur Nog Een Bericht',
+  },
+  'contact.errorTitle': {
+    en: 'Error',
+    nl: 'Fout',
+  },
+  'contact.errorMessage': {
+    en: 'Something went wrong. Please try again.',
+    nl: 'Er is iets misgegaan. Probeer het opnieuw.',
   },
   
   // Footer
