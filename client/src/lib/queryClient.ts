@@ -39,9 +39,9 @@ export async function apiRequest<T = any>(
   const token = localStorage.getItem('token');
   
   // Prepare headers with auth token if available
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...(options?.headers || {}),
+    ...(options?.headers as Record<string, string> || {}),
   };
   
   // Add Authorization header if token exists
@@ -128,12 +128,12 @@ export const getQueryFn: <T>(options: {
     const url = queryKey[0] as string;
     
     // Use the enhanced apiRequest with GET method
-    return await apiRequest<T>(
+    return await apiRequest(
       'GET', 
       url, 
       undefined, 
       { signal: customSignal }
-    );
+    ) as any;
   };
 
 /**

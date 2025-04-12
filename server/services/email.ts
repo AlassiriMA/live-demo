@@ -15,8 +15,8 @@ export interface EmailData {
   email: string;
   subject: string;
   message: string;
-  phone?: string;
-  source?: string;
+  phone?: string | null;
+  source?: string | null;
 }
 
 /**

@@ -258,8 +258,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           email: leadData.email,
           subject: leadData.source ? `New Lead from ${leadData.source}` : 'New Website Lead',
           message: leadData.message || 'No message provided',
-          phone: leadData.phone,
-          source: leadData.source
+          phone: leadData.phone || undefined,
+          source: leadData.source || undefined
         }).catch(error => {
           // Log email error but don't fail the request
           console.error('Error sending notification email:', error);
