@@ -49,6 +49,7 @@ export function AboutTitle() {
 
 export function AboutContent() {
   const { settings, isLoading } = useSiteSettings("homepage");
+  const { t, language } = useLanguage();
   
   if (isLoading) {
     return (
@@ -60,7 +61,13 @@ export function AboutContent() {
     );
   }
   
-  return <>{getSetting<string>(settings, "about.content", "For me, coding is like solving a giant puzzle — and I love every piece of it. It's about turning ideas into reality and using creativity to make things work. Each of these projects is a reflection of my drive to learn, explore, and create solutions.")}</>;
+  const defaultText = {
+    en: "For me, coding is like solving a giant puzzle — and I love every piece of it. It's about turning ideas into reality and using creativity to make things work. Each of these projects is a reflection of my drive to learn, explore, and create solutions.",
+    nl: "Voor mij is programmeren als het oplossen van een gigantische puzzel — en ik hou van elk stukje ervan. Het gaat erom ideeën om te zetten in realiteit en creativiteit te gebruiken om dingen te laten werken. Elk van deze projecten is een weerspiegeling van mijn drive om te leren, te ontdekken en oplossingen te creëren."
+  };
+  
+  // Try to get translation first, then settings, then default
+  return <>{t('home.about.content') || getSetting<string>(settings, "about.content", defaultText[language] || defaultText.en)}</>;
 }
 
 export function SiteTitle() {

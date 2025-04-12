@@ -60,6 +60,10 @@ const translationData: TranslationDict = {
     en: 'About Me',
     nl: 'Over Mij',
   },
+  'home.about.content': {
+    en: "For me, coding is like solving a giant puzzle — and I love every piece of it. It's about turning ideas into reality and using creativity to make things work. Each of these projects is a reflection of my drive to learn, explore, and create solutions.",
+    nl: "Voor mij is programmeren als het oplossen van een gigantische puzzel — en ik hou van elk stukje ervan. Het gaat erom ideeën om te zetten in realiteit en creativiteit te gebruiken om dingen te laten werken. Elk van deze projecten is een weerspiegeling van mijn drive om te leren, te ontdekken en oplossingen te creëren."
+  },
   'home.projects.title': {
     en: 'Featured Projects',
     nl: 'Uitgelichte Projecten',
@@ -97,6 +101,10 @@ const translationData: TranslationDict = {
   'project.viewDemo': {
     en: 'View Demo',
     nl: 'Bekijk Demo',
+  },
+  'project.noDescription': {
+    en: 'No description available',
+    nl: 'Geen beschrijving beschikbaar',
   },
   
   // Skills

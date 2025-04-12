@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { AnimatedSkeleton } from "@/components/ui/animated-skeleton";
 import { apps } from "@/lib/app-data";
 import { getProjectImage } from "@/lib/project-images";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function ProjectsSection() {
   // Define simplified Project type for display purposes only
@@ -112,6 +113,9 @@ export function ProjectsSection() {
 }
 
 function ProjectCard({ project, index }: { project: any, index: number }) {
+  // Get language translation functions
+  const { t } = useLanguage();
+  
   // Get matching app data if available
   const matchingApp = apps.find(app => app.id === project.slug);
   
@@ -213,7 +217,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                   className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/10 opacity-70 group-hover:opacity-90 transition-all duration-300 flex items-end p-4"
                 >
                   <span className="text-white font-medium px-4 py-2 rounded-full text-sm bg-black/50 backdrop-blur-md opacity-70 group-hover:opacity-100 transition-all duration-500 transform scale-95 group-hover:scale-100">
-                    View Project Details
+                    {t('project.viewDetails') || "View Project Details"}
                   </span>
                 </div>
               </>
@@ -230,7 +234,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                     </svg>
                   </div>
-                  <div className="font-medium text-white/90">View Details</div>
+                  <div className="font-medium text-white/90">{t('project.viewDetails') || "View Details"}</div>
                 </div>
               </div>
             )}
@@ -265,7 +269,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                 `${description.substring(0, 110)}...` : 
                 description
               ) : 
-              "No description available"
+              (t('project.noDescription') || "No description available")
             }
           </p>
           
@@ -279,7 +283,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
               href={detailRoute} 
               className="inline-flex items-center text-sm font-medium px-4 py-2 rounded-md bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100 hover:border-gray-300 hover:shadow-sm transition-all duration-200"
             >
-              Details
+              {t('project.viewDetails') || "Details"}
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 ml-1.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -295,7 +299,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                 boxShadow: `0 4px 10px -3px ${primaryColor}40`
               }}
             >
-              Live Demo
+              {t('project.viewDemo') || "Live Demo"}
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
