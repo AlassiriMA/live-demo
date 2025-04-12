@@ -1,5 +1,6 @@
 import { AdminAuthProvider } from '@/components/admin/AdminAuthProvider';
 import { RequireAdmin } from '@/components/admin/RequireAdmin';
+import { AdminNavigation } from '@/components/admin/AdminNavigation';
 import { Button } from '@/components/ui/button';
 import { useLocation } from 'wouter';
 import { useAdminAuth } from '@/components/admin/AdminAuthProvider';
@@ -317,7 +318,17 @@ export default function ProtectedDashboard() {
   return (
     <AdminAuthProvider>
       <RequireAdmin>
-        <DashboardContent />
+        <div className="flex min-h-screen bg-background">
+          {/* Admin Navigation (Sidebar) */}
+          <div className="flex-none">
+            <AdminNavigation />
+          </div>
+          
+          {/* Main Content with left margin for desktop sidebar */}
+          <div className="flex-1 lg:ml-72">
+            <DashboardContent />
+          </div>
+        </div>
       </RequireAdmin>
     </AdminAuthProvider>
   );
