@@ -16,32 +16,35 @@ export function HeroTitle() {
 
 export function HeroSubtitle() {
   const { settings, isLoading } = useSiteSettings("homepage");
+  const { t } = useLanguage();
   
   if (isLoading) {
     return <Skeleton className="h-6 w-full" />;
   }
   
-  return <>{getSetting<string>(settings, "hero.subtitle", "Explore a collection of innovative web applications showcasing my skills across different domains")}</>;
+  return <>{t('home.hero.subtitle') || getSetting<string>(settings, "hero.subtitle", "Explore a collection of innovative web applications showcasing my skills across different domains")}</>;
 }
 
 export function HeroCtaText() {
   const { settings, isLoading } = useSiteSettings("homepage");
+  const { t } = useLanguage();
   
   if (isLoading) {
     return <Skeleton className="h-5 w-24" />;
   }
   
-  return <>{getSetting<string>(settings, "hero.cta", "Explore Projects")}</>;
+  return <>{t('home.hero.cta') || getSetting<string>(settings, "hero.cta", "Explore Projects")}</>;
 }
 
 export function AboutTitle() {
   const { settings, isLoading } = useSiteSettings("homepage");
+  const { t } = useLanguage();
   
   if (isLoading) {
     return <Skeleton className="h-8 w-32" />;
   }
   
-  return <>{getSetting<string>(settings, "about.title", "About Me")}</>;
+  return <>{t('home.about.title') || getSetting<string>(settings, "about.title", "About Me")}</>;
 }
 
 export function AboutContent() {

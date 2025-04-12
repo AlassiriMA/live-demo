@@ -18,6 +18,14 @@ const translationData: TranslationDict = {
     en: 'Home',
     nl: 'Home',
   },
+  'nav.apps': {
+    en: 'Apps',
+    nl: 'Apps',
+  },
+  'nav.marketing': {
+    en: 'Marketing',
+    nl: 'Marketing',
+  },
   'nav.projects': {
     en: 'Projects',
     nl: 'Projecten',
@@ -25,6 +33,10 @@ const translationData: TranslationDict = {
   'nav.skills': {
     en: 'Skills',
     nl: 'Vaardigheden',
+  },
+  'nav.about': {
+    en: 'About',
+    nl: 'Over',
   },
   'nav.contact': {
     en: 'Contact',

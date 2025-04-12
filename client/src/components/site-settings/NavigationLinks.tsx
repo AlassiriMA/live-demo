@@ -45,11 +45,11 @@ export function NavigationLinks({ isAppPage = false, isMobile = false, onItemCli
   const setDefaultLinks = () => {
     setNavLinks([
       { text: t('nav.home'), url: "/" },
-      { text: "Apps", url: "#apps", isAnchor: true },
-      { text: "Marketing", url: "/marketing" },
+      { text: t('nav.apps') || "Apps", url: "#apps", isAnchor: true },
+      { text: t('nav.marketing') || "Marketing", url: "/marketing" },
       { text: t('nav.projects'), url: "/projects" },
       { text: t('nav.skills'), url: "/skills" },
-      { text: "About", url: "#about", isAnchor: true },
+      { text: t('nav.about') || "About", url: "#about", isAnchor: true },
       { text: t('nav.contact'), url: "#contact", isAnchor: true }
     ]);
   };
