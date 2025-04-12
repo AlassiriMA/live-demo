@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2 } from 'lucide-react';
 
 // Validation schema
@@ -36,11 +36,18 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 export default function AdminLogin() {
   const { user, login, isLoading, error, clearError } = useAuth();
   const [, navigate] = useLocation();
+  const [adminMessage, setAdminMessage] = useState<string | null>(null);
   
   // Redirect to dashboard if already logged in
   useEffect(() => {
     if (user) {
-      navigate('/admin');
+      console.log('User authenticated:', user);
+      setAdminMessage('Login successful! Redirecting to admin dashboard...');
+      
+      // Short delay before redirect to show success message
+      setTimeout(() => {
+        navigate('/admin');
+      }, 1000);
     }
   }, [user, navigate]);
 
@@ -77,6 +84,13 @@ export default function AdminLogin() {
           {error && (
             <Alert variant="destructive" className="mb-4">
               <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+          
+          {adminMessage && (
+            <Alert className="mb-4 bg-green-50 border-green-200 text-green-800">
+              <AlertTitle className="text-green-800">Success</AlertTitle>
+              <AlertDescription>{adminMessage}</AlertDescription>
             </Alert>
           )}
 
