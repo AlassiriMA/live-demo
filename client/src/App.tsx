@@ -11,6 +11,7 @@ import { RequireAdmin } from "@/components/admin/RequireAdmin";
 import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import NetworkStatusNotification from "@/components/layout/NetworkStatusNotification";
 import { preloadImages } from "@/lib/preloadUtils";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 // Only import the homepage and essential components directly
 import NotFound from "@/pages/not-found";
@@ -267,21 +268,23 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        {/* Preload critical resources */}
-        <ResourcePreloader
-          images={criticalResources.images}
-          routes={criticalResources.routes}
-          apiEndpoints={criticalResources.apiEndpoints}
-          origins={criticalResources.origins}
-        />
-        
-        {/* Core app components */}
-        <ScrollToTop />
-        <Router />
-        <Toaster />
-        <NetworkStatusNotification />
-      </AuthProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          {/* Preload critical resources */}
+          <ResourcePreloader
+            images={criticalResources.images}
+            routes={criticalResources.routes}
+            apiEndpoints={criticalResources.apiEndpoints}
+            origins={criticalResources.origins}
+          />
+          
+          {/* Core app components */}
+          <ScrollToTop />
+          <Router />
+          <Toaster />
+          <NetworkStatusNotification />
+        </AuthProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
