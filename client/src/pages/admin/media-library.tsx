@@ -70,37 +70,47 @@ const MediaLibrary = () => {
     },
   });
   
-  // Upload media mutation (simulated for now)
+  // Upload media mutation with FormData for real file uploads
   const uploadMutation = useMutation({
     mutationFn: async ({ file, data }: { file: File; data: any }) => {
-      // In a real implementation, you would use FormData and multipart/form-data
-      // This is a simplified version that just simulates success
-      // but doesn't actually upload the file
+      // Create FormData for multipart/form-data upload
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('data', JSON.stringify(data));
       
-      // Simulate progress
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += 10;
-        setUploadProgress(progress);
-        if (progress >= 100) clearInterval(interval);
-      }, 300);
+      // Track upload progress
+      const xhr = new XMLHttpRequest();
       
-      // Simulate network request
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
-      // Return a mock response
-      return {
-        success: true,
-        mediaItem: {
-          id: Math.floor(Math.random() * 1000),
-          filename: file.name,
-          fileType: file.type,
-          url: previewUrl || '',
-          size: file.size,
-          uploadedBy: 1,
-          createdAt: new Date().toISOString()
+      // Set up progress tracking
+      xhr.upload.addEventListener('progress', (event) => {
+        if (event.lengthComputable) {
+          const progress = Math.round((event.loaded / event.total) * 100);
+          setUploadProgress(progress);
         }
-      };
+      });
+      
+      // Create a promise to wrap the XHR request
+      const uploadPromise = new Promise<any>((resolve, reject) => {
+        xhr.open('POST', '/api/cms/media/upload');
+        
+        xhr.onload = () => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            reject(new Error(`Upload failed with status ${xhr.status}: ${xhr.statusText}`));
+          }
+        };
+        
+        xhr.onerror = () => {
+          reject(new Error('Network error occurred during upload'));
+        };
+        
+        // Send the form data
+        xhr.send(formData);
+      });
+      
+      // Return upload promise result
+      return uploadPromise;
     },
     onSuccess: (data) => {
       queryClient.setQueryData(['/api/cms/media'], (oldData: any) => {
