@@ -1,75 +1,55 @@
 /**
  * Fallback CSS loader for production environment
- * This script checks if the CSS styles are properly loaded,
- * and if not, attempts to reload them with different paths
+ * This script checks if stylesheets are properly loaded and adds them if necessary
  */
 (function() {
-  function checkStylesheetLoaded() {
-    // Check if we have any elements with our special classes that should be styled
-    const neuBg = document.querySelector('.neu-bg');
-    const glassCard = document.querySelector('.glass-card');
-    const appCard = document.querySelector('.app-card');
-    
-    // Get computed styles
-    if (neuBg) {
-      const style = window.getComputedStyle(neuBg);
-      // If styling hasn't been applied, background color would be different
-      if (style.backgroundColor !== 'rgb(240, 240, 243)') {
-        console.warn('Stylesheet not loaded properly, attempting to reload...');
-        loadFallbackStyles();
-      }
-    } else if (glassCard) {
-      const style = window.getComputedStyle(glassCard);
-      // If backdrop-filter is not applied, it would be "none"
-      if (style.backdropFilter === 'none') {
-        console.warn('Stylesheet not loaded properly, attempting to reload...');
-        loadFallbackStyles();
-      }
-    } else if (appCard) {
-      const style = window.getComputedStyle(appCard);
-      // Check transition property
-      if (!style.transition.includes('all')) {
-        console.warn('Stylesheet not loaded properly, attempting to reload...');
-        loadFallbackStyles();
-      }
-    }
+  function createStylesheetLink(href) {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+    console.log('Fallback: Added stylesheet: ' + href);
   }
 
-  function loadFallbackStyles() {
-    // Attempt to load styles from different paths
-    const styleElement = document.createElement('link');
-    styleElement.rel = 'stylesheet';
-    styleElement.href = '/styles/production.css?v=' + Date.now(); // Add cache buster
-    document.head.appendChild(styleElement);
-    
-    // Also try inline critical CSS as a last resort
-    const criticalStyles = document.createElement('style');
-    criticalStyles.textContent = `
-      .neu-bg { background-color: #f0f0f3; }
-      .glass-bg { 
-        background-color: rgba(255, 255, 255, 0.25);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+  function checkStylesheetsLoaded() {
+    // Define critical stylesheets that must be loaded
+    var criticalStylesheets = [
+      '/styles/production.css',
+      '/styles/shadcn-components.css'
+    ];
+
+    // Get all loaded stylesheets
+    var loadedSheets = Array.from(document.styleSheets).map(function(sheet) {
+      return sheet.href;
+    });
+
+    // Check if each critical stylesheet is loaded
+    criticalStylesheets.forEach(function(sheetPath) {
+      var fullPath = new URL(sheetPath, window.location.origin).href;
+      var isLoaded = loadedSheets.some(function(href) {
+        return href === fullPath;
+      });
+
+      if (!isLoaded) {
+        createStylesheetLink(sheetPath);
       }
-      .app-card { transition: all 0.3s; }
-      .app-card:hover { transform: translateY(-8px); }
-      .btn-primary {
-        background-color: #6366f1;
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        font-weight: 500;
+    });
+
+    // Check if theme styles are properly applied
+    setTimeout(function() {
+      var body = document.body;
+      var computedStyle = window.getComputedStyle(body);
+      var hasStyles = computedStyle.fontFamily.includes('Inter') || 
+                       computedStyle.fontFamily.includes('Poppins');
+      
+      if (!hasStyles) {
+        console.warn('Fallback: Critical styles not properly applied, forcing reload...');
+        createStylesheetLink('/styles/production.css?t=' + Date.now());
+        createStylesheetLink('/styles/shadcn-components.css?t=' + Date.now());
       }
-    `;
-    document.head.appendChild(criticalStyles);
+    }, 500);
   }
 
-  // Execute after DOM is loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkStylesheetLoaded);
-  } else {
-    // DOM is already loaded
-    setTimeout(checkStylesheetLoaded, 1000);
-  }
+  // Run the check when the page is fully loaded
+  window.addEventListener('load', checkStylesheetsLoaded);
 })();

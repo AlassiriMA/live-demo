@@ -1,217 +1,302 @@
-/* Production-only CSS overrides */
-/* This file contains critical styles for production environment */
+/**
+ * Production CSS fallback
+ * Critical styles for proper functioning in production environment
+ */
 
-/* ShadCN UI defaults */
+/* Base Variables */
 :root {
+  /* Colors */
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
-
   --card: 0 0% 100%;
   --card-foreground: 222.2 84% 4.9%;
- 
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
- 
-  --primary: 235, 86%, 65%;
+  --primary: 243 75% 59%;
   --primary-foreground: 210 40% 98%;
- 
   --secondary: 210 40% 96.1%;
   --secondary-foreground: 222.2 47.4% 11.2%;
- 
   --muted: 210 40% 96.1%;
   --muted-foreground: 215.4 16.3% 46.9%;
- 
   --accent: 210 40% 96.1%;
   --accent-foreground: 222.2 47.4% 11.2%;
- 
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
-
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --ring: 235, 86%, 65%;
- 
-  --radius: 0.75rem;
+  --ring: 243 75% 59%;
+  --radius: 0.5rem;
 }
 
-/* Core Typography */
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+}
+
+/* Critical Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #1f2937;
-  background-color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  font-weight: 600;
+  color: hsl(var(--foreground));
 }
 
-/* Fix for glassmorphism in cards */
-.glass-bg {
-  border-radius: 0.75rem;
+p {
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+/* Background Styles */
+.bg-white {
+  background-color: white;
+}
+
+.dark .bg-white {
+  background-color: hsl(222.2 84% 4.9%);
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-indigo-500 {
+  --tw-gradient-from: #6366f1 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(99 102 241 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-purple-600 {
+  --tw-gradient-to: #9333ea var(--tw-gradient-to-position);
+}
+
+/* Common Component Styles */
+.card {
+  background-color: hsl(var(--card));
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-weight: 500;
+  text-align: center;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input {
+  display: flex;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--input));
+  background-color: transparent;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 1px hsl(var(--ring));
+}
+
+/* Special Neumorphic, Glassmorphic Styles */
+.neu-bg {
+  background-color: #f0f0f3; 
+}
+
+.dark .neu-bg {
+  background-color: #1a1b25;
+}
+
+.shadow-neu {
+  box-shadow: 5px 5px 10px rgba(163, 177, 198, 0.5), 
+              -5px -5px 10px rgba(255, 255, 255, 0.6);
+}
+
+.dark .shadow-neu {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), 
+              -5px -5px 10px rgba(40, 40, 60, 0.5);
+}
+
+.glass-bg { 
   background-color: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Fix for neumorphic elements */
-.neu-bg {
-  background-color: #f0f0f3;
+.dark .glass-bg {
+  background-color: rgba(10, 10, 20, 0.75);
+  border: 1px solid rgba(80, 80, 120, 0.2);
 }
 
-.dark-pos .neu-bg {
-  background-color: #1f2937;
-}
-
-.neu-button {
-  border-radius: 0.5rem;
-  background-color: #f0f0f3;
-  box-shadow: 8px 8px 16px #d1d1d1, -8px -8px 16px #ffffff;
-  transition: all 0.2s ease-in-out;
-}
-
-.dark-pos .neu-button {
-  background-color: #1f2937;
-  box-shadow: 5px 5px 10px #0f172a, -5px -5px 10px #334155;
-}
-
-.neu-button:hover {
-  box-shadow: 12px 12px 24px #d1d1d1, -12px -12px 24px #ffffff;
-}
-
-.dark-pos .neu-button:hover {
-  box-shadow: 8px 8px 16px #0f172a, -8px -8px 16px #334155;
-}
-
-.neu-button:active {
-  box-shadow: inset 5px 5px 10px #d1d1d1, inset -5px -5px 10px #ffffff;
-}
-
-.dark-pos .neu-button:active {
-  box-shadow: inset 3px 3px 6px #0f172a, inset -3px -3px 6px #334155;
-}
-
-.neu-input {
-  border-radius: 0.5rem;
-  background-color: #f0f0f3;
-  box-shadow: inset 2px 2px 5px #d1d1d1, inset -2px -2px 5px #ffffff;
-  padding: 0.5rem 1rem;
-  outline: none;
-}
-
-.dark-pos .neu-input {
-  background-color: #374151;
-  box-shadow: inset 2px 2px 5px #0f172a, inset -2px -2px 5px #334155;
-  color: #ffffff;
-}
-
-/* Animation classes */
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 3s infinite;
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes pulse-subtle {
-  0% { opacity: 1; }
-  50% { opacity: 0.8; }
-  100% { opacity: 1; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes pulse {
-  0% { opacity: 0.1; }
-  50% { opacity: 0.3; }
-  100% { opacity: 0.1; }
-}
-
-/* Cyberpunk grid style */
 .cyber-grid {
   background-color: #0f172a;
   background-image: linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px);
+                  linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
-/* Terminal style */
-.terminal-bg {
-  background-color: #1a1a1a;
-  color: #33ff33;
-  font-family: monospace;
-  padding: 1.25rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+/* Animation Utilities */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* TradingView style */
-.trading-view-bg {
-  background-color: #131722;
-  color: #d1d4dc;
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
 
-/* Mesh gradient background */
-.mesh-bg {
-  background-color: hsla(235, 86%, 65%, 0.8);
-  background-image: 
-    radial-gradient(at 40% 20%, hsla(235, 86%, 65%, 1) 0, transparent 50%), 
-    radial-gradient(at 80% 0%, hsla(246, 86%, 65%, 0.7) 0, transparent 50%), 
-    radial-gradient(at 0% 50%, hsla(224, 86%, 65%, 0.7) 0, transparent 50%), 
-    radial-gradient(at 80% 50%, hsla(258, 86%, 65%, 0.5) 0, transparent 50%), 
-    radial-gradient(at 0% 100%, hsla(235, 86%, 65%, 0.4) 0, transparent 50%);
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
-/* Fix for gradient buttons */
-.btn-primary {
-  background-color: #6366f1;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: all 0.2s;
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.btn-primary:hover {
-  opacity: 0.9;
+/* Responsive Breakpoints */
+@media (min-width: 640px) {
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+  
+  .sm\:text-left {
+    text-align: left;
+  }
 }
 
-.btn-primary:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3);
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.btn-primary:active {
-  transform: scale(0.95);
-}
-
-/* Project card image styling */
-.project-card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: 16/9;
-}
-
-/* App Card hover effect */
-.app-card {
-  transition: all 0.3s;
-}
-
-.app-card:hover {
-  transform: translateY(-8px);
+@media (min-width: 1024px) {
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

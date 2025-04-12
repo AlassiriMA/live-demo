@@ -7,6 +7,7 @@ import AppShell from "@/components/layout/AppShell";
 import BookstoreLayout from "./components/BookstoreLayout";
 import ProductList from "./components/ProductList";
 import Checkout from "./components/Checkout";
+import { Book } from "@shared/schema";
 
 export type CartItem = {
   id: number;
@@ -50,7 +51,7 @@ export default function POS() {
     },
   });
 
-  const filteredBooks = books.filter((book: any) => {
+  const filteredBooks = (books as Book[]).filter((book: Book) => {
     const searchLower = searchTerm.toLowerCase();
     return (
       book.title.toLowerCase().includes(searchLower) ||
@@ -60,7 +61,7 @@ export default function POS() {
   });
 
   const addToCart = (bookId: number) => {
-    const book = books.find((b: any) => b.id === bookId);
+    const book = (books as Book[]).find((b: Book) => b.id === bookId);
     if (!book) return;
 
     const existingItem = cartItems.find(item => item.id === bookId);
