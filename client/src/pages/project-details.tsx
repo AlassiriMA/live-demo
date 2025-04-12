@@ -17,12 +17,14 @@ import { ImageGridGallery } from '@/components/ui/image-grid-gallery';
 import { TechStackGrid } from '@/components/ui/tech-stack-grid';
 import { ImageWithFallback } from '@/components/ui/image-with-fallback';
 import AppShell from "@/components/layout/AppShell";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ProjectDetailsPage() {
   // Get the project slug from URL
   const [match, params] = useRoute<{ slug: string }>("/project/:slug");
   const slug = params?.slug;
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
   
   // Fetch project details from API
   const { data, isLoading, error } = useQuery<{success: boolean, project: any}>({
@@ -51,16 +53,16 @@ export default function ProjectDetailsPage() {
         <AppShell>
           <div className="container max-w-6xl mx-auto py-16 px-4">
             <div className="text-center">
-              <h2 className="text-3xl font-bold mb-4">Project Not Found</h2>
+              <h2 className="text-3xl font-bold mb-4">{t('projects.notFound') || "Project Not Found"}</h2>
               <p className="text-lg text-gray-600 mb-8">
-                The project you're looking for doesn't exist or may have been moved.
+                {t('projects.doesNotExist') || "The project you're looking for doesn't exist or may have been moved."}
               </p>
               <Button 
                 onClick={() => setLocation('/projects')}
                 className="rounded-lg"
               >
                 <ChevronLeft className="mr-2 h-4 w-4" />
-                Back to Projects
+                {t('projects.backToProjects') || "Back to Projects"}
               </Button>
             </div>
           </div>
@@ -166,7 +168,7 @@ export default function ProjectDetailsPage() {
               className="inline-flex items-center text-white/90 hover:text-white mb-6 transition-colors cursor-pointer"
             >
               <ChevronLeft className="mr-1 h-4 w-4" />
-              Back to Projects
+              {t('projects.backToProjects') || "Back to Projects"}
             </button>
             
             <motion.div
@@ -215,7 +217,7 @@ export default function ProjectDetailsPage() {
                 >
                   <Link href={demoRoute}>
                     <span className="flex items-center">
-                      Live Demo
+                      {t('projects.liveDemo') || "Live Demo"}
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </span>
                   </Link>
@@ -236,7 +238,7 @@ export default function ProjectDetailsPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="bg-white rounded-xl p-6 shadow-sm mb-8"
               >
-                <h2 className="text-2xl font-bold mb-4">Overview</h2>
+                <h2 className="text-2xl font-bold mb-4">{t('projects.overview') || "Overview"}</h2>
                 <div className="prose max-w-none">
                   {project.detailedContent ? (
                     <div className="markdown-content">
@@ -262,7 +264,7 @@ export default function ProjectDetailsPage() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="bg-white rounded-xl p-6 shadow-sm mb-8"
                 >
-                  <h2 className="text-2xl font-bold mb-4">Key Features</h2>
+                  <h2 className="text-2xl font-bold mb-4">{t('projects.keyFeatures') || "Key Features"}</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {features.map((feature: FeatureItem | string, idx: number) => {
                       // Calculate a feature-specific hue based on its index or content
@@ -319,7 +321,7 @@ export default function ProjectDetailsPage() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="bg-white rounded-xl p-6 shadow-sm mb-8"
               >
-                <h2 className="text-2xl font-bold mb-4">App Screenshots</h2>
+                <h2 className="text-2xl font-bold mb-4">{t('projects.appScreenshots') || "App Screenshots"}</h2>
                 
                 {/* Main Project Screenshot - featured screenshot from each project */}
                 <div className="mb-6 rounded-lg overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300">
