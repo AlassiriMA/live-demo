@@ -26,7 +26,7 @@ export default function ProductList({ books, isLoading, addToCart }: ProductList
   
   // Create unique categories array without using Set to avoid TypeScript issues
   const allCategories = books.map(book => book.category);
-  const uniqueCategories = ['All', ...allCategories.filter((category, index) => 
+  const uniqueCategories = ['All', ...allCategories.filter((category: string, index: number) => 
     allCategories.indexOf(category) === index
   )];
   
@@ -66,7 +66,7 @@ export default function ProductList({ books, isLoading, addToCart }: ProductList
           </h2>
         </div>
         <div className="flex flex-wrap gap-2">
-          {categories.map(category => (
+          {uniqueCategories.map(category => (
             <Button
               key={category}
               variant="outline"

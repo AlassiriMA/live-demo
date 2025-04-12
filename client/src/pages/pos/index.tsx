@@ -164,6 +164,7 @@ export default function POS() {
               removeItem={removeFromCart}
               completeCheckout={completeCheckout}
               isProcessing={createTransaction.isPending}
+              setView={setView}
             />
           )}
         </BookstoreLayout>

@@ -12,6 +12,7 @@ interface CheckoutProps {
   removeItem: (itemId: number) => void;
   completeCheckout: (paymentMethod: string) => void;
   isProcessing: boolean;
+  setView: (view: "browse" | "checkout") => void;
 }
 
 export default function Checkout({ 
@@ -19,7 +20,8 @@ export default function Checkout({
   updateQuantity, 
   removeItem, 
   completeCheckout,
-  isProcessing
+  isProcessing,
+  setView
 }: CheckoutProps) {
   const [paymentMethod, setPaymentMethod] = useState<string>("cash");
   const [showReceipt, setShowReceipt] = useState<boolean>(false);
