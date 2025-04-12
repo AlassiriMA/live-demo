@@ -17,8 +17,13 @@ export function AuthCheck({ children, requiredRole }: AuthCheckProps) {
   
   useEffect(() => {
     if (!isLoading && !user) {
-      // Redirect to login if not authenticated
-      navigate('/admin/login');
+      // Redirect to login page, supporting both paths for better compatibility
+      // Some links in the app might use /auth, others might use /admin/login
+      const currentPath = window.location.pathname;
+      if (currentPath.includes('/admin') && !currentPath.includes('/admin/login') && !currentPath.includes('/auth')) {
+        console.log('Redirecting to login page from:', currentPath);
+        navigate('/auth');
+      }
     } else if (!isLoading && user && requiredRole && user.role !== requiredRole) {
       // Redirect to homepage if authenticated but doesn't have required role
       navigate('/');

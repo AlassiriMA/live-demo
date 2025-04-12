@@ -8,8 +8,8 @@ import { users } from '@shared/schema';
 import { eq } from 'drizzle-orm';
 import { sessionStore } from '../session';
 
-// Global dev mode flag - set to false for production
-const DEV_MODE = true;
+// Global dev mode flag - automatically detects environment
+const DEV_MODE = process.env.NODE_ENV !== 'production';
 
 const router = Router();
 
