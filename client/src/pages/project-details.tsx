@@ -111,9 +111,10 @@ export default function ProjectDetailsPage() {
     features = [];
   }
   
-  // Format created date
+  // Format created date based on language
+  const { language } = useLanguage();
   const formattedDate = project.createdAt 
-    ? new Date(project.createdAt).toLocaleDateString('en-US', {
+    ? new Date(project.createdAt).toLocaleDateString(language === 'nl' ? 'nl-NL' : 'en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',

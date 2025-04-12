@@ -6,8 +6,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SiReact, SiNodedotjs, SiTypescript, SiPostgresql, SiPython, SiDocker, SiTailwindcss, SiGit } from "react-icons/si";
 import TechIconsGrid from "@/components/ui/tech-icons-grid";
 import { CircularProgress } from "@/components/ui/circular-progress";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Skills() {
+  // Get the translation function
+  const { t } = useLanguage();
+  
   // Animation variant for staggered animations
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -45,7 +49,7 @@ export default function Skills() {
       <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <SectionHeading
-            title="Skills & Expertise"
+            title={t('skills.title')}
             subtitle="A comprehensive overview of my technical skills and business acumen"
             centered
           />
@@ -122,7 +126,7 @@ export default function Skills() {
                     <div className="bg-blue-100 p-4 rounded-full mb-4">
                       <SiReact className="h-10 w-10 text-blue-600" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">Frontend Development</h3>
+                    <h3 className="text-xl font-bold mb-2">{t('skills.frontend')}</h3>
                     <p className="text-gray-600 mb-4">Building responsive, performant, and accessible user interfaces</p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">React</span>
@@ -138,7 +142,7 @@ export default function Skills() {
                     <div className="bg-green-100 p-4 rounded-full mb-4">
                       <SiNodedotjs className="h-10 w-10 text-green-600" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">Backend Development</h3>
+                    <h3 className="text-xl font-bold mb-2">{t('skills.backend')}</h3>
                     <p className="text-gray-600 mb-4">Creating robust APIs and server-side applications</p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">Node.js</span>
@@ -154,7 +158,7 @@ export default function Skills() {
                     <div className="bg-purple-100 p-4 rounded-full mb-4">
                       <SiPostgresql className="h-10 w-10 text-purple-600" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">Database Management</h3>
+                    <h3 className="text-xl font-bold mb-2">{t('skills.database')}</h3>
                     <p className="text-gray-600 mb-4">Designing efficient schemas and optimizing queries</p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">PostgreSQL</span>
@@ -209,7 +213,7 @@ export default function Skills() {
                     <div className="bg-pink-100 p-4 rounded-full mb-4">
                       <SiTailwindcss className="h-10 w-10 text-pink-600" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">UI/UX Design</h3>
+                    <h3 className="text-xl font-bold mb-2">{t('skills.design')}</h3>
                     <p className="text-gray-600 mb-4">Creating beautiful and functional user experiences</p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">TailwindCSS</span>
