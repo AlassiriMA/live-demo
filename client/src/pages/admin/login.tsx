@@ -53,9 +53,15 @@ export default function AdminLogin() {
   });
 
   const onSubmit = async (data: LoginFormValues) => {
-    await login(data.username, data.password);
-    // The redirection will happen through useEffect in the AuthProvider
-    // when the user state is updated
+    try {
+      await login(data.username, data.password);
+      // After successful login, manually navigate to admin dashboard
+      // This ensures it works in both development and production
+      navigate('/admin');
+    } catch (error) {
+      console.error('Login error:', error);
+      // Error handling is done in the login function
+    }
   };
 
   return (

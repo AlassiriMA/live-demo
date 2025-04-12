@@ -34,7 +34,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await apiRequest('GET', '/api/auth/me') as AuthResponse;
+        // Check for token in localStorage as a fallback
+        const token = localStorage.getItem('token');
+        const headers: Record<string, string> = {};
+        
+        // If token exists in localStorage, add it to headers
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
+        
+        const response = await apiRequest('GET', '/api/auth/me', undefined, headers) as AuthResponse;
         
         if (response.success && response.user) {
           setUser(response.user);

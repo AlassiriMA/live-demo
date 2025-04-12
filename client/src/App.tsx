@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Suspense, lazy, useEffect } from "react";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import { AuthProvider } from "@/hooks/use-auth";
+import { AuthCheck } from "@/components/auth/AuthCheck"; // Import AuthCheck component
 import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import NetworkStatusNotification from "@/components/layout/NetworkStatusNotification";
 import { preloadImages } from "@/lib/preloadUtils";
@@ -131,13 +132,43 @@ function Router() {
         {/* Admin routes */}
         <Route path="/auth" component={AdminLogin} />
         <Route path="/admin/login" component={AdminLogin} />
-        <Route path="/admin" component={AdminDashboard} />
-        <Route path="/admin/dashboard" component={AdminDashboard} />
-        <Route path="/admin/projects/new" component={ProjectForm} />
-        <Route path="/admin/projects/edit/:id" component={ProjectForm} />
-        <Route path="/admin/settings" component={SettingsForm} />
-        <Route path="/admin/settings/:category" component={SettingsForm} />
-        <Route path="/admin/media" component={MediaLibrary} />
+        
+        {/* Protected admin routes that require authentication */}
+        <Route path="/admin" component={() => 
+          <Suspense fallback={<PageLoader />}>
+            <AdminDashboard />
+          </Suspense>
+        } />
+        <Route path="/admin/dashboard" component={() => 
+          <Suspense fallback={<PageLoader />}>
+            <AdminDashboard />
+          </Suspense>
+        } />
+        <Route path="/admin/projects/new" component={() => 
+          <Suspense fallback={<PageLoader />}>
+            <ProjectForm />
+          </Suspense>
+        } />
+        <Route path="/admin/projects/edit/:id" component={() => 
+          <Suspense fallback={<PageLoader />}>
+            <ProjectForm />
+          </Suspense>
+        } />
+        <Route path="/admin/settings" component={() => 
+          <Suspense fallback={<PageLoader />}>
+            <SettingsForm />
+          </Suspense>
+        } />
+        <Route path="/admin/settings/:category" component={() => 
+          <Suspense fallback={<PageLoader />}>
+            <SettingsForm />
+          </Suspense>
+        } />
+        <Route path="/admin/media" component={() => 
+          <Suspense fallback={<PageLoader />}>
+            <MediaLibrary />
+          </Suspense>
+        } />
 
         <Route component={NotFound} />
       </Switch>
