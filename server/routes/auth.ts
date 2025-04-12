@@ -26,6 +26,15 @@ const registerSchema = z.object({
   role: z.enum(['user', 'admin']).default('user')
 });
 
+// Set cookie options consistently
+const getSecureCookieOptions = () => ({
+  httpOnly: true,
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days for better persistence
+  sameSite: 'lax', // Changed to lax for better 3rd-party compatibility
+  secure: process.env.NODE_ENV === 'production',
+  path: '/' // Ensure cookie is available for all paths
+});
+
 // Login route
 router.post('/login', async (req: Request, res: Response) => {
   try {
@@ -67,12 +76,11 @@ router.post('/login', async (req: Request, res: Response) => {
         role: devUser.role
       });
       
-      // Set cookie
-      res.cookie('token', token, {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
-        sameSite: 'strict'
-      });
+      // Set cookie with more permissive settings for better persistence
+      res.cookie('token', token, getSecureCookieOptions());
+      
+      // Set token in header for API clients
+      res.setHeader('X-Auth-Token', token);
       
       // Return success with dev user info (exclude password)
       return res.status(200).json({
@@ -82,7 +90,8 @@ router.post('/login', async (req: Request, res: Response) => {
           username: devUser.username,
           role: devUser.role
         },
-        token
+        token,
+        expiresIn: 7 * 24 * 60 * 60 // Include expiry in seconds
       });
     }
     
@@ -104,12 +113,11 @@ router.post('/login', async (req: Request, res: Response) => {
         role: devUser.role
       });
       
-      // Set cookie
-      res.cookie('token', token, {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
-        sameSite: 'strict'
-      });
+      // Set cookie with more permissive settings for better persistence
+      res.cookie('token', token, getSecureCookieOptions());
+      
+      // Set token in header for API clients
+      res.setHeader('X-Auth-Token', token);
       
       // Return success with admin user info (exclude password)
       return res.status(200).json({
@@ -119,7 +127,8 @@ router.post('/login', async (req: Request, res: Response) => {
           username: devUser.username,
           role: devUser.role
         },
-        token
+        token,
+        expiresIn: 7 * 24 * 60 * 60 // Include expiry in seconds
       });
     }
 
@@ -170,14 +179,13 @@ router.post('/login', async (req: Request, res: Response) => {
       role: user.role
     });
 
-    // Set cookie
-    res.cookie('token', token, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
-      sameSite: 'strict'
-    });
+    // Set cookie with improved settings
+    res.cookie('token', token, getSecureCookieOptions());
+    
+    // Set token in header for API clients
+    res.setHeader('X-Auth-Token', token);
 
-    // Return success with user info (exclude password)
+    // Return success with user info
     return res.status(200).json({
       success: true,
       user: {
@@ -185,7 +193,8 @@ router.post('/login', async (req: Request, res: Response) => {
         username: user.username,
         role: user.role
       },
-      token
+      token,
+      expiresIn: 7 * 24 * 60 * 60 // Include expiry in seconds
     });
   } catch (error) {
     console.error('Login error:', error);
@@ -260,7 +269,12 @@ router.get('/me', auth, (req: AuthRequest, res: Response) => {
 // Logout
 router.post('/logout', (req: Request, res: Response) => {
   // Clear JWT cookie
-  res.clearCookie('token');
+  res.clearCookie('token', {
+    path: '/',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax'
+  });
   
   // Destroy session if using session-based auth
   if (req.session) {
