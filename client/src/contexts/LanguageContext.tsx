@@ -4,15 +4,15 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 export type Language = 'en' | 'nl';
 
 // Translation dictionary type
-export type TranslationDict = {
+type TranslationDict = {
   [key: string]: {
     en: string;
     nl: string;
   };
 };
 
-// Create translation dictionary for common UI elements
-export const translations: TranslationDict = {
+// Translation dictionary
+const translationData: TranslationDict = {
   // Navigation
   'nav.home': {
     en: 'Home',
@@ -308,11 +308,11 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   
   // Translation function
   const t = (key: string): string => {
-    if (!translations[key]) {
+    if (!translationData[key]) {
       console.warn(`Translation key not found: ${key}`);
       return key;
     }
-    return translations[key][language] || translations[key]['en'] || key;
+    return translationData[key][language] || translationData[key]['en'] || key;
   };
   
   // Context value

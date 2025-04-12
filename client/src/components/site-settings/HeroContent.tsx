@@ -1,14 +1,17 @@
 import { useSiteSettings, getSetting } from "@/hooks/use-site-settings";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function HeroTitle() {
   const { settings, isLoading } = useSiteSettings("homepage");
+  const { t } = useLanguage();
   
   if (isLoading) {
     return <Skeleton className="h-12 w-full" />;
   }
   
-  return <>{getSetting<string>(settings, "hero.title", "Welcome to My Journey in Tech and Creativity")}</>;
+  // Use language translation with fallback to database setting
+  return <>{t('home.hero.title') || getSetting<string>(settings, "hero.title", "Welcome to My Journey in Tech and Creativity")}</>;
 }
 
 export function HeroSubtitle() {
