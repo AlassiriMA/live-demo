@@ -1,0 +1,16 @@
+# robots.txt for alassiri.nl
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://alassiri.nl/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /auth/
+
+# Allow all assets
+Allow: /assets/
+Allow: /styles/
+Allow: /favicon.ico
