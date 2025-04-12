@@ -50,7 +50,7 @@ export default function Skills() {
         <div className="container mx-auto px-4">
           <SectionHeading
             title={t('skills.title')}
-            subtitle="A comprehensive overview of my technical skills and business acumen"
+            subtitle={t('skills.subtitle')}
             centered
           />
           
@@ -73,7 +73,7 @@ export default function Skills() {
             className="max-w-5xl mx-auto mb-16"
           >
             <h2 className="text-2xl font-bold text-center mb-10 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
-              Core Technical Expertise
+              {t('skills.coreTechnical')}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {coreSkills.map((skill, index) => (
@@ -260,7 +260,7 @@ export default function Skills() {
               </motion.div>
 
               <div className="mt-16">
-                <h3 className="text-2xl font-bold mb-6 text-center">Projects Showcasing Technical Skills</h3>
+                <h3 className="text-2xl font-bold mb-6 text-center">{t('skills.projectsShowcasing')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <motion.div 
                     className="bg-white rounded-xl shadow-md overflow-hidden" 
@@ -269,7 +269,7 @@ export default function Skills() {
                     animate="visible"
                   >
                     <div className="p-6">
-                      <h4 className="text-xl font-bold mb-2">Trading Bot Platform</h4>
+                      <h4 className="text-xl font-bold mb-2">{t('skills.tradingBot')}</h4>
                       <p className="text-gray-600 mb-4">
                         Developed a sophisticated trading bot platform that analyzes market data in real-time to identify profitable trading opportunities across multiple exchanges.
                       </p>
@@ -296,7 +296,7 @@ export default function Skills() {
                     transition={{ delay: 0.2 }}
                   >
                     <div className="p-6">
-                      <h4 className="text-xl font-bold mb-2">E-Commerce Platform</h4>
+                      <h4 className="text-xl font-bold mb-2">{t('skills.ecommerce')}</h4>
                       <p className="text-gray-600 mb-4">
                         Created a full-featured e-commerce solution with inventory management, payment processing, and customer relationship management.
                       </p>

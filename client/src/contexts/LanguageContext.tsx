@@ -210,6 +210,22 @@ const translationData: TranslationDict = {
     en: 'Testing',
     nl: 'Testen',
   },
+  'skills.coreTechnical': {
+    en: 'Core Technical Expertise',
+    nl: 'Technische Kernexpertise',
+  },
+  'skills.projectsShowcasing': {
+    en: 'Projects Showcasing Technical Skills',
+    nl: 'Projecten die Technische Vaardigheden Tonen',
+  },
+  'skills.tradingBot': {
+    en: 'Trading Bot Platform',
+    nl: 'Handelsbot Platform',
+  },
+  'skills.ecommerce': {
+    en: 'E-Commerce Platform',
+    nl: 'E-commerce Platform',
+  },
   
   // Contact
   'contact.title': {
