@@ -12,6 +12,7 @@ import ResourcePreloader from "@/components/performance/ResourcePreloader";
 import NetworkStatusNotification from "@/components/layout/NetworkStatusNotification";
 import { preloadImages } from "@/lib/preloadUtils";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import ErrorBoundary from "@/components/error/ErrorBoundary";
 
 // Only import the homepage and essential components directly
 import NotFound from "@/pages/not-found";
@@ -267,25 +268,27 @@ function Router() {
 // Main App with performance optimizations
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <AuthProvider>
-          {/* Preload critical resources */}
-          <ResourcePreloader
-            images={criticalResources.images}
-            routes={criticalResources.routes}
-            apiEndpoints={criticalResources.apiEndpoints}
-            origins={criticalResources.origins}
-          />
-          
-          {/* Core app components */}
-          <ScrollToTop />
-          <Router />
-          <Toaster />
-          <NetworkStatusNotification />
-        </AuthProvider>
-      </LanguageProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <LanguageProvider>
+          <AuthProvider>
+            {/* Preload critical resources */}
+            <ResourcePreloader
+              images={criticalResources.images}
+              routes={criticalResources.routes}
+              apiEndpoints={criticalResources.apiEndpoints}
+              origins={criticalResources.origins}
+            />
+            
+            {/* Core app components */}
+            <ScrollToTop />
+            <Router />
+            <Toaster />
+            <NetworkStatusNotification />
+          </AuthProvider>
+        </LanguageProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 

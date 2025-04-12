@@ -94,12 +94,32 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
+    
+    // For production, don't expose error details to clients
+    const isProd = process.env.NODE_ENV === 'production';
+    const clientErrorMsg = isProd && status >= 500 
+      ? 'An unexpected error occurred. Please try again later.' 
+      : message;
+    
+    // Log detailed error information for non-404 errors
+    if (status !== 404) {
+      console.error(`[ERROR] ${req.method} ${req.path} - Status: ${status} - ${message}`);
+      
+      // Log stack trace in development only
+      if (!isProd && err.stack) {
+        console.error(err.stack);
+      }
+    }
 
-    res.status(status).json({ message });
-    throw err;
+    res.status(status).json({ 
+      success: false,
+      message: clientErrorMsg,
+      path: req.path,
+      code: err.code || 'INTERNAL_ERROR'
+    });
   });
 
   // importantly only setup vite in development and after
