@@ -1,4 +1,5 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import { getAuthHeaders, getStoredToken } from "./authUtils";
 
 /**
  * Enhanced error handling for API responses
@@ -26,6 +27,7 @@ async function throwIfResNotOk(res: Response) {
  * - Supports standard CRUD operations
  * - Uses proper cache headers
  * - Handles JSON and text responses
+ * - Now uses enhanced auth utilities for better token handling
  */
 export async function apiRequest<T = any>(
   method: string,
@@ -35,25 +37,21 @@ export async function apiRequest<T = any>(
 ): Promise<T> {
   const isGet = method.toUpperCase() === 'GET';
   
-  // Get token from localStorage for auth header
-  const token = localStorage.getItem('token');
+  // Get auth headers from our reliable utility
+  const authHeaders = getAuthHeaders();
   
   // Prepare headers with auth token if available
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
+    ...authHeaders,
     ...(options?.headers as Record<string, string> || {}),
   };
-  
-  // Add Authorization header if token exists
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
-  }
   
   // Configure request with sensible defaults
   const requestOptions: RequestInit = {
     method: method.toUpperCase(),
     headers,
-    credentials: "include",
+    credentials: "include", // Always include credentials for cookies
     ...options,
   };
 

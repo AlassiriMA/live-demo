@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
 import { apiRequest } from '@/lib/queryClient';
+import { getStoredUser, getStoredToken, storeAuthData, clearAuthData } from '@/lib/authUtils';
 
 interface AuthUser {
   id: number;
