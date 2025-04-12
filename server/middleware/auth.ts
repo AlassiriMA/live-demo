@@ -2,8 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { storage } from '../storage';
 
-// Define JWT secret - in production, this should be in environment variables
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-jwt-key'; 
+// Define JWT secret with fixed stable value across all environments
+// Note: In a real production app, this should be an environment variable
+const JWT_SECRET = 'alassiri-portfolio-fixed-jwt-secret-2024'; 
 
 // Set session expiration time (7 days for better persistence in production)
 const SESSION_EXPIRY = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
