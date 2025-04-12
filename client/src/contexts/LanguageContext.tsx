@@ -162,6 +162,22 @@ const translationData: TranslationDict = {
     en: 'Skills & Expertise',
     nl: 'Vaardigheden & Expertise',
   },
+  'skills.subtitle': {
+    en: 'A comprehensive overview of my technical skills and business acumen',
+    nl: 'Een uitgebreid overzicht van mijn technische vaardigheden en zakelijk inzicht',
+  },
+  'skills.toolbox': {
+    en: '100+ Technologies in My Toolbox',
+    nl: '100+ Technologieën in Mijn Gereedschapskist',
+  },
+  'skills.tabTechnical': {
+    en: 'Technical Skills',
+    nl: 'Technische Vaardigheden',
+  },
+  'skills.tabBusiness': {
+    en: 'Business Acumen',
+    nl: 'Zakelijk Inzicht',
+  },
   'skills.frontend': {
     en: 'Frontend Development',
     nl: 'Frontend Ontwikkeling',
@@ -174,9 +190,25 @@ const translationData: TranslationDict = {
     en: 'Database Management',
     nl: 'Database Beheer',
   },
+  'skills.dataEngineering': {
+    en: 'Data Engineering',
+    nl: 'Data Engineering',
+  },
+  'skills.devops': {
+    en: 'DevOps',
+    nl: 'DevOps',
+  },
   'skills.design': {
     en: 'UI/UX Design',
     nl: 'UI/UX Ontwerp',
+  },
+  'skills.versionControl': {
+    en: 'Version Control',
+    nl: 'Versiebeheer',
+  },
+  'skills.testing': {
+    en: 'Testing',
+    nl: 'Testen',
   },
   
   // Contact

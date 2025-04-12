@@ -60,7 +60,7 @@ export default function Skills() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-2xl font-bold text-center mb-8">100+ Technologies in My Toolbox</h2>
+              <h2 className="text-2xl font-bold text-center mb-8">{t('skills.toolbox')}</h2>
               <TechIconsGrid />
             </motion.div>
           </div>
@@ -104,8 +104,8 @@ export default function Skills() {
 
           <Tabs defaultValue="technical" className="w-full max-w-5xl mx-auto mt-12">
             <TabsList className="w-full justify-center mb-8">
-              <TabsTrigger value="technical" className="text-lg px-8 py-3">Technical Skills</TabsTrigger>
-              <TabsTrigger value="business" className="text-lg px-8 py-3">Business Acumen</TabsTrigger>
+              <TabsTrigger value="technical" className="text-lg px-8 py-3">{t('skills.tabTechnical')}</TabsTrigger>
+              <TabsTrigger value="business" className="text-lg px-8 py-3">{t('skills.tabBusiness')}</TabsTrigger>
             </TabsList>
 
             <TabsContent value="technical" className="space-y-8">
@@ -174,7 +174,7 @@ export default function Skills() {
                     <div className="bg-yellow-100 p-4 rounded-full mb-4">
                       <SiPython className="h-10 w-10 text-yellow-600" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">Data Engineering</h3>
+                    <h3 className="text-xl font-bold mb-2">{t('skills.dataEngineering')}</h3>
                     <p className="text-gray-600 mb-4">Working with data processing and analysis tools</p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">Python</span>
@@ -197,7 +197,7 @@ export default function Skills() {
                     <div className="bg-indigo-100 p-4 rounded-full mb-4">
                       <SiDocker className="h-10 w-10 text-indigo-600" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">DevOps</h3>
+                    <h3 className="text-xl font-bold mb-2">{t('skills.devops')}</h3>
                     <p className="text-gray-600 mb-4">Implementing CI/CD pipelines and containerization</p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">Docker</span>
@@ -229,7 +229,7 @@ export default function Skills() {
                     <div className="bg-red-100 p-4 rounded-full mb-4">
                       <SiGit className="h-10 w-10 text-red-600" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">Version Control</h3>
+                    <h3 className="text-xl font-bold mb-2">{t('skills.versionControl')}</h3>
                     <p className="text-gray-600 mb-4">Managing code with modern version control systems</p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">Git</span>
@@ -247,7 +247,7 @@ export default function Skills() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-bold mb-2">Testing</h3>
+                    <h3 className="text-xl font-bold mb-2">{t('skills.testing')}</h3>
                     <p className="text-gray-600 mb-4">Ensuring quality with comprehensive testing strategies</p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full">Jest</span>
