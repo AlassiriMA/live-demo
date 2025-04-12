@@ -11,13 +11,63 @@ export function RequireAdmin({ children }: RequireAdminProps) {
   const { adminUser, isAdmin } = useAdminAuth();
   const [, navigate] = useLocation();
   const [loading, setLoading] = useState(true);
+  const [serverCheckComplete, setServerCheckComplete] = useState(false);
   const [localStorageChecked, setLocalStorageChecked] = useState(false);
 
-  // First check localStorage for admin credentials
+  // Check server auth status
   useEffect(() => {
+    const checkServerAuth = async () => {
+      try {
+        // Try to fetch the current user
+        const response = await fetch('/api/auth/me', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token') || localStorage.getItem('adminToken') || ''}`,
+          },
+          credentials: 'include',
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success && data.user) {
+            console.log('Server auth confirmed user:', data.user);
+            
+            // If user exists but isn't admin role, redirect to home
+            if (data.user.role !== 'admin') {
+              console.log('User exists but not admin, redirecting to home');
+              navigate('/');
+              return false;
+            }
+            
+            // Successfully authenticated as admin
+            console.log('Server confirmed admin status');
+            return true;
+          }
+        }
+        
+        console.log('Server auth check failed, trying localStorage next');
+        return false;
+      } catch (error) {
+        console.warn('Error checking server auth in RequireAdmin:', error);
+        return false;
+      } finally {
+        setServerCheckComplete(true);
+      }
+    };
+    
+    checkServerAuth();
+  }, [navigate]);
+  
+  // Check localStorage as a fallback
+  useEffect(() => {
+    if (!serverCheckComplete) {
+      return; // Wait for server check first
+    }
+    
     const checkLocalStorage = () => {
       try {
-        // Try both the admin-specific storage and the general auth storage
+        // Check both admin-specific storage and general auth storage
         const adminUserStr = localStorage.getItem('adminUser');
         const currentUserStr = localStorage.getItem('currentUser');
         const hasToken = !!localStorage.getItem('token') || !!localStorage.getItem('adminToken');
@@ -53,27 +103,27 @@ export function RequireAdmin({ children }: RequireAdminProps) {
     };
     
     checkLocalStorage();
-  }, []);
+  }, [serverCheckComplete]);
   
-  // Check admin status once localStorage check is complete
+  // Final decision on access and loading state
   useEffect(() => {
-    if (!localStorageChecked) {
-      return; // Wait for localStorage check
+    if (!serverCheckComplete || !localStorageChecked) {
+      return; // Wait for both checks
     }
     
-    // Set loading to false after a short delay to allow auth check to complete
+    // Set loading to false after a short delay
     const timer = setTimeout(() => {
       setLoading(false);
       
-      // Redirect to login if not admin after delay to allow time for auth to load
-      if (!isAdmin && !loading) {
+      // Redirect to login if not admin
+      if (!isAdmin && !adminUser) {
         console.log('User is not admin, redirecting to login');
-        navigate('/admin/login');
+        navigate('/admin/direct');
       }
     }, 800);
     
     return () => clearTimeout(timer);
-  }, [isAdmin, loading, navigate, localStorageChecked]);
+  }, [isAdmin, adminUser, navigate, serverCheckComplete, localStorageChecked]);
 
   // Show loading state
   if (loading) {

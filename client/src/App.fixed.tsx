@@ -42,6 +42,8 @@ const AdminDashboard = lazy(() => import("@/pages/admin/dashboard"));
 const ProjectForm = lazy(() => import("@/pages/admin/project-form"));
 const SettingsForm = lazy(() => import("@/pages/admin/settings-form"));
 const MediaLibrary = lazy(() => import("@/pages/admin/media-library"));
+const DirectLogin = lazy(() => import("@/pages/admin/direct-login"));
+const ProtectedDashboard = lazy(() => import("@/pages/admin/protected-dashboard"));
 
 // Enhanced loading spinner with fade-in animation
 const PageLoader = () => (
@@ -132,32 +134,24 @@ function Router() {
         <Route path="/app-details/fruits" component={FruitsDetail} />
         
         {/* Admin routes */}
-        <Route path="/auth" component={() => {
-          const DirectLogin = lazy(() => import("@/pages/admin/direct-login"));
-          return (
-            <Suspense fallback={<PageLoader />}>
-              <DirectLogin />
-            </Suspense>
-          );
-        }} />
-        <Route path="/admin/login" component={() => {
-          const DirectLogin = lazy(() => import("@/pages/admin/direct-login"));
-          return (
-            <Suspense fallback={<PageLoader />}>
-              <DirectLogin />
-            </Suspense>
-          );
-        }} />
+        <Route path="/auth" component={() => (
+          <Suspense fallback={<PageLoader />}>
+            <DirectLogin />
+          </Suspense>
+        )} />
+        
+        <Route path="/admin/login" component={() => (
+          <Suspense fallback={<PageLoader />}>
+            <DirectLogin />
+          </Suspense>
+        )} />
         
         {/* Direct admin login that bypasses server auth */}
-        <Route path="/admin/direct" component={() => {
-          const DirectLogin = lazy(() => import("@/pages/admin/direct-login"));
-          return (
-            <Suspense fallback={<PageLoader />}>
-              <DirectLogin />
-            </Suspense>
-          );
-        }} />
+        <Route path="/admin/direct" component={() => (
+          <Suspense fallback={<PageLoader />}>
+            <DirectLogin />
+          </Suspense>
+        )} />
         
         {/* Protected admin routes with improved admin authentication */}
         <Route path="/admin" component={() => {
@@ -167,21 +161,21 @@ function Router() {
           
           if (adminUser && hasToken) {
             // If we have local auth, use our protected dashboard
-            const ProtectedDashboard = lazy(() => import("@/pages/admin/protected-dashboard"));
             return (
               <Suspense fallback={<PageLoader />}>
                 <ProtectedDashboard />
               </Suspense>
             );
           } else {
-            // Otherwise redirect to our direct login first
+            // Otherwise redirect to our direct login
             return (
               <Suspense fallback={<PageLoader />}>
-                {lazy(() => import("@/pages/admin/direct-login"))}
+                <DirectLogin />
               </Suspense>
             );
           }
         }} />
+        
         <Route path="/admin/dashboard" component={() => {
           // Check if we've used our direct login system first
           const adminUser = localStorage.getItem('adminUser');
@@ -189,80 +183,70 @@ function Router() {
           
           if (adminUser && hasToken) {
             // If we have local auth, use our protected dashboard
-            const ProtectedDashboard = lazy(() => import("@/pages/admin/protected-dashboard"));
             return (
               <Suspense fallback={<PageLoader />}>
                 <ProtectedDashboard />
               </Suspense>
             );
           } else {
-            // Otherwise redirect to our direct login first
+            // Otherwise redirect to our direct login
             return (
               <Suspense fallback={<PageLoader />}>
-                {lazy(() => import("@/pages/admin/direct-login"))}
+                <DirectLogin />
               </Suspense>
             );
           }
         }} />
-        <Route path="/admin/projects/new" component={() => {
-          return (
-            <Suspense fallback={<PageLoader />}>
-              <AdminAuthProvider>
-                <RequireAdmin>
-                  <ProjectForm />
-                </RequireAdmin>
-              </AdminAuthProvider>
-            </Suspense>
-          );
-        }} />
         
-        <Route path="/admin/projects/edit/:id" component={() => {
-          return (
-            <Suspense fallback={<PageLoader />}>
-              <AdminAuthProvider>
-                <RequireAdmin>
-                  <ProjectForm />
-                </RequireAdmin>
-              </AdminAuthProvider>
-            </Suspense>
-          );
-        }} />
+        <Route path="/admin/projects/new" component={() => (
+          <Suspense fallback={<PageLoader />}>
+            <AdminAuthProvider>
+              <RequireAdmin>
+                <ProjectForm />
+              </RequireAdmin>
+            </AdminAuthProvider>
+          </Suspense>
+        )} />
         
-        <Route path="/admin/settings" component={() => {
-          return (
-            <Suspense fallback={<PageLoader />}>
-              <AdminAuthProvider>
-                <RequireAdmin>
-                  <SettingsForm />
-                </RequireAdmin>
-              </AdminAuthProvider>
-            </Suspense>
-          );
-        }} />
+        <Route path="/admin/projects/edit/:id" component={() => (
+          <Suspense fallback={<PageLoader />}>
+            <AdminAuthProvider>
+              <RequireAdmin>
+                <ProjectForm />
+              </RequireAdmin>
+            </AdminAuthProvider>
+          </Suspense>
+        )} />
         
-        <Route path="/admin/settings/:category" component={() => {
-          return (
-            <Suspense fallback={<PageLoader />}>
-              <AdminAuthProvider>
-                <RequireAdmin>
-                  <SettingsForm />
-                </RequireAdmin>
-              </AdminAuthProvider>
-            </Suspense>
-          );
-        }} />
+        <Route path="/admin/settings" component={() => (
+          <Suspense fallback={<PageLoader />}>
+            <AdminAuthProvider>
+              <RequireAdmin>
+                <SettingsForm />
+              </RequireAdmin>
+            </AdminAuthProvider>
+          </Suspense>
+        )} />
         
-        <Route path="/admin/media" component={() => {
-          return (
-            <Suspense fallback={<PageLoader />}>
-              <AdminAuthProvider>
-                <RequireAdmin>
-                  <MediaLibrary />
-                </RequireAdmin>
-              </AdminAuthProvider>
-            </Suspense>
-          );
-        }} />
+        <Route path="/admin/settings/:category" component={() => (
+          <Suspense fallback={<PageLoader />}>
+            <AdminAuthProvider>
+              <RequireAdmin>
+                <SettingsForm />
+              </RequireAdmin>
+            </AdminAuthProvider>
+          </Suspense>
+        )} />
+        
+        <Route path="/admin/media" component={() => (
+          <Suspense fallback={<PageLoader />}>
+            <AdminAuthProvider>
+              <RequireAdmin>
+                <MediaLibrary />
+              </RequireAdmin>
+            </AdminAuthProvider>
+          </Suspense>
+        )} />
 
         <Route component={NotFound} />
       </Switch>

@@ -34,51 +34,103 @@ export function AdminAuthProvider({ children }: AdminAuthProviderProps) {
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [, navigate] = useLocation();
   
-  // Initialize state from localStorage on mount
-  useEffect(() => {
-    const checkLocalStorage = () => {
-      try {
-        // First check for admin-specific storage
-        const storedAdminUser = localStorage.getItem('adminUser');
-        if (storedAdminUser) {
-          const user = JSON.parse(storedAdminUser);
-          if (user && user.role === 'admin') {
-            setAdminUser(user);
-            setIsAdmin(true);
-            return;
-          }
-        }
-        
-        // Then check for general auth storage as fallback
-        const storedUser = localStorage.getItem('currentUser');
-        if (storedUser) {
-          const user = JSON.parse(storedUser);
-          if (user && user.role === 'admin') {
-            setAdminUser(user);
-            setIsAdmin(true);
-            return;
-          }
-        }
-        
-        // If we have a token but no user, create a default admin user
-        const hasToken = localStorage.getItem('token') || localStorage.getItem('adminToken');
-        if (hasToken) {
-          const defaultAdmin = {
-            id: 1,
-            username: 'admin',
-            role: 'admin'
-          };
-          setAdminUser(defaultAdmin);
+  // Check server auth status and sync with local state
+  const checkServerAuth = async () => {
+    try {
+      const response = await fetch('/api/auth/me', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token') || localStorage.getItem('adminToken') || ''}`,
+        },
+        credentials: 'include',
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.user && data.user.role === 'admin') {
+          console.log('Server auth successful:', data.user);
+          setAdminUser(data.user);
           setIsAdmin(true);
-          // Also store it for future use
-          localStorage.setItem('adminUser', JSON.stringify(defaultAdmin));
+          // Update localStorage to stay in sync
+          localStorage.setItem('adminUser', JSON.stringify(data.user));
+          localStorage.setItem('currentUser', JSON.stringify(data.user));
+          return true;
         }
-      } catch (error) {
-        console.error('Error loading admin user from localStorage:', error);
+      }
+      
+      console.log('Server auth failed, will try localStorage fallback');
+      return false;
+    } catch (err) {
+      console.warn('Error checking server auth:', err);
+      return false;
+    }
+  };
+  
+  // Initialize state from localStorage and server on mount
+  useEffect(() => {
+    const initAuth = async () => {
+      // First try server authentication
+      const serverAuthSuccess = await checkServerAuth();
+      
+      // If server auth failed, try localStorage fallbacks
+      if (!serverAuthSuccess) {
+        try {
+          // Check for admin-specific storage
+          const storedAdminUser = localStorage.getItem('adminUser');
+          if (storedAdminUser) {
+            const user = JSON.parse(storedAdminUser);
+            if (user && user.role === 'admin') {
+              console.log('Using stored admin user:', user);
+              setAdminUser(user);
+              setIsAdmin(true);
+              return;
+            }
+          }
+          
+          // Then check for general auth storage
+          const storedUser = localStorage.getItem('currentUser');
+          if (storedUser) {
+            const user = JSON.parse(storedUser);
+            if (user && user.role === 'admin') {
+              console.log('Using stored regular user with admin role:', user);
+              setAdminUser(user);
+              setIsAdmin(true);
+              return;
+            }
+          }
+          
+          // If we have a token but no user, create a default admin user
+          const hasToken = localStorage.getItem('token') || localStorage.getItem('adminToken');
+          if (hasToken) {
+            const defaultAdmin = {
+              id: 5, // Use ID 5 to match server's admin ID
+              username: 'admin',
+              role: 'admin',
+              email: 'admin@example.com',
+              createdAt: new Date().toISOString()
+            };
+            console.log('Creating default admin from token');
+            setAdminUser(defaultAdmin);
+            setIsAdmin(true);
+            // Store for future use
+            localStorage.setItem('adminUser', JSON.stringify(defaultAdmin));
+            localStorage.setItem('currentUser', JSON.stringify(defaultAdmin));
+          }
+        } catch (error) {
+          console.error('Error loading admin user from localStorage:', error);
+        }
       }
     };
     
-    checkLocalStorage();
+    initAuth();
+    
+    // Set up polling to periodically check server auth
+    const authCheckInterval = setInterval(checkServerAuth, 60000); // Check every minute
+    
+    return () => {
+      clearInterval(authCheckInterval);
+    };
   }, []);
   
   // Save admin user to localStorage when it changes
