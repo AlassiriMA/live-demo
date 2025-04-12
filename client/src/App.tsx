@@ -36,6 +36,9 @@ const FruitsDetail = lazy(() => import("@/pages/app-details/FruitsDetail"));
 // Admin pages
 const AdminLogin = lazy(() => import("@/pages/admin/login"));
 const AdminDashboard = lazy(() => import("@/pages/admin/dashboard"));
+const ProjectForm = lazy(() => import("@/pages/admin/project-form"));
+const SettingsForm = lazy(() => import("@/pages/admin/settings-form"));
+const MediaLibrary = lazy(() => import("@/pages/admin/media-library"));
 
 // Enhanced loading spinner with fade-in animation
 const PageLoader = () => (
@@ -130,6 +133,11 @@ function Router() {
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin" component={AdminDashboard} />
         <Route path="/admin/dashboard" component={AdminDashboard} />
+        <Route path="/admin/projects/new" component={ProjectForm} />
+        <Route path="/admin/projects/edit/:id" component={ProjectForm} />
+        <Route path="/admin/settings" component={SettingsForm} />
+        <Route path="/admin/settings/:category" component={SettingsForm} />
+        <Route path="/admin/media" component={MediaLibrary} />
 
         <Route component={NotFound} />
       </Switch>
