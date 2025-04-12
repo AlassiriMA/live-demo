@@ -4,6 +4,7 @@ import { useSiteSettings, getSetting } from "@/hooks/use-site-settings";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { HiMail, HiPhone, HiLocationMarker, HiDocumentDownload } from "react-icons/hi";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface FooterLink {
   text: string;
@@ -11,6 +12,7 @@ interface FooterLink {
 }
 
 export default function Footer() {
+  const { t } = useLanguage();
   const { settings: footerSettings, isLoading: isFooterLoading } = useSiteSettings("footer");
   const { settings: contactSettings, isLoading: isContactLoading } = useSiteSettings("contact");
   const { settings: socialSettings, isLoading: isSocialLoading } = useSiteSettings("social");
@@ -45,10 +47,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           {/* About Column - Takes 4 columns on large screens */}
           <div className="lg:col-span-4">
-            <h3 className="text-xl font-bold text-gray-800 mb-5 font-heading">About This Portfolio</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-5 font-heading">{t('footer.aboutTitle') || "About This Portfolio"}</h3>
             <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-              A showcase of 10 interactive demo applications built with modern technologies, 
-              featuring real database connections and comprehensive content management.
+              {t('footer.aboutContent') || "A showcase of 10 interactive demo applications built with modern technologies, featuring real database connections and comprehensive content management."}
             </p>
             <div className="flex space-x-5 footer-social">
               <a 
@@ -83,7 +84,7 @@ export default function Footer() {
           
           {/* Quick Links Column - Takes 3 columns on large screens */}
           <div className="lg:col-span-3">
-            <h3 className="text-xl font-bold text-gray-800 mb-5 font-heading">Quick Links</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-5 font-heading">{t('footer.quickLinksTitle') || "Quick Links"}</h3>
             <ul className="space-y-3 footer-links">
               {isLoading ? (
                 Array(4).fill(0).map((_, i) => (
@@ -108,13 +109,13 @@ export default function Footer() {
                       className="flex items-center text-primary hover:text-primary-dark transition-colors duration-300 font-medium"
                     >
                       <HiDocumentDownload className="mr-2" size={18} />
-                      Download CV
+                      {t('footer.downloadCV') || "Download CV"}
                     </a>
                   </li>
                   <li>
                     <Link href="/admin" className="text-gray-600 hover:text-primary transition-colors duration-300 group flex items-center">
                       <span className="absolute w-0 h-0.5 bg-primary group-hover:w-4 transition-all duration-300 opacity-0 group-hover:opacity-100 mr-0 group-hover:mr-2"></span>
-                      <span className="group-hover:translate-x-5 transition-transform duration-300">Admin Dashboard</span>
+                      <span className="group-hover:translate-x-5 transition-transform duration-300">{t('admin.dashboard') || "Admin Dashboard"}</span>
                     </Link>
                   </li>
                 </>
@@ -124,7 +125,7 @@ export default function Footer() {
           
           {/* Contact Column - Takes 2 columns on large screens */}
           <div className="lg:col-span-2">
-            <h3 className="text-xl font-bold text-gray-800 mb-5 font-heading">Contact</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-5 font-heading">{t('footer.contactTitle') || "Contact"}</h3>
             <ul className="space-y-4 footer-contact">
               <li className="flex items-start">
                 <span className="bg-white p-2 rounded-full shadow-sm text-primary mr-3 flex-shrink-0">
@@ -161,21 +162,21 @@ export default function Footer() {
           
           {/* Newsletter Column - Takes 3 columns on large screens */}
           <div className="lg:col-span-3">
-            <h3 className="text-xl font-bold text-gray-800 mb-5 font-heading">Stay Updated</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-5 font-heading">{t('footer.newsletterTitle') || "Stay Updated"}</h3>
             <p className="text-gray-600 mb-5 text-sm">
-              Subscribe to receive updates on new projects and features.
+              {t('footer.newsletterText') || "Subscribe to receive updates on new projects and features."}
             </p>
             <form className="relative">
               <input 
                 type="email" 
-                placeholder="Enter your email" 
+                placeholder={t('footer.emailPlaceholder') || "Enter your email"} 
                 className="w-full px-5 py-3 rounded-lg bg-white border border-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30 pr-[105px]"
               />
               <button 
                 type="submit" 
                 className="absolute right-1.5 top-1.5 bg-gradient-to-r from-primary to-primary-dark text-white font-medium py-1.5 px-4 rounded-md hover:shadow-md transition-all duration-300"
               >
-                Subscribe
+                {t('footer.subscribe') || "Subscribe"}
               </button>
             </form>
           </div>
@@ -204,9 +205,9 @@ export default function Footer() {
             </p>
           )}
           <div className="flex space-x-8">
-            <a href="/terms" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Terms & Conditions</a>
-            <a href="/privacy" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Privacy Policy</a>
-            <a href="/sitemap" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">Sitemap</a>
+            <a href="/terms" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">{t('footer.terms') || "Terms & Conditions"}</a>
+            <a href="/privacy" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">{t('footer.privacy') || "Privacy Policy"}</a>
+            <a href="/sitemap" className="text-gray-500 hover:text-primary text-sm transition-colors duration-300">{t('footer.sitemap') || "Sitemap"}</a>
           </div>
         </div>
       </div>

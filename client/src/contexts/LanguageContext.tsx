@@ -196,6 +196,42 @@ const translationData: TranslationDict = {
   },
   
   // Footer
+  'footer.aboutTitle': {
+    en: 'About This Portfolio',
+    nl: 'Over Deze Portfolio',
+  },
+  'footer.aboutContent': {
+    en: 'A showcase of 10 interactive demo applications built with modern technologies, featuring real database connections and comprehensive content management.',
+    nl: 'Een showcase van 10 interactieve demo-applicaties gebouwd met moderne technologieën, met echte databaseverbindingen en uitgebreid contentbeheer.',
+  },
+  'footer.quickLinksTitle': {
+    en: 'Quick Links',
+    nl: 'Snelle Links',
+  },
+  'footer.downloadCV': {
+    en: 'Download CV',
+    nl: 'CV Downloaden',
+  },
+  'footer.contactTitle': {
+    en: 'Contact',
+    nl: 'Contact',
+  },
+  'footer.newsletterTitle': {
+    en: 'Stay Updated',
+    nl: 'Blijf op de Hoogte',
+  },
+  'footer.newsletterText': {
+    en: 'Subscribe to receive updates on new projects and features.',
+    nl: 'Abonneer je om updates te ontvangen over nieuwe projecten en functies.',
+  },
+  'footer.emailPlaceholder': {
+    en: 'Enter your email',
+    nl: 'Voer je e-mailadres in',
+  },
+  'footer.subscribe': {
+    en: 'Subscribe',
+    nl: 'Abonneren',
+  },
   'footer.copyright': {
     en: 'All Rights Reserved',
     nl: 'Alle Rechten Voorbehouden',
@@ -203,6 +239,18 @@ const translationData: TranslationDict = {
   'footer.language': {
     en: 'Language',
     nl: 'Taal',
+  },
+  'footer.terms': {
+    en: 'Terms & Conditions',
+    nl: 'Algemene Voorwaarden',
+  },
+  'footer.privacy': {
+    en: 'Privacy Policy',
+    nl: 'Privacybeleid',
+  },
+  'footer.sitemap': {
+    en: 'Sitemap',
+    nl: 'Sitemap',
   },
   
   // Common UI elements
