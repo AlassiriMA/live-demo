@@ -89,11 +89,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setUser(response.user);
         console.log('Login successful, user set:', response.user);
         
-        // Store token in localStorage for non-cookie fallback
+        // Store token and user in localStorage for non-cookie fallback
         if (response.token) {
           localStorage.setItem('token', response.token);
           console.log('Token stored in localStorage');
         }
+        
+        // Store the user object for fallback authentication
+        localStorage.setItem('currentUser', JSON.stringify(response.user));
+        console.log('User object stored in localStorage');
         
         // Force a slight delay to ensure state update before any navigation
         await new Promise(resolve => setTimeout(resolve, 300));
